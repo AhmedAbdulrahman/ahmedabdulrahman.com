@@ -7,7 +7,7 @@ const siteMetadata = {
   description: `This is my description that will be used in the meta tags and important for search results`,
   hero: {
     heading: `You'll cover all the techniques to create performant, composable, reusable UI components to level-up your skills as a developer.`,
-	writingHeading: `A Stockholm based creative Front-end Engineer.`,
+    writingHeading: `A Stockholm based creative Front-end Engineer.`,
     maxWidth: 800,
   },
   social: [
