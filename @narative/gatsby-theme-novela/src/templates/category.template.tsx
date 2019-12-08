@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { graphql, useStaticQuery } from "gatsby";
 
 import Section from '@components/Section';
 import SEO from '@components/SEO';
@@ -11,13 +12,30 @@ import ArticlesList from '../sections/articles/Articles.List';
 // import CategoryHero from '../sections/article/Category.Hero';
 import ArticlesHero from "../sections/articles/Articles.Hero";
 
+const siteQuery = graphql`
+  {
+    allSite {
+      edges {
+        node {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
 function CategoryPage({ location, pageContext }) {
   const { group: articles, category } = pageContext;
   const authors = pageContext.additionalContext.authors;
 
+  const results = useStaticQuery(siteQuery);
+  const title = results.allSite.edges[0].node.siteMetadata.title;
+
   return (
     <Layout>
-      <SEO pathname={location.pathname} title={category} />
+      <SEO pathname={location.pathname} title={category + " | " + title} />
       <ArticlesHero authors={authors} />
       <Section narrow>
         <NavCategory category={category} />
