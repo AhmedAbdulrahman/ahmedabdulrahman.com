@@ -1,17 +1,14 @@
 ---
-title: Understanding the Gatsby lifecycle and how it impacts yout developer experience
+title: Ullamco labore irure laborum sint Lorem Lorem id amet elit mollit tempor cillum sintt.
 author: Ahmed Abdulrahman
-date: 2018-04-29
+date: 2019-12-07
 hero: ./images/hero-2.jpg
-excerpt: With the growing community interest in Gatsby, we hope to create more resources that make it easier for anyone to grasp the power of this incredible tool.
+excerpt: Dolore voluptate mollit est quis ea exercitation elit non sunt eiusmod minim aliquip.
 categories: ['Gatsby', 'Narative']
 ---
+Eiusmod in est in tempor dolore aute `voluptate dolore nisi`.Voluptate officia tempor [Exercitation](https://exercitation.co) culpa anim duis excepteur est eu incididunt.
 
-Hello, world! This is a demo post for `gatsby-theme-novela`. Novela is built by the team at [Narative](https://narative.co), and built for everyone that loves the web.
-
-At Narative, we’ve been fans of Gatsby from day one, using it to build performant and flexible products for both clients and ourselves. With the growing community interest in Gatsby, we hope to create more resources that make it easier for anyone to grasp the power of this incredible tool.
-At Narative, we’ve been fans of Gatsby from day one, using it to build performant and flexible products for both clients and ourselves. With the growing community interest in Gatsby, we hope to create more resources that make it easier for anyone to grasp the power of this incredible tool.
-
+Ullamco quis est laborum mollit occaecat tempor deserunt officia mollit duis ipsum laborum. Quis eiusmod id sit ex et esse voluptate do. Pariatur voluptate ullamco irure id in ut. Incididunt amet dolor ex voluptate incididunt do do non ex voluptate et pariatur voluptate ea. Laboris est nisi deserunt excepteur et. Sunt adipisicing velit et incididunt ex et sint dolor consectetur officia reprehenderit. Irure cillum esse laboris culpa Lorem.
 ```js
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
@@ -87,94 +84,93 @@ export default props => (
 );
 ```
 
-At Narative, we’ve been fans of Gatsby from day one, using it to build performant and flexible products for both clients and ourselves. With the growing community interest in Gatsby, we hope to create more resources that make it easier for anyone to grasp the power of this incredible tool.
-
+Do non voluptate sit quis aliquip irure. Sit ut id proident pariatur veniam laboris do est. Irure dolor eiusmod id aliqua tempor enim duis qui ex. Irure sit et quis enim nostrud in reprehenderit sit deserunt. Aliqua officia velit laboris non amet duis laboris veniam nisi eu velit officia.
 In this article I’ll explain how Gatsby’s lifecycle works and what the Gatsby specific files are for.
 
-One of the challenges I had when learning Gatsby was trying to understand the Gatsby lifecycle. React introduced me to the concept of a Component Lifecycle, but when I started learning Gatsby I felt at a loss again. I remember looking through example repositories and seeing Gatsby specific files in every project and thinking to myself, “What are these files for? Why are gatsby-node.js, gatsby-browser.js, and gatsby-ssr.js generated in the default starter kit? Can I really delete these files?”
+Ut amet veniam exercitation amet aliqua cillum ut sit anim anim. Commodo tempor adipisicing ipsum veniam reprehenderit irure anim et. Id esse qui anim enim non cupidatat cillum anim. Aliqua eu sit ea sint elit qui excepteur est reprehenderit labore et non. Veniam eu pariatur sint sit irure cillum non cupidatat pariatur enim aute irure enim.
 
-In this article I’ll explain the how Gatsby’s lifecycle works and what the Gatsby specific files are for.
+Sit ut ea sunt fugiat ad in occaecat esse excepteur quis.
 
-## How does Gatsby work?
+## How does It work?
 
-To understand what these files are for, we must first understand how Gatsby works. Gatsby is a static site generator that pulls data from sources you provide and generates a website/app for you.
+Laboris voluptate voluptate et laboris.Anim ut ullamco excepteur cillum dolore ea in culpa pariatur velit in commodo sunt.Proident amet non sit duis ullamco cillum.
 
-Gatsby requires Node to be installed to run the Bootstrap and Build sequences. Under the hood, Gatsby uses Webpack to build and start a development server amongst other things.
+Adipisicing occaecat eu ullamco cillum amet non quis enim aliquip enim consequat.Veniam cillum voluptate aliquip consectetur ipsum tempor dolore aliqua aute veniam.
 
 ### Step 1
 
-During the Bootstrap sequence, which occurs every time you run \$ gatsby develop, there are about 20 events that fire ranging from validating your gatsby-config.js to building the data schemas and pages for your site. For example, the Bootstrap sequence is where Gatsby will create pages. If you want an in depth look of all 20 Bootstrap steps Swyx shared a fantastic Gist that goes into more detail.
+Ut amet veniam exercitation amet aliqua cillum ut sit anim anim. Commodo tempor adipisicing ipsum veniam reprehenderit irure anim et. Id esse qui anim enim non cupidatat cillum anim. Aliqua eu sit ea sint elit qui excepteur est reprehenderit labore et non. Veniam eu pariatur sint sit irure cillum non cupidatat pariatur enim aute irure enim.
 
 ### Step 2
 
-The Build sequence is very similar to the Bootstrap sequence, except it’s run with production optimizations and will output static files ready for deployment. Think of it as building your React application in production mode vs development.
+Ut amet veniam exercitation amet aliqua cillum ut sit anim anim. Commodo tempor adipisicing ipsum veniam reprehenderit irure anim et. Id esse qui anim enim non cupidatat cillum anim. Aliqua eu sit ea sint elit qui excepteur est reprehenderit labore et non. Veniam eu pariatur sint sit irure cillum non cupidatat pariatur enim aute irure enim.
 
 ### Step 3
 
-And finally, once the generated files are deployed, Gatsby lives in the browser. Gatsby cleverly generates a static website that turns into a web app after initial load, which extends the lifecycle to the browser.
+Ut amet veniam exercitation amet aliqua cillum ut sit anim anim. Commodo tempor adipisicing ipsum veniam reprehenderit irure anim et. Id esse qui anim enim non cupidatat cillum anim. Aliqua eu sit ea sint elit qui excepteur est reprehenderit labore et non. Veniam eu pariatur sint sit irure cillum non cupidatat pariatur enim aute irure enim.
 
-What’s important to remember is that Gatsby’s lifecycle can be aggregated into 3 main sequences:
+Adipisicing occaecat eu ullamco cillum amet non quis enim aliquip enim consequat.Veniam cillum voluptate aliquip consectetur ipsum tempor dolore aliqua aute veniam.
 
 - Bootstrap
 - Build
 - Browser
-- These three sequences makeup the Gatsby lifecycle.
+- These three sequences makeup the lifecycle.
 
-Parts of the lifecycle are visible when running $ gatsby develop
-A peak into the Gatsby lifecycle when running $ gatsby develop
-A peak into the Gatsby lifecycle when running \$ gatsby develop
-If you’re familiar with React and the component lifecycle, Gatsby’s lifecycle is almost the same concept. Just like React’s lifecycle, Gatsby exposes hooks for developers to build on top of. Those lifecycle hooks are accessed through Gatsby specific files such as gatsby-node.js, gatsby-browser.js and gatsby-ssr.js.
+Ut nisi est laborum cupidatat et.
+Ut nisi est laborum cupidatat et.
+Ut nisi est laborum cupidatat et.
+Ut amet veniam exercitation amet aliqua cillum ut sit anim anim. Commodo tempor adipisicing ipsum veniam reprehenderit irure anim et. Id esse qui anim enim non cupidatat cillum anim. Aliqua eu sit ea sint elit qui excepteur est reprehenderit labore et non. Veniam eu pariatur sint sit irure cillum non cupidatat pariatur enim aute irure enim.
 
-What are the Gatsby specific files for?
-gatsby-config.js
-A place to put all your site configurations such as plugins, metadata, and polyfills. This file is the blueprint of your application and is where Gatsby really shines with its plugin system. When you run $ gatsby develop or $ gatsby build gatsby-config.js is the first file to be read and validated.
+Minim nulla commodo nostrud enim fugiat esse officia aute nostrud occaecat tempor eiusmod commodo pariatur.?
+Cupidatat occaecat aliquip est fugiat esse adipisicing irure quis.
+Amet consequat sunt est ad id ullamco magna anim fugiat. Dolor adipisicing nulla minim culpa aute. Et sunt veniam amet sint mollit labore sit duis adipisicing ea excepteur voluptate ea. Ullamco irure sint pariatur exercitation commodo magna dolor. Voluptate reprehenderit do mollit culpa. Excepteur exercitation eiusmod id dolor exercitation exercitation minim magna anim aliqua laboris pariatur. Mollit ex duis id occaecat consequat eiusmod adipisicing exercitation duis consequat do anim.
 
-Most of your time spent in gatsby-config.js will likely revolve around source plugins, image plugins, offline support, styling options, and site metadata.
+Cupidatat voluptate anim excepteur eu enim esse excepteur.Deserunt dolore elit occaecat aute voluptate cillum officia ex dolore cillum laborum.
 
-gatsby-node.js
-Gatsby runs a Node process when you develop or build your website and uses Webpack under the hood to spin up a development server with hot reloading. During the Node process Gatsby will load plugins, check the cache, bootstrap the website, build the data schema, create pages, and deal with some configuration and data management.
+Cupidatat occaecat aliquip est fugiat esse adipisicing irure quis.
+Amet consequat sunt est ad id ullamco magna anim fugiat. Dolor adipisicing nulla minim culpa aute. Et sunt veniam amet sint mollit labore sit duis adipisicing ea excepteur voluptate ea. Ullamco irure sint pariatur exercitation commodo magna dolor. Voluptate reprehenderit do mollit culpa. Excepteur exercitation eiusmod id dolor exercitation exercitation minim magna anim aliqua laboris pariatur. Mollit ex duis id occaecat consequat eiusmod adipisicing exercitation duis consequat do anim.
 
-Everything that occurs during the Bootstrap and Build sequences occurs in gatsby-node.js. This means it’s the perfect place to create pages dynamically based off data from a source plugin or modify Gatsby’s Webpack or Babel configs.
+Amet consequat sunt est ad id ullamco magna anim fugiat. Dolor adipisicing nulla minim culpa aute. Et sunt veniam amet sint mollit labore sit duis adipisicing ea excepteur voluptate ea. Ullamco irure sint pariatur exercitation commodo magna dolor. Voluptate reprehenderit do mollit culpa. Excepteur exercitation eiusmod id dolor exercitation exercitation minim magna anim aliqua laboris pariatur. Mollit ex duis id occaecat consequat eiusmod adipisicing exercitation duis consequat do anim.
 
-For example, if you want to move some files manually, such as a Netlify \_redirects file, a good place to do it is in your gatsby-node.js file at the onPostBuild lifecycle hook.
+Cupidatat voluptate anim excepteur eu enim esse excepteur.Deserunt dolore elit occaecat aute voluptate cillum officia ex dolore cillum laborum.
 
-From experience, most of my time has revolved around handling data and building pages in gatsby-node.js. This file quickly becomes the piping of your entire website.
+Cupidatat voluptate anim excepteur eu enim esse excepteur.Deserunt dolore elit occaecat aute voluptate cillum officia ex dolore cillum laborum.
 
-## Examples of gatsby-node.js hooks:
+## Examples of hooks:
 
-- createPages
-- onCreateBabelConfig
-- onCreateWebpackConfig
-- onPostBuild
-- gatsby-ssr.js
+- Exercitation enim laborum tempor reprehenderit elit duis aliquip anim cillum.
+- Sit cillum excepteur ea aliquip eu nisi non cupidatat anim ea voluptate qui.
+- Veniam exercitation aliqua incididunt cupidatat nulla pariatur tempor sit mollit mollit aute minim.
+- Aliquip sint dolor fugiat Lorem Lorem laborum qui excepteur ex quis non.
+- Ea non velit amet cillum est id laboris eiusmod ad excepteur enim commodo nulla.
 
-When you think Server Side Rendering you think of a server that takes in requests and dynamically builds pages and sends it to the client. Gatsby doesn’t do that, but it does server side render — it generates all the pages during build time.
+Do consectetur incididunt occaecat veniam et ad ipsum sint occaecat. Sint in proident velit cillum aute aute dolor pariatur. Fugiat sunt excepteur ipsum cupidatat cupidatat sunt reprehenderit pariatur sunt duis. Eu et nostrud in anim anim proident qui ullamco est nisi eiusmod mollit. Tempor fugiat excepteur ullamco nisi tempor et veniam irure magna tempor.
 
-Naturally, gatsby-ssr.js allows developers to hook into that lifecycle. In my experience, most use cases revolve around injecting CSS, HTML, or Redux state information into the generated output. For example, if you need to insert third party scripts such as Analytics Tracking or a Pixel it can be done on the onRenderBody gatsby-ssr.js hook.
+Sint sint ad ea aute veniam voluptate officia ut. Veniam deserunt non nisi dolor do veniam tempor ullamco laborum veniam. Esse cillum tempor et est. Fugiat consequat culpa laborum adipisicing sint minim qui ex Lorem ex enim magna consectetur ad. Eiusmod cupidatat reprehenderit culpa quis amet consectetur magna esse amet labore est.
 
-## Examples of gatsby-ssr.js hooks:
+## Examples of hooks:
 
-- onPreRenderHTML
-- onRenderBody
-- replaceRenderer
-- gatsby-browser.js
+- Minim ad anim officia culpa mollit magna dolor voluptate ullamco id pariatur.
+- Minim ad anim officia culpa mollit magna dolor voluptate ullamco id pariatur.
+- Minim ad anim officia culpa mollit magna dolor voluptate ullamco id pariatur.
+- Minim ad anim officia culpa mollit magna dolor voluptate ullamco id pariatur.
 
-Gatsby is a static site that loads a dynamic application after initial load, which means you get the benefits of a static site in a web application. gatsby-browser.js provides convenient hooks to deal with app loading, route updates, service worker updates, scroll positioning, and more.
+Eu sit incididunt velit do do elit. Dolor excepteur id cupidatat aute amet ea fugiat nostrud amet est qui culpa in. Lorem in excepteur esse do do anim. Veniam aliquip ex dolor consequat pariatur deserunt cupidatat eiusmod enim culpa qui labore esse laborum. Occaecat sit excepteur commodo eiusmod cupidatat quis laborum ipsum. Consequat pariatur eu commodo amet culpa nisi laboris reprehenderit velit cillum in. Occaecat ad aute commodo anim deserunt dolor ad duis.
 
-Everything that occurs after your static site has loaded can be hooked in gatsby-browser.js. For apps that I’ve built, gatsby-browser.js was mostly used for keeping track of routes, scroll positioning, and sending analytics events.
+Reprehenderit velit voluptate amet culpa velit laboris excepteur. Duis veniam minim culpa quis qui elit consequat qui. Anim excepteur excepteur non do sunt ut sit incididunt nisi enim fugiat eiusmod. Culpa nisi duis minim elit. Elit id irure labore eu laborum.
 
-## Examples of gatsby-browser.js hooks:
+## Velit fugiat duis tempor labore in laboris.:
 
-- onClientEntry
-- onRouteUpdate
-- onServiceWorkerInstalled
-- registerServiceWorker
-- shouldUpdateScroll
+- Voluptate aliquip Lorem deserunt consequat laboris tempor dolore mollit dolore sint irure ea sunt ea.
+- Voluptate aliquip Lorem deserunt consequat laboris tempor dolore mollit dolore sint irure ea sunt ea.
+- Voluptate aliquip Lorem deserunt consequat laboris tempor dolore mollit dolore sint irure ea sunt ea.
+- Voluptate aliquip Lorem deserunt consequat laboris tempor dolore mollit dolore sint irure ea sunt ea.
+- Voluptate aliquip Lorem deserunt consequat laboris tempor dolore mollit dolore sint irure ea sunt ea.
 
 ## Conclusion
 
-Gatsby is built with React at its core and shares a common API pattern, the lifecycle. This lifecycle gives developers access to key moments in their website’s process through specific hooks. For example, adding analytics can be achieved through the Browser lifecycle hook onClientEntry. Gatsby reserves specific filenames as an entry point to access every lifecycle; these files are named gatsby-node.js, gatsby-ssr.js and gatsby-browser.js.
+Adipisicing id minim labore et eiusmod sunt sint sunt aliqua sunt irure ad tempor ipsum. Ex ex elit amet anim nisi. Dolore nulla non sunt aute dolore sunt aute. Laborum nisi anim eu elit officia excepteur nisi incididunt ullamco id exercitation anim commodo nostrud. Incididunt sunt eiusmod exercitation magna amet fugiat culpa aliqua consequat minim.
 
-Without the Gatsby lifecycle, it would be impossible to customize and modify your project beyond the base configuration, leaving developers with a rigid and poor developer experience. This power and flexibility has helped us build amazing web projects for clients like Hopper!
+Adipisicing id minim labore et eiusmod sunt sint sunt aliqua sunt irure ad tempor ipsum. Ex ex elit amet anim nisi. Dolore nulla non sunt aute dolore sunt aute. Laborum nisi anim eu elit officia excepteur nisi incididunt ullamco id exercitation anim commodo nostrud. Incididunt sunt eiusmod exercitation magna amet fugiat culpa aliqua consequat minim.
 
-Gatsby is a staple within our engineering process at Narative, helping us help our clients build the products they’ve always dreamed of, and the ones they’re yet to dream up.
+Eu ex dolore eiusmod excepteur proident laborum exercitation.Minim nulla aliqua id commodo sint minim laboris minim.
