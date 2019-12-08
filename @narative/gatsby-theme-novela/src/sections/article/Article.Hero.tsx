@@ -36,8 +36,8 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
         {hasHeroImage ? (
           <Image src={article.hero.full} />
         ) : (
-          <ImagePlaceholder />
-        )}
+            <ImagePlaceholder />
+          )}
       </HeroImage>
     </Hero>
   );
@@ -130,15 +130,16 @@ const HeroHeading = styled(Headings.h1)`
 const HeroSubtitle = styled.div<{ hasCoAUthors: boolean }>`
   position: relative;
   display: flex;
-  font-size: 18px;
+  font-size: 14px;
   color: ${p => p.theme.colors.grey};
+  align-items: center;
 
   ${p => mediaqueries.phablet`
     font-size: 14px;
     flex-direction: column;
 
     ${p.hasCoAUthors &&
-      `
+    `
         &::before {
           content: '';
           position: absolute;
