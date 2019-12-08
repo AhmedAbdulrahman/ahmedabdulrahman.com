@@ -7,8 +7,8 @@ const siteMetadata = {
   description: `This is my description that will be used in the meta tags and important for search results`,
   hero: {
     heading: `You'll cover all the techniques to create performant, composable, reusable UI components to level-up your skills as a developer.`,
-    writingHeading: `A Stockholm based creative Front-end Engineer.`,
-    maxWidth: 800,
+    writingHeading: `Hi, I'm Ahmed, Stockholm based creative Front-end Engineer.`,
+    maxWidth: 650,
   },
   social: [
     {
@@ -19,21 +19,6 @@ const siteMetadata = {
     },
     {
       url: `https://github.com/AhmedAbdulrahman`,
-    },
-    {
-      url: `https://instagram.com/narative.co`,
-    },
-    {
-      url: `https://www.linkedin.com/company/narative/`,
-    },
-    {
-      url: `https://dribbble.com/narativestudio`,
-    },
-    {
-      url: `https://youtube.com`,
-    },
-    {
-      url: `https://stackoverflow.com`,
     },
   ],
 };
