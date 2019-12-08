@@ -87,7 +87,8 @@ const NavigationHeader: React.FC<{}> = () => {
   const { sitePlugin } = useStaticQuery(siteQuery);
 
   const [colorMode] = useColorMode();
-  const fill = colorMode === 'dark' ? '#fff' : '#000';
+  const fillIn = colorMode === 'dark' ? '#fff' : '#000';
+  const fillOut = colorMode === 'dark' ? '#000' : '#fff';
   const { rootPath, basePath } = sitePlugin.pluginOptions;
 
   useEffect(() => {
@@ -117,10 +118,10 @@ const NavigationHeader: React.FC<{}> = () => {
         >
           {showBackArrow && (
             <BackArrowIconContainer>
-              <Icons.ChevronLeft fill={fill} />
+              <Icons.ChevronLeft fill={fillIn} />
             </BackArrowIconContainer>
           )}
-          <Logo fill={fill} />
+          <Logo fillIn={fillIn} fillOut={fillOut} />
           <Hidden>Navigate back to the homepage</Hidden>
         </LogoLink>
         <NavControls>
@@ -133,11 +134,17 @@ const NavigationHeader: React.FC<{}> = () => {
               <Icons.Ex fill={fill} />
             </button>
           ) : (
-            <>
-              <SharePageButton />
-              <DarkModeToggle />
-            </>
-          )}
+              <>
+                <NavLink to={`/workshops`} title={`All workshops`} activeClassName="active" >
+                  Workshops
+                </NavLink>
+                <NavLink to={`/about`} title={`About me`} activeClassName="active" >
+                  About
+                </NavLink>
+                {/* <SharePageButton /> */}
+                <DarkModeToggle />
+              </>
+            )}
         </NavControls>
       </NavContainer>
     </Section>
@@ -179,7 +186,55 @@ const NavContainer = styled.div`
   }
 `;
 
-const LogoLink = styled(Link)<{ back: string }>`
+const NavLink = styled(Link)`
+  font-weight: bold;
+  font-family: ${p => p.theme.fonts.title};
+  font-size: 14px;
+  color: ${p => p.theme.colors.grey};
+  transition: color 0.25s var(--ease-in-out-quad);
+  display: inline-block;
+  position: relative;
+  margin-left: 40px;
+  ${mediaqueries.phone`
+    margin-left: 32px;
+  `}
+  &::after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: -8px;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: ${p => p.theme.colors.accent};
+    transition: width 0.25s ease 0s, left 0.25s ease 0s;
+    width: 0;
+  }
+  &:hover {
+    color: ${p => p.theme.colors.primary};
+    &::after {
+      width: 100%;
+      left: 0;
+    }
+  }
+  &.active {
+    color: ${p => p.theme.colors.primary};
+    &::after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: -8px;
+      content: "";
+      display: block;
+      height: 2px;
+      left: calc(50% - 10px);
+      position: absolute;
+      background: ${p => p.theme.colors.accent};
+      transition: width 0.25s ease 0s, left 0.25s ease 0s;
+      width: 20px;
+    }
+  }
+`;
+
+const LogoLink = styled(Link) <{ back: string }>`
   position: relative;
   display: flex;
   align-items: center;
