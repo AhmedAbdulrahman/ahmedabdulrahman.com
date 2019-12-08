@@ -22,10 +22,7 @@ const siteQuery = graphql`
         }
       }
     }
-    allMdx(
-      sort: { fields: frontmatter___date, order: ASC }
-      filter: { frontmatter: { date: { ne: null } } }
-    ) {
+    allMdx(sort: {fields: frontmatter___date, order: ASC}) {
       edges {
         node {
           frontmatter {
