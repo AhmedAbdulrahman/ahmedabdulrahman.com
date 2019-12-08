@@ -3,12 +3,8 @@ import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 
 import Section from '@components/Section';
-import Bio from '@components/Bio';
-import Icons from '@icons';
 import mediaqueries from '@styles/media';
 import { IAuthor } from '@types';
-
-import { GridLayoutContext } from './Articles.List.Context';
 
 const authorQuery = graphql`
   {
@@ -28,50 +24,22 @@ const authorQuery = graphql`
 `;
 
 const ArticlesHero: React.FC<IAuthor> = ({ authors }) => {
-  const { gridLayout = 'tiles', hasSetGridLayout, setGridLayout } = useContext(
-    GridLayoutContext,
-  );
-
   const results = useStaticQuery(authorQuery);
   const hero = results.site.edges[0].node.siteMetadata.hero;
-  const tilesIsActive = hasSetGridLayout && gridLayout === 'tiles';
-  const featuredAuthor = authors.find(author => author.featured);
+  // const featuredAuthor = authors.find(author => author.featured);
 
-  if (!featuredAuthor) {
-    throw new Error(`
-      No featured Author found.
-      Please ensure you have at least featured Author.
-  `);
-  }
+  // if (!featuredAuthor) {
+  //   throw new Error(`
+  //     No featured Author found.
+  //     Please ensure you have at least featured Author.
+  // `);
+  // }
 
   return (
     <Section relative id="Articles__Hero">
       <HeadingContainer style={{ maxWidth: `${hero.maxWidth}px` }}>
         <HeroHeading dangerouslySetInnerHTML={{ __html: hero.writingHeading }} />
       </HeadingContainer>
-      <SubheadingContainer>
-        <Bio author={featuredAuthor} />
-        <GridControlsContainer>
-          <GridButton
-            onClick={() => setGridLayout('tiles')}
-            active={tilesIsActive}
-            data-a11y="false"
-            title="Show articles in Tile grid"
-            aria-label="Show articles in Tile grid"
-          >
-            <Icons.Tiles />
-          </GridButton>
-          <GridButton
-            onClick={() => setGridLayout('rows')}
-            active={!tilesIsActive}
-            data-a11y="false"
-            title="Show articles in Row grid"
-            aria-label="Show articles in Row grid"
-          >
-            <Icons.Rows />
-          </GridButton>
-        </GridControlsContainer>
-      </SubheadingContainer>
     </Section>
   );
 };
@@ -93,15 +61,6 @@ const SubheadingContainer = styled.div`
   `};
 
   ${mediaqueries.phablet`
-    display: none;
-  `};
-`;
-
-const GridControlsContainer = styled.div`
-  display: flex;
-  align-items: center;
-
-  ${mediaqueries.tablet`
     display: none;
   `};
 `;
