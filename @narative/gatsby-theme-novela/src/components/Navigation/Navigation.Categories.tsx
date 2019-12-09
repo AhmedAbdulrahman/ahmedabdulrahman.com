@@ -20,17 +20,17 @@ const NavCategory = ({ category }) => {
         <NavLink to={`/`} title={`All articles`} activeClassName="active" >
           All
         </NavLink>
+        <NavLink to={`/categories/code`} title={`Code category`} activeClassName="active" >
+          Code
+          </NavLink>
         <NavLink to={`/categories/design`} title={`Design category`} activeClassName="active" >
           Design
-          </NavLink>
-        <NavLink to={`/categories/javascript`} title={`JavaScript category`} activeClassName="active" >
-          JavaScript
         </NavLink>
-        <NavLink to={`/categories/css`} title={`CSS category`} activeClassName="active" >
-          CSS
+        <NavLink to={`/categories/personal`} title={`Personal category`} activeClassName="active" >
+          Personal
         </NavLink>
-        <NavLink to={`/categories/shell`} title={`Shell category`} activeClassName="active" >
-          Shell
+        <NavLink to={`/categories/tools`} title={`Tools category`} activeClassName="active" >
+          Tools
         </NavLink>
       </NavControls>
       <GridControlsContainer>
