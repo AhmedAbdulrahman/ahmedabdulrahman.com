@@ -30,6 +30,7 @@ const UnorderedList = styled.ul`
   li {
     position: relative;
     padding-bottom: 15px;
+    line-height: 1.756;
 
     ${mediaqueries.tablet`
       padding-left: 30px;
