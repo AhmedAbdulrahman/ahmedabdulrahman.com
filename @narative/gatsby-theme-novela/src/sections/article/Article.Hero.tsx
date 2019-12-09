@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { useColorMode } from "theme-ui";
 
 import Headings from '@components/Headings';
 import Image, { ImagePlaceholder } from '@components/Image';
@@ -15,6 +16,8 @@ interface ArticleHeroProps {
 }
 
 const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
+  const [colorMode] = useColorMode();
+  const isDark = colorMode === "dark";
   const hasCoAUthors = authors.length > 1;
   const hasHeroImage =
     article.hero &&
@@ -28,8 +31,13 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
         <HeroSubtitle hasCoAUthors={hasCoAUthors}>
           <ArticleAuthors authors={authors} />
           <ArticleMeta hasCoAUthors={hasCoAUthors}>
-            {article.date} · {article.timeToRead} min read
+            {article.date} · {article.timeToRead} min read |
           </ArticleMeta>
+          {article.categories.map((category, index) => (
+            <ArticleCategory key={index} isDark={isDark}>
+              <span>{category}</span>
+            </ArticleCategory>
+          ))}
         </HeroSubtitle>
       </Header>
       <HeroImage id="ArticleImage__Hero">
@@ -185,4 +193,14 @@ const HeroImage = styled.div`
       height: 220px;
     }
 `}
+`;
+
+const ArticleCategory = styled.div<{ isDark: boolean }>`
+  padding: .5rem .8rem;
+  margin-left: 5px;
+  color: #000;
+  background: #E6E6E7;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: 500;
 `;
