@@ -26,6 +26,7 @@ module.exports.local = {
           title
           author
           categories
+          tags
           date(formatString: "MMMM Do, YYYY")
           dateForSEO: date
           timeToRead

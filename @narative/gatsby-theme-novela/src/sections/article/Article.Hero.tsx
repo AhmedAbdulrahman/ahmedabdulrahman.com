@@ -33,9 +33,9 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
           <ArticleMeta hasCoAUthors={hasCoAUthors}>
             {article.date} · {article.timeToRead} min read |
           </ArticleMeta>
-          {article.categories.map((category, index) => (
+          {article.tags.map((tag, index) => (
             <ArticleCategory key={index} isDark={isDark}>
-              <span>{category}</span>
+              <span>{tag}</span>
             </ArticleCategory>
           ))}
         </HeroSubtitle>
