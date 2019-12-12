@@ -131,7 +131,7 @@ const NavigationHeader: React.FC<{}> = () => {
               title="Navigate back to the homepage"
               aria-label="Navigate back to the homepage"
             >
-              <Icons.Ex fill={fill} />
+              <Icons.Ex fill={fillIn} />
             </button>
           ) : (
               <>
