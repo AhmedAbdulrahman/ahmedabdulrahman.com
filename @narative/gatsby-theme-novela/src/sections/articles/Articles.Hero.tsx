@@ -66,6 +66,7 @@ const SubheadingContainer = styled.div`
 `;
 
 const HeadingContainer = styled.div`
+  font-family: ${p => p.theme.fonts.title};
   margin: 100px 0;
 
   ${mediaqueries.desktop`
@@ -93,7 +94,7 @@ const HeroHeading = styled.h1`
   `}
 
   ${mediaqueries.phablet`
-    font-size: 32px;
+    font-size: 38px;
   `}
 `;
 
