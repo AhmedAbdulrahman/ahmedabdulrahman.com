@@ -33,8 +33,8 @@ export const clamp = (value: number, min: number, max: number) =>
 export const range = (start: number, len: number, step: number = 1) =>
   len
     ? new Array(len)
-        .fill(undefined)
-        .map((_, i) => +(start + i * step).toFixed(4))
+      .fill(undefined)
+      .map((_, i) => +(start + i * step).toFixed(4))
     : [];
 
 /**
@@ -48,7 +48,7 @@ export const range = (start: number, len: number, step: number = 1) =>
 export const debounce = (fn: () => any, time = 100) => {
   let timeout: ReturnType<typeof setTimeout>;
 
-  return function() {
+  return function () {
     const functionCall = () => fn.apply(this, arguments);
 
     clearTimeout(timeout);
@@ -328,4 +328,16 @@ export function copyToClipboard(toCopy: string) {
   el.select();
   document.execCommand(`copy`);
   document.body.removeChild(el);
+}
+
+export function formatReadingTime(minutes: number): string {
+  let cups = Math.round(minutes / 5);
+
+  if (cups > 5) {
+    return `${new Array(Math.round(cups / Math.E))
+      .fill('🍱')
+      .join('')} ${minutes} min read`;
+  } else {
+    return `${new Array(cups || 1).fill('☕️').join('')} ${minutes} min read`;
+  }
 }
