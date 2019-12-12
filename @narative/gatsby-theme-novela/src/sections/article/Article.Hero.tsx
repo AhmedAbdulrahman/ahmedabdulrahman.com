@@ -3,10 +3,12 @@ import styled from '@emotion/styled';
 import { useColorMode } from "theme-ui";
 
 import Headings from '@components/Headings';
+import Anchor from '@components/Anchor';
 import Image, { ImagePlaceholder } from '@components/Image';
 
 import mediaqueries from '@styles/media';
 import { IArticle, IAuthor } from '@types';
+import { formatReadingTime } from "@utils";
 
 import ArticleAuthors from './Article.Authors';
 
@@ -14,6 +16,9 @@ interface ArticleHeroProps {
   article: IArticle;
   authors: IAuthor[];
 }
+
+const GITHUB_USERNAME = 'ahmedabdulrahman';
+const GITHUB_REPO_NAME = 'ahmedabdulrahman.com';
 
 const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
   const [colorMode] = useColorMode();
@@ -24,6 +29,8 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
     Object.keys(article.hero.full).length !== 0 &&
     article.hero.full.constructor === Object;
 
+  const editUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO_NAME}/edit/master/www/content/posts${article.slug}/index.mdx`;
+
   return (
     <Hero>
       <Header>
@@ -31,14 +38,27 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
         <HeroSubtitle hasCoAUthors={hasCoAUthors}>
           <ArticleAuthors authors={authors} />
           <ArticleMeta hasCoAUthors={hasCoAUthors}>
-            {article.date} · {article.timeToRead} min read |
+            {article.date}
+            {` • ${formatReadingTime(article.timeToRead)}`}
           </ArticleMeta>
-          {article.tags.map((tag, index) => (
-            <ArticleCategory key={index} isDark={isDark}>
-              <span>{tag}</span>
-            </ArticleCategory>
-          ))}
         </HeroSubtitle>
+        <TagsWrapper>
+          <Tags>
+            {article.tags.map((tag, index) => (
+              <ArticleTag key={index} isDark={isDark}>
+                <span>{tag}</span>
+              </ArticleTag>
+            ))}
+          </Tags>
+
+          <Anchor
+            href={editUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ marginLeft: 10, border: 'none' }}>
+            Edit 📝
+          </Anchor>
+        </TagsWrapper>
       </Header>
       <HeroImage id="ArticleImage__Hero">
         {hasHeroImage ? (
@@ -89,10 +109,29 @@ const ArticleMeta = styled.div<{ hasCoAUthors: boolean }>`
   `}
 `;
 
+const TagsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: ${p => p.theme.colors.grey};
+
+  ${mediaqueries.desktop_up`
+    margin-left: 33px;
+  `}
+
+  ${mediaqueries.tablet`
+    // justify-content: center;
+`}
+`
+
+const Tags = styled.div`
+    display: flex;
+`
+
 const Header = styled.header`
   position: relative;
   z-index: 10;
-  margin:100px auto 120px;
+  margin:100px auto 56px;
   padding-left: 68px;
   max-width: 749px;
 
@@ -109,18 +148,18 @@ const Header = styled.header`
   `}
 
   ${mediaqueries.phablet`
-    margin: 170px auto 180px;
+    margin: 64px auto 64px;
     padding: 0 40px;
   `}
 
   @media screen and (max-height: 700px) {
-    margin: 100px auto;
+    margin: 100px auto 48px;
   }
 `;
 
 const HeroHeading = styled(Headings.h1)`
   font-size: 48px;
-  font-family: ${p => p.theme.fonts.serif};
+  font-family: ${p => p.theme.fonts.title};
   margin-bottom: 25px;
   font-weight: bold;
   line-height: 1.32;
@@ -139,12 +178,14 @@ const HeroSubtitle = styled.div<{ hasCoAUthors: boolean }>`
   position: relative;
   display: flex;
   font-size: 14px;
-  color: ${p => p.theme.colors.grey};
+  color: ${p => p.theme.colors.secondary};
   align-items: center;
+  margin-bottom: 20px;
 
   ${p => mediaqueries.phablet`
-    font-size: 14px;
     flex-direction: column;
+    align-items: left;
+    align-items: flex-start;
 
     ${p.hasCoAUthors &&
     `
@@ -195,12 +236,18 @@ const HeroImage = styled.div`
 `}
 `;
 
-const ArticleCategory = styled.div<{ isDark: boolean }>`
+const ArticleTag = styled.div<{ isDark: boolean }>`
   padding: .5rem .8rem;
-  margin-left: 5px;
+  margin-right: 5px;
   color: #000;
   background: #E6E6E7;
   border-radius: 5px;
   font-size: 1.2rem;
   font-weight: 500;
+
+  ${mediaqueries.desktop_up`
+    &:first-of-type {
+      margin-left: 5px;
+    }
+  `}
 `;
