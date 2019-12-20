@@ -5,9 +5,9 @@ const Paragraph = styled.p`
   line-height: 1.756;
   font-size: 18px;
   color: ${p => p.theme.colors.articleText};
-  font-family: ${p => p.theme.fonts.sansSerif};
+  font-family: ${p => p.theme.fonts.body};
   transition: ${p => p.theme.colorModeTransition};
-  margin: 0 auto 35px;
+  margin: 0 auto;
   width: 100%;
   max-width: 680px;
 
@@ -21,7 +21,7 @@ const Paragraph = styled.p`
 
   ${mediaqueries.tablet`
     max-width: 486px;
-    margin: 0 auto 25px;
+    margin: 0 auto;
   `};
 
   ${mediaqueries.phablet`

@@ -137,7 +137,7 @@ const Hero = styled.div`
 
 const Heading = styled.h1`
   font-size: 38px;
-  font-family: ${p => p.theme.fonts.sansSerif};
+  font-family: ${p => p.theme.fonts.title};
   color: ${p => p.theme.colors.primary};
   margin-bottom: 15px;
   font-weight: 600;

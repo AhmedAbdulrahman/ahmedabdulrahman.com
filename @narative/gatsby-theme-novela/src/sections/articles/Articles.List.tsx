@@ -175,7 +175,7 @@ const listTile = p => css`
 
   ${mediaqueries.tablet`
     grid-template-columns: 1fr;
-    
+
     &:not(:last-child) {
       margin-bottom: 0;
     }
@@ -278,7 +278,7 @@ const ImageContainer = styled.div<{ narrow: boolean; gridLayout: string }>`
 
 const Title = styled(Headings.h2)`
   font-size: 21px;
-  font-family: ${p => p.theme.fonts.serif};
+  font-family: ${p => p.theme.fonts.title};
   margin-bottom: ${p =>
     p.hasOverflow && p.gridLayout === 'tiles' ? '35px' : '10px'};
   transition: color 0.3s ease-in-out;
@@ -289,11 +289,11 @@ const Title = styled(Headings.h2)`
   `}
 
   ${mediaqueries.tablet`
-    font-size: 24px;  
+    font-size: 24px;
   `}
 
   ${mediaqueries.phablet`
-    font-size: 22px;  
+    font-size: 22px;
     padding: 30px 20px 0;
     margin-bottom: 10px;
     -webkit-line-clamp: 3;
