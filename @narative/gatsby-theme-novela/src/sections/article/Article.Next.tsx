@@ -99,7 +99,7 @@ const Grid = styled.div<{ numberOfArticles: number }>`
     `;
     } else {
       return `
-      grid-template-columns: ${wide} ${narrow};
+      grid-template-columns: ${wide} ${wide};
       grid-template-rows: 2;
       `;
     }
@@ -120,8 +120,6 @@ const Grid = styled.div<{ numberOfArticles: number }>`
 const ImageContainer = styled.div`
   position: relative;
   height: 280px;
-  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, ${p => (p.narrow ? 0.22 : 0.3)}),
-    0 18px 36px -18px rgba(0, 0, 0, ${p => (p.narrow ? 0.25 : 0.33)});
   margin-bottom: 30px;
   transition: transform 0.3s var(--ease-out-quad),
     box-shadow 0.3s var(--ease-out-quad);
@@ -140,8 +138,6 @@ const ImageContainer = styled.div`
     margin-bottom: 0;
     box-shadow: none;
     overflow: hidden;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
   `}
 `;
 
@@ -149,9 +145,6 @@ const Item = styled.div`
   position: relative;
 
   @media (max-width: 540px) {
-    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
     background: ${p => p.theme.colors.card};
   }
 `;
@@ -161,7 +154,7 @@ const Title = styled(Headings.h3)`
   line-height: 1.4;
   margin-bottom: ${p => (p.hasOverflow ? "45px" : "10px")};
   color: ${p => p.theme.colors.primary};
-  font-family: ${p => p.theme.fonts.serif};
+  font-family: ${p => p.theme.fonts.title};
   transition: color 0.3s ease-in-out;
   ${limitToTwoLines};
 
@@ -179,8 +172,9 @@ const Excerpt = styled.p<{ narrow: boolean; hasOverflow: boolean }>`
   ${limitToTwoLines};
   font-size: 16px;
   margin-bottom: 10px;
-  color: ${p => p.theme.colors.grey};
+  color: ${p => p.theme.colors.secondary};
   display: ${p => (p.hasOverflow ? "none" : "box")};
+  font-family: ${p => p.theme.fonts.body};
   max-width: ${p => (p.narrow ? "415px" : "515px")};
 
   ${mediaqueries.desktop`
@@ -200,10 +194,10 @@ const Excerpt = styled.p<{ narrow: boolean; hasOverflow: boolean }>`
 `;
 
 const MetaData = styled.div`
-  font-weight: 600;
-  font-size: 16px;
-  color: ${p => p.theme.colors.grey};
-  opacity: 0.33;
+  font-weight: 400;
+  font-size: 14px;
+  color: ${p => p.theme.colors.secondary};
+  opacity: 0.6;
 
   ${mediaqueries.phablet`
     max-width: 100%;
@@ -211,7 +205,7 @@ const MetaData = styled.div`
   `}
 `;
 
-const ArticleLink = styled(Link)<{ narrow: string }>`
+const ArticleLink = styled(Link) <{ narrow: string }>`
   position: relative;
   display: block;
   width: 100%;
