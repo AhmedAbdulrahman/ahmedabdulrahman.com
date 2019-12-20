@@ -1,13 +1,15 @@
 import React, { useRef, useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import throttle from 'lodash/throttle';
-import { graphql, useStaticQuery } from 'gatsby';
+// import { graphql, useStaticQuery } from 'gatsby';
 
 import Layout from '@components/Layout';
 import MDXRenderer from '@components/MDX';
 import Progress from '@components/Progress';
 import Section from '@components/Section';
 import Subscription from '@components/Subscription';
+import Anchor from '@components/Anchor';
+import Paragraph from "@components/Paragraph";
 
 import mediaqueries from '@styles/media';
 import { debounce } from '@utils';
@@ -21,19 +23,8 @@ import ArticleShare from '../sections/article/Article.Share';
 
 import { Template } from '@types';
 
-const siteQuery = graphql`
-  {
-    allSite {
-      edges {
-        node {
-          siteMetadata {
-            name
-          }
-        }
-      }
-    }
-  }
-`;
+const GITHUB_USERNAME = 'ahmedabdulrahman';
+const GITHUB_REPO_NAME = 'ahmedabdulrahman.com';
 
 const Article: Template = ({ pageContext, location }) => {
   const contentSectionRef = useRef<HTMLElement>(null);
@@ -41,10 +32,12 @@ const Article: Template = ({ pageContext, location }) => {
   const [hasCalculated, setHasCalculated] = useState<boolean>(false);
   const [contentHeight, setContentHeight] = useState<number>(0);
 
-  const results = useStaticQuery(siteQuery);
-  const name = results.allSite.edges[0].node.siteMetadata.name;
-
   const { article, authors, mailchimp, next } = pageContext;
+
+  const editUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO_NAME}/edit/master/www/content/posts${article.slug}/index.mdx`;
+  const discussUrl = `https://mobile.twitter.com/search?q=${encodeURIComponent(
+    `https://${GITHUB_REPO_NAME}${article.slug}`
+  )}`;
 
   useEffect(() => {
     const calculateBodySize = throttle(() => {
@@ -94,11 +87,28 @@ const Article: Template = ({ pageContext, location }) => {
         <MDXRenderer content={article.body}>
           <ArticleShare />
         </MDXRenderer>
+        <Paragraph style={{ maxWidth: 680, marginTop: 50, marginBottom: 50 }}>
+          <Anchor
+            href={discussUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Discuss on Twitter
+          </Anchor>
+          {` • `}
+          <Anchor
+            href={editUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Edit on GitHub
+          </Anchor>
+        </Paragraph>
       </ArticleBody>
       {mailchimp && article.subscription && <Subscription />}
       {next.length > 0 && (
         <NextArticle narrow>
-          <FooterNext>More from {name}</FooterNext>
+          <FooterNext>Other articles you may like</FooterNext>
           <ArticlesNext articles={next} />
           <FooterSpacer />
         </NextArticle>

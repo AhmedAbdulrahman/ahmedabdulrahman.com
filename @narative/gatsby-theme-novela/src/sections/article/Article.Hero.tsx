@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { useColorMode } from "theme-ui";
 
 import Headings from '@components/Headings';
-import Anchor from '@components/Anchor';
 import Image, { ImagePlaceholder } from '@components/Image';
 
 import mediaqueries from '@styles/media';
@@ -17,9 +16,6 @@ interface ArticleHeroProps {
   authors: IAuthor[];
 }
 
-const GITHUB_USERNAME = 'ahmedabdulrahman';
-const GITHUB_REPO_NAME = 'ahmedabdulrahman.com';
-
 const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
   const [colorMode] = useColorMode();
   const isDark = colorMode === "dark";
@@ -29,7 +25,6 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
     Object.keys(article.hero.full).length !== 0 &&
     article.hero.full.constructor === Object;
 
-  const editUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO_NAME}/edit/master/www/content/posts${article.slug}/index.mdx`;
 
   return (
     <Hero>
@@ -50,14 +45,6 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
               </ArticleTag>
             ))}
           </Tags>
-
-          <Anchor
-            href={editUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ marginLeft: 10, border: 'none' }}>
-            Edit 📝
-          </Anchor>
         </TagsWrapper>
       </Header>
       <HeroImage id="ArticleImage__Hero">
@@ -239,10 +226,10 @@ const HeroImage = styled.div`
 const ArticleTag = styled.div<{ isDark: boolean }>`
   padding: .5rem .8rem;
   margin-right: 5px;
-  color: #000;
-  background: #E6E6E7;
+  color: ${p => p.isDark ? p.theme.colors.primary : p.theme.colors.primary};
+  background: ${p => p.theme.colors.hover};
   border-radius: 5px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 500;
 
   ${mediaqueries.desktop_up`
