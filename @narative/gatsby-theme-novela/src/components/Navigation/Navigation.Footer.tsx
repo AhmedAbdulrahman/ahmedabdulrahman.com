@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { graphql, useStaticQuery } from "gatsby";
+import React from 'react';
+import styled from '@emotion/styled';
+import { graphql, useStaticQuery } from 'gatsby';
 
-import Section from "@components/Section";
-import SocialLinks from "@components/SocialLinks";
+import Section from '@components/Section';
+import SocialLinks from '@components/SocialLinks';
 
-import mediaqueries from "@styles/media";
+import mediaqueries from '@styles/media';
 
 const siteQuery = graphql`
   {
@@ -22,7 +22,7 @@ const siteQuery = graphql`
         }
       }
     }
-    allMdx(sort: {fields: frontmatter___date, order: ASC}) {
+    allMdx(sort: { fields: frontmatter___date, order: ASC }) {
       edges {
         node {
           frontmatter {
@@ -40,8 +40,8 @@ const Footer: React.FC<{}> = () => {
 
   const copyrightDate = (() => {
     const { edges } = results.allMdx;
-    const years = [0, edges.length - 1].map((edge) =>
-      new Date(edges[edge].node.frontmatter.date).getFullYear()
+    const years = [0, edges.length - 1].map(edge =>
+      new Date(edges[edge].node.frontmatter.date).getFullYear(),
     );
     return years[0] === years[1] ? `${years[0]}` : `${years[0]}–${years[1]}`;
   })();
@@ -71,8 +71,8 @@ const FooterContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 80px;
-  color: ${p => p.theme.colors.grey};
+  padding-bottom: 40px;
+  color: ${p => p.theme.colors.secondary};
 
   ${mediaqueries.tablet`
     flex-direction: column;
@@ -86,7 +86,7 @@ const FooterContainer = styled.div`
 
 const HoritzontalRule = styled.div`
   position: relative;
-  margin: 140px auto 50px;
+  margin: 80px auto 32px;
   border-bottom: 1px solid ${p => p.theme.colors.horizontalRule};
 
   ${mediaqueries.tablet`
@@ -104,7 +104,7 @@ const FooterText = styled.div`
   `}
 
   ${mediaqueries.phablet`
-    margin: 120px auto 100px;
+    margin: 64px auto 24px;
   `}
 `;
 

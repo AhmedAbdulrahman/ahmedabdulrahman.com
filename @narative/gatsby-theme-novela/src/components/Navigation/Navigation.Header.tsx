@@ -134,17 +134,25 @@ const NavigationHeader: React.FC<{}> = () => {
               <Icons.Ex fill={fillIn} />
             </button>
           ) : (
-              <>
-                <NavLink to={`/workshops`} title={`All workshops`} activeClassName="active" >
-                  Workshops
-                </NavLink>
-                <NavLink to={`/about`} title={`About me`} activeClassName="active" >
-                  About
-                </NavLink>
-                {/* <SharePageButton /> */}
-                <DarkModeToggle />
-              </>
-            )}
+            <>
+              <NavLink
+                to={`/workshops`}
+                title={`All workshops`}
+                activeClassName="active"
+              >
+                Workshops
+              </NavLink>
+              <NavLink
+                to={`/about`}
+                title={`About me`}
+                activeClassName="active"
+              >
+                About
+              </NavLink>
+              {/* <SharePageButton /> */}
+              <DarkModeToggle />
+            </>
+          )}
         </NavControls>
       </NavContainer>
     </Section>
@@ -190,7 +198,7 @@ const NavLink = styled(Link)`
   font-weight: bold;
   font-family: ${p => p.theme.fonts.title};
   font-size: 14px;
-  color: ${p => p.theme.colors.grey};
+  color: ${p => p.theme.colors.secondary};
   transition: color 0.25s var(--ease-in-out-quad);
   display: inline-block;
   position: relative;
@@ -201,7 +209,7 @@ const NavLink = styled(Link)`
   &::after {
     background: none repeat scroll 0 0 transparent;
     bottom: -8px;
-    content: "";
+    content: '';
     display: block;
     height: 2px;
     left: 50%;
@@ -222,7 +230,7 @@ const NavLink = styled(Link)`
     &::after {
       background: none repeat scroll 0 0 transparent;
       bottom: -8px;
-      content: "";
+      content: '';
       display: block;
       height: 2px;
       left: calc(50% - 10px);
@@ -234,7 +242,7 @@ const NavLink = styled(Link)`
   }
 `;
 
-const LogoLink = styled(Link) <{ back: string }>`
+const LogoLink = styled(Link)<{ back: string }>`
   position: relative;
   display: flex;
   align-items: center;
