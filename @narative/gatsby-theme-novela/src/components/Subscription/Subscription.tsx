@@ -187,7 +187,7 @@ const Input = styled.input<{ hasError: string }>`
 const Button = styled.button<{ hasError: string; subscribed: boolean }>`
   position: absolute;
   right: 24px;
-  top: 3px;
+  top: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
