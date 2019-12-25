@@ -7,9 +7,9 @@ import Layout from '@components/Layout';
 import MDXRenderer from '@components/MDX';
 import Progress from '@components/Progress';
 import Section from '@components/Section';
-import Subscription from '@components/Subscription';
+// import Subscription from '@components/Subscription';
 import Anchor from '@components/Anchor';
-import Paragraph from "@components/Paragraph";
+import Paragraph from '@components/Paragraph';
 
 import mediaqueries from '@styles/media';
 import { debounce } from '@utils';
@@ -36,7 +36,7 @@ const Article: Template = ({ pageContext, location }) => {
 
   const editUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO_NAME}/edit/master/www/content/posts${article.slug}/index.mdx`;
   const discussUrl = `https://mobile.twitter.com/search?q=${encodeURIComponent(
-    `https://${GITHUB_REPO_NAME}${article.slug}`
+    `https://${GITHUB_REPO_NAME}${article.slug}`,
   )}`;
 
   useEffect(() => {
@@ -88,24 +88,16 @@ const Article: Template = ({ pageContext, location }) => {
           <ArticleShare />
         </MDXRenderer>
         <Paragraph style={{ maxWidth: 680, marginTop: 50, marginBottom: 50 }}>
-          <Anchor
-            href={discussUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Anchor href={discussUrl} target="_blank" rel="noopener noreferrer">
             Discuss on Twitter
           </Anchor>
           {` • `}
-          <Anchor
-            href={editUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Anchor href={editUrl} target="_blank" rel="noopener noreferrer">
             Edit on GitHub
           </Anchor>
         </Paragraph>
       </ArticleBody>
-      {mailchimp && article.subscription && <Subscription />}
+      {/* {mailchimp && article.subscription && <Subscription />} */}
       {next.length > 0 && (
         <NextArticle narrow>
           <FooterNext>Other articles you may like</FooterNext>
