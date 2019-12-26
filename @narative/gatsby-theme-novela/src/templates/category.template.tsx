@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from 'gatsby';
 
 import Section from '@components/Section';
 import SEO from '@components/SEO';
@@ -10,7 +10,7 @@ import NavCategory from '@components/Navigation/Navigation.Categories';
 
 import ArticlesList from '../sections/articles/Articles.List';
 // import CategoryHero from '../sections/article/Category.Hero';
-import ArticlesHero from "../sections/articles/Articles.Hero";
+import ArticlesHero from '../sections/articles/Articles.Hero';
 
 const siteQuery = graphql`
   {
@@ -27,7 +27,7 @@ const siteQuery = graphql`
 `;
 
 function CategoryPage({ location, pageContext }) {
-  const { group: articles, category } = pageContext;
+  const { group: articles, categories, category } = pageContext;
   const authors = pageContext.additionalContext.authors;
 
   const results = useStaticQuery(siteQuery);
@@ -35,10 +35,10 @@ function CategoryPage({ location, pageContext }) {
 
   return (
     <Layout>
-      <SEO pathname={location.pathname} title={category + " | " + title} />
+      <SEO pathname={location.pathname} title={category + ' | ' + title} />
       <ArticlesHero authors={authors} />
       <Section narrow>
-        <NavCategory category={category} />
+        <NavCategory categories={categories} />
         <ArticlesList articles={articles} />
         <ArticlesPaginator show={pageContext.pageCount > 1}>
           <Paginator {...pageContext} />

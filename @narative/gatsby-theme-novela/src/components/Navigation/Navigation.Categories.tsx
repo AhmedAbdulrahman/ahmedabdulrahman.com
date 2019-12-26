@@ -7,31 +7,31 @@ import mediaqueries from '@styles/media';
 
 import { GridLayoutContext } from '../../sections/articles/Articles.List.Context';
 
-const NavCategory = ({ category }) => {
-  const { gridLayout = 'tiles', hasSetGridLayout, setGridLayout } = React.useContext(
-    GridLayoutContext,
-  );
+const NavCategory = ({ categories }) => {
+  const {
+    gridLayout = 'tiles',
+    hasSetGridLayout,
+    setGridLayout,
+  } = React.useContext(GridLayoutContext);
 
   const tilesIsActive = hasSetGridLayout && gridLayout === 'tiles';
 
   return (
     <NavContainer>
       <NavControls>
-        <NavLink to={`/`} title={`All articles`} activeClassName="active" >
+        <NavLink to={`/`} title={`All articles`} activeClassName="active">
           All
         </NavLink>
-        <NavLink to={`/categories/code`} title={`Code category`} activeClassName="active" >
-          Code
+        {categories.map(category => (
+          <NavLink
+            key={category}
+            to={`/categories/${category.toLowerCase()}`}
+            title={`${category} category`}
+            activeClassName="active"
+          >
+            {category}
           </NavLink>
-        <NavLink to={`/categories/design`} title={`Design category`} activeClassName="active" >
-          Design
-        </NavLink>
-        <NavLink to={`/categories/personal`} title={`Personal category`} activeClassName="active" >
-          Personal
-        </NavLink>
-        <NavLink to={`/categories/tools`} title={`Tools category`} activeClassName="active" >
-          Tools
-        </NavLink>
+        ))}
       </NavControls>
       <GridControlsContainer>
         <GridButton
