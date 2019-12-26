@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Link } from "gatsby";
+import { Link } from 'gatsby';
 
 import Icons from '@icons';
 import mediaqueries from '@styles/media';
@@ -94,7 +94,7 @@ const NavLink = styled(Link)`
   &::after {
     background: none repeat scroll 0 0 transparent;
     bottom: -8px;
-    content: "";
+    content: '';
     display: block;
     height: 2px;
     left: 50%;
@@ -115,7 +115,7 @@ const NavLink = styled(Link)`
     &::after {
       background: none repeat scroll 0 0 transparent;
       bottom: -8px;
-      content: "";
+      content: '';
       display: block;
       height: 2px;
       left: calc(50% - 8px);
@@ -167,10 +167,6 @@ const GridButton = styled.button<{ active: boolean }>`
   border-radius: 50%;
   background: transparent;
   transition: background 0.25s;
-
-  &:not(:last-child) {
-    margin-right: 30px;
-  }
 
   &:hover {
     background: ${p => p.theme.colors.hover};
