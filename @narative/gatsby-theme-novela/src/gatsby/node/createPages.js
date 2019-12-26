@@ -143,9 +143,13 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
   `);
   }
 
-  const categories = articles.reduce((acc, article) => {
-    return [...acc, ...article.categories];
-  }, []);
+  // const categories = articles.reduce((acc, article) => {
+  //   return [...acc, ...article.category];
+  // }, []);
+
+  const categories = articles
+    .filter(article => !article.secret)
+    .map(article => article.category);
 
   const uniqueCategories = [...new Set(categories)];
 
@@ -172,6 +176,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     buildPath: buildPaginatedPath,
     context: {
       authors,
+      categories: uniqueCategories,
       basePath,
       skip: pageLength,
       limit: pageLength,
@@ -222,7 +227,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
       context: {
         article,
         authors: authorsThatWroteTheArticle,
-        categories: article.categories,
+        category: article.category,
         basePath,
         slug: article.slug,
         id: article.id,
@@ -273,8 +278,8 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
   uniqueCategories.forEach(category => {
     let allArticlesOfTheCategory;
     try {
-      allArticlesOfTheCategory = articles.filter(article =>
-        article.categories.includes(category),
+      allArticlesOfTheCategory = articles.filter(
+        article => article.category === category && !article.secret,
       );
     } catch (error) {
       throw new Error(`
@@ -296,6 +301,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
       buildPath: buildPaginatedPath,
       context: {
         category,
+        categories: uniqueCategories,
         originalPath: path,
         skip: pageLength,
         limit: pageLength,
