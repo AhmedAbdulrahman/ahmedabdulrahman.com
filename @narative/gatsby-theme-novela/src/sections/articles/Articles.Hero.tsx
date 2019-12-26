@@ -38,7 +38,9 @@ const ArticlesHero: React.FC<IAuthor> = ({ authors }) => {
   return (
     <Section relative id="Articles__Hero">
       <HeadingContainer style={{ maxWidth: `${hero.maxWidth}px` }}>
-        <HeroHeading dangerouslySetInnerHTML={{ __html: hero.writingHeading }} />
+        <HeroHeading
+          dangerouslySetInnerHTML={{ __html: hero.writingHeading }}
+        />
       </HeadingContainer>
     </Section>
   );
@@ -108,10 +110,6 @@ const GridButton = styled.button<{ active: boolean }>`
   border-radius: 50%;
   background: transparent;
   transition: background 0.25s;
-
-  &:not(:last-child) {
-    margin-right: 30px;
-  }
 
   &:hover {
     background: ${p => p.theme.colors.hover};
