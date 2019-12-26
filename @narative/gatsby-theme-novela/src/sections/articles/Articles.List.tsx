@@ -159,9 +159,7 @@ const ArticlesListContainer = styled.div<{ alwaysShowAllDetails?: boolean }>`
 const listTile = p => css`
   position: relative;
   display: grid;
-  grid-template-columns: ${p.reverse
-    ? `${narrow} ${wide}`
-    : `${wide} ${narrow}`};
+  grid-template-columns: ${p.reverse ? `${wide} ${wide}` : `${wide} ${wide}`};
   grid-template-rows: 2;
   column-gap: 30px;
 
