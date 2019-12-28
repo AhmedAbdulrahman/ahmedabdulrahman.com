@@ -1,25 +1,25 @@
-import React from "react";
+import React from 'react';
 
-import { MDXRenderer } from "gatsby-plugin-mdx";
-import { MDXProvider } from "@mdx-js/react";
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { MDXProvider } from '@mdx-js/react';
 
-import styled from "@emotion/styled";
-import { css } from "@emotion/core";
-import { useColorMode } from "theme-ui";
+import styled from '@emotion/styled';
+import { css } from '@emotion/core';
+import { useColorMode } from 'theme-ui';
 
-import Anchor from "@components/Anchor";
-import Blockquote from "@components/Blockquote";
-import Code from "@components/Code";
-import Headings from "@components/Headings";
-import HorizontalRule from "@components/HorizontalRule";
-import Lists from "@components/Lists";
-import Paragraph from "@components/Paragraph";
-import Tables from "@components/Tables";
-import { ImageZoom } from "@components/Image";
-import Figcaption from "@components/Figcaption";
+import Anchor from '@components/Anchor';
+import Blockquote from '@components/Blockquote';
+import Code from '@components/Code';
+import Headings from '@components/Headings';
+import HorizontalRule from '@components/HorizontalRule';
+import Lists from '@components/Lists';
+import Paragraph from '@components/Paragraph';
+import Tables from '@components/Tables';
+import { ImageZoom } from '@components/Image';
+import Figcaption from '@components/Figcaption';
 
-import mediaqueries from "@styles/media";
-import { toKebabCase } from "@utils";
+import mediaqueries from '@styles/media';
+import { toKebabCase } from '@utils';
 
 const components = {
   img: ImageZoom,
@@ -54,7 +54,7 @@ const MDX: React.FC<MDXProps> = ({ content, children, ...props }) => {
   return (
     <MDXProvider components={components}>
       <MDXBody>
-        <MDXRenderer isDark={colorMode === "dark"} {...props}>
+        <MDXRenderer isDark={colorMode === 'dark'} {...props}>
           {content}
         </MDXRenderer>
         {children}
@@ -66,9 +66,9 @@ const MDX: React.FC<MDXProps> = ({ content, children, ...props }) => {
 export default MDX;
 
 const IMAGE_WIDTHS = {
-  regular: "680px",
-  large: "1004px",
-  full: "100vw"
+  regular: '680px',
+  large: '1004px',
+  full: '100vw',
 };
 
 const ARTICLE_WIDTH = css`
@@ -125,29 +125,103 @@ const HeadingsCSS = css`
 `;
 
 const PrismCSS = p => css`
+  code[class*='css-'] {
+    border-radius: 0.3em;
+    background: ${p.theme.colors.prism.background};
+    color: ${p.theme.colors.prism.token};
+    padding: 0.15em 0.2em 0.05em;
+    white-space: normal;
+  }
+
   .prism-code {
     overflow: auto;
     width: 100%;
     max-width: 744px;
     margin: 0 auto;
     padding: 32px;
-    font-size: 13px;
+    font-size: 15px;
+    font-feature-settings: normal;
     margin: 15px auto 50px;
     border-radius: 5px;
     font-family: ${p.theme.fonts.monospace};
-    background: ${p.theme.colors.prism.background};
+    background: #23262e;
+    color: white;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
 
     .token-line {
       border-left: 3px solid transparent;
+      background-color: #23262e;
 
       ${Object.keys(p.theme.colors.prism)
-    .map(key => {
-      return `.${toKebabCase(key)}{color:${p.theme.colors.prism[key]};}`;
-    })
-    .reduce((curr, next) => curr + next, ``)};
+        .map(key => {
+          return `.${toKebabCase(key)}{color:${p.theme.colors.prism[key]};}`;
+        })
+        .reduce((curr, next) => curr + next, ``)};
 
       & > span {
       }
+    }
+
+    .token.tag,
+    .token.operator,
+    .token.keyword {
+      color: #ffa7c4;
+    }
+
+    .token.attr-name {
+      color: #bae67e;
+      font-style: italic;
+    }
+
+    .token.comment {
+      color: rgb(128, 147, 147);
+    }
+
+    .token.string,
+    .token.url {
+      color: #bae67e;
+    }
+
+    .token.variable,
+    .token.parameter {
+      color: rgb(214, 222, 235);
+    }
+
+    .token.number {
+      color: rgb(247, 140, 108);
+    }
+
+    .token.builtin,
+    .token.char,
+    .token.constant,
+    .token.function {
+      color: rgb(130, 170, 255);
+    }
+
+    .token.punctuation {
+      color: rgb(199, 146, 234);
+    }
+
+    .token.selector,
+    .token.doctype {
+      color: rgb(199, 146, 234);
+      font-style: 'italic';
+    }
+
+    .token.boolean {
+      color: rgb(255, 88, 116);
+    }
+
+    .token.property {
+      color: rgb(128, 203, 196);
+    }
+
+    .token.namespace {
+      color: rgb(178, 204, 214);
     }
 
     .number-line {
