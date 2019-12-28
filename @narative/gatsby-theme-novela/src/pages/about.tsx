@@ -1,23 +1,22 @@
-import React from "react";
-import styled from "@emotion/styled";
-import mediaqueries from "@styles/media";
+import React from 'react';
+import styled from '@emotion/styled';
+import mediaqueries from '@styles/media';
 import { Link } from 'gatsby';
 
-import Section from "@components/Section";
-import SEO from "@components/SEO";
+import Section from '@components/Section';
+import SEO from '@components/SEO';
 import Image from '@components/Image';
-import Layout from "@components/Layout";
-import Anchor from "@components/Anchor";
+import Layout from '@components/Layout';
+import Anchor from '@components/Anchor';
 
-import { Template } from "@types";
+import { Template } from '@types';
 
 const image = '/hero.png';
 
 const AboutPage: Template = ({ location, pageContext }) => {
-
   return (
     <Layout>
-      <SEO pathname={location.pathname} title={"About me"} />
+      <SEO pathname={location.pathname} title={'About me'} />
       <Section relative>
         <HeadingContainer>
           <HeroHeading>Nice to meet you!</HeroHeading>
@@ -25,22 +24,32 @@ const AboutPage: Template = ({ location, pageContext }) => {
       </Section>
       <Section>
         <ContentContainer>
-          <MyImage><Image src={image} /></MyImage>
+          <MyImage>
+            <Image src={image} />
+          </MyImage>
           <MyText>
-            <InfoHeading>
-              Hey there, I'm Ahmed.
-            </InfoHeading>
+            <InfoHeading>Hey there</InfoHeading>
             <InfoText>
-              A Stockholm based creative Front-end Engineer with a full-stack skillset full of passion for all aspects of building great software.
+              I'm Ahmed 👋, A Stockholm based creative Front-end Engineer with a
+              full-stack skillset full of passion for all aspects of building
+              great software.
             </InfoText>
             <InfoText>
-              Although my skillset is diverse, I specialise in Front-end development. I've worked on projects of various scales, both solo and as part of a team.
+              Although my skillset is diverse, I specialise in Front-end
+              development. I've worked on projects of various scales, both solo
+              and as part of a team.
             </InfoText>
             <InfoText>
-              At Oakwood I build a E-commerce platforms using isomorphic React and GraphQL. I’m also a Google Developer Expert for Web Technologies.
+              At Oakwood I build a E-commerce platforms using isomorphic React,
+              GraphQL, Nextjs, Python, Node, Wordpress, and more.
             </InfoText>
             <InfoText>
-              Curious about how I work? Check out my <NavLink to={`/uses`} title={`Uses`}>uses</NavLink> page for a full list of all the software, gadgets, and services I use.
+              Curious about how I work? Check out my{' '}
+              <NavLink to={`/uses`} title={`Uses`}>
+                uses
+              </NavLink>{' '}
+              page for a full list of all the software, gadgets, and services I
+              use.
             </InfoText>
             {/* <InfoText>
               One of the greatest things about being a designer with an engineering background is that not only he can take care of the graphical aspects of a project, but can also fully understand, participate and even take care of the technical aspects of those projects.
@@ -142,7 +151,7 @@ const MyImage = styled.div`
   position: relative;
   display: block;
   width: 100%;
-  box-shadow: 0 22px 44px 0 rgba(0,0,0,0.22);
+  box-shadow: 0 22px 44px 0 rgba(0, 0, 0, 0.22);
   margin-bottom: 56px;
 
   img {
@@ -150,7 +159,6 @@ const MyImage = styled.div`
     height: 100%;
     object-fit: cover;
     object-position: center;
-
   }
 `;
 
