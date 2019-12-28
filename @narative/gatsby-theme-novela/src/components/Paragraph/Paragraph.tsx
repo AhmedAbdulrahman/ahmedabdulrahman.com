@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import mediaqueries from "@styles/media";
+import styled from '@emotion/styled';
+import mediaqueries from '@styles/media';
 
 const Paragraph = styled.p`
   line-height: 1.756;
@@ -10,6 +10,7 @@ const Paragraph = styled.p`
   margin: 0 auto;
   width: 100%;
   max-width: 680px;
+  margin: 0px auto 35px;
 
   b {
     font-weight: 800;
