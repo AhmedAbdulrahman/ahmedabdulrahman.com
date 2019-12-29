@@ -82,7 +82,7 @@ const ListItem: React.FC<WorkshopsListItemProps> = ({ workshop }) => {
           {hasHeroImage ? <Image src={imageSource} /> : <ImagePlaceholder />}
         </ImageContainer>
         <TextContainer>
-          {/* <Author>{workshop.instructor}</Author> */}
+          <Author>{workshop.instructor}</Author>
           <Title>{workshop.title}</Title>
           <Excerpt>{workshop.excerpt}</Excerpt>
         </TextContainer>
@@ -186,7 +186,7 @@ const ImageContainer = styled.div`
   transition: transform 0.3s var(--ease-out-quad),
   box-shadow 0.3s var(--ease-out-quad);
   width: 320px;
-
+  background: ${p => p.theme.colors.secondary};
   & > div {
     height: 100%;
     ::before {

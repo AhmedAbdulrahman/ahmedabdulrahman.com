@@ -110,7 +110,7 @@ const HeroImage = styled.div`
     0px 4px 8px rgba(0, 0, 0, 0.07), 0px 8px 16px rgba(0, 0, 0, 0.07),
     0px 16px 32px rgba(0, 0, 0, 0.07), 0px 32px 64px rgba(0, 0, 0, 0.07);
   width: 100%;
-  background: #1a2229;
+  background: ${p => p.theme.colors.secondary};
   ${mediaqueries.phone`
     width: 200px;
     & > div {

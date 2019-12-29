@@ -37,11 +37,7 @@ const Workshop: Template = ({ pageContext, location }) => {
 
   return (
     <Layout>
-      {/* <ArticleSEO
-        article={workshop}
-        // authors={instructors}
-        location={location}
-      /> */}
+      <ArticleSEO article={workshop} location={location} />
       <WorkshopHero workshop={workshop} />
       <WorkshopBody ref={contentSectionRef}>
         <MDXRenderer content={workshop.body}></MDXRenderer>
