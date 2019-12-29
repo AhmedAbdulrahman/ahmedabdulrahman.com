@@ -88,16 +88,20 @@ module.exports.contentful = {
     };
   },
   workshops: ({ node: workshop }) => {
-    const author = workshop.author.reduce((curr, next, index, array) => {
-      if (array.length === 1) {
-        return next.name;
-      }
+    const instructor = workshop.instructor.reduce(
+      (curr, next, index, array) => {
+        if (array.length === 1) {
+          return next.name;
+        }
 
-      return `${curr + next.name}, `;
-    }, ``);
+        return `${curr + next.name}, `;
+      },
+      ``,
+    );
 
     return {
       ...workshop,
+      instructor,
       body: workshop.body.childMdx.body,
       timeToRead: workshop.body.childMdx.timeToRead,
     };

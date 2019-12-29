@@ -70,6 +70,7 @@ module.exports.local = {
           slug
           secret
           title
+          instructor
           date(formatString: "MMMM Do, YYYY")
           dateForSEO: date
           timeToRead
