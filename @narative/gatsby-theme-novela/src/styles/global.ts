@@ -1,4 +1,4 @@
-import { css } from "@emotion/core";
+import { css } from '@emotion/core';
 
 export const globalStyles = css`
   /**
@@ -18,7 +18,7 @@ export const globalStyles = css`
   }
 
   @font-face {
-    font-family: "Libre Baskerville", Serif;
+    font-family: 'Libre Baskerville', Serif;
     font-weight: 400;
     font-style: normal;
   }
@@ -45,11 +45,25 @@ export const globalStyles = css`
   }
 
   body {
-    font-family: "Libre Baskerville", Serif;
+    font-family: 'Libre Baskerville', Serif;
     font-size: 1.6rem;
     margin: 0;
     font-weight: 400;
     height: 100%;
+  }
+
+  body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(38, 40, 43, 0.3);
+    background-color: #f5f5f5;
+  }
+
+  body::-webkit-scrollbar {
+    width: 10px;
+    background-color: #f5f5f5;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #26282b;
   }
 
   button,
@@ -75,7 +89,7 @@ export const globalStyles = css`
   textarea,
   select,
   button {
-    font-family: "Libre Baskerville", Serif;
+    font-family: 'Libre Baskerville', Serif;
   }
 
   .underline {
@@ -126,7 +140,7 @@ export const globalStyles = css`
       outline: none;
     }
 
-    &[type="number"] {
+    &[type='number'] {
       width: auto;
     }
   }
