@@ -1,0 +1,82 @@
+---
+title: How to Handle Concurrent Operations in Parallel in JavaScript?
+author: Ahmed Abdulrahman
+date: 2019-12-27
+hero: ./images/hero.jpeg
+excerpt: Assume that you have more than one promise and you need to know when all the promises get resolved or you have to wait till all the promises resolve.
+category: Code
+tags: ['javascript', 'promis', 'es6']
+---
+
+Say when a user logs into a web app, you want to get back a bunch of data and several network requests probably need to be made to in order to get the data that you want?
+
+Then we use `Promise.all`. It takes an array of `Promises` and turns them into a single `Promise`. Once all promises get resolved, we get data back. In case of any promises get rejected it’ll be required to exit `Promise.all` early.
+
+```js
+const product = [
+  new Promise(loadProduct),
+  new Promise(loadPrices),
+  new Promise(loadQuantity),
+];
+
+Promise.all(product)  // 👈 get em all!
+  .then(response)     // 📑 data
+  .catch();           // ❌ handle exception here
+```
+
+So, the main point of using `Promise.all()` is to take an array of `Promises` and turn them into a single `Promise`
+
+Here we have another example, Notice the data in the response are ordered that is based on when the promise was “resolved.”
+
+```js
+const animals = [
+  new Promise((resolve, reject) => setTimeout(resolve, 200, '🦌')),
+  new Promise((resolve, reject) => setTimeout(resolve, 300, '🦒')),
+  new Promise((resolve, reject) => setTimeout(resolve, 100, '🐅')),
+  new Promise((resolve, reject) => setTimeout(resolve, 400, '🐘'))
+];
+
+Promise.all(animals)
+  .then(console.log) // ["🐅", "🦌", "🦒", "🐘"]
+  .catch(console.log);
+```
+
+If you would prefer using `async/await` and pure promises, this basic async/await syntax:
+
+```js
+let getFilms = async () => {
+  // Get Character Info.
+  let characterResponse = await fetch('http://swapi.co/api/people/1/')
+  // Resolve response
+  let characterResponseJson = await characterResponse.json()
+  /*
+    We have a list of films URLs, we can map over films URLs then wrap it
+    with Promise.all() to return a single Promise.
+  */
+  let films = await Promise.all(
+    characterResponseJson.films.map(async filmUrl => {
+      let filmResponse = await fetch(filmUrl)
+      return filmResponse.json()
+    })
+  )
+
+  return films
+}
+
+console.log(getFilms())
+/*
+  Expected output:
+  Array [
+    { episode_id: 1, title: 'The Phantom Menace' },
+    { episode_id: 2, title: 'Attack of the Clones' },
+    { episode_id: 3,  title: 'Revenge of the Sith' }
+  ]
+*/
+```
+
+To sum up, `Promise.all()` is really great when you have more than one promise in your code and you to make a concurrent operations by aggregating a list of promises to a single promise.
+
+Did you find this useful? *[Buy me a coffee](https://www.buymeacoffee.com/ahmedab)* to give my brain a hug ☕️.
+
+Hope you liked this article. If you did, then share it. It means a lot.🙌
+Thanks for reading!
