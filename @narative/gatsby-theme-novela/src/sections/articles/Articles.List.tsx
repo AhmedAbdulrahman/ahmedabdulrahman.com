@@ -277,8 +277,7 @@ const ImageContainer = styled.div<{ narrow: boolean; gridLayout: string }>`
 const Title = styled(Headings.h2)`
   font-size: 21px;
   font-family: ${p => p.theme.fonts.title};
-  margin-bottom: ${p =>
-    p.hasOverflow && p.gridLayout === 'tiles' ? '35px' : '10px'};
+  margin-bottom: 10px;
   transition: color 0.3s ease-in-out;
   ${limitToTwoLines};
 
@@ -308,7 +307,6 @@ const Excerpt = styled.p<{
   margin-bottom: 10px;
   color: ${p => p.theme.colors.secondary};
   font-family: ${p => p.theme.fonts.body};
-  display: ${p => (p.hasOverflow && p.gridLayout === 'tiles' ? 'none' : 'box')};
   max-width: ${p => (p.narrow ? '415px' : '515px')};
 
   ${mediaqueries.desktop`
