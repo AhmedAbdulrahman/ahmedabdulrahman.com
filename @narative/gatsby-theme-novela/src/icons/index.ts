@@ -27,6 +27,7 @@ import Tiles from './ui/Tiles.Icon';
 import NotFound from './ui/NotFound';
 import Workshop from './ui/Workshop';
 import Writing from './ui/Writing';
+import About from './ui/About';
 
 export default {
   Behance,
@@ -56,4 +57,5 @@ export default {
   NotFound,
   Workshop,
   Writing,
+  About
 };
