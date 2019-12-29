@@ -35,7 +35,7 @@ const getHostname = url => {
 
 const SocialLinks: React.FC<SocialLinksProps> = ({
   links,
-  fill = '#3d5366',
+  fill = '#26282b',
 }) => {
   if (!links) return null;
 
