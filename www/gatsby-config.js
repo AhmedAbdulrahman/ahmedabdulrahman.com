@@ -7,7 +7,12 @@ const siteMetadata = {
   description: `Develoer who's learning to write and express thoughts`,
   hero: {
     heading: `You'll cover all the techniques to create performant, composable, reusable UI components to level-up your skills as a developer.`,
-    writingHeading: `Hi, I'm Ahmed, Stockholm based creative Front-end Engineer.`,
+    // writingHeading: `Hi, I'm Ahmed, Stockholm based creative Front-end Engineer.`,
+    writingHeading: `Lover of fast, minimalist experiences.`,
+    workshop: {
+        heading: `Remote Workshops`,
+        subHeading: `Learning shouldn't depend on location. Remote workshops with Ahmed are a valuable and effective way to level-up your skills as a web developer.`
+    },
     maxWidth: 700,
   },
   social: [
@@ -29,6 +34,7 @@ const plugins = [
     options: {
       contentPosts: "content/posts",
       contentAuthors: "content/authors",
+      contentWorkshops: "content/workshops",
       rootPath: "/",
       basePath: "/",
       authorsPage: true,
