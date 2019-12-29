@@ -7,6 +7,7 @@ const crypto = require(`crypto`);
 module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
   const { createNode, createNodeField, createParentChildLink } = actions;
   const contentPath = themeOptions.contentPath || 'content/posts';
+  const workshopsPath = themeOptions.workshopsPath || 'content/workshops';
   const basePath = themeOptions.basePath || '/';
   const articlePermalinkFormat = themeOptions.articlePermalinkFormat || ':slug';
 
@@ -119,6 +120,45 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
           .digest(`hex`),
         content: JSON.stringify(fieldData),
         description: `Article Posts`,
+      },
+    });
+
+    createParentChildLink({ parent: fileNode, child: node });
+  }
+
+  // Workshop
+  if (node.internal.type === `Mdx` && source === workshopsPath) {
+    const fieldData = {
+      instructor: node.frontmatter.instructor,
+      date: node.frontmatter.date,
+      hero: node.frontmatter.hero,
+      thumbnail: node.frontmatter.thumbnail,
+      secret: node.frontmatter.secret || false,
+      slug: generateSlug(
+        basePath,
+        generateArticlePermalink(
+          slugify(node.frontmatter.slug || node.frontmatter.title),
+          node.frontmatter.date,
+        ),
+      ),
+      title: node.frontmatter.title,
+      subscription: node.frontmatter.subscription !== false,
+    };
+
+    createNode({
+      ...fieldData,
+      // Required fields.
+      id: createNodeId(`${node.id} >>> Workshop`),
+      parent: node.id,
+      children: [],
+      internal: {
+        type: `Workshop`,
+        contentDigest: crypto
+          .createHash(`md5`)
+          .update(JSON.stringify(fieldData))
+          .digest(`hex`),
+        content: JSON.stringify(fieldData),
+        description: `Workshop List`,
       },
     });
 

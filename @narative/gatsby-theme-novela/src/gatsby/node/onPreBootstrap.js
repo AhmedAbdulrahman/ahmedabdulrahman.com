@@ -3,6 +3,7 @@ const fs = require('fs-extra'); // eslint-disable-line import/no-extraneous-depe
 module.exports = async ({ reporter }, themeOptions) => {
   const authorsPath = themeOptions.contentAuthors || 'content/authors';
   const postsPath = themeOptions.contentPosts || 'content/posts';
+  const workshopsPath = themeOptions.workshopsPath || 'content/workshops';
 
   if (!fs.existsSync(authorsPath)) {
     reporter.warn(`
@@ -22,5 +23,15 @@ module.exports = async ({ reporter }, themeOptions) => {
     `);
 
     fs.mkdirSync(postsPath, { recursive: true });
+  }
+
+  if (!fs.existsSync(workshopsPath)) {
+    reporter.warn(`
+      Missing directory for Reading.
+      We are creating the "${workshopsPath}" directory for you.
+      Please ensure you add your posts within "${workshopsPath}"
+    `);
+
+    fs.mkdirSync(workshopsPath, { recursive: true });
   }
 };

@@ -14,6 +14,8 @@ const templates = {
   article: path.resolve(templatesDirectory, 'article.template.tsx'),
   author: path.resolve(templatesDirectory, 'author.template.tsx'),
   category: path.resolve(templatesDirectory, 'category.template.tsx'),
+  workshops: path.resolve(templatesDirectory, 'workshops.templates.tsx'),
+  workshop: path.resolve(templatesDirectory, 'workshop.templates.tsx'),
 };
 
 const query = require('../data/data.query');
@@ -54,7 +56,9 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     authorsPath = '/authors',
     authorsPage = true,
     categoryPath = '/categories',
+    workshopPath = '/workshops',
     pageLength = 6,
+    pageLengthWorkshops = 32,
     sources = {},
     mailchimp = '',
   } = themeOptions;
@@ -64,11 +68,12 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
 
   let authors;
   let articles;
+  let workshops;
 
   const dataSources = {
-    local: { authors: [], articles: [] },
-    contentful: { authors: [], articles: [] },
-    netlify: { authors: [], articles: [] },
+    local: { authors: [], articles: [], workshops: [] },
+    contentful: { authors: [], articles: [], workshops: [] },
+    netlify: { authors: [], articles: [], workshops: [] },
   };
 
   if (rootPath) {
@@ -85,6 +90,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
       log('Querying Authors & Articles source:', 'Local');
       const localAuthors = await graphql(query.local.authors);
       const localArticles = await graphql(query.local.articles);
+      const localWorkshops = await graphql(query.local.workshops);
 
       dataSources.local.authors = localAuthors.data.authors.edges.map(
         normalize.local.authors,
@@ -92,6 +98,10 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
 
       dataSources.local.articles = localArticles.data.articles.edges.map(
         normalize.local.articles,
+      );
+
+      dataSources.local.workshops = localWorkshops.data.workshops.edges.map(
+        normalize.local.workshops,
       );
     } catch (error) {
       console.error(error);
@@ -103,6 +113,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
       log('Querying Authors & Articles source:', 'Contentful');
       const contentfulAuthors = await graphql(query.contentful.authors);
       const contentfulArticles = await graphql(query.contentful.articles);
+      const contentfulWorkshops = await graphql(query.contentful.workshops);
 
       dataSources.contentful.authors = contentfulAuthors.data.authors.edges.map(
         normalize.contentful.authors,
@@ -110,6 +121,10 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
 
       dataSources.contentful.articles = contentfulArticles.data.articles.edges.map(
         normalize.contentful.articles,
+      );
+
+      dataSources.contentful.workshops = contentfulWorkshops.data.workshops.edges.map(
+        normalize.contentful.workshops,
       );
     } catch (error) {
       console.error(error);
@@ -124,6 +139,17 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
   ].sort(byDate);
 
   const articlesThatArentSecret = articles.filter(article => !article.secret);
+
+  // Combining together all the readings from different sources
+  workshops = [
+    ...dataSources.local.workshops,
+    ...dataSources.contentful.workshops,
+    ...dataSources.netlify.workshops,
+  ].sort(byDate);
+
+  const workshopsThatArentSecret = workshops.filter(
+    workshop => !workshop.secret,
+  );
 
   // Combining together all the authors from different sources
   authors = getUniqueListBy(
@@ -234,6 +260,59 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
         title: article.title,
         mailchimp,
         next,
+      },
+    });
+  });
+
+  // Workshops page
+  if (workshops.length === 0) {
+    throw new Error(`
+        You must have at least one Workshop.
+      `);
+  }
+
+  /**
+   * Once we've queried all our data sources and normalized them to the same structure
+   * we can begin creating our pages. First, we'll want to create all main articles pages
+   * that have pagination.
+   * /articles
+   * /articles/page/1
+   * ...
+   */
+  log('Creating', 'workshops page');
+  createPaginatedPages({
+    edges: workshopsThatArentSecret,
+    pathPrefix: workshopPath,
+    createPage,
+    pageLength: pageLengthWorkshops,
+    pageTemplate: templates.workshops,
+    buildPath: buildPaginatedPath,
+    context: {
+      basePath,
+      skip: pageLength,
+      limit: pageLength,
+    },
+  });
+
+  // All workshop pages
+  log('Creating', 'workshop page');
+  workshops.forEach(workshop => {
+    const pathPrefix = slugify(workshop.slug, workshopPath);
+
+    createPage({
+      path: workshop.slug,
+      pathPrefix,
+      component: templates.workshop,
+
+      context: {
+        workshop,
+        // instructors: authorsThatWroteTheWorkshop,
+        basePath,
+        slug: workshop.slug,
+        id: workshop.id,
+        title: workshop.title,
+        mailchimp,
+        // next,
       },
     });
   });

@@ -3,6 +3,7 @@
 module.exports = ({
   contentAuthors = 'content/authors',
   contentPosts = 'content/posts',
+  contentWorkshops = 'content/workshops',
   pathPrefix = '',
   sources: { local, contentful } = { local: true, contentful: false },
 }) => ({
@@ -182,8 +183,22 @@ module.exports = ({
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        path: contentWorkshops,
+        name: contentWorkshops,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         path: contentAuthors,
         name: contentAuthors,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `src/images`,
+        name: `imagesStatic`,
       },
     },
     {

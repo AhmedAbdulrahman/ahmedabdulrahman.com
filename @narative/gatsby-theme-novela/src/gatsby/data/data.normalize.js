@@ -56,6 +56,12 @@ module.exports.local = {
       hero: normalizeHero(article),
     };
   },
+  workshops: ({ node: workshop }) => {
+    return {
+      ...workshop,
+      hero: normalizeHero(workshop),
+    };
+  },
   authors: ({ node: author }) => {
     return {
       ...author,
@@ -79,6 +85,21 @@ module.exports.contentful = {
       author,
       body: article.body.childMdx.body,
       timeToRead: article.body.childMdx.timeToRead,
+    };
+  },
+  workshops: ({ node: workshop }) => {
+    const author = workshop.author.reduce((curr, next, index, array) => {
+      if (array.length === 1) {
+        return next.name;
+      }
+
+      return `${curr + next.name}, `;
+    }, ``);
+
+    return {
+      ...workshop,
+      body: workshop.body.childMdx.body,
+      timeToRead: workshop.body.childMdx.timeToRead,
     };
   },
   authors: ({ node: author }) => {
