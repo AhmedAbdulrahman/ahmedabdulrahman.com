@@ -185,7 +185,7 @@ const GridButton = styled.button<{ active: boolean }>`
   }
 
   svg {
-    opacity: ${p => (p.active ? 1 : 0.25)};
+    opacity: ${p => (p.active ? 1 : 0.45)};
     transition: opacity 0.2s;
 
     path {
