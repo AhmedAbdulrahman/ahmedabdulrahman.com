@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import SEO from "@components/SEO";
+import SEO from '@components/SEO';
 
-import { IArticle, IAuthor } from "@types";
-import { graphql, useStaticQuery } from "gatsby";
+import { IArticle, IAuthor } from '@types';
+import { graphql, useStaticQuery } from 'gatsby';
 
 const siteQuery = graphql`
   {
@@ -22,7 +22,7 @@ const siteQuery = graphql`
 
 interface ArticleSEOProps {
   article: IArticle;
-  authors: IAuthor[];
+  authors?: IAuthor[];
   location: Location;
 }
 
@@ -35,10 +35,13 @@ const ArticleSEO: React.FC<ArticleSEOProps> = ({
   const name = results.allSite.edges[0].node.siteMetadata.name;
   const siteUrl = results.allSite.edges[0].node.siteMetadata.siteUrl;
 
-  const authorsData = authors.map(author => ({
-    "@type": "Person",
-    name: author.name,
-  }));
+  let authorsData = null;
+  if (authors) {
+    authorsData = authors.map(author => ({
+      '@type': 'Person',
+      name: author.name,
+    }));
+  }
 
   /**
    * For some reason `location.href` is undefined here when using `yarn build`.
@@ -67,16 +70,16 @@ const ArticleSEO: React.FC<ArticleSEOProps> = ({
     }
   }
 `.replace(/"[^"]+"|(\s)/gm, function(matched, group1) {
-  if (!group1) {
-    return matched;
-  } else {
-    return "";
-  }
-});
-/**
- * See here for the explanation of the regex above:
- * https://stackoverflow.com/a/23667311
- */
+    if (!group1) {
+      return matched;
+    } else {
+      return '';
+    }
+  });
+  /**
+   * See here for the explanation of the regex above:
+   * https://stackoverflow.com/a/23667311
+   */
 
   return (
     <SEO
