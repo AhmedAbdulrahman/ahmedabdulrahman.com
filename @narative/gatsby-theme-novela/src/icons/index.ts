@@ -25,6 +25,8 @@ import ToggleClose from './ui/ToggleClose.Icon';
 import Rows from './ui/Rows.Icon';
 import Tiles from './ui/Tiles.Icon';
 import NotFound from './ui/NotFound';
+import Workshop from './ui/Workshop';
+import Writing from './ui/Writing';
 
 export default {
   Behance,
@@ -51,5 +53,7 @@ export default {
   ToggleOpen,
   Rows,
   Tiles,
-  NotFound
+  NotFound,
+  Workshop,
+  Writing,
 };
