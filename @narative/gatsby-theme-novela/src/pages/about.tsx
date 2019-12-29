@@ -11,7 +11,7 @@ import Anchor from '@components/Anchor';
 
 import { Template } from '@types';
 
-const image = '/hero.png';
+import Icons from '@icons';
 
 const AboutPage: Template = ({ location, pageContext }) => {
   return (
@@ -25,7 +25,7 @@ const AboutPage: Template = ({ location, pageContext }) => {
       <Section>
         <ContentContainer>
           <MyImage>
-            <Image src={image} />
+            <Icons.About />
           </MyImage>
           <MyText>
             <InfoHeading>Hey there</InfoHeading>
@@ -151,7 +151,7 @@ const MyImage = styled.div`
   position: relative;
   display: block;
   width: 100%;
-  box-shadow: 0 22px 44px 0 rgba(0, 0, 0, 0.22);
+  // box-shadow: 0 22px 44px 0 rgba(0, 0, 0, 0.22);
   margin-bottom: 56px;
 
   img {
