@@ -71,6 +71,8 @@ module.exports.local = {
           secret
           title
           instructor
+          keywords
+          tech
           date(formatString: "MMMM Do, YYYY")
           dateForSEO: date
           timeToRead

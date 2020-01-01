@@ -142,6 +142,8 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
         ),
       ),
       title: node.frontmatter.title,
+      tech: node.frontmatter.tech,
+      keywords: node.frontmatter.keywords || [],
       subscription: node.frontmatter.subscription !== false,
     };
 
