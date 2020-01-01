@@ -28,6 +28,9 @@ import NotFound from './ui/NotFound';
 import Workshop from './ui/Workshop';
 import Writing from './ui/Writing';
 import About from './ui/About';
+import Time from './ui/Time';
+import Location from './ui/Location';
+import Calendar from './ui/Calendar';
 
 export default {
   Behance,
@@ -57,5 +60,8 @@ export default {
   NotFound,
   Workshop,
   Writing,
-  About
+  About,
+  Time,
+  Location,
+  Calendar,
 };
