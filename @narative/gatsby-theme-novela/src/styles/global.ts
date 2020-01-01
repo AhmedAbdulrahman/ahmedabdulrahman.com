@@ -63,7 +63,7 @@ export const globalStyles = css`
   }
 
   body::-webkit-scrollbar-thumb {
-    background-color: #26282b;
+    background-color: #1a1c23;
   }
 
   button,
