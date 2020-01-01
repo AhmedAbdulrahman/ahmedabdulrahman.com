@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { useThemeUI } from 'theme-ui';
 
 import Icons from '@icons';
 import mediaqueries from '@styles/media';
@@ -38,6 +39,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({
   fill = '#26282b',
 }) => {
   if (!links) return null;
+  const { theme } = useThemeUI();
 
   return (
     <>
@@ -58,7 +60,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({
             aria-label={`Link to ${option.url}`}
             href={option.url}
           >
-            <Icon fill={fill} />
+            <Icon fill={theme.colors.primary} />
             <Hidden>Link to ${option.url}</Hidden>
           </SocialIconContainer>
         );
