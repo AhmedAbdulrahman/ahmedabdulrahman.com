@@ -2,12 +2,15 @@ import React, { useContext, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { Link } from 'gatsby';
+import { uniq, includes } from 'lodash';
+import { useColorMode } from 'theme-ui';
 
 import Headings from '@components/Headings';
 import Image, { ImagePlaceholder } from '@components/Image';
 
 import mediaqueries from '@styles/media';
 import { IArticle } from '@types';
+import { capitalize } from '@utils';
 
 interface WorkshopsListProps {
   workshops: IArticle[];
@@ -25,25 +28,59 @@ const WorkshopsList: React.FC<WorkshopsListProps> = ({
 }) => {
   if (!workshops) return null;
 
-  const hasOnlyOneArticle = workshops.length === 1;
+  const [colorMode] = useColorMode();
+  const isDark = colorMode === `dark`;
 
+  const hasOnlyOneArticle = workshops.length === 1;
+  const workshopTech = uniq(workshops.map(workshop => workshop.tech));
+  const [displayedTech, setDisplayedTech] = React.useState(workshopTech);
+
+  const techToggleIsActive = (getDisplayedTech, tech) => {
+    return includes(getDisplayedTech, tech) && getDisplayedTech.length === 1;
+  };
+
+  const workshopPairsFiltered = workshops.filter(workshop => {
+    return includes(displayedTech, workshop.tech);
+  });
   /**
    * We're taking the flat array of articles [{}, {}, {}...]
    * and turning it into an array of pairs of articles [[{}, {}], [{}, {}], [{}, {}]...]
    * This makes it simpler to create the grid we want
    */
-  const workshopPairs = workshops.reduce((result, value, index, array) => {
-    if (index % 2 === 0) {
-      result.push(array.slice(index, index + 2));
-    }
-    return result;
-  }, []);
+  const workshopPairs = workshopPairsFiltered.reduce(
+    (result, value, index, array) => {
+      if (index % 2 === 0) {
+        result.push(array.slice(index, index + 2));
+      }
+      return result;
+    },
+    [],
+  );
 
   return (
     <WorkshopsListContainer
       style={{ opacity: 1 }}
       alwaysShowAllDetails={alwaysShowAllDetails}
     >
+      <TechToggleContainer>
+        {workshopTech.map(tech => (
+          <TechToggle
+            isActive={techToggleIsActive(displayedTech, tech)}
+            isDark={isDark}
+            key={tech}
+            onClick={() => {
+              if (techToggleIsActive(displayedTech, tech)) {
+                setDisplayedTech(workshopTech);
+              } else {
+                setDisplayedTech([tech]);
+              }
+            }}
+          >
+            {capitalize(tech)}
+          </TechToggle>
+        ))}
+      </TechToggleContainer>
+
       {workshopPairs.map((ap, index) => {
         const isEven = index % 2 !== 0;
         const isOdd = index % 2 !== 1;
@@ -84,7 +121,7 @@ const ListItem: React.FC<WorkshopsListItemProps> = ({ workshop }) => {
         <TextContainer>
           <Author>{workshop.instructor}</Author>
           <Title>{workshop.title}</Title>
-          <Excerpt>{workshop.excerpt}</Excerpt>
+          {/* <Excerpt>{workshop.excerpt}</Excerpt> */}
         </TextContainer>
         <ContentContainer></ContentContainer>
       </Item>
@@ -319,5 +356,55 @@ const ArticleLink = styled(Link)`
     &:active {
       transform: scale(0.97) translateY(3px);
     }
+  `}
+`;
+
+const TechToggleContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: -60px;
+  margin-bottom: 50px;
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  height: 108px;
+  z-index: 2;
+  background-image: ${p =>
+    `linear-gradient(180deg, ${p.theme.colors.background}, ${p.theme.colors.background});`};
+`;
+
+const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
+  font-family: ${p => p.theme.fonts.title};
+  font-size: 14px;
+
+  transition: color 0.25s var(--ease-in-out-quad);
+  display: inline-block;
+  position: relative;
+  margin: 5px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  border: none !important;
+  border-radius: 4px;
+  padding: 8px 15px 8px 12px;
+  color: ${p =>
+    p.isDark ? p.theme.colors.primary : p.theme.colors.background};
+  background: ${p =>
+    p.isDark ? p.theme.colors.hover : `rgba(29, 32, 39, 0.95)`};
+
+  ${mediaqueries.phablet`
+    margin-right: 32px;
+  `}
+
+  &:hover {
+    color: ${p => p.theme.colors.background};
+    background: ${p => p.theme.colors.accent};
+  }
+
+  ${p =>
+    p.isActive &&
+    `
+    color: ${p.theme.colors.background};
+    background: ${p.theme.colors.accent};
   `}
 `;
