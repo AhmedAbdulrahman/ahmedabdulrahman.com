@@ -28,9 +28,9 @@ const AboutPage: Template = ({ location, pageContext }) => {
             <Icons.About />
           </MyImage>
           <MyText>
-            <InfoHeading>Hey there</InfoHeading>
+            <InfoHeading>Hey, I'm Ahmed 👋</InfoHeading>
             <InfoText>
-              I'm Ahmed 👋, A Stockholm based creative Front-end Engineer with a
+              I'm a Stockholm based creative Front-end Engineer with a
               full-stack skillset full of passion for all aspects of building
               great software.
             </InfoText>
