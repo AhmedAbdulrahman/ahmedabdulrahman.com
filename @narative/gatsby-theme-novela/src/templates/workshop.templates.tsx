@@ -50,7 +50,7 @@ export default Workshop;
 
 const WorkshopBody = styled.article`
   position: relative;
-  padding: 56px 0 35px;
+  padding: 0 0 35px;
   transition: background 0.2s linear;
   ${mediaqueries.desktop`
     padding-left: 53px;
