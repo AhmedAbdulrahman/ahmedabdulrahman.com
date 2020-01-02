@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import mediaqueries from '@styles/media';
 
-const Paragraph = styled.p`
+const Paragraph = styled.p<{ fullWidth?: boolean }>`
   line-height: 1.756;
   font-size: 18px;
   color: ${p => p.theme.colors.articleText};
@@ -15,6 +15,12 @@ const Paragraph = styled.p`
   b {
     font-weight: 800;
   }
+
+  ${p =>
+    p.fullWidth &&
+    `
+    max-width: 100%;
+  `}
 
   ${mediaqueries.desktop`
     max-width: 507px;

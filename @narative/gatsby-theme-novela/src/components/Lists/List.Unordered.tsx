@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import mediaqueries from '@styles/media';
 
-const UnorderedList = styled.ul`
+const UnorderedList = styled.ul<{ fullWidth?: boolean }>`
   list-style: none;
   counter-reset: list;
   color: ${p => p.theme.colors.articleText};
@@ -26,6 +26,12 @@ const UnorderedList = styled.ul`
   ${mediaqueries.phablet`
     padding-left: 20px;
   `};
+
+  ${p =>
+    p.fullWidth &&
+    `
+    max-width: 100%;
+  `}
 
   li {
     position: relative;
