@@ -31,6 +31,7 @@ import About from './ui/About';
 import Time from './ui/Time';
 import Location from './ui/Location';
 import Calendar from './ui/Calendar';
+import Tools from './ui/Tools';
 
 export default {
   Behance,
@@ -64,4 +65,5 @@ export default {
   Time,
   Location,
   Calendar,
+  Tools,
 };
