@@ -84,7 +84,7 @@ const SEO: React.FC<HelmetProps> = ({
   const fullURL = (path: string) =>
     path ? `${site.siteUrl}${path}` : site.siteUrl;
 
-  // If no image is provided lets looks for a default novela static image
+  // If no image is provided lets looks for a default static image
   image = image ? image : '/preview.jpg';
 
   const metaTags = [
