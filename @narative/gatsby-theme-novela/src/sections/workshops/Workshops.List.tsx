@@ -12,6 +12,13 @@ import mediaqueries from '@styles/media';
 import { IArticle } from '@types';
 import { capitalize } from '@utils';
 
+const jsIcon = '/javascript.png';
+const reactIcon = '/react.png';
+const testingIcon = '/testing.png';
+const graphqlIcon = '/graphqllogo.png';
+const pythonIcon = '/python.png';
+const nodeIcon = '/nodejs.png';
+
 interface WorkshopsListProps {
   workshops: IArticle[];
   alwaysShowAllDetails?: boolean;
@@ -37,6 +44,17 @@ const WorkshopsList: React.FC<WorkshopsListProps> = ({
 
   const techToggleIsActive = (getDisplayedTech, tech) => {
     return includes(getDisplayedTech, tech) && getDisplayedTech.length === 1;
+  };
+
+  const techImage = tech => {
+    return (
+      (tech === 'react' && `${reactIcon}`) ||
+      (tech === 'javascript' && `${jsIcon}`) ||
+      (tech === 'testing' && `${testingIcon}`) ||
+      (tech === 'graphql' && `${graphqlIcon}`) ||
+      (tech === 'python' && `${pythonIcon}`) ||
+      (tech === 'node' && `${nodeIcon}`)
+    );
   };
 
   const workshopPairsFiltered = workshops.filter(workshop => {
@@ -76,7 +94,7 @@ const WorkshopsList: React.FC<WorkshopsListProps> = ({
               }
             }}
           >
-            {capitalize(tech)}
+            <img src={techImage(tech)} alt={tech} /> {capitalize(tech)}
           </TechToggle>
         ))}
       </TechToggleContainer>
@@ -392,6 +410,7 @@ const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
   background: ${p =>
     p.isDark ? p.theme.colors.hover : `rgba(29, 32, 39, 0.95)`};
 
+  transition: background 0.3s ease-in-out;
   ${mediaqueries.phablet`
     margin-right: 32px;
   `}
@@ -407,4 +426,10 @@ const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
     color: ${p.theme.colors.background};
     background: ${p.theme.colors.accent};
   `}
+
+  img {
+    margin: 0;
+    margin-right: 10px;
+    width: 20px;
+  }
 `;
