@@ -11,7 +11,7 @@ const siteMetadata = {
     writingHeading: `Lover of fast, minimalist experiences.`,
     workshop: {
         heading: `Remote Workshops`,
-        subHeading: `We prodvide you with a valuable and effective way to Level-up your skills as a developer.`
+        subHeading: `We prodvide you with a valuable and effective workshops to Level-up your skills as a developer.`
     },
     maxWidth: 700,
   },
