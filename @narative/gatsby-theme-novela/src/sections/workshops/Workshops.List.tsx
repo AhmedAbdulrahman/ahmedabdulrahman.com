@@ -408,7 +408,7 @@ const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
   color: ${p =>
     p.isDark ? p.theme.colors.primary : p.theme.colors.background};
   background: ${p =>
-    p.isDark ? p.theme.colors.hover : `rgba(29, 32, 39, 0.95)`};
+    p.isDark ? p.theme.colors.hover : `rgba(64, 85, 125, 0.89)`};
 
   transition: background 0.3s ease-in-out;
   ${mediaqueries.phablet`
@@ -417,14 +417,14 @@ const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
 
   &:hover {
     color: ${p => p.theme.colors.background};
-    background: ${p => p.theme.colors.accent};
+    background: ${p => p.theme.colors.primary};
   }
 
   ${p =>
     p.isActive &&
     `
     color: ${p.theme.colors.background};
-    background: ${p.theme.colors.accent};
+    background: ${p.theme.colors.primary};
   `}
 
   img {
