@@ -52,7 +52,8 @@ const Container = styled.div`
   grid-template-columns: 1fr 450px;
   column-gap: em;
   overflow: hidden;
-  margin: 100px 0;
+  margin-top: 56px;
+  margin-bottom: 56px;
 
   ${mediaqueries.desktop`
     grid-template-columns: 1fr 416px;
