@@ -87,7 +87,7 @@ const NavigationHeader: React.FC<{}> = () => {
   const { sitePlugin } = useStaticQuery(siteQuery);
 
   const [colorMode] = useColorMode();
-  const fillIn = colorMode === 'dark' ? '#fff' : '#000';
+  const fillIn = colorMode === 'dark' ? '#fff' : '#203f6e';
   const fillOut = colorMode === 'dark' ? '#000' : '#fff';
   const { rootPath, basePath } = sitePlugin.pluginOptions;
 
