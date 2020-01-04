@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { useColorMode } from "theme-ui";
+import { useColorMode } from 'theme-ui';
 
 import Headings from '@components/Headings';
 import Image, { ImagePlaceholder } from '@components/Image';
 
 import mediaqueries from '@styles/media';
 import { IArticle, IAuthor } from '@types';
-import { formatReadingTime } from "@utils";
+import { formatReadingTime } from '@utils';
 
 import ArticleAuthors from './Article.Authors';
 
@@ -18,13 +18,12 @@ interface ArticleHeroProps {
 
 const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
   const [colorMode] = useColorMode();
-  const isDark = colorMode === "dark";
+  const isDark = colorMode === 'dark';
   const hasCoAUthors = authors.length > 1;
   const hasHeroImage =
     article.hero &&
     Object.keys(article.hero.full).length !== 0 &&
     article.hero.full.constructor === Object;
-
 
   return (
     <Hero>
@@ -34,7 +33,8 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
           <ArticleAuthors authors={authors} />
           <ArticleMeta hasCoAUthors={hasCoAUthors}>
             {article.date}
-            {` • ${formatReadingTime(article.timeToRead)}`}
+            {` / ${formatReadingTime(article.timeToRead)} / `}
+            {article.category}
           </ArticleMeta>
         </HeroSubtitle>
         <TagsWrapper>
@@ -51,8 +51,8 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
         {hasHeroImage ? (
           <Image src={article.hero.full} />
         ) : (
-            <ImagePlaceholder />
-          )}
+          <ImagePlaceholder />
+        )}
       </HeroImage>
     </Hero>
   );
@@ -109,11 +109,11 @@ const TagsWrapper = styled.div`
   ${mediaqueries.tablet`
     // justify-content: center;
 `}
-`
+`;
 
 const Tags = styled.div`
-    display: flex;
-`
+  display: flex;
+`;
 
 const Header = styled.header`
   position: relative;
@@ -175,7 +175,7 @@ const HeroSubtitle = styled.div<{ hasCoAUthors: boolean }>`
     align-items: flex-start;
 
     ${p.hasCoAUthors &&
-    `
+      `
         &::before {
           content: '';
           position: absolute;
@@ -224,10 +224,10 @@ const HeroImage = styled.div`
 `;
 
 const ArticleTag = styled.div<{ isDark: boolean }>`
-  padding: .5rem .8rem;
+  padding: 0.5rem 0.8rem;
   margin-right: 5px;
-  color: ${p => p.isDark ? p.theme.colors.primary : p.theme.colors.primary};
-  background: ${p => p.theme.colors.hover};
+  color: ${p => (p.isDark ? p.theme.colors.primary : p.theme.colors.primary)};
+  background: ${p => (p.isDark ? p.theme.colors.hover : '#dee9ff')};
   border-radius: 5px;
   font-size: 1.3rem;
   font-weight: 500;

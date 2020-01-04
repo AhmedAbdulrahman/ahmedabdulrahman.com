@@ -8,6 +8,7 @@ import Image, { ImagePlaceholder } from '@components/Image';
 
 import mediaqueries from '@styles/media';
 import { IArticle } from '@types';
+import { formatReadingTime } from '@utils';
 
 import { GridLayoutContext } from './Articles.List.Context';
 
@@ -116,7 +117,9 @@ const ListItem: React.FC<ArticlesListItemProps> = ({ article, narrow }) => {
             {article.excerpt}
           </Excerpt>
           <MetaData>
-            {article.date} · {article.timeToRead} min read
+            {article.date}
+            {` • ${formatReadingTime(article.timeToRead)} • `}
+            {article.category}
           </MetaData>
         </div>
       </Item>
