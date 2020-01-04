@@ -32,7 +32,7 @@ export default {
       articleText: '#fff',
       track: 'rgba(255, 255, 255, 0.3)',
       progress: '#fff',
-      card: '#292c32',
+      card: '#1f232c',
       error: '#EE565B',
       success: '#46B17B',
       errorBackground: 'rgba(238, 86, 91, 0.1)',
