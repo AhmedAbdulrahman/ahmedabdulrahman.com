@@ -27,6 +27,7 @@ interface WorkshopsListProps {
 interface WorkshopsListItemProps {
   workshop: IArticle;
   narrow?: boolean;
+  isDark?: boolean;
 }
 
 const WorkshopsList: React.FC<WorkshopsListProps> = ({
@@ -110,8 +111,8 @@ const WorkshopsList: React.FC<WorkshopsListProps> = ({
             hasOnlyOneArticle={hasOnlyOneArticle}
             reverse={isEven}
           >
-            <ListItem workshop={ap[0]} narrow={isEven} />
-            <ListItem workshop={ap[1]} narrow={isOdd} />
+            <ListItem workshop={ap[0]} narrow={isEven} isDark={isDark} />
+            <ListItem workshop={ap[1]} narrow={isOdd} isDark={isDark} />
           </List>
         );
       })}
@@ -121,7 +122,7 @@ const WorkshopsList: React.FC<WorkshopsListProps> = ({
 
 export default WorkshopsList;
 
-const ListItem: React.FC<WorkshopsListItemProps> = ({ workshop }) => {
+const ListItem: React.FC<WorkshopsListItemProps> = ({ workshop, isDark }) => {
   if (!workshop) return null;
 
   const imageSource = workshop.hero.regular;
@@ -131,7 +132,7 @@ const ListItem: React.FC<WorkshopsListItemProps> = ({ workshop }) => {
     imageSource.constructor === Object;
 
   return (
-    <ArticleLink to={workshop.slug} data-a11y="false">
+    <ArticleLink to={workshop.slug} data-a11y="false" isDark={isDark}>
       <Item>
         <ImageContainer>
           {hasHeroImage ? <Image src={imageSource} /> : <ImagePlaceholder />}
@@ -351,7 +352,6 @@ const ArticleLink = styled(Link)`
   top: 0;
   left: 0;
   margin-bottom: 30px;
-  // background: ${p => p.theme.colors.card};
   z-index: 1;
   transition: transform 0.33s var(--ease-out-quart);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
@@ -366,6 +366,9 @@ const ArticleLink = styled(Link)`
     background: rgba(255, 255, 255, 0.01);
     border-radius: 5px;
   }
+
+  ${p => p.isDark && `background: ${p.theme.colors.card};`}
+
   ${mediaqueries.phablet`
     &:hover ${ImageContainer} {
       transform: none;
@@ -382,21 +385,26 @@ const TechToggleContainer = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  margin-top: -60px;
   margin-bottom: 50px;
-  position: sticky;
-  top: 0px;
   width: 100%;
-  height: 108px;
   z-index: 2;
   background-image: ${p =>
     `linear-gradient(180deg, ${p.theme.colors.background}, ${p.theme.colors.background});`};
+
+  ${mediaqueries.phablet`
+    margin-top: 30px;
+    padding: 20px;
+  `}
+
+  ${mediaqueries.tablet_up`
+    position: sticky;
+    top: 0px;
+    padding: 20px;
+  `}
 `;
 
 const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
   font-family: ${p => p.theme.fonts.title};
-  font-size: 14px;
-
   transition: color 0.25s var(--ease-in-out-quad);
   display: inline-block;
   position: relative;
@@ -405,14 +413,12 @@ const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
   border: none !important;
   border-radius: 4px;
   padding: 8px 15px 8px 12px;
-  color: ${p =>
-    p.isDark ? p.theme.colors.primary : p.theme.colors.background};
-  background: ${p =>
-    p.isDark ? p.theme.colors.hover : `rgba(64, 85, 125, 0.89)`};
-
+  color: ${p => p.theme.colors.primary};
+  background: ${p => (p.isDark ? p.theme.colors.card : `#eaf1ff`)};
   transition: background 0.3s ease-in-out;
+
   ${mediaqueries.phablet`
-    margin-right: 32px;
+    width: 43%;
   `}
 
   &:hover {
