@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { useColorMode } from 'theme-ui';
 
 import SEO from '@components/SEO';
 import Layout from '@components/Layout';
@@ -13,6 +14,8 @@ import Anchor from '@components/Anchor';
 import Icons from '@icons';
 
 const Uses = () => {
+  const [colorMode] = useColorMode();
+  const isDark = colorMode === `dark`;
   return (
     <Layout>
       <SEO pathname={location.pathname} title={'Uses'} />
@@ -36,14 +39,15 @@ const Uses = () => {
         <Lists.ul fullWidth>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://everymac.com/systems/apple/imac/specs/imac-core-i5-3.5-27-inch-aluminum-retina-5k-mid-2017-specs.html"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 Retina 5K 27-Inch iMac, 3.5ghz Core i5, 8 GB 2400 MHz DDR4 of
                 RAM AMD Radeon Pro 575 4096 MB
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               I use this as my main machine and a 2018 13 MacBook Pro for work.
@@ -51,9 +55,14 @@ const Uses = () => {
           </li>
           <li>
             <Strong>
-              <Anchor href="" target="_blank" rel="noopener noreferrer">
+              <AnchorLink
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
                 Corsair K68 RGB Mechanical Gaming Keyboard
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               It uses Cherry MX Red keyswitches with 100% anti-ghosting and full
@@ -62,14 +71,19 @@ const Uses = () => {
               rating and has practically unlimited backlight color combinations.
               This Corsair keyboard has dedicated volume and multimedia controls
               that offer on-the-fly adjustments. Well yeah it’s fully
-              programmable with Corsair Utility Engine or CUE
+              programmable with Corsair Utility Engine or CUE.
             </Paragraph>
           </li>
           <li>
             <Strong>
-              <Anchor href="" target="_blank" rel="noopener noreferrer">
+              <AnchorLink
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
                 MX Master 3 Mouse
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               It's is an amazing desktop wireless mouse. It comes with many
@@ -78,88 +92,96 @@ const Uses = () => {
             </Paragraph>
           </li>
         </Lists.ul>
-        <Headings.h3>Development</Headings.h3>
+        <Headings.h3>Editor &amp; Terminal</Headings.h3>
         <Lists.ul fullWidth>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://www.bluedesigns.com/products/yeti-pro/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 iTerm2
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
-              IMO It’s the best lightweight replacement app for default macOS
-              terminal. It comes with cool built in features such as Custom
-              Status bar builder, Autocomplete, Keyboard mappings, Non-ASCII
-              Font support, and more. I love this terminal
+              Lightweight replacement app for default macOS terminal. It comes
+              with cool built in features such as Custom Status bar builder,
+              Autocomplete, Keyboard mappings, Non-ASCII Font support, and more.
             </Paragraph>
           </li>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://github.com/tmux/tmux"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 Tmux
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
-              known as a terminal multiplexer. I use it to created multiple
-              terminals at once, and manage them all from one terminal screen.
+              I use it to created multiple terminals at once, and manage them
+              all from one terminal screen.
             </Paragraph>
           </li>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://neovim.io/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 NVIM
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
-              I was using VIM all my professional life but then I switched to
-              NeoVim. Its extremely customizable to needs and much faster than
-              VIM/VSCode, and has superb integration with any terminal.
+              I was using VIM together with Tmux about five years. The
+              combination is really great development enviroment. I recently
+              switch from VIM to NeoVim. Its Its extremely customizable to my
+              needs and much faster than VIM/VSCode, has superb integration with
+              any terminal, and it supports asynchronous execution this means if
+              you use any linting tools, it will run it in the background
+              without slowing down your editor.
             </Paragraph>
           </li>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://code.visualstudio.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 VS Code
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               I use it to opening bunch of projects at same time when working
               with workspaces.You can check out my VS Code settings{` `}
-              <Anchor
+              <AnchorLink
                 href="https://www.bluedesigns.com/products/yeti-pro/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 here.
-              </Anchor>
+              </AnchorLink>
             </Paragraph>
           </li>
-
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://marketplace.visualstudio.com/items?itemName=AhmedAbdulrahman.aylin"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 Aylin Theme
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               Tried a lot of themes then decided to create my own called Aylin.
@@ -170,39 +192,42 @@ const Uses = () => {
           </li>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://www.recursive.design/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 Recursive Sans &amp; Mono
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
-              I have been trying a lot of open source and paid fonts like Danke
-              Mono, Fira Code, Operator Mono, Plex and many more. Lately I found
-              out about Recursive Sans &amp; Mono. It's built to maximize
-              versatility, control, and performance. It offers a complete type
-              system and it comes with five-axis variable font.
+              I’m currently using this with NVIM, Terminal and VS Code too. It's
+              built to maximize versatility, control, and performance. It offers
+              a complete type system and it comes with five-axis variable font.
+              Before that I used Inconsolata anke Mono, Fira Code, Operator
+              Mono, Plex and many more.
             </Paragraph>
           </li>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://www.google.com/chrome/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 Chrome
-              </Anchor>
+              </AnchorLink>
               {` & `}
-              <Anchor
+              <AnchorLink
                 href="https://www.mozilla.org/en-US/firefox/new/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 Firefox
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               I am using both for development and general browsing.
@@ -210,13 +235,14 @@ const Uses = () => {
           </li>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://www.sequelpro.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 Sequel Pro
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               I use it for all my MySQL stuff. It allows you to visually manage
@@ -225,16 +251,36 @@ const Uses = () => {
           </li>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://github.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 GitHub
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               I keep all my public and private repositories on GitHub
+            </Paragraph>
+          </li>
+          <li>
+            <Strong>
+              <AnchorLink isDark={isDark}> Config files </AnchorLink>
+            </Strong>
+            <Paragraph fullWidth>
+              You can check config files over at my{` `}
+              <AnchorLink
+                href="https://github.com/AhmedAbdulrahman/dotfiles"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                dotfiles
+              </AnchorLink>
+              {` `}
+              repo but please don’t just take these settings carte blanche –
+              they work for me but might not be the best
             </Paragraph>
           </li>
         </Lists.ul>
@@ -242,13 +288,14 @@ const Uses = () => {
         <Lists.ul fullWidth>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://www.figma.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 Figma
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               a design tool with real-time collaboration. Its like Sketch but
@@ -258,28 +305,27 @@ const Uses = () => {
           </li>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://www.adobe.com/products/photoshop.html"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 Photoshop
-              </Anchor>
+              </AnchorLink>
             </Strong>
-            <Paragraph fullWidth>
-              I use it only for retouching, an incredible tool for screen
-              designs
-            </Paragraph>
+            <Paragraph fullWidth>I use it only for retouching.</Paragraph>
           </li>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://zeplin.io/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 Zeplin
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               a handy dandy tool for better communication between designers and
@@ -291,21 +337,23 @@ const Uses = () => {
           </li>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://github.com/svg/svgo"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 SVGO
-              </Anchor>
+              </AnchorLink>
               {` & `}
-              <Anchor
+              <AnchorLink
                 href="https://jakearchibald.github.io/svgomg/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 SVGOMG
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               Both are so good for quickly optimizing SVGs those exported from
@@ -315,13 +363,14 @@ const Uses = () => {
           </li>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://imageoptim.com/mac"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 ImageOptim
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               It allows you to optimize huge raster retina images (PNGs, JEPGs)
@@ -334,9 +383,14 @@ const Uses = () => {
         <Lists.ul fullWidth>
           <li>
             <Strong>
-              <Anchor href="" target="_blank" rel="noopener noreferrer">
+              <AnchorLink
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
                 Netlify
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               I use it to host static sites. It provides an intuitive online
@@ -350,9 +404,14 @@ const Uses = () => {
         <Lists.ul fullWidth>
           <li>
             <Strong>
-              <Anchor href="" target="_blank" rel="noopener noreferrer">
+              <AnchorLink
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
                 Alfred
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               a turbocharged version of OSX’s Spotlight. Alfred serves as a
@@ -363,13 +422,16 @@ const Uses = () => {
           </li>
 
           <li>
-            <Anchor
-              href="https://www.notion.so/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Notion
-            </Anchor>
+            <Strong>
+              <AnchorLink
+                href="https://www.notion.so/"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                Notion
+              </AnchorLink>
+            </Strong>
 
             <Paragraph fullWidth>
               when it comes to been a productive, should never miss Notion s an
@@ -380,13 +442,14 @@ const Uses = () => {
           </li>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://www.hammerspoon.org/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 Hammerspoon
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               an open-source project, which aims to bring staggeringly powerful
@@ -395,26 +458,30 @@ const Uses = () => {
           </li>
           <li>
             <Strong>
-              <Anchor
+              <AnchorLink
                 href="https://www.spectacleapp.com/"
                 target="_blank"
                 rel="noopener noreferrer"
+                isDark={isDark}
               >
                 Spectacle
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               allows you to move and resize your windows with with hotkeys!
             </Paragraph>
           </li>
           <li>
-            <Anchor
-              href="https://www.zenhub.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Zenhub
-            </Anchor>
+            <Strong>
+              <AnchorLink
+                href="https://www.zenhub.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                Zenhub
+              </AnchorLink>
+            </Strong>
 
             <Paragraph fullWidth>
               IMO is the only project management tool that integrates natively
@@ -425,13 +492,16 @@ const Uses = () => {
             </Paragraph>
           </li>
           <li>
-            <Anchor
-              href="https://sparkmailapp.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Spark
-            </Anchor>
+            <Strong>
+              <AnchorLink
+                href="https://sparkmailapp.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                Spark
+              </AnchorLink>
+            </Strong>
 
             <Paragraph fullWidth>
               I use Spark for email almost entirely. It aims to keep you
@@ -442,14 +512,17 @@ const Uses = () => {
           </li>
 
           <li>
-            <Anchor
-              href="https://www.dashlane.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Dashlane
-            </Anchor>
-
+            {' '}
+            <Strong>
+              <AnchorLink
+                href="https://www.dashlane.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                Dashlane
+              </AnchorLink>
+            </Strong>
             <Paragraph fullWidth>
               a great multi-platform password manager (Mac, Windows, Linux,
               Android, iOS) and recommended by Apple, has all the latest
@@ -460,14 +533,19 @@ const Uses = () => {
           </li>
 
           <li>
-            <Anchor href="" target="_blank" rel="noopener noreferrer">
-              Dropbox
-            </Anchor>
-
+            <Strong>
+              <AnchorLink
+                href="https://www.google.com/drive/"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                Google Drive
+              </AnchorLink>
+            </Strong>
             <Paragraph fullWidth>
-              I keep all my important files in Dropbox so they are available on
-              both my machines. I don't use anything else for backups because
-              literally nothing that isn't in Dropbox is important.
+              I keep all my important files in Google Drive so they are
+              available on both my machines.
             </Paragraph>
           </li>
         </Lists.ul>
@@ -475,9 +553,14 @@ const Uses = () => {
         <Lists.ul fullWidth>
           <li>
             <Strong>
-              <Anchor href="" target="_blank" rel="noopener noreferrer">
+              <AnchorLink
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
                 YETI PRO microphone
-              </Anchor>
+              </AnchorLink>
             </Strong>
             <Paragraph fullWidth>
               a great microphone I use it for all kind audio recoding. Sounds
@@ -486,10 +569,16 @@ const Uses = () => {
           </li>
 
           <li>
-            <Anchor href="" target="_blank" rel="noopener noreferrer">
-              Sony a6400 Camera with 16-50mm kit lens
-            </Anchor>
-
+            <Strong>
+              <AnchorLink
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                Sony a6400 Camera with 16-50mm kit lens
+              </AnchorLink>
+            </Strong>
             <Paragraph fullWidth>
               Sony's one of best cameras It has a kill autofocus system. I use
               this to record my screencasts in 4K.
@@ -497,10 +586,16 @@ const Uses = () => {
           </li>
 
           <li>
-            <Anchor href="" target="_blank" rel="noopener noreferrer">
-              Elgato Key Light
-            </Anchor>
-
+            <Strong>
+              <AnchorLink
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                Elgato Key Light
+              </AnchorLink>
+            </Strong>
             <Paragraph fullWidth>
               I use this to light my face better when Streamers and Recording
               video.
@@ -508,10 +603,16 @@ const Uses = () => {
           </li>
 
           <li>
-            <Anchor href="" target="_blank" rel="noopener noreferrer">
-              Elgato Cam Link 4K
-            </Anchor>
-
+            <Strong>
+              <AnchorLink
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                Elgato Cam Link 4K
+              </AnchorLink>
+            </Strong>
             <Paragraph fullWidth>
               I use it to connect Sony a6400 to computer as a webcam and record
               videos in beautiful and crispy 4K without any SD cards.
@@ -519,22 +620,25 @@ const Uses = () => {
           </li>
 
           <li>
-            <Anchor
-              href="https://rogueamoeba.com/audiohijackpro/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Audio Hijack Pro
-            </Anchor>
-            {` & `}
-            <Anchor
-              href="https://rogueamoeba.com/loopback/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Loopback
-            </Anchor>
-
+            <Strong>
+              <AnchorLink
+                href="https://rogueamoeba.com/audiohijackpro/"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                Audio Hijack Pro
+              </AnchorLink>
+              {` & `}
+              <AnchorLink
+                href="https://rogueamoeba.com/loopback/"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                Loopback
+              </AnchorLink>
+            </Strong>
             <Paragraph fullWidth>
               I use these to combine audio from multiple sources into one
               virtual device when I am streaming, and recording screencasts.
@@ -542,28 +646,32 @@ const Uses = () => {
             </Paragraph>
           </li>
           <li>
-            <Anchor
-              href="https://zoom.us/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Zoom
-            </Anchor>
-
+            <Strong>
+              <AnchorLink
+                href="https://zoom.us/"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                Zoom
+              </AnchorLink>
+            </Strong>
             <Paragraph fullWidth>
               I use Zoom for my online workshops, as well as any regular private
               live streaming
             </Paragraph>
           </li>
           <li>
-            <Anchor
-              href="https://obsproject.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              OBS
-            </Anchor>
-
+            <Strong>
+              <AnchorLink
+                href="https://obsproject.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                OBS
+              </AnchorLink>
+            </Strong>
             <Paragraph fullWidth>
               I use this when I do live streams on Twitch, Youtube, and
               Facebook.
@@ -583,7 +691,8 @@ const Container = styled.div`
   grid-template-columns: 1fr 450px;
   column-gap: 5em;
   overflow: hidden;
-  margin: 100px 0;
+  margin-top: 56px;
+  margin-bottom: 56px;
 
   ${mediaqueries.desktop`
     grid-template-columns: 1fr 416px;
@@ -651,4 +760,15 @@ const InfoText = styled.p`
 const Strong = styled.strong`
   display: block;
   margin-bottom: 5px;
+`;
+
+const AnchorLink = styled(Anchor)`
+  border-bottom: 3px solid
+    ${p => (p.isDark ? '#939299' : p.theme.colors.accent)};
+  transition: border-bottom 0.35s ease, ${p => p.theme.colorModeTransition};
+
+  &:hover,
+  &:focus {
+    color: ${p => (p.isDark ? p.theme.colors.accent : p.theme.colors.primary)};
+  }
 `;
