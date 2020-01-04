@@ -27,7 +27,7 @@ module.exports.local = {
           author
           category
           tags
-          date(formatString: "MMMM Do, YYYY")
+          date(formatString: "MMM Do, YYYY")
           dateForSEO: date
           timeToRead
           excerpt
@@ -73,7 +73,7 @@ module.exports.local = {
           instructor
           keywords
           tech
-          date(formatString: "MMMM Do, YYYY")
+          date(formatString: "MMM Do, YYYY")
           dateForSEO: date
           timeToRead
           excerpt
@@ -173,7 +173,7 @@ module.exports.contentful = {
           title
           slug
           secret
-          date(formatString: "MMMM Do, YYYY")
+          date(formatString: "MMM Do, YYYY")
           dateForSEO: date
           hero {
             full: fluid(maxWidth: 944, quality: 100) {
