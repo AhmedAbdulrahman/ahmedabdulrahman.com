@@ -126,11 +126,12 @@ const HeadingsCSS = css`
 
 const PrismCSS = p => css`
   code[class*='css-'] {
-    border-radius: 0.3em;
+    border-radius: 0.25em;
     background: ${p.theme.colors.prism.background};
     color: ${p.theme.colors.prism.token};
-    padding: 0.15em 0.2em 0.05em;
+    padding: 0.12em 0.25em;
     white-space: normal;
+    line-height: 1.5;
   }
 
   .prism-code {
