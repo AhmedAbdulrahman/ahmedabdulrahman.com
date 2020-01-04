@@ -28,11 +28,10 @@ const siteQuery = graphql`
   }
 `;
 
-const ReadingsHero = () => {
+const WorkshopsHero = () => {
   const results = useStaticQuery(siteQuery);
   const hero = results.allSite.edges[0].node.siteMetadata.hero;
 
-  console.log('results', results);
   return (
     <Section narrow>
       <Container>
@@ -42,17 +41,13 @@ const ReadingsHero = () => {
         </HeroTextContainer>
         <HeroImage>
           <Icons.Workshop />
-          {/* <Image
-            src="./workshop-hero.svg"
-            imgStyle={{ objectFit: 'contain', objectPosition: 'bottom' }}
-          /> */}
         </HeroImage>
       </Container>
     </Section>
   );
 };
 
-export default ReadingsHero;
+export default WorkshopsHero;
 
 const Container = styled.div`
   position: relative;
@@ -60,7 +55,8 @@ const Container = styled.div`
   grid-template-columns: 1fr 450px;
   column-gap: 5em;
   overflow: hidden;
-  margin: 100px 0;
+  margin-top: 56px;
+  margin-bottom: 56px;
 
   ${mediaqueries.desktop`
     grid-template-columns: 1fr 416px;
@@ -87,11 +83,7 @@ const HeroImage = styled.div`
   ${mediaqueries.tablet`
     margin-left: 32px;
     margin-right: 32px;
-    display: none
   `}
-  // svg {
-  //   fill: ${p => p.theme.colors.accent};
-  // }
 `;
 
 const HeroHeading = styled.h1`
