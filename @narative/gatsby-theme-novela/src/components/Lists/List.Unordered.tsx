@@ -10,6 +10,7 @@ const UnorderedList = styled.ul<{ fullWidth?: boolean }>`
   transition: ${p => p.theme.colorModeTransition};
   margin: 0 auto;
   font-size: 18px;
+  z-index: 1;
 
   width: 100%;
   max-width: 680px;

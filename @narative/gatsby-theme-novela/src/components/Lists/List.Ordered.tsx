@@ -10,6 +10,7 @@ const OrderedList = styled.ol`
   margin: 0 auto;
   transition: ${p => p.theme.colorModeTransition};
   font-size: 18px;
+  z-index: 1;
 
   width: 100%;
   max-width: 680px;
