@@ -1,8 +1,8 @@
 export default {
-  token: `#fff`,
+  token: `#4e616c`,
   languageJavascript: `#e8696b`,
   javascript: `#e8696b`,
-  background: `#292c34`,
+  background: `#c5d4f1`,
   comment: `#5e6a76`,
   string: `#a8e2a8`,
   var: `#b3bac5`,
