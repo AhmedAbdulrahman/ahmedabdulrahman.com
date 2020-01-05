@@ -50,18 +50,16 @@ const Container = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: 1fr 450px;
-  column-gap: em;
+  column-gap: 5em;
   overflow: hidden;
   margin-top: 56px;
   margin-bottom: 56px;
 
   ${mediaqueries.desktop`
-    grid-template-columns: 1fr 416px;
+    grid-template-columns: 1fr 1fr;
   `}
   ${mediaqueries.tablet`
     grid-template-columns: 1fr;
-    background: none;
-    margin-bottom: 0;
   `}
 `;
 

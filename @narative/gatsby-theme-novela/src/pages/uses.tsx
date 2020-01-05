@@ -695,12 +695,10 @@ const Container = styled.div`
   margin-bottom: 56px;
 
   ${mediaqueries.desktop`
-    grid-template-columns: 1fr 416px;
+    grid-template-columns: 1fr 1fr;
   `}
   ${mediaqueries.tablet`
     grid-template-columns: 1fr;
-    background: none;
-    margin-bottom: 0;
   `}
 `;
 
@@ -716,14 +714,11 @@ const HeroTextContainer = styled.div`
 const HeroImage = styled.div`
   position: relative;
   align-self: end;
+
   ${mediaqueries.tablet`
     margin-left: 32px;
     margin-right: 32px;
-    display: none
   `}
-  // svg {
-  //   fill: ${p => p.theme.colors.accent};
-  // }
 `;
 
 const HeroHeading = styled.h1`
@@ -749,6 +744,7 @@ const HeroHeading = styled.h1`
 const InfoText = styled.p`
   font-size: 18px;
   margin-top: 24px;
+  margin-bottom: 24px;
   line-height: 1.8;
   font-family: ${p => p.theme.fonts.body};
   color: ${p => p.theme.colors.secondary};
