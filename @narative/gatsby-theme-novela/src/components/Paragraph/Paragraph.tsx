@@ -22,7 +22,9 @@ const Paragraph = styled.p<{ fullWidth?: boolean }>`
     max-width: 100%;
   `}
 
-  ${mediaqueries.desktop`
+  ${p =>
+    !p.fullWidth &&
+    mediaqueries.desktop`
     max-width: 507px;
   `}
 

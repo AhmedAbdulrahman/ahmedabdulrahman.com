@@ -15,7 +15,9 @@ const UnorderedList = styled.ul<{ fullWidth?: boolean }>`
   width: 100%;
   max-width: 680px;
 
-  ${mediaqueries.desktop`
+  ${p =>
+    !p.fullWidth &&
+    mediaqueries.desktop`
     max-width: 507px;
   `}
 
