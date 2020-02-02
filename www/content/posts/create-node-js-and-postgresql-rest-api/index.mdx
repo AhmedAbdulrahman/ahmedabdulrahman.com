@@ -4,18 +4,172 @@ author: Ahmed Abdulrahman
 date: 2019-12-12
 hero: ./images/hero.png
 excerpt: In this tutorial, you’ll learn how to create your own RESTful API in a Node.js environment running on an Express server and utilizing a PostgreSQL database.
-categories: ['Code']
+category: Code
 tags: ['nodejs', 'express', 'api']
+secret: true
 ---
 
 ## Prerequisites
 This guide uses installation instructions for macOS and assumes a prior knowledge of:
 
-- You need to Command line usage
-- Basic knowledge JavaScript
-- Basic knowledge of application development in Node.js and NPM
+- You need to have basic commands in command prompt.
+- Basic knowledge JavaScript.
+- Basic knowledge of application development in Node.js and NPM.
 - [Basic knowledge PostgreSQL](https://www.freecodecamp.org/news/how-to-get-started-with-postgresql-9d3bc1dd1b11)
 - [General understanding RESTful APIs](https://pusher.com/tutorials/understanding-rest-api)
-- also you need to have a
 
 ## Set Up PostgreSQL Database
+We are going to use [Homebrew](https://brew.sh/) to install PostgreSQL on macOS. So, make sure you install it if you haven’t done so already.
+Next update the it's dependencies by running:
+```bash
+» brew update
+```
+
+### Installing PostgreSQL
+Next, install **`PostgreSQL`** on the command line:
+```bash
+» brew install postgresql
+```
+
+It might take a little while to compile and install so be patient. Next, check your if PostgreSQL installed successfully:
+```bash
+» postgres --version
+# postgres (PostgreSQL) 12.1
+```
+
+And then you we need to start Postgres database **`server`** as a background servic with the following command:
+```bash
+brew services start postgresql
+```
+
+### Create Our Database
+We are going to create our **`restfull-api-db`** database that can be used for our application with the following command:
+```bash
+» createdb restfull-api-db
+```
+
+In order to execute SQL statements, we need to login to our database using the **`psql`** command:
+```bash
+psql restfull-api-db
+```
+
+Next, we create a **`user`** and **`password`** and give it create database access.
+```sql
+CREATE ROLE resful_user WITH LOGIN PASSWORD '1234';
+ALTER ROLE resful_user CREATEDB;
+```
+
+We need to log out of from the root user by exiting from **`psql`** shell and then log in again but this time with to the newly created user:
+```bash
+# Logout from postgress shell by typing
+\q
+
+# Then login again
+» psql -d restfull-api-db -U resful_user # -d flag is for db name, -U for postgress user
+```
+
+Create a **`todos`** table with **`ID`**, and **`title`**.
+
+```sql
+CREATE TABLE todos (
+  ID SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL
+);
+```
+To get a list of all the tables in our database, we can use **`\dt`** command:
+```sql
+restfull-api-db=> \dt
+    List of relations
+    Schema | Name  | Type  |    Owner
+    --------+-------+-------+-------------
+    public | todos | table | resful_user
+    (1 row)
+
+restfull-api-db=>
+```
+
+As you see The **`todos`** table is the only table in our database as we just created it. In case if you want to get a closer look at the structure of **`todos`** table like displaying **`Column Names`** and **`Data Types`**,
+you can use the following command **`\d table_name,`**:
+```sql
+restfull-api-db=> \d todos
+  Table "public.todos"
+  Column |          Type          | Collation | Nullable |              Default
+  --------+------------------------+-----------+----------+---------------------------------
+  id     | integer                |           | not null | nextval('todos_id_seq'::regclass)
+  title  | character varying(255) |           | not null |
+
+  Indexes:
+      "todos_pkey" PRIMARY KEY, btree (id)
+
+restfull-api-db=>
+```
+
+Next, we populate our **`todos`** table with data using the **`INSERT`** statement as follows:
+```sql
+INSERT INTO todos (title) VALUES  ('Design a prototype');
+INSERT INTO todos (title) VALUES  ('Organize photo shot');
+INSERT INTO todos (title) VALUES  ('Bring an umbrella');
+```
+
+To view the data we just inserted, we use a **`SELECT`** statement as follows:
+```sql
+restfull-api-db=> SELECT * from todos;
+  id |        title
+  ----+---------------------
+    1 | Design a prototype
+    2 | Organize photo shot
+    3 | Bring an umbrella
+  (3 rows)
+
+restfull-api-db=>
+```
+
+
+## Creating new Project
+
+create a new folder there named **`todos-restful-api`** in root folder.
+```bash
+» mkdir todos-restful-api
+```
+
+### Initialize a new app.
+We can initialize our app is using **`NPM`** or **`YARN`***. To do so, first we need to **`cd`** into our project folder and type:
+```bash
+» npm init
+# or
+» yarn init
+```
+
+Then it asks some questions to build **`package.json`** file for us:
+```bash
+» yarn init
+  yarn init v1.19.2
+  question name (todos-restful-api):
+  question version (1.0.0):
+  question description: Node.js and PostgreSQL RESTful API
+  question entry point (index.js):
+  question repository url:
+  question author: Ahmed Abdulrahman
+  question license (MIT):
+  question private: true
+  success Saved package.json
+  ✨  Done in 50.58s.
+```
+
+### Install Dependencies
+To start with creating our express api, we are going to install the following dependencies:
+
+- [Express](https://www.npmjs.com/package/express): a Web Application Framework
+- [PG](https://www.npmjs.com/package/pg) - a PostgreSQL client for Node
+- [Dotenv](https://www.npmjs.com/package/dotenv): a zero-dependency module that loads environment variables from a **`.env`** file into **`process.env`**
+- [CORS](https://www.npmjs.com/package/cors): enable CORS
+- [Nodemon](https://www.npmjs.com/package/nodemon) - automatically restarts our server every time we make any change in the code.
+
+- [express-rate-limit]() - limit repeated requests to endpoints
+- [express-validator]()- string validators and santizers
+- [compression]() - compression middleware
+- [helmet]() - secure HTTP headers in an Express app
+
+```bash
+yarn add express pg cors dotenv
+```
