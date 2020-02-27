@@ -28,6 +28,14 @@ const Uses = () => {
               of my work. I've put together this "uses" page that covers the
               tools 🔨 I use to make things.
             </InfoText>
+
+            {/* <InfoText>
+              <blockquote>
+                To become a master at any skill, it takes the total effort of
+                your: heart, mind, and soul working together in tandem.
+                <footer>― Maurice Young</footer>
+              </blockquote>
+            </InfoText> */}
           </HeroTextContainer>
           <HeroImage>
             <Icons.Tools />
@@ -751,6 +759,35 @@ const InfoText = styled.p`
   ${mediaqueries.tablet`
     font-size: 16px;
   `}
+
+  blockquote {
+    position: relative;
+    color: ${p => p.theme.colors.primary};
+    font-style: italic;
+    font-size: 25px;
+    font-weight: 300;
+    line-height: 1.32;
+    width: 100%;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 0 40px;
+    footer {
+      font-size: 0.6em;
+      text-align: right;
+      margin-top: 20px;
+    }
+    &:before {
+      content: '“';
+      font-family: serif;
+      position: absolute;
+      right: 100%;
+      font-size: 80px;
+      line-height: 0px;
+      top: 20px;
+      color: rgb(172, 174, 197);
+      left: -10px;
+    }
+  }
 `;
 
 const Strong = styled.strong`
@@ -759,12 +796,13 @@ const Strong = styled.strong`
 `;
 
 const AnchorLink = styled(Anchor)`
-  border-bottom: 3px solid
-    ${p => (p.isDark ? '#939299' : p.theme.colors.accent)};
+  border-bottom: 3px solid ${p => p.theme.colors.accent};
   transition: border-bottom 0.35s ease, ${p => p.theme.colorModeTransition};
+  color: ${p => p.theme.primary};
 
   &:hover,
-  &:focus {
+  &:focus,
+  &:visited {
     color: ${p => (p.isDark ? p.theme.colors.accent : p.theme.colors.primary)};
   }
 `;

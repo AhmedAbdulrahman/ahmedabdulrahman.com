@@ -1,22 +1,44 @@
 import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
+import { useColorMode } from 'theme-ui';
 import mediaqueries from '@styles/media';
 import { Link } from 'gatsby';
 
 import Section from '@components/Section';
 import SEO from '@components/SEO';
-import Image from '@components/Image';
+// import Image from '@components/Image';
 import Layout from '@components/Layout';
-import Anchor from '@components/Anchor';
+import AnchorLink from '@components/Anchor';
+import Headings from '@components/Headings';
 
 import { Template } from '@types';
 
-import Icons from '@icons';
+const siteQuery = graphql`
+  {
+    allSite {
+      edges {
+        node {
+          siteMetadata {
+            name
+            siteUrl
+            title
+          }
+        }
+      }
+    }
+  }
+`;
 
-const AboutPage: Template = ({ location, pageContext }) => {
+const AboutPage: Template = ({ location }) => {
+  const results = useStaticQuery(siteQuery);
+  const title = results.allSite.edges[0].node.siteMetadata.title;
+  const [colorMode] = useColorMode();
+  const isDark = colorMode === `dark`;
   return (
     <Layout>
-      <SEO pathname={location.pathname} title={'About me'} />
+      <SEO pathname={location.href} title={`About me - ${title}`} />
       <Section relative>
         <HeadingContainer>
           <HeroHeading>Nice to meet you!</HeroHeading>
@@ -24,36 +46,97 @@ const AboutPage: Template = ({ location, pageContext }) => {
       </Section>
       <Section>
         <ContentContainer>
-          <MyImage>
-            <Icons.About />
-          </MyImage>
           <MyText>
-            <InfoHeading>Hey, I'm Ahmed 👋</InfoHeading>
+            <InfoHeading>Design & Code</InfoHeading>
+            <InfoSubHeading>
+              Hey, I'm Ahmed 👋, a Stockholm based Creative Front-end Developer
+            </InfoSubHeading>
             <InfoText>
-              I'm a Stockholm based creative Front-end Engineer with a
-              full-stack skillset full of passion for all aspects of building
-              great software.
-            </InfoText>
-            <InfoText>
-              Although my skillset is diverse, I specialise in Front-end
+              Although my skillset is diverse with full of passion for all
+              aspects of building great software, I specialise in Front-end
               development. I've worked on projects of various scales, both solo
               and as part of a team.
             </InfoText>
             <InfoText>
-              At Oakwood I build a E-commerce platforms using isomorphic React,
-              GraphQL, Nextjs, Python, Node, Wordpress, and more.
+              Currently I live Stockholm, where I work at Oakwood we build
+              premium design solutions in all digital touchpoints.
+            </InfoText>
+            <InfoHeading
+              css={css`
+                margin-top: 32px;
+              `}
+            >
+              Where to go next
+            </InfoHeading>
+            <InfoText>
+              You can find out
+              {` `}
+              <NavLink to={`/uses`} title={`Uses`}>
+                what tools, software, gadgets, and services
+              </NavLink>
+              {` `}I use or read about some of the ways you can{` `}
+              <NavLink to={`/`} title={`Uses`}>
+                work with me
+              </NavLink>
+              .
+            </InfoText>
+
+            <InfoText>
+              {' '}
+              I’m currently working on a{' '}
+              <NavLink to={`/`} title={`Uses`}>
+                workshops
+              </NavLink>{' '}
+              page, to list all my upcoming Online Workshops, but it’s taking a
+              while. For those interested in{' '}
+              <NavLink to={`/`} title={`Uses`}>
+                how I buit this site
+              </NavLink>
+              , I’ve tried my best to list all the tools and techniques I used.
             </InfoText>
             <InfoText>
-              Curious about how I work? Check out my{' '}
-              <NavLink to={`/uses`} title={`Uses`}>
-                uses
-              </NavLink>{' '}
-              page for a full list of all the software, gadgets, and services I
-              use.
+              Find me on{' '}
+              <AnchorLink
+                href="https://github.com/AhmedAbdulrahman"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                Github
+              </AnchorLink>
+              , and{' '}
+              <AnchorLink
+                href="https://twitter.com/_ahmed_ab"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                Twitter
+              </AnchorLink>{' '}
+              if you have questions. Very occassionally I check my{' '}
+              <AnchorLink
+                href="https://www.linkedin.com/in/ahmed-abd/"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                LinkedIn
+              </AnchorLink>
+              .
             </InfoText>
-            {/* <InfoText>
-              One of the greatest things about being a designer with an engineering background is that not only he can take care of the graphical aspects of a project, but can also fully understand, participate and even take care of the technical aspects of those projects.
-            </InfoText> */}
+
+            <InfoHeading
+              css={css`
+                margin-top: 32px;
+              `}
+            >
+              What else?
+            </InfoHeading>
+            <InfoText>
+              When I'm not coding or reading excellent software books (which I
+              really must compile a list for), I spend time with kids, write,
+              and jog around town 🏃‍.
+            </InfoText>
           </MyText>
         </ContentContainer>
       </Section>
@@ -92,8 +175,8 @@ const HeadingContainer = styled.div`
 const HeroHeading = styled.h2`
   font-style: normal;
   font-weight: 600;
-  font-size: 100px;
-  line-height: 1.1;
+  font-size: 80px;
+  line-height: 115%;
   max-width: 600px;
   color: ${p => p.theme.colors.primary};
 
@@ -113,13 +196,9 @@ const HeroHeading = styled.h2`
 const ContentContainer = styled.div`
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   column-gap: 56px;
   z-index: 1;
-
-  ${mediaqueries.desktop`
-    grid-template-columns: 1fr;
-  `}
 `;
 
 const InfoHeading = styled.h1`
@@ -136,11 +215,23 @@ const InfoHeading = styled.h1`
   `}
 `;
 
+const InfoSubHeading = styled(Headings.h2)`
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.8;
+  font-family: ${p => p.theme.fonts.title};
+  margin-bottom: 32px;
+  color: ${p => p.theme.colors.primary};
+  ${mediaqueries.phablet`
+    font-size: 18px;
+  `}
+`;
+
 const InfoText = styled.p`
-  font-size: 16px;
+  font-size: 18px;
   margin-top: 24px;
   line-height: 1.7;
-  color: ${p => p.theme.colors.primary};
+  color: ${p => p.theme.colors.articleText};
 `;
 
 const MyText = styled.div`
@@ -168,13 +259,13 @@ const NavLink = styled(Link)`
   border-bottom: 1px solid ${p => p.theme.colors.primary};
 
   &:visited {
-    color: ${p => p.theme.colors.primary};
+    color: ${p => p.theme.colors.secondary};
     opacity: 0.85;
   }
 
   &:hover,
   &:focus {
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.secondary};
     border-bottom-color: ${p => p.theme.colors.accent};
   }
 `;
