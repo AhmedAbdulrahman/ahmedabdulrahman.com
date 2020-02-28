@@ -138,7 +138,6 @@ const limitToTwoLines = css`
   display: -webkit-box;
   white-space: normal;
   overflow: hidden;
-
   ${mediaqueries.phablet`
     -webkit-line-clamp: 3;
   `}
@@ -148,7 +147,6 @@ const showDetails = css`
   p {
     display: -webkit-box;
   }
-
   h2 {
     margin-bottom: 10px;
   }
@@ -165,15 +163,12 @@ const listTile = p => css`
   grid-template-columns: ${p.reverse ? `${wide} ${wide}` : `${wide} ${wide}`};
   grid-template-rows: 2;
   column-gap: 30px;
-
   &:not(:last-child) {
     margin-bottom: 75px;
   }
-
   ${mediaqueries.desktop_medium`
     grid-template-columns: 1fr 1fr;
   `}
-
   ${mediaqueries.tablet`
     grid-template-columns: 1fr;
 
@@ -192,20 +187,16 @@ const listItemRow = p => css`
   align-items: center;
   position: relative;
   margin-bottom: 50px;
-
   ${mediaqueries.desktop`
     grid-column-gap: 24px;
     grid-template-columns: 1fr 380px;
   `}
-
   ${mediaqueries.tablet`
     grid-template-columns: 1fr;
   `}
-
   @media (max-width: 540px) {
     background: ${p.theme.colors.card};
   }
-
   ${mediaqueries.phablet`
 
   `}
@@ -213,15 +204,12 @@ const listItemRow = p => css`
 
 const listItemTile = p => css`
   position: relative;
-
   ${mediaqueries.tablet`
     margin-bottom: 60px;
   `}
-
   @media (max-width: 540px) {
     background: ${p.theme.colors.card};
   }
-
   ${mediaqueries.phablet`
     margin-bottom: 40px;
   `}
@@ -251,16 +239,13 @@ const ImageContainer = styled.div<{ narrow: boolean; gridLayout: string }>`
   margin-bottom: ${p => (p.gridLayout === 'tiles' ? '30px' : 0)};
   transition: transform 0.3s var(--ease-out-quad),
     box-shadow 0.3s var(--ease-out-quad);
-
   & > div {
     height: 100%;
   }
-
   ${mediaqueries.tablet`
     height: 200px;
     margin-bottom: 35px;
   `}
-
   ${mediaqueries.phablet`
     overflow: hidden;
     margin-bottom: 0;
@@ -271,20 +256,16 @@ const ImageContainer = styled.div<{ narrow: boolean; gridLayout: string }>`
 const Title = styled(Headings.h2)`
   font-size: 21px;
   font-family: ${p => p.theme.fonts.title};
-  font-weight: 400;
   margin-bottom: ${p =>
     p.hasOverflow && p.gridLayout === 'tiles' ? '10px' : '10px'};
   transition: color 0.3s ease-in-out;
   ${limitToTwoLines};
-
   ${mediaqueries.desktop`
     margin-bottom: 15px;
   `}
-
   ${mediaqueries.tablet`
     font-size: 24px;
   `}
-
   ${mediaqueries.phablet`
     font-size: 22px;
     padding: 30px 20px 0;
@@ -299,21 +280,18 @@ const Excerpt = styled.p<{
   gridLayout: string;
 }>`
   ${limitToTwoLines};
-  font-family: ${p => p.theme.fonts.body};
-  font-size: 16px;
-  color: ${p => p.theme.colors.secondary};
+  font-size: 18px;
   margin-bottom: 10px;
+  color: ${p => p.theme.colors.secondary};
+  font-family: ${p => p.theme.fonts.body};
   display: ${p => (p.hasOverflow && p.gridLayout === 'tiles' ? 'box' : 'box')};
   max-width: ${p => (p.narrow ? '515px' : '515px')};
-
   ${mediaqueries.desktop`
     display: -webkit-box;
   `}
-
   ${mediaqueries.phablet`
     margin-bottom; 15px;
   `}
-
   ${mediaqueries.phablet`
     max-width: 100%;
     padding:  0 20px;
@@ -324,10 +302,9 @@ const Excerpt = styled.p<{
 
 const MetaData = styled.div`
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   color: ${p => p.theme.colors.secondary};
   opacity: 0.6;
-
   ${mediaqueries.phablet`
     max-width: 100%;
     padding:  0 20px 30px;
@@ -348,15 +325,13 @@ const ArticleLink = styled(Link)`
 
   &:hover ${ImageContainer}, &:focus ${ImageContainer} {
     transform: translateY(-1px);
-    box-shadow: 0 30px 40px -20px rgba(156, 171, 197, 0.32),
-      0 30px 30px -30px rgba(156, 171, 197, 0.52);
+    box-shadow: 0 30px 40px -20px rgba(59, 73, 97, 0.32),
+      0 30px 30px -30px rgba(59, 73, 97, 0.52);
   }
-
   &:hover h2,
   &:focus h2 {
     color: ${p => p.theme.colors.accent};
   }
-
   &[data-a11y='true']:focus::after {
     content: '';
     position: absolute;
@@ -368,13 +343,11 @@ const ArticleLink = styled(Link)`
     background: rgba(255, 255, 255, 0.01);
     border-radius: 5px;
   }
-
   ${mediaqueries.phablet`
     &:hover ${ImageContainer} {
       transform: none;
       box-shadow: initial;
     }
-
     &:active {
       transform: scale(0.97) translateY(3px);
     }
