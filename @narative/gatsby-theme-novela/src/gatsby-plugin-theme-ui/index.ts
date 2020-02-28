@@ -14,9 +14,14 @@ const breakpoints = [
 ];
 
 const fonts = {
-  title: "'Poppins', 'Helvetica Neue', 'Arial', sans-serif",
-  body: "'Libre Baskerville', Georgia, Serif",
+  title: "'Title', Georgia, Serif",
+  body: "'Text','Libre Baskerville', Georgia, Serif",
   monospace: `"Operator Mono", Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace`,
+};
+
+const fontsWeight = {
+  regular: '300',
+  bold: '600',
 };
 
 const colorModeTransition =
@@ -28,6 +33,7 @@ export default merge({
   colorModeTransition,
   colors,
   fonts,
+  fontsWeight,
   breakpoints,
   tags,
 });
