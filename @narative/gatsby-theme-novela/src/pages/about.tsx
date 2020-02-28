@@ -160,9 +160,8 @@ const ArticlesGradient = styled.div`
 `;
 
 const HeadingContainer = styled.div`
-  margin: 100px 0;
+  margin: 100px 0 76px;
   font-family: ${p => p.theme.fonts.title};
-
   ${mediaqueries.desktop`
     width: 80%;
   `}
@@ -174,9 +173,9 @@ const HeadingContainer = styled.div`
 
 const HeroHeading = styled.h2`
   font-style: normal;
-  font-weight: 600;
-  font-size: 80px;
-  line-height: 115%;
+  font-weight: ${p => p.theme.fontsWeight.bold};
+  font-size: 108px;
+  line-height: 1;
   max-width: 600px;
   color: ${p => p.theme.colors.primary};
 
@@ -189,7 +188,7 @@ const HeroHeading = styled.h2`
   `}
 
   ${mediaqueries.phablet`
-    font-size: 54px;
+    font-size: 60px;
   `}
 `;
 
@@ -197,12 +196,12 @@ const ContentContainer = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  column-gap: 56px;
+  column-gap: 64px;
   z-index: 1;
 `;
 
 const InfoHeading = styled.h1`
-  font-weight: 600;
+  font-weight: ${p => p.theme.fontsWeight.bold};
   font-family: ${p => p.theme.fonts.title};
   font-size: 32px;
   line-height: 1.35;
@@ -211,7 +210,7 @@ const InfoHeading = styled.h1`
   color: ${p => p.theme.colors.primary};
 
   ${mediaqueries.phablet`
-    font-size: 24px;
+    font-size: 32px;
   `}
 `;
 
@@ -222,16 +221,17 @@ const InfoSubHeading = styled(Headings.h2)`
   font-family: ${p => p.theme.fonts.title};
   margin-bottom: 32px;
   color: ${p => p.theme.colors.primary};
+
   ${mediaqueries.phablet`
     font-size: 18px;
   `}
 `;
 
 const InfoText = styled.p`
-  font-size: 18px;
+  font-size: 22px;
   margin-top: 24px;
   line-height: 1.7;
-  color: ${p => p.theme.colors.articleText};
+  color: ${p => p.theme.colors.primary};
 `;
 
 const MyText = styled.div`
@@ -242,12 +242,16 @@ const MyImage = styled.div`
   position: relative;
   display: block;
   width: 100%;
-  // box-shadow: 0 22px 44px 0 rgba(0, 0, 0, 0.22);
+
   margin-bottom: 56px;
+
+  .gatsby-image-wrapper {
+    box-shadow: 0 22px 44px 0 rgba(0, 0, 0, 0.22);
+  }
 
   img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
     object-position: center;
   }
@@ -259,13 +263,13 @@ const NavLink = styled(Link)`
   border-bottom: 1px solid ${p => p.theme.colors.primary};
 
   &:visited {
-    color: ${p => p.theme.colors.secondary};
+    color: ${p => p.theme.colors.primary};
     opacity: 0.85;
   }
 
   &:hover,
   &:focus {
-    color: ${p => p.theme.colors.secondary};
+    color: ${p => p.theme.colors.accent};
     border-bottom-color: ${p => p.theme.colors.accent};
   }
 `;
