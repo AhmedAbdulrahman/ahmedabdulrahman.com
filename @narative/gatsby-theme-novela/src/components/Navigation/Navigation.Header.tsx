@@ -87,7 +87,7 @@ const NavigationHeader: React.FC<{}> = () => {
   const { sitePlugin } = useStaticQuery(siteQuery);
 
   const [colorMode] = useColorMode();
-  const fillIn = colorMode === 'dark' ? '#fff' : '#203f6e';
+  const fillIn = colorMode === 'dark' ? '#fff' : '#292f45';
   const fillOut = colorMode === 'dark' ? '#000' : '#fff';
   const { rootPath, basePath } = sitePlugin.pluginOptions;
 
@@ -195,7 +195,7 @@ const NavContainer = styled.div`
 `;
 
 const NavLink = styled(Link)`
-  font-weight: bold;
+  font-weight: ${p => p.theme.fontsWeight.bold};
   font-family: ${p => p.theme.fonts.title};
   font-size: 14px;
   color: ${p => p.theme.colors.secondary};
@@ -203,9 +203,11 @@ const NavLink = styled(Link)`
   display: inline-block;
   position: relative;
   margin-left: 40px;
+
   ${mediaqueries.phone`
     margin-left: 32px;
   `}
+
   &::after {
     background: none repeat scroll 0 0 transparent;
     bottom: -8px;
@@ -218,6 +220,7 @@ const NavLink = styled(Link)`
     transition: width 0.25s ease 0s, left 0.25s ease 0s;
     width: 0;
   }
+
   &:hover {
     color: ${p => p.theme.colors.primary};
     &::after {
@@ -225,6 +228,7 @@ const NavLink = styled(Link)`
       left: 0;
     }
   }
+
   &.active {
     color: ${p => p.theme.colors.primary};
     &::after {
