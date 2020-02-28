@@ -6,7 +6,7 @@ export const globalStyles = css`
    * https://gist.github.com/bendc/ac03faac0bf2aee25b49e5fd260a727d
    */
 
-  @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Poppins:600&display=swap');
+  // @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Poppins:600&display=swap');
 
   :root {
     --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
@@ -15,12 +15,6 @@ export const globalStyles = css`
     --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
     --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
-  }
-
-  @font-face {
-    font-family: 'Libre Baskerville', Serif;
-    font-weight: 400;
-    font-style: normal;
   }
 
   *,
@@ -45,25 +39,12 @@ export const globalStyles = css`
   }
 
   body {
-    font-family: 'Libre Baskerville', Serif;
+    font-family: 'Text', Serif;
     font-size: 1.6rem;
     margin: 0;
     font-weight: 400;
     height: 100%;
-  }
-
-  body::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(38, 40, 43, 0.3);
-    background-color: #f5f5f5;
-  }
-
-  body::-webkit-scrollbar {
-    width: 10px;
-    background-color: #f5f5f5;
-  }
-
-  body::-webkit-scrollbar-thumb {
-    background-color: #1a1c23;
+    cursor: auto;
   }
 
   button,
@@ -89,7 +70,7 @@ export const globalStyles = css`
   textarea,
   select,
   button {
-    font-family: 'Libre Baskerville', Serif;
+    font-family: 'Text', Serif;
   }
 
   .underline {
@@ -139,7 +120,6 @@ export const globalStyles = css`
     &:active {
       outline: none;
     }
-
     &[type='number'] {
       width: auto;
     }
@@ -147,5 +127,18 @@ export const globalStyles = css`
 
   img.Image__Zoom ~ div {
     background: transparent !important;
+  }
+
+  p.dropcap:first-letter {
+    font-family: 'Recoleta', Serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 6em;
+    float: left;
+    margin-right: 4px;
+    margin-top: 22px;
+    line-height: 0.5;
+    text-transform: uppercase;
+    color: #3a5c21;
   }
 `;
