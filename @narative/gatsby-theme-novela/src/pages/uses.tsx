@@ -23,19 +23,11 @@ const Uses = () => {
         <Container>
           <HeroTextContainer>
             <HeroHeading>Tools</HeroHeading>
-            <InfoText>
+            <InfoSubHeading>
               I get a lot of questions about the tools I use for different parts
               of my work. I've put together this "uses" page that covers the
               tools 🔨 I use to make things.
-            </InfoText>
-
-            {/* <InfoText>
-              <blockquote>
-                To become a master at any skill, it takes the total effort of
-                your: heart, mind, and soul working together in tandem.
-                <footer>― Maurice Young</footer>
-              </blockquote>
-            </InfoText> */}
+            </InfoSubHeading>
           </HeroTextContainer>
           <HeroImage>
             <Icons.Tools />
@@ -43,6 +35,13 @@ const Uses = () => {
         </Container>
       </Section>
       <Section narrow>
+        <InfoText>
+          <blockquote>
+            To become a master at any skill, it takes the total effort of your:
+            heart, mind, and soul working together in tandem.
+            <footer>― Maurice Young</footer>
+          </blockquote>
+        </InfoText>
         <Headings.h3>Workstation</Headings.h3>
         <Lists.ul fullWidth>
           <li>
@@ -699,8 +698,7 @@ const Container = styled.div`
   grid-template-columns: 1fr 450px;
   column-gap: 5em;
   overflow: hidden;
-  margin-top: 56px;
-  margin-bottom: 56px;
+  margin: 100px 0 76px;
 
   ${mediaqueries.desktop`
     grid-template-columns: 1fr 1fr;
@@ -732,7 +730,7 @@ const HeroImage = styled.div`
 const HeroHeading = styled.h1`
   font-style: normal;
   font-weight: 600;
-  font-size: 94px;
+  font-size: 85px;
   line-height: 98%;
   letter-spacing: -1px;
   font-family: ${p => p.theme.fonts.title};
@@ -746,6 +744,20 @@ const HeroHeading = styled.h1`
   ${mediaqueries.phablet`
     font-size: 44px;
     line-height: 1.25;
+  `}
+`;
+
+const InfoSubHeading = styled(Headings.h2)`
+  font-size: 22px;
+  font-weight: ${p => p.theme.fontsWeight.bold};
+  line-height: 1.8;
+  font-family: ${p => p.theme.fonts.title};
+  margin-top: 24px;
+  margin-bottom: 32px;
+  color: ${p => p.theme.colors.primary};
+
+  ${mediaqueries.phablet`
+    font-size: 18px;
   `}
 `;
 
@@ -763,9 +775,11 @@ const InfoText = styled.p`
   blockquote {
     position: relative;
     color: ${p => p.theme.colors.primary};
-    font-style: italic;
     font-size: 25px;
-    font-weight: 300;
+
+    font-family: ${p => p.theme.fonts.body};
+    font-weight: ${p => p.theme.fontsWeight.regular};
+    font-style: italic;
     line-height: 1.32;
     width: 100%;
     max-width: 700px;
@@ -778,14 +792,19 @@ const InfoText = styled.p`
     }
     &:before {
       content: '“';
-      font-family: serif;
+      font-weight: ${p => p.theme.fontsWeight.bold};
       position: absolute;
       right: 100%;
       font-size: 80px;
       line-height: 0px;
-      top: 20px;
-      color: rgb(172, 174, 197);
-      left: -10px;
+      top: 10px;
+      color: ${p => p.theme.colors.accent};
+      left: -20px;
+    }
+
+    footer {
+      font-weight: ${p => p.theme.fontsWeight.bold};
+      color: ${p => p.theme.colors.accent};
     }
   }
 `;

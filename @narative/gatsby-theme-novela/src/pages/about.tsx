@@ -8,7 +8,7 @@ import { Link } from 'gatsby';
 
 import Section from '@components/Section';
 import SEO from '@components/SEO';
-// import Image from '@components/Image';
+
 import Layout from '@components/Layout';
 import AnchorLink from '@components/Anchor';
 import Headings from '@components/Headings';
@@ -75,7 +75,7 @@ const AboutPage: Template = ({ location }) => {
                 what tools, software, gadgets, and services
               </NavLink>
               {` `}I use or read about some of the ways you can{` `}
-              <NavLink to={`/`} title={`Uses`}>
+              <NavLink to={`/work-with-me`} title={`Work with me`}>
                 work with me
               </NavLink>
               .
@@ -174,8 +174,8 @@ const HeadingContainer = styled.div`
 const HeroHeading = styled.h2`
   font-style: normal;
   font-weight: ${p => p.theme.fontsWeight.bold};
-  font-size: 108px;
-  line-height: 1;
+  font-size: 85px;
+  line-height: 98%;
   max-width: 600px;
   color: ${p => p.theme.colors.primary};
 
@@ -215,8 +215,8 @@ const InfoHeading = styled.h1`
 `;
 
 const InfoSubHeading = styled(Headings.h2)`
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 22px;
+  font-weight: ${p => p.theme.fontsWeight.bold};
   line-height: 1.8;
   font-family: ${p => p.theme.fonts.title};
   margin-bottom: 32px;
@@ -228,7 +228,7 @@ const InfoSubHeading = styled(Headings.h2)`
 `;
 
 const InfoText = styled.p`
-  font-size: 22px;
+  font-size: 20px;
   margin-top: 24px;
   line-height: 1.7;
   color: ${p => p.theme.colors.primary};
