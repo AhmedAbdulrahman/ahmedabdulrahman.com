@@ -35,13 +35,11 @@ const Uses = () => {
         </Container>
       </Section>
       <Section narrow>
-        <InfoText>
-          <blockquote>
-            To become a master at any skill, it takes the total effort of your:
-            heart, mind, and soul working together in tandem.
-            <footer>― Maurice Young</footer>
-          </blockquote>
-        </InfoText>
+        <Blockquote>
+          To become a master at any skill, it takes the total effort of your:
+          heart, mind, and soul working together in tandem.
+          <footer>― Maurice Young</footer>
+        </Blockquote>
         <Headings.h3>Workstation</Headings.h3>
         <Lists.ul fullWidth>
           <li>
@@ -761,51 +759,41 @@ const InfoSubHeading = styled(Headings.h2)`
   `}
 `;
 
-const InfoText = styled.p`
-  font-size: 18px;
-  margin-top: 24px;
-  margin-bottom: 24px;
-  line-height: 1.8;
+const Blockquote = styled.blockquote`
+  position: relative;
+  color: ${p => p.theme.colors.primary};
+  font-size: 25px;
+
   font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.secondary};
-  ${mediaqueries.tablet`
-    font-size: 16px;
-  `}
+  font-weight: ${p => p.theme.fontsWeight.regular};
+  font-style: italic;
+  line-height: 1.32;
+  width: 100%;
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 0 40px;
 
-  blockquote {
-    position: relative;
-    color: ${p => p.theme.colors.primary};
-    font-size: 25px;
+  footer {
+    font-size: 0.6em;
+    text-align: right;
+    margin-top: 20px;
+  }
 
-    font-family: ${p => p.theme.fonts.body};
-    font-weight: ${p => p.theme.fontsWeight.regular};
-    font-style: italic;
-    line-height: 1.32;
-    width: 100%;
-    max-width: 700px;
-    margin: 50px auto;
-    padding: 0 40px;
-    footer {
-      font-size: 0.6em;
-      text-align: right;
-      margin-top: 20px;
-    }
-    &:before {
-      content: '“';
-      font-weight: ${p => p.theme.fontsWeight.bold};
-      position: absolute;
-      right: 100%;
-      font-size: 80px;
-      line-height: 0px;
-      top: 10px;
-      color: ${p => p.theme.colors.accent};
-      left: -20px;
-    }
+  &:before {
+    content: '“';
+    font-weight: ${p => p.theme.fontsWeight.bold};
+    position: absolute;
+    right: 100%;
+    font-size: 80px;
+    line-height: 0px;
+    top: 10px;
+    color: ${p => p.theme.colors.accent};
+    left: -20px;
+  }
 
-    footer {
-      font-weight: ${p => p.theme.fontsWeight.bold};
-      color: ${p => p.theme.colors.accent};
-    }
+  footer {
+    font-weight: ${p => p.theme.fontsWeight.bold};
+    color: ${p => p.theme.colors.accent};
   }
 `;
 
