@@ -2,11 +2,8 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 
-import Image from '@components/Image';
 import Section from '@components/Section';
 import mediaqueries from '@styles/media';
-// import { IAuthor } from '@types';
-import Icons from '@icons';
 
 const siteQuery = graphql`
   {
@@ -39,9 +36,6 @@ const WorkshopsHero = () => {
           <HeroHeading>{hero.workshop.heading}</HeroHeading>
           <InfoText>{hero.workshop.subHeading}</InfoText>
         </HeroTextContainer>
-        <HeroImage>
-          <Icons.Workshop />
-        </HeroImage>
       </Container>
     </Section>
   );
@@ -55,8 +49,7 @@ const Container = styled.div`
   grid-template-columns: 1fr 450px;
   column-gap: 5em;
   overflow: hidden;
-  margin-top: 56px;
-  margin-bottom: 56px;
+  margin: 100px 0 76px;
 
   ${mediaqueries.desktop`
     grid-template-columns: 1fr 416px;
@@ -70,26 +63,17 @@ const Container = styled.div`
 
 const HeroTextContainer = styled.div`
   position: relative;
-  align-self: end;
-  align-self: center;
+  align-self: flex-start;
+
   ${mediaqueries.tablet`
     margin: 40px 0 0;
   `}
 `;
 
-const HeroImage = styled.div`
-  position: relative;
-  align-self: end;
-  ${mediaqueries.tablet`
-    margin-left: 32px;
-    margin-right: 32px;
-  `}
-`;
-
 const HeroHeading = styled.h1`
   font-style: normal;
-  font-weight: 600;
-  font-size: 94px;
+  font-weight: ${p => p.theme.fontsWeight.bold};
+  font-size: 85px;
   line-height: 98%;
   letter-spacing: -1px;
   font-family: ${p => p.theme.fonts.title};
@@ -107,7 +91,7 @@ const HeroHeading = styled.h1`
 `;
 
 const InfoText = styled.p`
-  font-size: 18px;
+  font-size: 22px;
   margin-top: 24px;
   line-height: 1.8;
   font-family: ${p => p.theme.fonts.body};

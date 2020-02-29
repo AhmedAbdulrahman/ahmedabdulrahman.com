@@ -95,7 +95,8 @@ const WorkshopsList: React.FC<WorkshopsListProps> = ({
               }
             }}
           >
-            <img src={techImage(tech)} alt={tech} /> {capitalize(tech)}
+            <img src={techImage(tech)} alt={tech} />
+            <span>{capitalize(tech)}</span>
           </TechToggle>
         ))}
       </TechToggleContainer>
@@ -242,7 +243,6 @@ const ImageContainer = styled.div`
   transition: transform 0.3s var(--ease-out-quad),
   box-shadow 0.3s var(--ease-out-quad);
   width: 320px;
-  background: ${p => p.theme.colors.secondary};
   & > div {
     height: 100%;
     ::before {
@@ -310,12 +310,15 @@ const Title = styled(Headings.h2)`
   margin-bottom: 8px;
   transition: color 0.3s ease-in-out;
   ${limitToOneLines};
+
   ${mediaqueries.desktop`
     font-size: 22px;
   `}
+
   ${mediaqueries.tablet`
     font-size: 24px;
   `}
+
   ${mediaqueries.phablet`
     font-size: 22px;
   `}
@@ -330,11 +333,16 @@ const Excerpt = styled.p`
   display: ${p => (p.hasOverflow && p.gridLayout === 'tiles' ? 'none' : 'box')};
   max-width: 515px;
   line-height: 1.6;
+
   ${mediaqueries.desktop`
     display: -webkit-box;
   `}
+
   ${mediaqueries.phablet`
     max-width: 100%;
+    margin-bottom: 20px;
+    font-size: 14px;
+    -webkit-line-clamp: 3;
   `}
 `;
 
@@ -354,6 +362,7 @@ const ArticleLink = styled(Link)`
   margin-bottom: 30px;
   z-index: 1;
   transition: transform 0.33s var(--ease-out-quart);
+  background: ${p => p.theme.colors.card};
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   &[data-a11y='true']:focus::after {
     content: '';
@@ -366,8 +375,6 @@ const ArticleLink = styled(Link)`
     background: rgba(255, 255, 255, 0.01);
     border-radius: 5px;
   }
-
-  ${p => p.isDark && `background: ${p.theme.colors.card};`}
 
   ${mediaqueries.phablet`
     &:hover ${ImageContainer} {
@@ -404,18 +411,19 @@ const TechToggleContainer = styled.div`
 `;
 
 const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
-  font-family: ${p => p.theme.fonts.title};
-  transition: color 0.25s var(--ease-in-out-quad);
-  display: inline-block;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 5px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   border: none !important;
   border-radius: 4px;
+  font-family: ${p => p.theme.fonts.body};
   padding: 8px 15px 8px 12px;
   color: ${p => p.theme.colors.primary};
-  background: ${p => (p.isDark ? p.theme.colors.card : `#eaf1ff`)};
-  transition: background 0.3s ease-in-out;
+  background: ${p =>
+    p.isDark ? p.theme.colors.card : p.theme.colors.gradient};
+  transition: background 0.1s ease-in-out, color 0.1s var(--ease-in-out-quad);
 
   ${mediaqueries.phablet`
     width: 43%;
