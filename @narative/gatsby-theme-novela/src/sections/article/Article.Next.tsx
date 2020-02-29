@@ -147,12 +147,12 @@ const Item = styled.div`
   }
 `;
 
-const Title = styled(Headings.h3)`
-  font-size: 22px;
-  line-height: 1.4;
-  margin-bottom: ${p => (p.hasOverflow ? '45px' : '10px')};
-  color: ${p => p.theme.colors.primary};
+const Title = styled(Headings.h2)`
+  font-size: 20px;
   font-family: ${p => p.theme.fonts.title};
+  font-weight: 400;
+  margin-bottom: ${p => (p.hasOverflow ? '45px' : '10px')};
+
   transition: color 0.3s ease-in-out;
   ${limitToTwoLines};
 
@@ -166,21 +166,25 @@ const Title = styled(Headings.h3)`
   `}
 `;
 
-const Excerpt = styled.p<{ narrow: boolean; hasOverflow: boolean }>`
+const Excerpt = styled.p<{
+  hasOverflow: boolean;
+  narrow: boolean;
+  gridLayout: string;
+}>`
   ${limitToTwoLines};
-  font-size: 16px;
+  font-size: 18px;
   margin-bottom: 10px;
   color: ${p => p.theme.colors.secondary};
-  display: ${p => (p.hasOverflow ? 'none' : 'box')};
   font-family: ${p => p.theme.fonts.body};
-  max-width: ${p => (p.narrow ? '415px' : '515px')};
+  display: ${p => (p.hasOverflow && p.gridLayout === 'tiles' ? 'box' : 'box')};
+  max-width: ${p => (p.narrow ? '515px' : '515px')};
 
   ${mediaqueries.desktop`
     display: -webkit-box;
   `}
 
-  ${mediaqueries.tablet`
-    margin-bottom: 15px;
+  ${mediaqueries.phablet`
+    margin-bottom; 15px;
   `}
 
   ${mediaqueries.phablet`
@@ -192,8 +196,9 @@ const Excerpt = styled.p<{ narrow: boolean; hasOverflow: boolean }>`
 `;
 
 const MetaData = styled.div`
-  font-weight: 400;
-  font-size: 14px;
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontsWeight.regular};
+  font-size: 15px;
   color: ${p => p.theme.colors.secondary};
   opacity: 0.6;
 
@@ -214,15 +219,15 @@ const ArticleLink = styled(Link)<{ narrow: string }>`
   transition: transform 0.33s var(--ease-out-quart);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 
-  &:hover ${ImageContainer} {
+  &:hover ${ImageContainer}, &:focus ${ImageContainer} {
     transform: translateY(-1px);
-    box-shadow: 0 50px 80px -20px rgba(0, 0, 0, 0.27),
-      0 30px 50px -30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.27),
+      0 30px 30px -30px rgba(0, 0, 0, 0.3);
   }
 
   &:hover h2,
   &:focus h2 {
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.secondary};
   }
 
   &[data-a11y='true']:focus::after {
@@ -232,7 +237,7 @@ const ArticleLink = styled(Link)<{ narrow: string }>`
     top: -2%;
     width: 104%;
     height: 104%;
-    border: 3px solid ${p => p.theme.colors.accent};
+    border: 3px solid ${p => p.theme.colors.secondary};
     background: rgba(255, 255, 255, 0.01);
   }
 

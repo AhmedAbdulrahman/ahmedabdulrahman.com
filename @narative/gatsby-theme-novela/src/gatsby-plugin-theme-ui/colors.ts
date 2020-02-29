@@ -25,23 +25,24 @@ export default {
   textTitle: '#111111',
   neumorphismShadown:
     '10px 10px 22px rgba(156, 171, 197, 0.28), -10px -10px 24px rgba(240, 243, 250, 0.65)',
-
+  border: '#535e86',
+  outline: '#cad4e5',
   modes: {
     dark: {
       grey: '#73737D',
       primary: '#fff',
       secondary: '#fff',
       accent: '#ffe8a3',
-      background: '#1a1c23',
+      background: '#111217',
       backgroundModal: 'rgba(17, 18, 22, 0.95)',
       cleanBackground: '#111216',
       hover: 'rgba(255, 255, 255, 0.07)',
       gradient:
-        'linear-gradient(180deg, #1a1c23 0%, rgba(66, 81, 98, 0.36) 100%)',
+        'linear-gradient(180deg, #111217 0%, rgba(66, 81, 98, 0.36) 100%)',
       articleText: '#fff',
       track: 'rgba(255, 255, 255, 0.3)',
       progress: '#fff',
-      card: '#1f232c',
+      card: '#1D2128',
       error: '#EE565B',
       success: '#46B17B',
       errorBackground: 'rgba(238, 86, 91, 0.1)',
@@ -49,6 +50,8 @@ export default {
       inputBackground: 'rgba(255, 255, 255, 0.07)',
       textTitle: '#fff',
       neumorphismShadown: 'none',
+      border: '#d6b85d',
+      outline: '#ffe7a2',
     },
   },
 };

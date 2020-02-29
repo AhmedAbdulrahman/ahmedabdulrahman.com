@@ -302,7 +302,7 @@ const Excerpt = styled.p<{
 
 const MetaData = styled.div`
   font-weight: 400;
-  font-size: 16px;
+  font-size: 15px;
   color: ${p => p.theme.colors.secondary};
   opacity: 0.6;
   ${mediaqueries.phablet`

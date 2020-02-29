@@ -29,6 +29,7 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
     <Hero>
       <Header>
         <HeroHeading>{article.title}</HeroHeading>
+        <Excerpt>{article.excerpt}</Excerpt>
         <HeroSubtitle hasCoAUthors={hasCoAUthors}>
           <ArticleAuthors authors={authors} />
           <ArticleMeta hasCoAUthors={hasCoAUthors}>
@@ -72,7 +73,6 @@ const Hero = styled.div`
       top: 0;
       transition: ${p.theme.colorModeTransition};
     }
-
     &::after {
       content: "";
       width: 100%;
@@ -90,7 +90,6 @@ const Hero = styled.div`
 
 const ArticleMeta = styled.div<{ hasCoAUthors: boolean }>`
   margin-left: ${p => (p.hasCoAUthors ? '10px' : '0')};
-
   ${mediaqueries.phablet`
     margin-left: 0;
   `}
@@ -101,6 +100,7 @@ const TagsWrapper = styled.div`
   align-items: center;
   font-size: 14px;
   color: ${p => p.theme.colors.grey};
+  margin-top: 15px;
 
   ${mediaqueries.desktop_up`
     margin-left: 33px;
@@ -113,6 +113,25 @@ const TagsWrapper = styled.div`
 
 const Tags = styled.div`
   display: flex;
+`;
+
+const ArticleTag = styled.div<{ isDark: boolean }>`
+  padding: 0.5rem 0.8rem;
+  margin-right: 5px;
+  color: ${p =>
+    p.isDark ? p.theme.colors.primary : p.theme.colors.prism.token};
+  background: ${p =>
+    p.isDark ? p.theme.colors.hover : p.theme.colors.prism.background};
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: ${p => p.theme.fontsWeight.regular};
+  font-family: ${p => p.theme.fonts.body};
+
+  ${mediaqueries.desktop_up`
+    &:first-of-type {
+      margin-left: 5px;
+    }
+  `}
 `;
 
 const Header = styled.header`
@@ -145,19 +164,28 @@ const Header = styled.header`
 `;
 
 const HeroHeading = styled(Headings.h1)`
-  font-size: 48px;
+  font-size: 55px;
   font-family: ${p => p.theme.fonts.title};
   margin-bottom: 25px;
-  font-weight: bold;
-  line-height: 1.32;
+  font-weight: ${p => p.theme.fontsWeight.bold};
 
   ${mediaqueries.tablet`
     margin-bottom: 20px;
-    font-size: 36px;
   `}
+`;
 
+const Excerpt = styled(Headings.h3)`
+  font-size: 28px;
+  font-family: ${p => p.theme.fonts.body};
+  color: ${p => p.theme.colors.secondary};
+  margin-bottom: 24px;
+  margin-top: 24px;
+  font-weight: normal;
+  line-height: 1.5;
+  ${mediaqueries.tablet`
+  `}
   ${mediaqueries.phablet`
-    font-size: 32px;
+    font-size: 22px;
   `}
 `;
 
@@ -167,13 +195,11 @@ const HeroSubtitle = styled.div<{ hasCoAUthors: boolean }>`
   font-size: 14px;
   color: ${p => p.theme.colors.secondary};
   align-items: center;
-  margin-bottom: 20px;
 
   ${p => mediaqueries.phablet`
     flex-direction: column;
     align-items: left;
     align-items: flex-start;
-
     ${p.hasCoAUthors &&
       `
         &::before {
@@ -188,8 +214,6 @@ const HeroSubtitle = styled.div<{ hasCoAUthors: boolean }>`
           border-radius: 5px;
         }
     `}
-
-
     strong {
       display: block;
       font-weight: 500;
@@ -205,36 +229,15 @@ const HeroImage = styled.div`
   max-width: 944px;
   overflow: hidden;
   margin: 0 auto;
-  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.2),
-    0 18px 36px -18px rgba(0, 0, 0, 0.22);
-
   ${mediaqueries.tablet`
     max-width: 100%;
   `}
-
   ${mediaqueries.phablet`
     margin: 0 auto;
     width: calc(100vw - 40px);
     height: 220px;
-
     & > div {
       height: 220px;
     }
 `}
-`;
-
-const ArticleTag = styled.div<{ isDark: boolean }>`
-  padding: 0.5rem 0.8rem;
-  margin-right: 5px;
-  color: ${p => (p.isDark ? p.theme.colors.primary : p.theme.colors.primary)};
-  background: ${p => (p.isDark ? p.theme.colors.hover : '#dee9ff')};
-  border-radius: 5px;
-  font-size: 1.3rem;
-  font-weight: 500;
-
-  ${mediaqueries.desktop_up`
-    &:first-of-type {
-      margin-left: 5px;
-    }
-  `}
 `;

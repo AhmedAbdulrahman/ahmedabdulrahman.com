@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import throttle from 'lodash/throttle';
 // import { graphql, useStaticQuery } from 'gatsby';
 
@@ -26,11 +28,28 @@ import { Template } from '@types';
 const GITHUB_USERNAME = 'ahmedabdulrahman';
 const GITHUB_REPO_NAME = 'ahmedabdulrahman.com';
 
+const siteQuery = graphql`
+  {
+    allSite {
+      edges {
+        node {
+          siteMetadata {
+            name
+          }
+        }
+      }
+    }
+  }
+`;
+
 const Article: Template = ({ pageContext, location }) => {
   const contentSectionRef = useRef<HTMLElement>(null);
 
   const [hasCalculated, setHasCalculated] = useState<boolean>(false);
   const [contentHeight, setContentHeight] = useState<number>(0);
+
+  const results = useStaticQuery(siteQuery);
+  const name = results.allSite.edges[0].node.siteMetadata.name;
 
   const { article, authors, mailchimp, next } = pageContext;
 
@@ -87,20 +106,25 @@ const Article: Template = ({ pageContext, location }) => {
         <MDXRenderer content={article.body}>
           <ArticleShare />
         </MDXRenderer>
-        <Paragraph style={{ maxWidth: 680, marginTop: 50, marginBottom: 50 }}>
+        <Paragraph
+          css={css`
+            margin-top: 50px !important;
+            margin-bottom: 50px !important;
+          `}
+        >
           <Anchor href={discussUrl} target="_blank" rel="noopener noreferrer">
             Discuss on Twitter
           </Anchor>
-          {` • `}
+          {/* {` • `}
           <Anchor href={editUrl} target="_blank" rel="noopener noreferrer">
             Edit on GitHub
-          </Anchor>
+          </Anchor> */}
         </Paragraph>
       </ArticleBody>
       {/* {mailchimp && article.subscription && <Subscription />} */}
       {next.length > 0 && (
         <NextArticle narrow>
-          <FooterNext>Other articles you may like</FooterNext>
+          <FooterNext>More from {name}</FooterNext>
           <ArticlesNext articles={next} />
           <FooterSpacer />
         </NextArticle>
@@ -159,7 +183,7 @@ const FooterNext = styled.h3`
     content: '';
     position: absolute;
     background: ${p => p.theme.colors.grey};
-    width: ${(910 / 1140) * 100}%;
+    width: ${(870 / 1140) * 100}%;
     height: 1px;
     right: 0;
     top: 11px;
@@ -173,7 +197,7 @@ const FooterNext = styled.h3`
     `}
 
     ${mediaqueries.phone`
-      width: 90px
+      width: 80px;
     `}
   }
 `;

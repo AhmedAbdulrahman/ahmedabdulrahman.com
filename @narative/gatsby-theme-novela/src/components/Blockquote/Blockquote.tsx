@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import mediaqueries from "@styles/media";
+import styled from '@emotion/styled';
+import mediaqueries from '@styles/media';
 
 const Blockquote = styled.blockquote`
   transition: ${p => p.theme.colorModeTransition};
@@ -21,7 +21,7 @@ const Blockquote = styled.blockquote`
     margin: 0 auto;
     font-size: 36px;
     line-height: 1.32;
-    font-weight: bold;
+    font-weight: ${p => p.theme.fontsWeight.bold};
 
     ${mediaqueries.tablet`
       font-size: 26px;
