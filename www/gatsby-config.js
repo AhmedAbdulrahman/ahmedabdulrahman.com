@@ -20,7 +20,7 @@ const siteMetadata = {
       url: `https://twitter.com/_ahmed_ab`,
     },
     {
-      url: `https://behance.com/ahmedabdulrahman`,
+      url: `https://www.behance.net/ahmedabdulrahman`,
     },
     {
       url: `https://github.com/AhmedAbdulrahman`,
