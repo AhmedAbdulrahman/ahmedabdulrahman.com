@@ -17,7 +17,7 @@ const siteMetadata = {
   },
   social: [
     {
-      url: `https://twitter.com/ahmed_ab`,
+      url: `https://twitter.com/_ahmed_ab`,
     },
     {
       url: `https://behance.com/ahmedabdulrahman`,
