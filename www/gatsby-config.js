@@ -3,12 +3,12 @@ require("dotenv").config();
 const siteMetadata = {
   title: `Ahmed Abdulrahman's Desk`,
   name: `Ahmed Abdulrahman`,
-  siteUrl: `https://ahmedabdulrahman.com`,
+  siteUrl: `https://aadev.dev`,
   description: `Develoer who's learning to write and express thoughts`,
   hero: {
     heading: `You'll cover all the techniques to create performant, composable, reusable UI components to level-up your skills as a developer.`,
-    // writingHeading: `Hi, I'm Ahmed, Stockholm based creative Front-end Engineer.`,
     writingHeading: `Lover of fast, minimalist experiences.`,
+    // writingHeading: `I HELP BUSINESSES STAND OUT.`,
     workshop: {
         heading: `Remote Workshops`,
         subHeading: `We prodvide you with a valuable and effective workshops to Level-up your skills as a developer.`
@@ -60,16 +60,16 @@ const plugins = [
   {
     resolve: `gatsby-plugin-google-analytics`,
     options: {
-      trackingId: "UA-118232427-3",
+      trackingId: "",
     },
   },
-  {
-    resolve: "gatsby-plugin-mailchimp",
-    options: {
-      endpoint:
-        "https://narative.us19.list-manage.com/subscribe/post?u=65ef169332a03669b9538f6ef&amp;id=c55c426282",
-    },
-  },
+  // {
+  //   resolve: "gatsby-plugin-mailchimp",
+  //   options: {
+  //     endpoint:
+  //       "https://narative.us19.list-manage.com/subscribe/post?u=65ef169332a03669b9538f6ef&amp;id=c55c426282",
+  //   },
+  // },
 ];
 
 /**
