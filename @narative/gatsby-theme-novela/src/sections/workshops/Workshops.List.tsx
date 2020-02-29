@@ -133,7 +133,7 @@ const ListItem: React.FC<WorkshopsListItemProps> = ({ workshop, isDark }) => {
     imageSource.constructor === Object;
 
   return (
-    <ArticleLink to={workshop.slug} data-a11y="false" isDark={isDark}>
+    <ArticleLink to={workshop.slug} data-a11y="false">
       <Item>
         <ImageContainer>
           {hasHeroImage ? <Image src={imageSource} /> : <ImagePlaceholder />}
