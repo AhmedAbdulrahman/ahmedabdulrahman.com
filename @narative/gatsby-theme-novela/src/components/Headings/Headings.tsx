@@ -9,29 +9,29 @@ import mediaqueries from '@styles/media';
  */
 
 const commonStyles = p => css`
-  font-weight: bold;
+  font-weight: ${p.theme.fontsWeight.bold};
   color: ${p.theme.colors.primary};
   font-family: ${p.theme.fonts.title};
 `;
 
 const h1 = styled.h1`
-  font-size: 52px;
-  line-height: 1.35;
+  font-size: 64px;
+  line-height: 1.15;
   ${commonStyles};
 
   ${mediaqueries.desktop`
-    font-size: 38px;
+    font-size: 48px;
     line-height: 1.2;
   `};
 
   ${mediaqueries.phablet`
-    font-size: 32px;
+    font-size: 40px;
     line-height: 1.3;
   `};
 `;
 
 const h2 = styled.h2`
-  font-size: 32px;
+  font-size: 36px;
   line-height: 1.333;
   ${commonStyles};
 

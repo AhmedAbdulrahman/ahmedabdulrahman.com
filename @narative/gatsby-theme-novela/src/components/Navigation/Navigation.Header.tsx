@@ -203,11 +203,9 @@ const NavLink = styled(Link)`
   display: inline-block;
   position: relative;
   margin-left: 40px;
-
   ${mediaqueries.phone`
-    margin-left: 32px;
-  `}
-
+  margin-left: 32px;
+`}
   &::after {
     background: none repeat scroll 0 0 transparent;
     bottom: -8px;
@@ -220,17 +218,14 @@ const NavLink = styled(Link)`
     transition: width 0.25s ease 0s, left 0.25s ease 0s;
     width: 0;
   }
-
   &:hover {
-    color: ${p => p.theme.colors.primary};
+    color: ${p => p.theme.colors.secondary};
     &::after {
       width: 100%;
       left: 0;
     }
   }
-
   &.active {
-    color: ${p => p.theme.colors.primary};
     &::after {
       background: none repeat scroll 0 0 transparent;
       bottom: -8px;

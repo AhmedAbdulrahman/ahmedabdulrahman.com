@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import mediaqueries from '@styles/media';
 
 const Paragraph = styled.p<{ fullWidth?: boolean }>`
-  line-height: 1.756;
-  font-size: 18px;
+  line-height: 1.556;
+  font-size: 20px;
   color: ${p => p.theme.colors.articleText};
   font-family: ${p => p.theme.fonts.body};
   transition: ${p => p.theme.colorModeTransition};
@@ -30,7 +30,6 @@ const Paragraph = styled.p<{ fullWidth?: boolean }>`
 
   ${mediaqueries.tablet`
     max-width: 486px;
-    margin: 0 auto;
   `};
 
   ${mediaqueries.phablet`

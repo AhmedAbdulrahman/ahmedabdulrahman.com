@@ -79,7 +79,7 @@ const NavControls = styled.div`
 `;
 
 const NavLink = styled(Link)`
-  font-weight: bold;
+  font-weight: ${p => p.theme.fontsWeight.bold};
   font-family: ${p => p.theme.fonts.title};
   font-size: 16px;
   color: ${p => p.theme.colors.grey};
