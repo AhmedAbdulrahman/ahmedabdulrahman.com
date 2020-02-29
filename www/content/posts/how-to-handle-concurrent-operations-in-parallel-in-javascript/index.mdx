@@ -37,8 +37,14 @@ const animals = [
 ];
 
 Promise.all(animals)
-  .then(console.log) // ["🐅", "🦌", "🦒", "🐘"]
+  .then(console.log)
   .catch(console.log);
+```
+
+The result will be:
+
+```terminal
+["🐅", "🦌", "🦒", "🐘"]
 ```
 
 If you would prefer using `async/await` and pure promises, this basic async/await syntax:
@@ -63,15 +69,17 @@ let getFilms = async () => {
   return films
 }
 
-console.log(getFilms())
-/*
-  Expected output:
-  Array [
-    { episode_id: 1, title: 'The Phantom Menace' },
-    { episode_id: 2, title: 'Attack of the Clones' },
-    { episode_id: 3,  title: 'Revenge of the Sith' }
-  ]
-*/
+getFilms()
+```
+
+The result will be:
+
+```terminal
+[
+  { episode_id: 1, title: 'The Phantom Menace' },
+  { episode_id: 2, title: 'Attack of the Clones' },
+  { episode_id: 3,  title: 'Revenge of the Sith' }
+]
 ```
 
 To sum up, `Promise.all()` is really great when you have more than one promise in your code and you to make a concurrent operations by aggregating a list of promises to a single promise.
