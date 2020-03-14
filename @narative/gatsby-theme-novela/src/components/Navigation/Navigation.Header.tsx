@@ -5,9 +5,12 @@ import { useColorMode } from 'theme-ui';
 
 import Section from '@components/Section';
 import Logo from '@components/Logo';
+import Burger from '@components/Burger';
 
+import { useMobileDetect } from '@hooks';
 import Icons from '@icons';
 import mediaqueries from '@styles/media';
+
 import {
   copyToClipboard,
   getWindowDimensions,
@@ -52,7 +55,7 @@ const SharePageButton: React.FC<{}> = () => {
   const [hasCopied, setHasCopied] = useState<boolean>(false);
   const [colorMode] = useColorMode();
   const isDark = colorMode === `dark`;
-  const fill = isDark ? '#fff' : '#000';
+  const fill = isDark ? '#fff' : '#002a5a';
 
   function copyToClipboardOnClick() {
     if (hasCopied) return;
@@ -84,10 +87,14 @@ const SharePageButton: React.FC<{}> = () => {
 const NavigationHeader: React.FC<{}> = () => {
   const [showBackArrow, setShowBackArrow] = useState<boolean>(false);
   const [previousPath, setPreviousPath] = useState<string>('/');
+  const [burgerOpen, setBurgerOpen] = React.useState(false);
+
   const { sitePlugin } = useStaticQuery(siteQuery);
+  const detectMobile = useMobileDetect();
 
   const [colorMode] = useColorMode();
-  const fillIn = colorMode === 'dark' ? '#fff' : '#292f45';
+  const isDark = colorMode === `dark`;
+  const fillIn = colorMode === 'dark' ? '#fff' : '#002a5a';
   const fillOut = colorMode === 'dark' ? '#000' : '#fff';
   const { rootPath, basePath } = sitePlugin.pluginOptions;
 
@@ -135,22 +142,65 @@ const NavigationHeader: React.FC<{}> = () => {
             </button>
           ) : (
             <>
-              <NavLink
-                to={`/workshops`}
-                title={`All workshops`}
-                activeClassName="active"
-              >
-                Workshops
-              </NavLink>
-              <NavLink
-                to={`/about`}
-                title={`About me`}
-                activeClassName="active"
-              >
-                About
-              </NavLink>
-              {/* <SharePageButton /> */}
-              <DarkModeToggle />
+              {detectMobile.isMobile() ? (
+                <>
+                  <Burger
+                    burgerOpen={burgerOpen}
+                    setBurgerOpen={setBurgerOpen}
+                  />
+                  <MobileMenu burgerOpen={burgerOpen}>
+                    <NavLink
+                      to={`/writing`}
+                      title={`All Article`}
+                      activeClassName="active"
+                    >
+                      Write
+                    </NavLink>
+                    <NavLink
+                      to={`/workshops`}
+                      title={`All Workshops`}
+                      activeClassName="active"
+                    >
+                      Workshops
+                    </NavLink>
+                    <NavLink
+                      to={`/about`}
+                      title={`About Me`}
+                      activeClassName="active"
+                    >
+                      About
+                    </NavLink>
+                    <SharePageButton />
+                    <DarkModeToggle />
+                  </MobileMenu>
+                </>
+              ) : (
+                <>
+                  <NavLink
+                    to={`/writing`}
+                    title={`All Article`}
+                    activeClassName="active"
+                  >
+                    Write
+                  </NavLink>
+                  <NavLink
+                    to={`/workshops`}
+                    title={`All Workshops`}
+                    activeClassName="active"
+                  >
+                    Workshops
+                  </NavLink>
+                  <NavLink
+                    to={`/about`}
+                    title={`About Me`}
+                    activeClassName="active"
+                  >
+                    About
+                  </NavLink>
+                  <SharePageButton />
+                  <DarkModeToggle />
+                </>
+              )}
             </>
           )}
         </NavControls>
@@ -197,15 +247,18 @@ const NavContainer = styled.div`
 const NavLink = styled(Link)`
   font-weight: ${p => p.theme.fontsWeight.bold};
   font-family: ${p => p.theme.fonts.title};
-  font-size: 14px;
-  color: ${p => p.theme.colors.secondary};
+  font-size: 16px;
+  color: ${p => p.theme.colors.primary};
   transition: color 0.25s var(--ease-in-out-quad);
   display: inline-block;
   position: relative;
   margin-left: 40px;
-  ${mediaqueries.phone`
-  margin-left: 32px;
-`}
+
+  ${mediaqueries.tablet`
+    margin-left: 0;
+    font-size: 24px;
+  `}
+
   &::after {
     background: none repeat scroll 0 0 transparent;
     bottom: -8px;
@@ -255,12 +308,11 @@ const LogoLink = styled(Link)<{ back: string }>`
     content: '';
     position: absolute;
     left: -10%;
-    top: -30%;
+    top: 0;
     width: 120%;
-    height: 160%;
+    height: 100%;
     border: 2px solid ${p => p.theme.colors.accent};
     background: rgba(255, 255, 255, 0.01);
-    border-radius: 5px;
   }
 
   &:hover {
@@ -271,7 +323,7 @@ const LogoLink = styled(Link)<{ back: string }>`
 `;
 
 const NavControls = styled.div`
-  position: relative;
+  // position: relative;
   display: flex;
   align-items: center;
 
@@ -280,6 +332,27 @@ const NavControls = styled.div`
   `}
 `;
 
+const MobileMenu = styled.nav<{ burgerOpen: boolean }>`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: ${props => props.theme.colors.background};
+  transform: ${props =>
+    props.burgerOpen ? 'translateX(0)' : 'translateX(-150%)'};
+  height: 100vh;
+  width: 100%;
+  text-align: left;
+  padding: 20rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
+  a,
+  button {
+    font-size: ;
+  }
+`;
 const ToolTip = styled.div<{ isDark: boolean; hasCopied: boolean }>`
   position: absolute;
   padding: 4px 13px;
@@ -308,7 +381,7 @@ const ToolTip = styled.div<{ isDark: boolean; hasCopied: boolean }>`
 `;
 
 const IconWrapper = styled.button<{ isDark: boolean }>`
-  opacity: 0.5;
+  // opacity: 0.5;
   position: relative;
   border-radius: 5px;
   width: 40px;
