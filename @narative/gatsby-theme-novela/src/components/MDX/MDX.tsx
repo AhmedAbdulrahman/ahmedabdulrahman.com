@@ -53,7 +53,7 @@ const MDX: React.FC<MDXProps> = ({ content, children, ...props }) => {
 
   return (
     <MDXProvider components={components}>
-      <MDXBody>
+      <MDXBody isDark={colorMode === 'dark'}>
         <MDXRenderer isDark={colorMode === 'dark'} {...props}>
           {content}
         </MDXRenderer>
@@ -127,9 +127,9 @@ const HeadingsCSS = css`
 const PrismCSS = p => css`
   code[class*='css-'] {
     border-radius: 0.25em;
-    background: ${p.theme.colors.prism.background};
+    background: #e1dac9;
     color: ${p.theme.colors.prism.token};
-    padding: 0.12em 0.25em;
+    padding: 0.12em 0.25em 0.2em;
     white-space: normal;
     line-height: 1.5;
   }
