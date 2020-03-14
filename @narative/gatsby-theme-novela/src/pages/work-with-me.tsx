@@ -43,33 +43,38 @@ const WorkWithMe: Template = ({ location }) => {
       <Section relative>
         <HeadingContainer>
           <HeroTextContainer>
-            <HeroHeading>Work With Me</HeroHeading>
-            <InfoSubHeading>
+            <Headings.HeroHeading>Work With Me</Headings.HeroHeading>
+            <InfoText>
               This page will give you a clear idea of ways we can work together
               and if I’m the right fit for your next project.
-            </InfoSubHeading>
+            </InfoText>
           </HeroTextContainer>
         </HeadingContainer>
       </Section>
       <Section>
         <ContentContainer>
           <MyText>
-            <InfoHeading>Who I am</InfoHeading>
+            <Headings.SectionHeading
+              css={css`
+                margin: 100px 0;
+              `}
+            >
+              Who I am
+            </Headings.SectionHeading>
             <InfoText>
-              Hello! I'm Ahmed, Creative Front-end Developer and Product
-              Designer from Stockholm, Sweden. I work at Oakwood Creative Studio
-              as Front-end Crispiness Creator, while also taking on freelance
-              projects that pique my interest.
+              Hello! I'm Ahmed, Creative Front-end Developer and Designer from
+              Stockholm, Sweden. I work at Oakwood Creative Studio as Front-end
+              Crispiness Creator, while also taking on freelance projects that
+              pique my interest.
             </InfoText>
 
-            <InfoHeading
+            <Headings.SectionHeading
               css={css`
-                margin-top: 32px;
-                margin-bottom: 0;
+                margin: 100px 0;
               `}
             >
               What I do
-            </InfoHeading>
+            </Headings.SectionHeading>
             <InfoText>
               I help businesses and independent individuals turn ideas into
               fully functional digital products. My work takes place in the grey
@@ -87,30 +92,30 @@ const WorkWithMe: Template = ({ location }) => {
               fine tune the product to make improvements.
             </InfoText>
 
-            <InfoHeading
+            <Headings.SectionHeading
               css={css`
-                margin-top: 32px;
-                margin-bottom: 0;
+                margin: 100px 0;
               `}
             >
               How I work
-            </InfoHeading>
+            </Headings.SectionHeading>
 
             <InfoText>
-              I use recognised strategies and Lean development practices to keep
+              I use recognised Strategies and Lean development practices to keep
               the process as dynamic and fluid as possible. We’ll move
               thoughtfully and efficiently in the most appropriate direction
               until we find the right solution.
             </InfoText>
 
-            <InfoHeading
+            <Headings.SectionHeading
               css={css`
-                margin-top: 32px;
-                margin-bottom: 0;
+                margin: 100px 0;
               `}
             >
-              Who hires me
-            </InfoHeading>
+              Who hir-
+              <br />
+              es me
+            </Headings.SectionHeading>
             <InfoText>
               Anyone who need a Front-end Developer &amp; Product Designer
               experienced in building businesses from the ground up and
@@ -125,14 +130,15 @@ const WorkWithMe: Template = ({ location }) => {
               developer.
             </InfoText>
 
-            <InfoHeading
+            <Headings.SectionHeading
               css={css`
-                margin-top: 32px;
-                margin-bottom: 0;
+                margin: 100px 0;
               `}
             >
-              What I charge
-            </InfoHeading>
+              What I ch-
+              <br />
+              arge
+            </Headings.SectionHeading>
             <InfoText>
               My rate varies from roughly £1.5k — £2.5k per week, depending on
               the requirements and my involvement in the project. I charge a
@@ -140,14 +146,15 @@ const WorkWithMe: Template = ({ location }) => {
               project price.
             </InfoText>
 
-            <InfoHeading
+            <Headings.SectionHeading
               css={css`
-                margin-top: 32px;
-                margin-bottom: 0;
+                margin: 100px 0;
               `}
             >
-              Get in touch
-            </InfoHeading>
+              Get in to-
+              <br />
+              uch
+            </Headings.SectionHeading>
             <InfoText>
               If you have a project in mind, and you think I might be a good
               fit, then{' '}
@@ -181,7 +188,7 @@ const ArticlesGradient = styled.div`
 const HeadingContainer = styled.div`
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   column-gap: 64px;
   margin: 100px 0 76px;
   font-family: ${p => p.theme.fonts.title};
@@ -245,7 +252,7 @@ const InfoHeading = styled.h1`
 
 const InfoSubHeading = styled.p`
   font-size: 22px;
-  font-family: ${p => p.theme.fonts.title};
+  font-family: ${p => p.theme.fonts.body};
   margin-top: 24px;
   margin-bottom: 32px;
   color: ${p => p.theme.colors.primary};
@@ -256,11 +263,16 @@ const InfoSubHeading = styled.p`
 `;
 
 const InfoText = styled.p`
-  font-size: 20px;
-  margin-top: 24px;
+  font-size: 2.8rem;
   line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
   color: ${p => p.theme.colors.secondary};
+  margin-bottom: 64px;
+
+  span {
+    color: ${p => p.theme.colors.accent};
+    font-style: italic;
+  }
 `;
 
 const MyText = styled.div`

@@ -40,11 +40,11 @@ const Contact: Template = ({ location }) => {
       <Section relative>
         <HeadingContainer>
           <HeroTextContainer>
-            <HeroHeading>Ask me anything</HeroHeading>
-            <InfoSubHeading>
+            <Headings.HeroHeading>Ask me anything</Headings.HeroHeading>
+            <InfoText>
               If you have a question please leave a message, I’m always happy to
               hear from interesting people doing interesting things.
-            </InfoSubHeading>
+            </InfoText>
           </HeroTextContainer>
         </HeadingContainer>
       </Section>
@@ -110,7 +110,7 @@ const ArticlesGradient = styled.div`
 const HeadingContainer = styled.div`
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   column-gap: 64px;
   margin: 100px 0 76px;
   font-family: ${p => p.theme.fonts.title};
@@ -183,10 +183,16 @@ const InfoSubHeading = styled.p`
 `;
 
 const InfoText = styled.p`
-  font-size: 20px;
-  margin-top: 24px;
-  line-height: 1.7;
-  color: ${p => p.theme.colors.primary};
+  font-size: 2.8rem;
+  line-height: 1.5;
+  font-family: ${p => p.theme.fonts.body};
+  color: ${p => p.theme.colors.secondary};
+  margin-bottom: 64px;
+
+  span {
+    color: ${p => p.theme.colors.accent};
+    font-style: italic;
+  }
 `;
 
 const MyText = styled.div`
