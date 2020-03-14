@@ -7,7 +7,11 @@ const siteMetadata = {
   description: `Develoer who's learning to write and express thoughts`,
   hero: {
     heading: `You'll cover all the techniques to create performant, composable, reusable UI components to level-up your skills as a developer.`,
-    writingHeading: `Lover of fast, minimalist experiences.`,
+    writing: {
+      // heading: `Developer with Designer's Eye`,
+      heading: `Creative Developer Focusing on Motion & Refined Digital Experinces`,
+      subHeading: `I’m Ahmed, a Creative Front-end Crispiness Creator and designer based in Sweden.`
+    },
     // writingHeading: `I HELP BUSINESSES STAND OUT.`,
     workshop: {
         heading: `Remote Workshops`,
