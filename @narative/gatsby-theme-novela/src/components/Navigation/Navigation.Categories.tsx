@@ -19,13 +19,17 @@ const NavCategory = ({ categories }) => {
   return (
     <NavContainer>
       <NavControls>
-        <NavLink to={`/`} title={`All articles`} activeClassName="active">
+        <NavLink
+          to={`/writing`}
+          title={`All articles`}
+          activeClassName="active"
+        >
           All
         </NavLink>
         {categories.map(category => (
           <NavLink
             key={category}
-            to={`/categories/${category.toLowerCase()}`}
+            to={`/writing/categories/${category.toLowerCase()}`}
             title={`${category} category`}
             activeClassName="active"
           >
