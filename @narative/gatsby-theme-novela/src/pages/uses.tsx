@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useColorMode } from 'theme-ui';
-import { Link } from 'gatsby';
 
 import SEO from '@components/SEO';
 import Layout from '@components/Layout';
@@ -120,7 +119,7 @@ const Uses = () => {
               I use it to opening bunch of projects at same time when working
               with workspaces.You can check out my VS Code settings{` `}
               <AnchorLink
-                href="https://www.bluedesigns.com/products/yeti-pro/"
+                href="https://gist.github.com/AhmedAbdulrahman/211ac9f31d46cf7d8cebe762dd3ee4dc"
                 target="_blank"
                 rel="noopener noreferrer"
                 isDark={isDark}
@@ -137,7 +136,15 @@ const Uses = () => {
               Tried a lot of themes then decided to create my own called Aylin.
               It is a customized minimal theme to use a darker background to
               increase the contrast and it looks cools when recording
-              screencasts.
+              screencasts. You can download it from {` `}
+              <AnchorLink
+                href="https://marketplace.visualstudio.com/items?itemName=AhmedAbdulrahman.aylin"
+                target="_blank"
+                rel="noopener noreferrer"
+                isDark={isDark}
+              >
+                VSCode Marketplace.
+              </AnchorLink>
             </Text>
           </li>
           <li>
@@ -216,18 +223,7 @@ const Uses = () => {
             </ListItem>
             <Text>I use it only for retouching.</Text>
           </li>
-          <li>
-            <ListItem>
-              <Strong>Zeplin</Strong>
-            </ListItem>
-            <Text>
-              a handy dandy tool for better communication between designers and
-              developers, converting designs made in Sketch or Figma to a
-              code-friendly format. Zeplin 2.0 introduces Components, renaming
-              assets, full size thumbnails in Dashboard, revamped interface for
-              layer properties, Styleguide and Dashboard 🔥
-            </Text>
-          </li>
+
           <li>
             <ListItem>
               <Strong>
@@ -357,7 +353,7 @@ const Uses = () => {
             </Text>
           </li>
         </Lists.ul>
-        <Title>Podcasting/Screencasting</Title>
+        <Title>Screencasting</Title>
         <Lists.ul fullWidth>
           <li>
             <ListItem>
@@ -542,7 +538,7 @@ const Strong = styled.strong`
   margin-bottom: 5px;
 `;
 
-const AnchorLink = styled(Link)`
+const AnchorLink = styled.a`
   border-bottom: 3px solid ${p => p.theme.colors.accent};
   transition: border-bottom 0.35s ease, ${p => p.theme.colorModeTransition};
   color: ${p => p.theme.colors.primary};
