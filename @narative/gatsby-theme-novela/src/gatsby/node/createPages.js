@@ -10,6 +10,7 @@ const createPaginatedPages = require('gatsby-paginate');
 
 const templatesDirectory = path.resolve(__dirname, '../../templates');
 const templates = {
+  main: path.resolve(templatesDirectory, 'main.template.tsx'),
   articles: path.resolve(templatesDirectory, 'articles.template.tsx'),
   article: path.resolve(templatesDirectory, 'article.template.tsx'),
   author: path.resolve(templatesDirectory, 'author.template.tsx'),
@@ -55,7 +56,8 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     basePath = '/',
     authorsPath = '/authors',
     authorsPage = true,
-    categoryPath = '/categories',
+    postsPath = '/writing',
+    categoryPath = '/writing/categories',
     workshopPath = '/workshops',
     pageLength = 6,
     pageLengthWorkshops = 32,
@@ -184,6 +186,14 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     You must have at least one Category to create category page.
   `);
   }
+
+  log('Creating', 'Main page');
+
+  createPage({
+    path: basePath,
+    component: templates.main,
+  });
+
   /**
    * Once we've queried all our data sources and normalized them to the same structure
    * we can begin creating our pages. First, we'll want to create all main articles pages
@@ -195,7 +205,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
   log('Creating', 'articles page');
   createPaginatedPages({
     edges: articlesThatArentSecret,
-    pathPrefix: basePath,
+    pathPrefix: postsPath,
     createPage,
     pageLength,
     pageTemplate: templates.articles,
@@ -203,7 +213,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     context: {
       authors,
       categories: uniqueCategories,
-      basePath,
+      postsPath,
       skip: pageLength,
       limit: pageLength,
     },
@@ -253,8 +263,8 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
       context: {
         article,
         authors: authorsThatWroteTheArticle,
-        category: article.category,
-        basePath,
+        category: `${postsPath}/${article.category}`,
+        postsPath,
         slug: article.slug,
         id: article.id,
         title: article.title,

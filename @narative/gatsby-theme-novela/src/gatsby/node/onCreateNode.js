@@ -94,7 +94,7 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
       hero: node.frontmatter.hero,
       secret: node.frontmatter.secret || false,
       slug: generateSlug(
-        basePath,
+        '/writing',
         generateArticlePermalink(
           slugify(node.frontmatter.slug || node.frontmatter.title),
           node.frontmatter.date,
