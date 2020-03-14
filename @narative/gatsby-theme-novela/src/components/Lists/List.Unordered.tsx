@@ -72,10 +72,10 @@ const UnorderedList = styled.ul<{ fullWidth?: boolean }>`
     content: '';
     position: absolute;
     left: -30px;
-    top: 8px;
+    top: 14px;
     height: 8px;
     width: 8px;
-    background: ${p => p.theme.colors.articleText};
+    background: ${p => p.theme.colors.primary};
 
     ${mediaqueries.tablet`
       left: 0;
