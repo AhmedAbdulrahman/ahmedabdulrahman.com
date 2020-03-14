@@ -41,16 +41,16 @@ const AboutPage: Template = ({ location }) => {
       <SEO pathname={location.href} title={`About me - ${title}`} />
       <Section relative>
         <HeadingContainer>
-          <HeroHeading>Nice to meet you!</HeroHeading>
+          <Headings.HeroHeading>Hey, I'm Ahmed 👋</Headings.HeroHeading>
         </HeadingContainer>
       </Section>
       <Section>
         <ContentContainer>
           <MyText>
-            <InfoHeading>Design & Code</InfoHeading>
-            <InfoSubHeading>
-              Hey, I'm Ahmed 👋, a Stockholm based Creative Front-end Developer
-            </InfoSubHeading>
+            <InfoText>
+              Stockholm based Creative Front-end <span>Crispiness Creator</span>{' '}
+              &amp; <span>Designer</span>
+            </InfoText>
             <InfoText>
               Although my skillset is diverse with full of passion for all
               aspects of building great software, I specialise in Front-end
@@ -58,16 +58,16 @@ const AboutPage: Template = ({ location }) => {
               and as part of a team.
             </InfoText>
             <InfoText>
-              Currently I live Stockholm, where I work at Oakwood we build
+              Currently, I live Stockholm, where I work at Oakwood, building
               premium design solutions in all digital touchpoints.
             </InfoText>
-            <InfoHeading
+            <Headings.SectionHeading
               css={css`
-                margin-top: 32px;
+                margin: 100px 0;
               `}
             >
               Where to go next
-            </InfoHeading>
+            </Headings.SectionHeading>
             <InfoText>
               You can find out
               {` `}
@@ -78,12 +78,7 @@ const AboutPage: Template = ({ location }) => {
               <NavLink to={`/work-with-me`} title={`Work with me`}>
                 work with me
               </NavLink>
-              .
-            </InfoText>
-
-            <InfoText>
-              {' '}
-              I’m currently working on a{' '}
+              . I’m currently working on a{' '}
               <NavLink to={`/`} title={`Uses`}>
                 workshops
               </NavLink>{' '}
@@ -125,13 +120,13 @@ const AboutPage: Template = ({ location }) => {
               .
             </InfoText>
 
-            <InfoHeading
+            <Headings.SectionHeading
               css={css`
-                margin-top: 32px;
+                margin: 100px 0;
               `}
             >
               What else?
-            </InfoHeading>
+            </Headings.SectionHeading>
             <InfoText>
               When I'm not coding or reading excellent software books (which I
               really must compile a list for), I spend time with kids, write,
@@ -171,27 +166,6 @@ const HeadingContainer = styled.div`
   `}
 `;
 
-const HeroHeading = styled.h2`
-  font-style: normal;
-  font-weight: ${p => p.theme.fontsWeight.bold};
-  font-size: 85px;
-  line-height: 98%;
-  max-width: 600px;
-  color: ${p => p.theme.colors.primary};
-
-  a {
-    color: ${p => p.theme.colors.accent};
-  }
-
-  ${mediaqueries.desktop`
-    font-size: 64px
-  `}
-
-  ${mediaqueries.phablet`
-    font-size: 60px;
-  `}
-`;
-
 const ContentContainer = styled.div`
   position: relative;
   display: grid;
@@ -200,67 +174,26 @@ const ContentContainer = styled.div`
   z-index: 1;
 `;
 
-const InfoHeading = styled.h1`
-  font-weight: ${p => p.theme.fontsWeight.bold};
-  font-family: ${p => p.theme.fonts.title};
-  font-size: 32px;
-  line-height: 1.35;
-  max-width: 100%;
-  margin-bottom: 32px;
-  color: ${p => p.theme.colors.primary};
-
-  ${mediaqueries.phablet`
-    font-size: 32px;
-  `}
-`;
-
-const InfoSubHeading = styled(Headings.h2)`
-  font-size: 22px;
-  font-weight: ${p => p.theme.fontsWeight.bold};
-  line-height: 1.8;
-  font-family: ${p => p.theme.fonts.title};
-  margin-bottom: 32px;
-  color: ${p => p.theme.colors.primary};
-
-  ${mediaqueries.phablet`
-    font-size: 18px;
-  `}
-`;
-
 const InfoText = styled.p`
-  font-size: 20px;
-  margin-top: 24px;
-  line-height: 1.7;
-  color: ${p => p.theme.colors.primary};
+  font-size: 2.8rem;
+  line-height: 1.5;
+  font-family: ${p => p.theme.fonts.body};
+  color: ${p => p.theme.colors.secondary};
+  margin-bottom: 64px;
+
+  span {
+    color: ${p => p.theme.colors.accent};
+  }
 `;
 
 const MyText = styled.div`
   position: relative;
 `;
 
-const MyImage = styled.div`
-  position: relative;
-  display: block;
-  width: 100%;
-
-  margin-bottom: 56px;
-
-  .gatsby-image-wrapper {
-    box-shadow: 0 22px 44px 0 rgba(0, 0, 0, 0.22);
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center;
-  }
-`;
-
 const NavLink = styled(Link)`
   transition: ${p => p.theme.colorModeTransition};
   color: ${p => p.theme.colors.primary};
-  border-bottom: 1px solid ${p => p.theme.colors.primary};
+  border-bottom: 1px solid ${p => p.theme.colors.accent};
 
   &:visited {
     color: ${p => p.theme.colors.primary};
@@ -270,6 +203,5 @@ const NavLink = styled(Link)`
   &:hover,
   &:focus {
     color: ${p => p.theme.colors.accent};
-    border-bottom-color: ${p => p.theme.colors.accent};
   }
 `;
