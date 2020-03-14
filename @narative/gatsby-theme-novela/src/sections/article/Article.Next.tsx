@@ -227,7 +227,7 @@ const ArticleLink = styled(Link)<{ narrow: string }>`
 
   &:hover h2,
   &:focus h2 {
-    color: ${p => p.theme.colors.secondary};
+    color: ${p => p.theme.colors.accent};
   }
 
   &[data-a11y='true']:focus::after {

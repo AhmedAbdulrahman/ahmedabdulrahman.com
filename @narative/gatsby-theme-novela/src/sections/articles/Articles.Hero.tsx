@@ -1,41 +1,25 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import styled from '@emotion/styled';
 
 import Section from '@components/Section';
+import Headings from '@components/Headings';
 
 import mediaqueries from '@styles/media';
-import { IAuthor } from '@types';
-
-const siteQuery = graphql`
-  {
-    allSite {
-      edges {
-        node {
-          siteMetadata {
-            hero {
-              maxWidth
-              writingHeading
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 const ArticlesHero: React.FC = () => {
-  const results = useStaticQuery(siteQuery);
-  const hero = results.allSite.edges[0].node.siteMetadata.hero;
-
   return (
     <Section narrow>
-      <HeadingContainer style={{ maxWidth: `800px` }}>
-        <HeroHeading>{hero.writingHeading}</HeroHeading>
+      <HeadingContainer style={{ maxWidth: `850px` }}>
+        <Headings.HeroHeading>
+          Great writers <span>teach</span> you how to teach{' '}
+          <span>yourself</span>.
+        </Headings.HeroHeading>
         <InfoText>
-          {/* By creating badass visual identities and awesome websites. */}
-          Hey, I’m Ahmed, a Creative Front-end Crispiness Creator and UI
-          designer from Stockholm, Sweden.
+          Without words, apps would be an unusable jumble of shapes and icons.{' '}
+          <Anchor to="/archive" data-a11y="false">
+            Archive
+          </Anchor>
         </InfoText>
       </HeadingContainer>
     </Section>
@@ -56,31 +40,22 @@ const HeadingContainer = styled.div`
   `}
 `;
 
-const HeroHeading = styled.h1`
-  font-style: normal;
-  font-weight: ${p => p.theme.fontsWeight.bold};
-  font-size: 85px;
-  line-height: 98%;
-  font-family: ${p => p.theme.fonts.title};
-  color: ${p => p.theme.colors.primary};
-
-  a {
-    color: ${p => p.theme.colors.accent};
-  }
-
-  ${mediaqueries.desktop`
-  font-size: 56px
-`}
-
-  ${mediaqueries.phablet`
-  font-size: 56px;
-`}
-`;
-
 const InfoText = styled.p`
   font-size: 22px;
   margin-top: 16px;
   line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
   color: ${p => p.theme.colors.secondary};
+`;
+
+const Anchor = styled(Link)`
+  color: ${p => p.theme.colors.secondary};
+  border-bottom: 1px solid ${p => p.theme.colors.secondary};
+  margin-left: 6px;
+
+  &:hover,
+  &:focus {
+    color: ${p => p.theme.colors.accent};
+    border-bottom-color: ${p => p.theme.colors.accent};
+  }
 `;

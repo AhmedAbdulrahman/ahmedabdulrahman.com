@@ -42,7 +42,7 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
           <Tags>
             {article.tags.map((tag, index) => (
               <ArticleTag key={index} isDark={isDark}>
-                <span>{tag}</span>
+                {tag}
               </ArticleTag>
             ))}
           </Tags>
@@ -115,13 +115,11 @@ const Tags = styled.div`
   display: flex;
 `;
 
-const ArticleTag = styled.div<{ isDark: boolean }>`
-  padding: 0.5rem 0.8rem;
+const ArticleTag = styled.span<{ isDark: boolean }>`
+  padding: 0.3rem 0.8rem 0.7rem;
   margin-right: 5px;
-  color: ${p =>
-    p.isDark ? p.theme.colors.primary : p.theme.colors.prism.token};
-  background: ${p =>
-    p.isDark ? p.theme.colors.hover : p.theme.colors.prism.background};
+  color: ${p => (p.isDark ? '#35250c' : p.theme.colors.prism.token)};
+  background: ${p => (p.isDark ? p.theme.colors.accent : '#e1dac9')};
   border-radius: 5px;
   font-size: 15px;
   font-weight: ${p => p.theme.fontsWeight.regular};
@@ -192,7 +190,7 @@ const Excerpt = styled(Headings.h3)`
 const HeroSubtitle = styled.div<{ hasCoAUthors: boolean }>`
   position: relative;
   display: flex;
-  font-size: 14px;
+  font-size: 15px;
   color: ${p => p.theme.colors.secondary};
   align-items: center;
 
