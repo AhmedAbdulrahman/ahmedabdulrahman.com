@@ -1,9 +1,8 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 const Anchor = styled.a`
   transition: ${p => p.theme.colorModeTransition};
   color: ${p => p.theme.colors.primary};
-  border-bottom: 1px solid ${p => p.theme.colors.primary};
 
   &:visited {
     color: ${p => p.theme.colors.primary};
@@ -13,7 +12,8 @@ const Anchor = styled.a`
   &:hover,
   &:focus {
     color: ${p => p.theme.colors.accent};
-    border-bottom-color: ${p => p.theme.colors.accent};
+    text-decoration: underline solid ${p => p.theme.colors.accent};
+    text-underline-position: under;
   }
 `;
 
