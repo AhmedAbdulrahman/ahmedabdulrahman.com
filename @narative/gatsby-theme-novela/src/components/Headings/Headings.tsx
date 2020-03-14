@@ -93,6 +93,43 @@ const h6 = styled.h6`
   `};
 `;
 
+const HeroHeading = styled.h1`
+  font-style: normal;
+  font-weight: ${p => p.theme.fontsWeight.bold};
+  font-size: 8.5rem;
+  line-height: 1.1;
+  font-family: ${p => p.theme.fonts.title};
+  color: ${p => p.theme.colors.primary};
+  margin-bottom: 5rem;
+
+  a {
+    color: ${p => p.theme.colors.accent};
+  }
+
+  span {
+    color: ${p => p.theme.colors.accent};
+  }
+
+  ${mediaqueries.phablet`
+    font-size: 5.9rem;
+    line-height: 1.1;
+`}
+`;
+
+const SectionHeading = styled.h2`
+  font-family: ${p => p.theme.fonts.title};
+  font-size: 18rem;
+  line-height: 1;
+  color: ${p => p.theme.colors.accent};
+  margin-bottom: 150px;
+
+  ${mediaqueries.desktop`
+    font-size: 6rem;
+    text-align: center;
+    margin-bottom: 64px;
+`}
+`;
+
 export default {
   h1,
   h2,
@@ -100,4 +137,6 @@ export default {
   h4,
   h5,
   h6,
+  HeroHeading,
+  SectionHeading,
 };
