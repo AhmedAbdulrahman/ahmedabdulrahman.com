@@ -79,7 +79,7 @@ const AboutPage: Template = ({ location }) => {
                 work with me
               </NavLink>
               . I’m currently working on a{' '}
-              <NavLink to={`/`} title={`Uses`}>
+              <NavLink to={`/workshops`} title={`Uses`}>
                 workshops
               </NavLink>{' '}
               page, to list all my upcoming Online Workshops, but it’s taking a
