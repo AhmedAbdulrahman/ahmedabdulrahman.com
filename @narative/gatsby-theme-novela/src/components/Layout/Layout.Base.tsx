@@ -40,4 +40,5 @@ const Container = styled.div`
   background: ${p => p.theme.colors.background};
   transition: ${p => p.theme.colorModeTransition};
   min-height: 100vh;
+  z-index: 1;
 `;
