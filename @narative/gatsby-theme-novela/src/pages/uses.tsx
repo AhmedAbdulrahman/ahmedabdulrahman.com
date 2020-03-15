@@ -459,9 +459,6 @@ const HeroTextContainer = styled.div`
   position: relative;
   align-self: end;
   align-self: center;
-  ${mediaqueries.tablet`
-    margin: 40px 0 0;
-  `}
 `;
 
 const HeroImage = styled.div`

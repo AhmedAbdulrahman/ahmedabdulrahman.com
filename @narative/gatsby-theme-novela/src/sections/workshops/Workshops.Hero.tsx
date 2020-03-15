@@ -64,10 +64,6 @@ const Container = styled.div`
 const HeroTextContainer = styled.div`
   position: relative;
   align-self: flex-start;
-
-  ${mediaqueries.tablet`
-    margin: 40px 0 0;
-  `}
 `;
 
 const HeroHeading = styled.h1`

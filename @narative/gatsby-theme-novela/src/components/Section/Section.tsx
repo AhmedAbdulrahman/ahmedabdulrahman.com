@@ -1,12 +1,12 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
-import mediaqueries from "@styles/media";
+import mediaqueries from '@styles/media';
 
 const Section = styled.section<{ narrow?: boolean }>`
   width: 100%;
   max-width: 1220px;
   margin: 0 auto;
-  padding: 0 4rem;
+  padding: 0 3rem;
 
   ${mediaqueries.desktop`
     max-width: 850px;
@@ -19,7 +19,7 @@ const Section = styled.section<{ narrow?: boolean }>`
           max-width: 527px;
         `
       : mediaqueries.tablet`
-          padding: 0 4rem;
+          padding: 0 3rem;
           max-width: 567px;
         `}
 
