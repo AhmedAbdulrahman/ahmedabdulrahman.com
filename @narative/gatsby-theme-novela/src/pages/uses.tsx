@@ -11,7 +11,11 @@ import mediaqueries from '@styles/media';
 
 import Icons from '@icons';
 
-const Uses = () => {
+interface PageProps {
+  location: Location;
+}
+
+const Uses: React.FC<PageProps> = ({ location }) => {
   const [colorMode] = useColorMode();
   const isDark = colorMode === `dark`;
   return (

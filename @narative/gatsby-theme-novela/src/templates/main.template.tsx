@@ -7,7 +7,7 @@ import Section from '@components/Section';
 import MainHero from '../sections/main/Main.Hero';
 import LatestArticles from '../sections/main/Latest.Articles';
 
-const ArticlesPage: React.FC = () => {
+const Main = ({ location }) => {
   return (
     <Layout>
       <SEO pathname={location.pathname} />
@@ -19,4 +19,4 @@ const ArticlesPage: React.FC = () => {
   );
 };
 
-export default ArticlesPage;
+export default Main;

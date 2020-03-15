@@ -7,9 +7,12 @@ import SEO from '@components/SEO';
 import Layout from '@components/Layout';
 
 import Icons from '@icons';
-import { Template } from '@types';
 
-const ArticlesPage: Template = ({ location, pageContext }) => {
+interface PageProps {
+  location: Location;
+}
+
+const NotFound: React.FC<PageProps> = ({ location }) => {
   return (
     <Layout>
       <SEO pathname={location.pathname} />
@@ -28,7 +31,7 @@ const ArticlesPage: Template = ({ location, pageContext }) => {
   );
 };
 
-export default ArticlesPage;
+export default NotFound;
 
 const ArticlesGradient = styled.div`
   position: absolute;

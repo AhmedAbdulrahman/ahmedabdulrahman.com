@@ -11,7 +11,9 @@ import ArticlesGradient from '@components/ArticlesGradient';
 
 import PageHero from '../sections/others';
 
-// const seoImage = '/trongnguyen.co-seo-little-big-grid.jpg';
+interface PageProps {
+  location: Location;
+}
 
 const siteQuery = graphql`
   {
@@ -44,7 +46,7 @@ const siteQuery = graphql`
   }
 `;
 
-const Archive = ({ location }) => {
+const Archive: React.FC<PageProps> = ({ location }) => {
   const result = useStaticQuery(siteQuery);
   const siteSEO = result.allSite.edges[0].node.siteMetadata;
 

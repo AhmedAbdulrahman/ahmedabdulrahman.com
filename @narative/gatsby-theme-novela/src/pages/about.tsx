@@ -31,7 +31,7 @@ const siteQuery = graphql`
   }
 `;
 
-const AboutPage: Template = ({ location }) => {
+const AboutPage = ({ location }) => {
   const results = useStaticQuery(siteQuery);
   const title = results.allSite.edges[0].node.siteMetadata.title;
   const [colorMode] = useColorMode();

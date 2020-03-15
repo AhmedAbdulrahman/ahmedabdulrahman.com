@@ -36,9 +36,8 @@ const siteQuery = graphql`
   }
 `;
 
-const WorkshopsPage: Template = ({ location, pageContext }) => {
+const WorkshopsPage = ({ location, pageContext }) => {
   const workshop = pageContext.group;
-  // const instructors = pageContext.additionalContext.instructors;
 
   const results = useStaticQuery(siteQuery);
   const site = results.allSite.edges[0].node.siteMetadata;
