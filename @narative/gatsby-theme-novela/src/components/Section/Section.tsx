@@ -15,7 +15,7 @@ const Section = styled.section<{ narrow?: boolean }>`
   ${p =>
     p.narrow
       ? mediaqueries.tablet`
-          padding: 0 2rem;
+          padding: 0 3rem;
           max-width: 527px;
         `
       : mediaqueries.tablet`
