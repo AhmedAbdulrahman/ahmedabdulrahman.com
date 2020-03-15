@@ -114,6 +114,10 @@ const HeroHeading = styled.h1`
     font-size: 5.9rem;
     line-height: 1.1;
 `}
+
+  @media (min-width: 1280px) {
+    font-size: 12rem;
+  }
 `;
 
 const SectionHeading = styled.h2`

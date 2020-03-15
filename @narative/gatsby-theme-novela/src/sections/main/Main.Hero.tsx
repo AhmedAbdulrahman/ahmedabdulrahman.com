@@ -10,7 +10,7 @@ const MainHero: React.FC = () => {
   return (
     <>
       <Section narrow>
-        <HeadingContainer style={{ maxWidth: `800px` }}>
+        <HeadingContainer>
           <Headings.HeroHeading>
             Creative Front-end developer with <span>designer's eye</span>.
           </Headings.HeroHeading>
@@ -63,14 +63,7 @@ export default MainHero;
 
 const HeadingContainer = styled.div`
   margin: 100px 0 76px;
-
-  // ${mediaqueries.desktop`
-  // width: 80%;
-  // `}
-
-  ${mediaqueries.tablet`
   width: 100%;
-  `}
 `;
 
 const InfoText = styled.p`
