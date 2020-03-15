@@ -46,18 +46,18 @@ const StyledBurger = styled.button<{ isDark: boolean; open: boolean }>`
     transform-origin: 1px;
     margin-bottom: 0.4rem;
 
-    :first-child {
+    :first-of-type {
       transform: ${props => (props.open ? 'rotate(45deg)' : 'rotate(0)')};
     }
 
-    :nth-child(2) {
+    :nth-of-type(2) {
       margin-bottom: 0.4rem;
       opacity: ${props => (props.open ? '0' : '1')};
       transform: ${props =>
         props.open ? 'translateX(20px)' : 'translateX(0)'};
     }
 
-    :nth-child(3) {
+    :nth-of-type(3) {
       transform: ${props => (props.open ? 'rotate(-45deg)' : 'rotate(0)')};
       margin-bottom: 0;
     }
