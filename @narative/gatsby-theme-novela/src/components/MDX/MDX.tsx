@@ -145,7 +145,7 @@ const PrismCSS = p => css`
     margin: 15px auto 50px;
     border-radius: 5px;
     font-family: ${p.theme.fonts.monospace};
-    background: #23262e;
+    background: rgb(22, 21, 37);
     color: white;
     white-space: pre;
     word-spacing: normal;
@@ -155,7 +155,7 @@ const PrismCSS = p => css`
 
     .token-line {
       border-left: 3px solid transparent;
-      background-color: #23262e;
+      background-color: rgb(22, 21, 37);
 
       ${Object.keys(p.theme.colors.prism)
         .map(key => {
@@ -176,10 +176,6 @@ const PrismCSS = p => css`
     .token.attr-name {
       color: #bae67e;
       font-style: italic;
-    }
-
-    .token.comment {
-      color: rgb(128, 147, 147);
     }
 
     .token.string,
