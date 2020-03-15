@@ -16,7 +16,8 @@ const ArticlesHero: React.FC = () => {
           <span>yourself</span>.
         </Headings.HeroHeading>
         <InfoText>
-          Without words, apps would be an unusable jumble of shapes and icons.{' '}
+          I write about solving problems with code, designing things people use,
+          teaching, and learning.{' '}
           <Anchor to="/archive" data-a11y="false">
             Archive
           </Anchor>
