@@ -25,7 +25,7 @@ const MainHero: React.FC = () => {
       </Section>
       <Section narrow>
         <Headings.SectionHeading>
-          prin—
+          Prin—
           <br />
           ciples {`&`} values
         </Headings.SectionHeading>
