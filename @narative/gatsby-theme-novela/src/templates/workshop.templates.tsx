@@ -8,7 +8,7 @@ import Section from '@components/Section';
 
 import mediaqueries from '@styles/media';
 
-import WorkshopHero from '../sections/Workshop/Workshop.Hero';
+import WorkshopHero from '../sections/workshop/Workshop.Hero';
 import ArticleSEO from '../sections/article/Article.SEO';
 
 import { Template } from '@types';
