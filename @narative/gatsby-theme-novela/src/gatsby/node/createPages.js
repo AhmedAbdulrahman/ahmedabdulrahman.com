@@ -56,7 +56,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     basePath = '/',
     authorsPath = '/authors',
     authorsPage = true,
-    postsPath = '/writing',
+    writingPath = '/writing',
     categoryPath = '/writing/categories',
     workshopPath = '/workshops',
     pageLength = 6,
@@ -205,7 +205,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
   log('Creating', 'articles page');
   createPaginatedPages({
     edges: articlesThatArentSecret,
-    pathPrefix: postsPath,
+    pathPrefix: writingPath,
     createPage,
     pageLength,
     pageTemplate: templates.articles,
@@ -213,7 +213,7 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     context: {
       authors,
       categories: uniqueCategories,
-      postsPath,
+      writingPath,
       skip: pageLength,
       limit: pageLength,
     },
@@ -263,8 +263,8 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
       context: {
         article,
         authors: authorsThatWroteTheArticle,
-        category: `${postsPath}/${article.category}`,
-        postsPath,
+        category: `${writingPath}/${article.category}`,
+        writingPath,
         slug: article.slug,
         id: article.id,
         title: article.title,

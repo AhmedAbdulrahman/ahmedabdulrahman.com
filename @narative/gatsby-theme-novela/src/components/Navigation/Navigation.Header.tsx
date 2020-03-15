@@ -23,6 +23,7 @@ const siteQuery = graphql`
       pluginOptions {
         rootPath
         basePath
+        writingPath
       }
     }
   }
@@ -86,7 +87,7 @@ const SharePageButton: React.FC<{}> = () => {
 
 const NavigationHeader: React.FC<{}> = () => {
   const [showBackArrow, setShowBackArrow] = useState<boolean>(false);
-  const [previousPath, setPreviousPath] = useState<string>('/');
+  const [previousPath, setPreviousPath] = useState<string>('/writing');
   const [burgerOpen, setBurgerOpen] = React.useState(false);
 
   const { sitePlugin } = useStaticQuery(siteQuery);
@@ -96,7 +97,7 @@ const NavigationHeader: React.FC<{}> = () => {
   const isDark = colorMode === `dark`;
   const fillIn = colorMode === 'dark' ? '#fff' : '#002a5a';
   const fillOut = colorMode === 'dark' ? '#000' : '#fff';
-  const { rootPath, basePath } = sitePlugin.pluginOptions;
+  const { rootPath, basePath, writingPath } = sitePlugin.pluginOptions;
 
   useEffect(() => {
     const { width } = getWindowDimensions();
@@ -104,14 +105,18 @@ const NavigationHeader: React.FC<{}> = () => {
 
     const prev = localStorage.getItem('previousPath');
     const previousPathWasHomepage =
-      prev === (rootPath || basePath) || (prev && prev.includes('/page/'));
+      (prev === writingPath && location.pathname.includes('writing')) ||
+      (prev && prev.includes('/page/'));
     const isNotPaginated = !location.pathname.includes('/page/');
-
+    console.log(
+      'previousPathWasHomepage && isNotPaginated && width <= phablet,',
+      previousPathWasHomepage && isNotPaginated && width <= phablet,
+    );
     setShowBackArrow(
       previousPathWasHomepage && isNotPaginated && width <= phablet,
     );
     setPreviousPath(prev);
-  }, []);
+  }, [previousPath]);
 
   return (
     <Section>

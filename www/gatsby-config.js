@@ -41,6 +41,7 @@ const plugins = [
       contentWorkshops: "content/workshops",
       rootPath: "/",
       basePath: "/",
+      writingPath: '/writing',
       authorsPage: true,
       mailchimp: false,
       sources: {
