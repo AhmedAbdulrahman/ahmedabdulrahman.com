@@ -43,10 +43,16 @@ const WorkWithMe: Template = ({ location }) => {
       <Section relative>
         <HeadingContainer>
           <HeroTextContainer>
-            <Headings.HeroHeading>Work With Me</Headings.HeroHeading>
+            <Headings.HeroHeading
+              css={css`
+                max-width: 420px;
+              `}
+            >
+              Work With Me
+            </Headings.HeroHeading>
             <InfoText>
-              This page will give you a clear idea of ways we can work together
-              and if I’m the right fit for your next project.
+              Here you will get a clear idea of ways we can work together and if
+              I’m the right fit for your next project.
             </InfoText>
           </HeroTextContainer>
         </HeadingContainer>
@@ -54,20 +60,6 @@ const WorkWithMe: Template = ({ location }) => {
       <Section>
         <ContentContainer>
           <MyText>
-            <Headings.SectionHeading
-              css={css`
-                margin: 100px 0;
-              `}
-            >
-              Who I am
-            </Headings.SectionHeading>
-            <InfoText>
-              Hello! I'm Ahmed, Creative Front-end Developer and Designer from
-              Stockholm, Sweden. I work at Oakwood Creative Studio as Front-end
-              Crispiness Creator, while also taking on freelance projects that
-              pique my interest.
-            </InfoText>
-
             <Headings.SectionHeading
               css={css`
                 margin: 100px 0;
@@ -188,7 +180,7 @@ const ArticlesGradient = styled.div`
 const HeadingContainer = styled.div`
   position: relative;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 450px;
   column-gap: 64px;
   margin: 100px 0 76px;
   font-family: ${p => p.theme.fonts.title};

@@ -41,7 +41,13 @@ const AboutPage = ({ location }) => {
       <SEO pathname={location.href} title={`About me - ${title}`} />
       <Section relative>
         <HeadingContainer>
-          <Headings.HeroHeading>Hey, I'm Ahmed 👋</Headings.HeroHeading>
+          <Headings.HeroHeading
+            css={css`
+              max-width: 620px;
+            `}
+          >
+            Hey, I'm Ahmed 👋
+          </Headings.HeroHeading>
         </HeadingContainer>
       </Section>
       <Section>
@@ -58,8 +64,9 @@ const AboutPage = ({ location }) => {
               and as part of a team.
             </InfoText>
             <InfoText>
-              Currently, I live Stockholm, where I work at Oakwood, building
-              premium design solutions in all digital touchpoints.
+              Currently, I live Stockholm, where I work at Oakwood building
+              premium design solutions in all digital touchpoints, while also
+              taking on freelance projects that pique my interest.
             </InfoText>
             <Headings.SectionHeading
               css={css`
@@ -193,7 +200,8 @@ const MyText = styled.div`
 const NavLink = styled(Link)`
   transition: ${p => p.theme.colorModeTransition};
   color: ${p => p.theme.colors.primary};
-  border-bottom: 1px solid ${p => p.theme.colors.accent};
+  text-decoration: underline solid ${p => p.theme.colors.accent};
+  text-underline-position: under;
 
   &:visited {
     color: ${p => p.theme.colors.primary};
