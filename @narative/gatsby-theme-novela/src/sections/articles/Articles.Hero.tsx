@@ -12,8 +12,7 @@ const ArticlesHero: React.FC = () => {
     <Section narrow>
       <HeadingContainer style={{ maxWidth: `850px` }}>
         <Headings.HeroHeading>
-          Great writers <span>teach</span> you how to teach{' '}
-          <span>yourself</span>.
+          Words and <span>Code</span>.
         </Headings.HeroHeading>
         <InfoText>
           I write about solving problems with code, designing things people use,
