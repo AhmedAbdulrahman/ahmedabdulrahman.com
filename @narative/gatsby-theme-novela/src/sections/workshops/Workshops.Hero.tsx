@@ -88,12 +88,13 @@ const HeroHeading = styled.h1`
 `;
 
 const InfoText = styled.p`
-  font-size: 22px;
-  margin-top: 24px;
-  line-height: 1.8;
+  font-size: 2.8rem;
+  line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
   color: ${p => p.theme.colors.secondary};
-  ${mediaqueries.tablet`
-    font-size: 16px;
-  `}
+  margin-bottom: 64px;
+
+  span {
+    color: ${p => p.theme.colors.accent};
+  }
 `;

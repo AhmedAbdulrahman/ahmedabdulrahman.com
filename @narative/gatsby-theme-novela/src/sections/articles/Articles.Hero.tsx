@@ -41,11 +41,15 @@ const HeadingContainer = styled.div`
 `;
 
 const InfoText = styled.p`
-  font-size: 22px;
-  margin-top: 16px;
+  font-size: 2.8rem;
   line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
   color: ${p => p.theme.colors.secondary};
+  margin-bottom: 64px;
+
+  span {
+    color: ${p => p.theme.colors.accent};
+  }
 `;
 
 const Anchor = styled(Link)`
