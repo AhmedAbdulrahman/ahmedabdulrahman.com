@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 import Section from '@components/Section';
 import mediaqueries from '@styles/media';
+import Headings from '@components/Headings';
 
 const siteQuery = graphql`
   {
@@ -33,7 +34,7 @@ const WorkshopsHero = () => {
     <Section narrow>
       <Container>
         <HeroTextContainer>
-          <HeroHeading>{hero.workshop.heading}</HeroHeading>
+          <Headings.HeroHeading>{hero.workshop.heading}</Headings.HeroHeading>
           <InfoText>{hero.workshop.subHeading}</InfoText>
         </HeroTextContainer>
       </Container>
