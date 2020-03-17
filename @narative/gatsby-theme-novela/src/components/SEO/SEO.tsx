@@ -59,7 +59,7 @@ const themeUIDarkModeWorkaroundScript = [
       try {
         var mode = localStorage.getItem('theme-ui-color-mode');
         if (!mode) {
-          localStorage.setItem('theme-ui-color-mode', 'dark');
+          localStorage.setItem('theme-ui-color-mode', 'light');
         }
       } catch (e) {}
     })();
