@@ -1,70 +1,42 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 
 import Section from '@components/Section';
 import mediaqueries from '@styles/media';
 import Headings from '@components/Headings';
 
-const siteQuery = graphql`
-  {
-    allSite {
-      edges {
-        node {
-          siteMetadata {
-            hero {
-              maxWidth
-              workshop {
-                heading
-                subHeading
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-const WorkshopsHero = () => {
-  const results = useStaticQuery(siteQuery);
-  const hero = results.allSite.edges[0].node.siteMetadata.hero;
-
+const WorkshopsHero: React.FC = () => {
   return (
     <Section narrow>
-      <Container>
-        <HeroTextContainer>
-          <Headings.HeroHeading>{hero.workshop.heading}</Headings.HeroHeading>
-          <InfoText>{hero.workshop.subHeading}</InfoText>
-        </HeroTextContainer>
-      </Container>
+      <HeadingContainer style={{ maxWidth: `850px` }}>
+        <Headings.HeroHeading>
+          Remote <span>Workshops</span>.
+        </Headings.HeroHeading>
+        <InfoText>
+          We prodvide you with a valuable and effective workshops to Level-up
+          your skills as a developer.
+        </InfoText>
+      </HeadingContainer>
     </Section>
   );
 };
 
 export default WorkshopsHero;
 
-const Container = styled.div`
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 450px;
-  column-gap: 5em;
-  overflow: hidden;
-  margin: 100px 0 76px;
+const HeadingContainer = styled.div`
+  margin: 104px 0 40px;
 
   ${mediaqueries.desktop`
-    grid-template-columns: 1fr 416px;
+  width: 80%;
   `}
-  ${mediaqueries.tablet`
-    grid-template-columns: 1fr;
-    background: none;
-    margin-bottom: 0;
-  `}
-`;
 
-const HeroTextContainer = styled.div`
-  position: relative;
-  align-self: flex-start;
+  ${mediaqueries.tablet`
+  width: 100%;
+  `}
+
+  ${mediaqueries.phablet`
+  margin: 60px 0 36px;
+`}
 `;
 
 const HeroHeading = styled.h1`
@@ -97,4 +69,9 @@ const InfoText = styled.p`
   span {
     color: ${p => p.theme.colors.accent};
   }
+
+  ${mediaqueries.phablet`
+    font-size: 1.8rem;
+    line-height: 1.6;
+  `}
 `;

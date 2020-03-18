@@ -110,28 +110,33 @@ const HeroHeading = styled.h1`
     color: ${p => p.theme.colors.accent};
   }
 
+  ${mediaqueries.desktop_up`
+    font-size: 9rem;
+  `}
+
   ${mediaqueries.phablet`
-    font-size: 5.9rem;
+    font-size: 5.6rem;
     line-height: 1.1;
 `}
-
-  @media (min-width: 1280px) {
-    font-size: 12rem;
-  }
 `;
 
 const SectionHeading = styled.h2`
   font-family: ${p => p.theme.fonts.title};
-  font-size: 18rem;
+  font-size: 8rem;
   line-height: 1;
   color: ${p => p.theme.colors.accent};
   margin-bottom: 150px;
 
   ${mediaqueries.desktop`
     font-size: 6rem;
-    text-align: center;
-    margin-bottom: 64px;
 `}
+
+  ${mediaqueries.phablet`
+    font-size: 3.4rem;
+    line-height: 1.45;
+    margin-bottom: 16px;
+    text-align: center;
+  `}
 `;
 
 export default {

@@ -25,9 +25,9 @@ const MainHero: React.FC = () => {
       </Section>
       <Section narrow>
         <Headings.SectionHeading>
-          Prin—
+          princ—
           <br />
-          ciples {`&`} values
+          iples {`&`} values
         </Headings.SectionHeading>
         <Grid>
           <div>
@@ -38,7 +38,7 @@ const MainHero: React.FC = () => {
           </div>
           <div>
             <Title>Understanding.</Title>
-            <Paragraph>
+            <Paragraph fullWidth>
               Well-made website require effort and comprehension.
             </Paragraph>
           </div>
@@ -64,6 +64,10 @@ export default MainHero;
 const HeadingContainer = styled.div`
   margin: 100px 0 76px;
   width: 100%;
+
+  ${mediaqueries.phablet`
+  margin: 60px 0 36px;
+`}
 `;
 
 const InfoText = styled.p`
@@ -71,35 +75,49 @@ const InfoText = styled.p`
   line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
   color: ${p => p.theme.colors.secondary};
-  margin-bottom: 64px;
+  margin-bottom: 100px;
 
   span {
     color: ${p => p.theme.colors.accent};
     font-style: italic;
   }
+
+  ${mediaqueries.desktop_up`
+    margin-bottom: 200px;
+  `}
+
+  ${mediaqueries.phablet`
+    font-size: 1.8rem;
+    line-height: 1.6;
+  `}
 `;
 
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 4em;
-
-  ${mediaqueries.tablet`
-    grid-template-columns:  1fr;
-    margin-bottom: 0;
-    column-gap: 2em
-  `}
+  row-gap: 4em;
+  margin: 60px 0;
 
   div {
-    margin-bottom: 80px;
+    text-align: center;
 
     ${mediaqueries.desktop`
-      text-align: center;
       max-width: 400px;
       margin-right: auto;
       margin-left: auto;
       `}
   }
+
+  ${mediaqueries.tablet`
+    grid-template-columns:  1fr;
+    margin-bottom: 0;
+    column-gap: 4em
+  `}
+
+  ${mediaqueries.phablet`
+    row-gap: 2em
+  `}
 `;
 
 const Title = styled.h3`
@@ -109,13 +127,24 @@ const Title = styled.h3`
   line-height: 1.1;
   margin-bottom: 24px;
   color: ${p => p.theme.colors.accent};
+
+  ${mediaqueries.phablet`
+  font-size: 2.6rem;
+  line-height: 1.6;
+`}
 `;
 
 const Paragraph = styled.p`
   font-size: 2.4rem;
   line-height: 1.5;
   max-width: 420px;
+  margin: 0 auto;
   color: ${p => p.theme.colors.articleText};
+
+  ${mediaqueries.phablet`
+  font-size: 1.8rem;
+  line-height: 1.6;
+`}
 `;
 
 const Description = styled.div`

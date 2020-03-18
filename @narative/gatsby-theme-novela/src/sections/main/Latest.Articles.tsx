@@ -37,9 +37,9 @@ const LatestArticles: React.FC<{}> = () => {
             margin: 100px 0;
           `}
         >
-          Writing makes cod-
+          Writing is th-
           <br />
-          ing better
+          inking.
         </Headings.SectionHeading>
         <Text>
           Because without words, apps would be an unusable jumble of shapes and
@@ -88,6 +88,11 @@ const Text = styled.p`
     color: ${p => p.theme.colors.accent};
     font-style: italic;
   }
+
+  ${mediaqueries.phablet`
+  font-size: 1.8rem;
+  line-height: 1.6;
+`}
 `;
 
 const Separator = styled.div`
@@ -117,10 +122,13 @@ const LatestArticle = styled(Link)`
 const ArticleDate = styled.div`
   font-family: ${p => p.theme.fonts.title};
   font-size: 15px;
-  letter-spacing: 1.1px;
   text-transform: uppercase;
   margin-bottom: 8px;
   color: ${p => p.theme.colors.accent};
+
+  ${mediaqueries.phablet`
+  font-size: 12px;
+  `}
 `;
 
 const ArticleTitle = styled(Headings.h3)`

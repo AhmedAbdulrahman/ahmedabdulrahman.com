@@ -12,7 +12,7 @@ const ArticlesHero: React.FC = () => {
     <Section narrow>
       <HeadingContainer style={{ maxWidth: `850px` }}>
         <Headings.HeroHeading>
-          Words and <span>Code</span>.
+          Writing is <span>thinking</span>.
         </Headings.HeroHeading>
         <InfoText>
           I write about solving problems with code, designing things people use,
@@ -29,7 +29,7 @@ const ArticlesHero: React.FC = () => {
 export default ArticlesHero;
 
 const HeadingContainer = styled.div`
-  margin: 100px 0 76px;
+  margin: 104px 0 40px;
 
   ${mediaqueries.desktop`
   width: 80%;
@@ -38,6 +38,10 @@ const HeadingContainer = styled.div`
   ${mediaqueries.tablet`
   width: 100%;
   `}
+
+  ${mediaqueries.phablet`
+  margin: 60px 0 36px;
+`}
 `;
 
 const InfoText = styled.p`
@@ -50,6 +54,11 @@ const InfoText = styled.p`
   span {
     color: ${p => p.theme.colors.accent};
   }
+
+  ${mediaqueries.phablet`
+  font-size: 1.8rem;
+  line-height: 1.6;
+`}
 `;
 
 const Anchor = styled(Link)`

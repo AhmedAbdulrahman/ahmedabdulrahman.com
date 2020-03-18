@@ -192,6 +192,10 @@ const HeadingContainer = styled.div`
   ${mediaqueries.tablet`
     width: 100%;
   `}
+
+  ${mediaqueries.phablet`
+  margin: 60px 0 36px;
+`}
 `;
 
 const HeroTextContainer = styled.div`
@@ -265,6 +269,11 @@ const InfoText = styled.p`
     color: ${p => p.theme.colors.accent};
     font-style: italic;
   }
+
+  ${mediaqueries.phablet`
+  font-size: 1.8rem;
+  line-height: 1.6;
+`}
 `;
 
 const MyText = styled.div`

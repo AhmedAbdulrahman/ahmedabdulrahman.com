@@ -33,6 +33,10 @@ const HeadingContainer = styled.div`
   ${mediaqueries.tablet`
     width: 100%;
   `}
+
+  ${mediaqueries.phablet`
+  margin: 60px 0 36px;
+`}
 `;
 
 const HeroHeading = styled.h1`
