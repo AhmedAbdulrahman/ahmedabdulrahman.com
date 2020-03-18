@@ -10,7 +10,7 @@ const MainHero: React.FC = () => {
   return (
     <>
       <Section narrow>
-        <HeadingContainer>
+        <HeadingContainer style={{ maxWidth: `850px` }}>
           <Headings.HeroHeading>
             Creative Front-end developer with <span>designer's eye</span>.
           </Headings.HeroHeading>

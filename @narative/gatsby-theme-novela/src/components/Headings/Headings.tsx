@@ -126,6 +126,7 @@ const SectionHeading = styled.h2`
   line-height: 1;
   color: ${p => p.theme.colors.accent};
   margin-bottom: 150px;
+  text-align: center;
 
   ${mediaqueries.desktop`
     font-size: 6rem;
@@ -135,7 +136,6 @@ const SectionHeading = styled.h2`
     font-size: 3.4rem;
     line-height: 1.45;
     margin-bottom: 16px;
-    text-align: center;
   `}
 `;
 
