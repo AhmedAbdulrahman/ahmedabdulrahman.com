@@ -24,7 +24,6 @@ export const globalStyles = css`
     margin: 0;
     padding: 0;
     font-size: inherit;
-    font-display: block;
   }
 
   :root {

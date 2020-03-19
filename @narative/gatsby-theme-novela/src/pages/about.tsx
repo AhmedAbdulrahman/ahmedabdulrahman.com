@@ -190,7 +190,7 @@ const InfoText = styled.p`
   line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
   color: ${p => p.theme.colors.secondary};
-  margin-bottom: 64px;
+  margin-bottom: 24px;
 
   span {
     color: ${p => p.theme.colors.accent};
@@ -207,18 +207,15 @@ const MyText = styled.div`
 `;
 
 const NavLink = styled(Link)`
-  transition: ${p => p.theme.colorModeTransition};
-  color: ${p => p.theme.colors.primary};
-  text-decoration: underline solid ${p => p.theme.colors.accent};
-  text-underline-position: under;
-
-  &:visited {
-    color: ${p => p.theme.colors.primary};
-    opacity: 0.85;
-  }
+  color: ${p => p.theme.colors.accent};
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration 0.25s var(--ease-in-out-quad);
 
   &:hover,
   &:focus {
-    color: ${p => p.theme.colors.accent};
+    text-decoration: underline;
+    text-decoration-color: ${p => p.theme.colors.accent};
+    text-underline-position: under;
   }
 `;

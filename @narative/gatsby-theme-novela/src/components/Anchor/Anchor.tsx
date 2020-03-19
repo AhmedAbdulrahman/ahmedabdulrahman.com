@@ -1,19 +1,16 @@
 import styled from '@emotion/styled';
 
 const Anchor = styled.a`
-  transition: ${p => p.theme.colorModeTransition};
-  color: ${p => p.theme.colors.primary};
-  text-decoration: underline solid ${p => p.theme.colors.accent};
-  text-underline-position: under;
-
-  &:visited {
-    color: ${p => p.theme.colors.primary};
-    opacity: 0.85;
-  }
+  color: ${p => p.theme.colors.accent};
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration 0.25s var(--ease-in-out-quad);
 
   &:hover,
   &:focus {
-    color: ${p => p.theme.colors.accent};
+    text-decoration: underline;
+    text-decoration-color: ${p => p.theme.colors.accent};
+    text-underline-position: under;
   }
 `;
 
