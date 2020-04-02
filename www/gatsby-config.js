@@ -3,7 +3,7 @@ require("dotenv").config();
 const siteMetadata = {
   title: `Ahmed Abdulrahman's Desk`,
   name: `Ahmed Abdulrahman`,
-  siteUrl: `https://aadev.dev`,
+  siteUrl: `https://aadev.me`,
   description: `Develoer who's learning to write and express thoughts`,
   hero: {
     heading: `You'll cover all the techniques to create performant, composable, reusable UI components to level-up your skills as a developer.`,
@@ -22,11 +22,14 @@ const siteMetadata = {
   social: [
     {
       url: `https://twitter.com/_ahmed_ab`,
+      name: 'twitter',
     },
     {
       url: `https://www.behance.net/ahmedabdulrahman`,
+      name: 'behance',
     },
     {
+      name: 'github',
       url: `https://github.com/AhmedAbdulrahman`,
     },
   ],
