@@ -41,6 +41,7 @@ const seoQuery = graphql`
             description
             social {
               url
+              name
             }
             siteUrl
             title
@@ -115,7 +116,7 @@ const SEO: React.FC<HelmetProps> = ({
     { name: 'description', content: description || site.description },
 
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:site', content: site.name },
+    { name: 'twitter:site', content: '@_ahmed_ab' || site.name },
     { name: 'twitter:title', content: title || site.title },
     { name: 'twitter:description', content: description || site.description },
     { name: 'twitter:creator', content: twitter.url },
@@ -125,10 +126,13 @@ const SEO: React.FC<HelmetProps> = ({
     },
 
     { property: 'og:title', content: title || site.title },
-    { property: 'og:url', content: url },
+    { property: 'og:url', content: url || site.siteUrl },
+    { property: 'og:type"', content: 'website' },
     { property: 'og:image', content: fullURL(image) },
+    { property: 'og:image:alt', content: "Ahmed Abdulrahman's Desk" },
     { property: 'og:description', content: description || site.description },
     { property: 'og:site_name', content: site.name },
+    { property: 'og:locale', content: 'en' },
   ];
 
   if (published) {
@@ -136,8 +140,8 @@ const SEO: React.FC<HelmetProps> = ({
   }
 
   if (timeToRead) {
-    metaTags.push({ name: 'twitter:label1', value: 'Reading time' });
-    metaTags.push({ name: 'twitter:data1', value: `${timeToRead} min read` });
+    metaTags.push({ name: 'twitter:label1', content: 'Reading time' });
+    metaTags.push({ name: 'twitter:data1', content: `${timeToRead} min read` });
   }
 
   return (
