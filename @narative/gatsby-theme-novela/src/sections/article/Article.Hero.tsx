@@ -34,8 +34,7 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
           <ArticleAuthors authors={authors} />
           <ArticleMeta hasCoAUthors={hasCoAUthors}>
             {article.date}
-            {` / ${formatReadingTime(article.timeToRead)} / `}
-            {article.category}
+            {`, ${formatReadingTime(article.timeToRead)}`}
           </ArticleMeta>
         </HeroSubtitle>
         <TagsWrapper>
@@ -118,8 +117,9 @@ const Tags = styled.div`
 const ArticleTag = styled.span<{ isDark: boolean }>`
   padding: 0.3rem 0.8rem 0.7rem;
   margin-right: 5px;
-  color: ${p => (p.isDark ? '#35250c' : p.theme.colors.prism.token)};
-  background: ${p => (p.isDark ? p.theme.colors.accent : '#e1dac9')};
+  color: ${p => (p.isDark ? '#b3b9c5' : p.theme.colors.secondary)};
+  background: ${p =>
+    p.isDark ? 'rgba(46, 45, 61, 0.74)' : 'rgba(33, 37, 41, 0.08)'};
   border-radius: 5px;
   font-size: 15px;
   font-weight: ${p => p.theme.fontsWeight.regular};

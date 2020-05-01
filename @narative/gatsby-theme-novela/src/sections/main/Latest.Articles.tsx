@@ -132,7 +132,6 @@ const ArticleDate = styled.div`
 `;
 
 const ArticleTitle = styled(Headings.h3)`
-  color: ${p => p.theme.colors.secondary};
   margin-bottom: 16px;
   text-decoration: underline;
   transition: color 0.2s var(--ease-in-out-quad);
