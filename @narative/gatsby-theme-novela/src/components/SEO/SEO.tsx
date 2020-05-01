@@ -87,7 +87,7 @@ const SEO: React.FC<HelmetProps> = ({
 
   // If no image is provided lets looks for a default static image
   image = image ? image : '/preview.jpg';
-
+  console.log('url || site.siteUrl', url || site.description);
   const metaTags = [
     { charset: 'utf-8' },
     {
@@ -119,7 +119,7 @@ const SEO: React.FC<HelmetProps> = ({
     { name: 'twitter:site', content: '@_ahmed_ab' || site.name },
     { name: 'twitter:title', content: title || site.title },
     { name: 'twitter:description', content: description || site.description },
-    { name: 'twitter:creator', content: twitter.url },
+    { name: 'twitter:url', content: twitter.url },
     {
       name: 'twitter:image',
       content: fullURL(image),
