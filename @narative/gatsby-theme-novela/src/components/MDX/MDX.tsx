@@ -127,9 +127,9 @@ const HeadingsCSS = css`
 const PrismCSS = p => css`
   code[class*='css-'] {
     border-radius: 0.25em;
-    background: #e1dac9;
-    color: ${p.theme.colors.prism.token};
-    padding: 0.12em 0.25em 0.2em;
+    background: ${p.isDark ? p.theme.colors.accent : '#e1dac9'};
+    color: ${p.theme.colors.prism.tag};
+    padding: 0.2em 0.3em;
     white-space: normal;
     line-height: 1.5;
   }
@@ -145,7 +145,7 @@ const PrismCSS = p => css`
     margin: 15px auto 50px;
     border-radius: 5px;
     font-family: ${p.theme.fonts.monospace};
-    background: rgb(22, 21, 37);
+    background: #1b1a2f;
     color: white;
     white-space: pre;
     word-spacing: normal;
@@ -155,7 +155,7 @@ const PrismCSS = p => css`
 
     .token-line {
       border-left: 3px solid transparent;
-      background-color: rgb(22, 21, 37);
+      background-color: #1b1a2f;
 
       ${Object.keys(p.theme.colors.prism)
         .map(key => {
@@ -203,7 +203,6 @@ const PrismCSS = p => css`
       color: rgb(199, 146, 234);
     }
 
-    .token.selector,
     .token.doctype {
       color: rgb(199, 146, 234);
       font-style: 'italic';
@@ -211,10 +210,6 @@ const PrismCSS = p => css`
 
     .token.boolean {
       color: rgb(255, 88, 116);
-    }
-
-    .token.property {
-      color: rgb(128, 203, 196);
     }
 
     .token.namespace {
@@ -250,8 +245,8 @@ const PrismCSS = p => css`
       color: #ffcf74 !important;
     }
 
-    .plain ~ .operator {
-      color: #5fa8aa !important;
+    .token.plain {
+      color: #ffa7c4;
     }
 
     ${mediaqueries.desktop`
@@ -389,7 +384,7 @@ const ImageCSS = css`
  * body type feel. We're also applying all the Prism selecotors and styles within
  * the MDXBody.
  */
-const MDXBody = styled.div`
+const MDXBody = styled.div<{ isDark: boolean }>`
   position: relative;
   z-index: 10;
   display: flex;

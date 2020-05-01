@@ -2,13 +2,13 @@ import prism from './prism';
 
 export default {
   prism,
-  primary: '#002a5a',
-  secondary: '#424862',
-  grey: '#6e7492',
-  background: 'rgb(239, 232, 215)',
+  primary: '#212529',
+  secondary: 'rgba(0,0,0,.6)',
+  grey: 'rgba(0,0,0,.6)',
+  background: '#f4f0ec',
   backgroundModal: 'rgba(209, 215, 235, 0.98)',
   cleanBackground: '#FFFFFF',
-  accent: '#e83c37',
+  accent: '#9ebdae',
   hover: 'rgba(0, 0, 0, 0.07)',
   gradient: 'linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%)',
   gradientImage:

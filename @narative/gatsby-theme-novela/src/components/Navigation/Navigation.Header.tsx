@@ -56,7 +56,7 @@ const SharePageButton: React.FC<{}> = () => {
   const [hasCopied, setHasCopied] = useState<boolean>(false);
   const [colorMode] = useColorMode();
   const isDark = colorMode === `dark`;
-  const fill = isDark ? '#fff' : '#002a5a';
+  const fill = isDark ? '#fff' : '#212529';
 
   function copyToClipboardOnClick() {
     if (hasCopied) return;
@@ -95,7 +95,7 @@ const NavigationHeader: React.FC<{}> = () => {
 
   const [colorMode] = useColorMode();
   const isDark = colorMode === `dark`;
-  const fillIn = colorMode === 'dark' ? '#fff' : '#002a5a';
+  const fillIn = colorMode === 'dark' ? '#fff' : '#212529';
   const fillOut = colorMode === 'dark' ? '#000' : '#fff';
   const { rootPath, basePath, writingPath } = sitePlugin.pluginOptions;
 
