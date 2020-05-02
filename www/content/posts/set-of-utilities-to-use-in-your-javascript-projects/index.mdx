@@ -1,0 +1,128 @@
+---
+title: Useful utilities functions to use in your next JavaScript project
+author: Ahmed Abdulrahman
+date: 2020-05-02
+hero: ./images/hero.jpeg
+excerpt: a collection of useful functions that you can use to create or expand your utilities library!
+category: Code
+tags: ['javascript']
+---
+
+### Check if all values in an array are equal
+You can check it using `every` method on the array:
+
+```js
+const areEqual = arr => {
+  return arr.length > 0 && arr.every(item => item === arr[0]);
+}
+// areEqual([11, 32, 21, 54]) === false 🚫
+// areEqual(['blue', 'blue', 'blue']) === true ✅
+```
+
+### Convert an array of strings value to numbers
+JS provides different ways to convert a string value into a number, but the best one is to use `Number` object in a non-constructor context (without the new keyword). It also takes care of the decimals as well:
+```js
+const toNumbers = arr => arr.map(Number);
+// toNumbers(["2", "3", "4"]) returns [2, 3, 4]
+```
+
+### Create an array of cumulative sum
+To get the summation of a sequence of numbers in an array, we can use currying to access the previous value:
+
+```js
+const accumulate = arr => {
+  return arr.map((sum => value => sum += value)(0));
+}
+
+/*
+accumulate([1, 2, 3, 4]) === [1, 3, 6, 10]
+// 1             = 1
+// 1 + 2         = 3
+// 1 + 2 + 3     = 6
+// 1 + 2 + 3 + 4 = 10
+*/
+```
+
+### Create an array of numbers in the given range
+To create an array that contains all numbers between `starting index` and `ending index`, including `starting index` and `ending index` themselves:
+```js
+const range = (min, max) => {
+  return Array(max - min + 1).fill(0).map((_, i) => max - min + i)
+};
+// range(5, 10) === [5, 6, 7, 8, 9, 10]
+```
+
+### Empty an array
+JS provides various ways of clearing existing array:
+
+```js
+const empty = arr => arr.length = 0;
+
+// Or using splice but since the .splice() function will return an array
+// with all the removed items, it will actually return a copy of
+// the original array
+const empty = arr => arr.splice(0, arr.length)
+
+// Or
+arr = [];
+```
+
+### Find the maximum or minimum item of an array
+
+```js
+const max = arr => Math.max(...arr);
+const min = arr => Math.min(...arr);
+```
+
+### Check if an object is an array
+```js
+const isArray = obj => Array.isArray(obj);
+```
+
+### Get a random item from an array
+
+```js
+const randomItem = arr => {
+  return arr[Math.floor(Math.random() * arr.length)]
+};
+```
+
+### Get the average of an array
+
+```js
+const average = arr => {
+  return arr.reduce((a, b) => a + b, 0) / arr.length;
+}
+```
+
+### Get the sum of array of numbers
+
+```js
+const sum = arr => arr.reduce((a, b) => a + b, 0);
+```
+
+### Get the unique values of an array
+
+```js
+const unique = arr => [...new Set(arr)];
+
+// Or
+const unique = arr => {
+  return arr.filter((el, i, array) => array.indexOf(el) === i);
+}
+```
+
+### Merge two arrays
+We can achieve this in different ways:
+
+```js
+// 1 - To just merge the arrays (without removing duplicates)
+const merge = (a, b) => a.concat(b);
+// OR
+const merge = (a, b) => [...a, ...b];
+
+// 2 -  To merge the arrays and removing duplicates
+const merge = [...new Set(a.concat(b))];
+// OR
+const merge = [...new Set([...a, ...b])];
+```
