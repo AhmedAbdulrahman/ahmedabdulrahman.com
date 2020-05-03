@@ -10,7 +10,7 @@ export default {
   constant: `#b3bac5`,
   plain: `#fff`,
   doctype: `#e8696b`,
-  tag: `#484438`,
+  tag: `#ffe8a3`,
   keyword: `#d49fd4`,
   boolean: `#ff5874`,
   function: `#5F8DC3`,
