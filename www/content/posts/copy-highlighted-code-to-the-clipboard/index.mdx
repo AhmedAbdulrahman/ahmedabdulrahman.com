@@ -1,0 +1,96 @@
+---
+title: Copy highlighted code snippets to the clipboard in JavaScript
+author: Ahmed Abdulrahman
+date: 2020-01-03
+hero: ./images/hero.jpeg
+bannerCredit:
+  'Photo by [David Klein](https://unsplash.com/photos/-94oJK3PDQw) on
+  [Unsplash](https://unsplash.com)'
+excerpt: >-
+  Allowing users to copy Code Snippets to clipboard is a popular convenience feature for Websites. In this article, I will show you how to add
+  Copy to Clipboard functionality to your Web Apps
+category: Code
+tags: ['javascript', 'react']
+---
+
+To demonstrate the implementation, we create required elements:
+
+```html
+<!-- User interaction is required by the browser -->
+<button class="btn">Copy Code</button>
+<pre style="position: relative">
+  <code>
+    <!-- Code Snippets goes here --->
+  </code>
+</pre>
+```
+
+Next, we query our elements:
+```js
+const btn = document.querySelector('.btn');
+const codeBlock = document.querySelector('pre');
+```
+
+Then, we need a to have a helper functions to select and copy the text content of an element:
+```js
+/*
+  Programmatically select the text content of code element
+  using `getSelection` function
+ */
+function textSelection(node) {
+  const selection = window.getSelection();
+  // We need to save the current selection, so we can
+  // later restore the selection
+  const selected = selection.rangeCount === 0 ? null : selection.getRangeAt(0);
+
+  const range = document.createRange();
+  range.selectNodeContents(node);
+  selection.removeAllRanges();
+  selection.addRange(range);
+
+  return { selection, selected}
+}
+
+/*
+  Programmatically Copy text content to the clipboard
+  using the `document.execCommand('copy')`
+*/
+function copytoClipboard(selection, selected) {
+  try {
+    // In order Copy only, user action is required (e.g. click events)
+    document.execCommand('copy');
+    // once text is copied we update button text
+    btn.innerHTML = 'Copied';
+
+    // we set back button text
+    setTimeout(() => {
+      btn.innerHTML = 'Copy';
+    }, 2000);
+
+  } catch (err) {
+    // Error handling goes here and set back button text
+    btn.innerHTML = 'Copy';
+  } finally {
+    // Finally we need to backup the current selected text before
+    // copying and restore the previous selection
+    selection.removeAllRanges();
+    selected && selection.addRange(selected);
+  }
+}
+```
+
+Finllay, handle user action by attaching `onClick` event to button element:
+```js
+btn.addEventListener('click', () => {
+  // we pass our codeblock here
+  const {selection, currentRange} = textSelection(codeBlock)
+  copytoClipboard(selection, currentRange)
+})
+```
+
+And that’s pretty much all there is to it. Now you can easily adds this util to your Web Apps.
+
+Did you find this useful? *[Buy me a coffee](https://www.buymeacoffee.com/ahmedab)* to give my brain a hug ☕️.
+
+Hope you liked this article. If you did, then share it. It means a lot.🙌
+Thanks for reading!
