@@ -31,6 +31,7 @@ module.exports.local = {
           dateForSEO: date
           timeToRead
           excerpt
+          bannerCredit
           subscription
           body
           hero {

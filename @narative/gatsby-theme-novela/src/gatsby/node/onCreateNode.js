@@ -92,6 +92,7 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
       author: node.frontmatter.author,
       date: node.frontmatter.date,
       hero: node.frontmatter.hero,
+      bannerCredit: node.frontmatter.bannerCredit,
       secret: node.frontmatter.secret || false,
       slug: generateSlug(
         '/writing',
