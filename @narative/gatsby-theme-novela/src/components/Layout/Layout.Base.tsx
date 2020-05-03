@@ -16,6 +16,7 @@ import { globalStyles } from '@styles';
  */
 const LayoutBase: React.FC<{}> = ({ children }) => {
   const [colorMode] = useColorMode();
+  const isDark = colorMode === `dark`;
 
   useEffect(() => {
     parent.postMessage({ theme: colorMode }, '*');
@@ -24,7 +25,7 @@ const LayoutBase: React.FC<{}> = ({ children }) => {
   return (
     <ArticlesContextProvider>
       <Container>
-        <Global styles={globalStyles} />
+        <Global styles={globalStyles} isDark={isDark} />
         <NavigationHeader />
         {children}
         <NavigationFooter />
