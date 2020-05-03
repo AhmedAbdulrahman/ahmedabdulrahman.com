@@ -258,6 +258,7 @@ const NavLink = styled(Link)`
   display: inline-block;
   position: relative;
   margin-left: 40px;
+  background-image: none;
 
   ${mediaqueries.tablet`
     margin-left: 0;

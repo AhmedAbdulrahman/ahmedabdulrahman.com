@@ -193,7 +193,7 @@ const InfoText = styled.p`
   margin-bottom: 24px;
 
   span {
-    color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.primary};
   }
 
   ${mediaqueries.phablet`
@@ -207,15 +207,5 @@ const MyText = styled.div`
 `;
 
 const NavLink = styled(Link)`
-  color: ${p => p.theme.colors.accent};
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  transition: text-decoration 0.25s var(--ease-in-out-quad);
-
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-    text-decoration-color: ${p => p.theme.colors.accent};
-    text-underline-position: under;
-  }
+  color: ${p => p.theme.colors.primary};
 `;

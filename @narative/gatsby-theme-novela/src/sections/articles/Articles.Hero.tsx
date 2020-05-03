@@ -63,7 +63,6 @@ const InfoText = styled.p`
 
 const Anchor = styled(Link)`
   color: ${p => p.theme.colors.secondary};
-  border-bottom: 1px solid ${p => p.theme.colors.secondary};
   margin-left: 6px;
 
   &:hover,

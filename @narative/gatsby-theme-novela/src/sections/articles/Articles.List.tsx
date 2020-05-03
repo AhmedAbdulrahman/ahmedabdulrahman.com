@@ -305,6 +305,8 @@ const MetaData = styled.div`
   font-size: 15px;
   color: ${p => p.theme.colors.secondary};
   opacity: 0.6;
+  background-image: none;
+
   ${mediaqueries.phablet`
     max-width: 100%;
     padding:  0 20px 30px;
@@ -320,6 +322,7 @@ const ArticleLink = styled(Link)`
   left: 0;
   border-radius: 5px;
   z-index: 1;
+  background-image: none;
   transition: transform 0.33s var(--ease-out-quart);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 

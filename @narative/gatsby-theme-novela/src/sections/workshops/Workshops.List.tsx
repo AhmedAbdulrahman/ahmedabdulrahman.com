@@ -363,6 +363,7 @@ const ArticleLink = styled(Link)`
   z-index: 1;
   transition: transform 0.33s var(--ease-out-quart);
   background: ${p => p.theme.colors.card};
+  background-image: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   &[data-a11y='true']:focus::after {
     content: '';
@@ -415,14 +416,12 @@ const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
   align-items: center;
   justify-content: center;
   margin: 5px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   border: none !important;
   border-radius: 4px;
   font-family: ${p => p.theme.fonts.body};
   padding: 8px 15px 8px 12px;
   color: ${p => p.theme.colors.primary};
-  background: ${p =>
-    p.isDark ? p.theme.colors.card : p.theme.colors.gradient};
+  background: ${p => (p.isDark ? p.theme.colors.card : '#eae6e3')};
   transition: background 0.1s ease-in-out, color 0.1s var(--ease-in-out-quad);
 
   ${mediaqueries.phablet`

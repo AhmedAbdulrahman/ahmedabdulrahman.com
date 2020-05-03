@@ -84,6 +84,7 @@ const ArticlesItem = styled(Link)`
   grid-template-columns: 160px 1fr;
   column-gap: 16px;
   margin-bottom: 24px;
+  background-image: none;
 
   &:hover h2,
   &:focus h2 {

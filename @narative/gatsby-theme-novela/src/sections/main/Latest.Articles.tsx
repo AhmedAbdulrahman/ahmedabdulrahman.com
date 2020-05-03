@@ -112,6 +112,7 @@ const WriteTitle = styled(Headings.h2)`
 const LatestArticle = styled(Link)`
   margin-top: 40px;
   display: block;
+  background-image: none;
 
   &:hover h3,
   &:focus h3 {
@@ -142,6 +143,7 @@ const ViewLink = styled(Link)`
   font-family: ${p => p.theme.fonts.title};
   font-size: 14px;
   color: ${p => p.theme.colors.secondary};
+  background-image: none;
   transition: color 0.25s var(--ease-in-out-quad);
   display: inline-block;
   position: relative;

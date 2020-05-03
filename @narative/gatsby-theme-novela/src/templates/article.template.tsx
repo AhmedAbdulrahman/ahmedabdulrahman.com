@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import throttle from 'lodash/throttle';
+import { useColorMode } from 'theme-ui';
 // import { graphql, useStaticQuery } from 'gatsby';
 
 import Layout from '@components/Layout';
@@ -47,6 +48,9 @@ const Article: Template = ({ pageContext, location }) => {
 
   const [hasCalculated, setHasCalculated] = useState<boolean>(false);
   const [contentHeight, setContentHeight] = useState<number>(0);
+
+  const [colorMode] = useColorMode();
+  const isDark = colorMode === `dark`;
 
   const results = useStaticQuery(siteQuery);
   const name = results.allSite.edges[0].node.siteMetadata.name;
@@ -112,7 +116,12 @@ const Article: Template = ({ pageContext, location }) => {
             margin-bottom: 50px !important;
           `}
         >
-          <Anchor href={discussUrl} target="_blank" rel="noopener noreferrer">
+          <Anchor
+            isDark={isDark}
+            href={discussUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Discuss on Twitter
           </Anchor>
           {/* {` • `}

@@ -548,6 +548,7 @@ const AnchorLink = styled.a`
   border-bottom: 3px solid ${p => p.theme.colors.accent};
   transition: border-bottom 0.35s ease, ${p => p.theme.colorModeTransition};
   color: ${p => p.theme.colors.primary};
+  background-image: none;
 
   &:hover,
   &:focus {

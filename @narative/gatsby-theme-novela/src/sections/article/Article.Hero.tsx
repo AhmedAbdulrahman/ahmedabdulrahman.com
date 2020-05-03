@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useColorMode } from 'theme-ui';
+import Markdown from 'react-markdown';
 
 import Headings from '@components/Headings';
 import Image, { ImagePlaceholder } from '@components/Image';
@@ -53,6 +54,9 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
         ) : (
           <ImagePlaceholder />
         )}
+        {article.bannerCredit ? (
+          <Markdown>{article.bannerCredit}</Markdown>
+        ) : null}
       </HeroImage>
     </Hero>
   );
@@ -227,6 +231,7 @@ const HeroImage = styled.div`
   max-width: 944px;
   overflow: hidden;
   margin: 0 auto;
+  text-align: center;
   ${mediaqueries.tablet`
     max-width: 100%;
   `}

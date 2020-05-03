@@ -76,6 +76,7 @@ const SocialIconContainer = styled.a`
   margin-left: 3.2rem;
   text-decoration: none;
   max-width: 16px;
+  background-image: none;
 
   &:hover {
     svg {

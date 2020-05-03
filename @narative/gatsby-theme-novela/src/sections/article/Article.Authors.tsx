@@ -127,6 +127,7 @@ const AuthorLink = styled.div`
   display: flex;
   align-items: center;
   color: inherit;
+  background-image: none;
 
   strong {
     transition: ${p => p.theme.colorModeTransition};

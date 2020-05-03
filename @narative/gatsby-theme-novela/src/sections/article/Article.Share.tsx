@@ -285,6 +285,7 @@ const MenuFloat = styled.div<{ isDark: boolean }>`
 
 const MenuText = styled.span`
   margin-right: 11px;
+  color: ${p => p.theme.colors.background};
 `;
 
 const Hidden = styled.div`
@@ -299,6 +300,7 @@ const MenuShare = styled.a<{ disabled: boolean }>`
   align-items: center;
   padding: 16px 11px;
   cursor: ${p => (p.disabled ? 'not-allowed' : 'pointer')};
+  background-image: none;
 
   svg {
     path {
@@ -308,7 +310,7 @@ const MenuShare = styled.a<{ disabled: boolean }>`
 `;
 
 const MenuButton = styled.button`
-  display: inline-block;
+  display: flex;
   padding: 16px 11px;
 `;
 
