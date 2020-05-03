@@ -127,8 +127,8 @@ const HeadingsCSS = css`
 const PrismCSS = p => css`
   code[class*='css-'] {
     border-radius: 0.25em;
-    background: ${p.isDark ? p.theme.colors.accent : '#e1dac9'};
-    color: ${p.theme.colors.prism.tag};
+    background: ${p.isDark ? '#282835' : '#e4e0dd'};
+    color: ${p.isDark ? p.theme.colors.prism.tag : 'rgba(0,0,0,.6)'};
     padding: 0.2em 0.3em;
     white-space: normal;
     line-height: 1.5;
@@ -145,7 +145,7 @@ const PrismCSS = p => css`
     margin: 15px auto 50px;
     border-radius: 5px;
     font-family: ${p.theme.fonts.monospace};
-    background: #1b1a2f;
+    background: #2b2b35;
     color: white;
     white-space: pre;
     word-spacing: normal;
@@ -155,7 +155,7 @@ const PrismCSS = p => css`
 
     .token-line {
       border-left: 3px solid transparent;
-      background-color: #1b1a2f;
+      background-color: #2b2b35;
 
       ${Object.keys(p.theme.colors.prism)
         .map(key => {
@@ -245,9 +245,9 @@ const PrismCSS = p => css`
       color: #ffcf74 !important;
     }
 
-    .token.plain {
-      color: #ffa7c4;
-    }
+    // .token.plain {
+    //   color: #ffa7c4;
+    // }
 
     ${mediaqueries.desktop`
       left: -26px;
