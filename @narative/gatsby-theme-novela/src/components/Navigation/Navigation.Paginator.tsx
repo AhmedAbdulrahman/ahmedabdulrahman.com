@@ -185,6 +185,7 @@ const PageButton = styled(Link)`
   font-size: 18px;
   text-decoration: none;
   color: ${p => p.theme.colors.primary};
+  background-image: none;
   ${paginationItemMixin}
 
   &:hover,
