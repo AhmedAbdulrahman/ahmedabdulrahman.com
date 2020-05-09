@@ -1,0 +1,82 @@
+---
+title: How to Automatically Sort Import Modules with ESLint
+author: Ahmed Abdulrahman
+date: 2020-01-05
+hero: ./images/hero.jpeg
+bannerCredit:
+  'Photo by [Alyssa Strohmann](https://unsplash.com/photos/TS--uNw-JqE) on
+  [Unsplash](https://unsplash.com)'
+excerpt: In this artcile, you’ll learn how configure ESLint to imports for us automatically.
+category: Code
+tags: ['javascript', 'eslint', 'imports']
+---
+
+As we know, when working on bit projects that requires a lot of components and modules to be imported. By time this gets pretty messy and unreadable, and it is really annoying to sort them manually.
+Here ESLint come into play, we can enforce our editor to sort imports for us automatically. In this artcile, you’ll learn how configure ESLint to imports for us automatically.
+
+## Prerequisites
+- Basic knowledge of [ESLint](https://eslint.org/), [Prettier](https://prettier.io/) and [NPM](https://nodejs.org/en/knowledge/getting-started/npm/what-is-npm/)
+
+## Installing ESLint
+To install [ESLint](https://eslint.org/) globally:
+```bash
+npm install -g eslint
+```
+or we can install ESLint locally within a project:
+```bash
+# With NPM
+npm install eslint --save-dev
+# With YARN
+yarn add -D eslint
+```
+
+Next, we need to create an `ESLin`t config file file (if you haven’t already):
+```bash
+npx eslint --init
+```
+## ESLint Configuration
+ESLint comes with built-in [import sorting](https://eslint.org/docs/rules/sort-imports) rules and only able to sort variable names inside of multiple-imports. It considers the following to be the same type of import:
+
+```js
+import foo from 'foo';
+import { bar } from 'bar';
+```
+
+So, I use [eslint-plugin-import](https://github.com/benmosher/eslint-plugin-import). It extends the ESLint import rules and have addional feature like
+preventing issues with misspelling of file paths and import names. To install `eslint-plugin-import` plugin:
+
+```bash
+npm install eslint-plugin-import --save-dev
+# With YARN
+yarn add -D eslint-plugin-import
+```
+
+No rules are enforced by default. However, we need to configure them manually in ESLint config file:
+```js
+  //.eslintrc file
+{
+  .......
+  extends: ['plugin:import/recommended'],
+  rules: {
+    'import/namespace': ['error', { allowComputed: true }],
+    'import/order': [
+      'error',
+      {
+        groups: [['index', 'sibling', 'parent', 'internal', 'external', 'builtin']],
+        'newlines-between': 'never',
+      },
+    ],
+  }
+  ......
+}
+```
+- `import/namespace`: will report at the import declaration if there are no exported names found. When imported as a full namespace `(i.e. import * as foo from './foo'; foo.bar();)` will report if bar is not exported by `./foo`.
+- `groups`: sets the order intended for every [group](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/order.md).
+- `newlines-between`: set to never, no new lines are allowed in the entire import section.
+
+And that’s how one sets up autofixable import sorting with ESLint.
+
+Did you find this useful? *[Buy me a coffee](https://www.buymeacoffee.com/ahmedab)* to give my brain a hug ☕️.
+
+Hope you liked this article. If you did, then share it. It means a lot.🙌
+Thanks for reading!
