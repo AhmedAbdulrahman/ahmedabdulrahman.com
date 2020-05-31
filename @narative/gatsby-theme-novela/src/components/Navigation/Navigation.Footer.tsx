@@ -91,8 +91,11 @@ export default Footer;
 const FooterContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   color: ${p => p.theme.colors.secondary};
+
+  @media (min-width: 768px) {
+    align-items: center;
+  }
 `;
 
 const HoritzontalRule = styled.div`
