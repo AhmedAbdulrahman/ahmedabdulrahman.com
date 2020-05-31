@@ -133,7 +133,7 @@ const SectionHeading = styled.h2`
 `}
 
   ${mediaqueries.phablet`
-    font-size: 3.4rem;
+    font-size: 4rem;
     line-height: 1.45;
     margin-bottom: 16px;
   `}
