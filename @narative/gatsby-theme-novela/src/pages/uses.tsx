@@ -46,10 +46,7 @@ const Uses: React.FC<PageProps> = ({ location }) => {
         <Lists.ul fullWidth>
           <li>
             <ListItem>
-              <Strong>
-                Retina 5K 27-Inch iMac, 3.5ghz Core i5, 8 GB 2400 MHz DDR4 of
-                RAM AMD Radeon Pro 575 4096 MB
-              </Strong>
+              <Strong>Retina 5K 27-Inch iMac</Strong>
             </ListItem>
             <Text>
               I use this as my main machine and a 2018 13 MacBook Pro for work.
@@ -57,7 +54,7 @@ const Uses: React.FC<PageProps> = ({ location }) => {
           </li>
           <li>
             <ListItem>
-              <Strong>Corsair K68 RGB Mechanical Gaming Keyboard</Strong>
+              <Strong>Corsair K68 RGB</Strong>
             </ListItem>
             <Text>
               It uses Cherry MX Red keyswitches with 100% anti-ghosting and full
@@ -401,16 +398,13 @@ const Uses: React.FC<PageProps> = ({ location }) => {
 
           <li>
             <ListItem>
-              <Strong>
-                Audio Hijack Pro
-                {` & `}
-                Loopback
-              </Strong>
+              <Strong>Rogue Amoeba</Strong>
             </ListItem>
             <Text>
-              I use these to combine audio from multiple sources into one
-              virtual device when I am streaming, and recording screencasts.
-              They are both fantastic softwares, highly recommended.
+              I use Audio Hijack &amp; Loopback from Rogue Amoeba, to combine
+              audio from multiple sources into one virtual device when I am
+              streaming, and recording screencasts. They are both fantastic
+              softwares, highly recommended.
             </Text>
           </li>
           <li>
@@ -463,7 +457,6 @@ const HeroTextContainer = styled.div`
 
 const HeroImage = styled.div`
   position: relative;
-  align-self: end;
 
   ${mediaqueries.tablet`
     margin-left: 32px;
@@ -484,7 +477,6 @@ const InfoText = styled.p`
   }
 
   ${mediaqueries.phablet`
-  font-size: 1.8rem;
   line-height: 1.6;
 `}
 `;
