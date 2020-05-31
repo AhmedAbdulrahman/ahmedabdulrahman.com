@@ -89,7 +89,7 @@ const ArticlesItem = styled(Link)`
   &:hover h2,
   &:focus h2 {
     color: ${p => p.theme.colors.accent};
-    border-bottom-color: ${p => p.theme.colors.accent};
+    transform: translateX(10px);
   }
 
   ${mediaqueries.tablet`
@@ -100,16 +100,16 @@ const ArticlesItem = styled(Link)`
 
 const Date = styled.div`
   font-size: 16px;
-  color: ${p => p.theme.colors.secondary};
+  color: ${p => p.theme.colors.textOffset};
   margin-bottom: 4px;
   padding-top: 3px;
 `;
 
 const Title = styled.h2`
   font-size: 18px;
-  color: ${p => p.theme.colors.secondary};
-  text-decoration: underline;
-  transition: color 0.25s var(--ease-in-out-quad);
+  color: ${p => p.theme.colors.articleText};
+  transform: translateX(0);
+  transition: all 0.25s ease;
 `;
 
 const Wrapper = styled.div`

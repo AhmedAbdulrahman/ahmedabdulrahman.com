@@ -126,12 +126,14 @@ const HeadingsCSS = css`
 
 const PrismCSS = p => css`
   code[class*='css-'] {
-    border-radius: 0.25em;
-    background: ${p.isDark ? '#282835' : '#e4e0dd'};
-    color: ${p.isDark ? p.theme.colors.prism.tag : 'rgba(0,0,0,.6)'};
-    padding: 0.2em 0.3em;
+    background-color: ${p.isDark ? '#29293e' : '#f3e1d8'};
+    border: 1px solid ${p.isDark ? '#383a61' : '#f3d2c1'};
+    border-radius: 0.25rem;
+    padding: 2px 4px;
     white-space: normal;
     line-height: 1.5;
+    margin: 0 2px;
+    font-size: 2.3rem;
   }
 
   .prism-code {
@@ -145,7 +147,8 @@ const PrismCSS = p => css`
     margin: 15px auto 50px;
     border-radius: 5px;
     font-family: ${p.theme.fonts.monospace};
-    background: #2b2b35;
+    background-color: ${p.isDark ? '#29293e' : '#2b2b35'};
+    border: 1px solid ${p.isDark ? '#383a61' : '#2b2b35'};
     color: white;
     white-space: pre;
     word-spacing: normal;
@@ -155,7 +158,7 @@ const PrismCSS = p => css`
 
     .token-line {
       border-left: 3px solid transparent;
-      background-color: #2b2b35;
+      background-color: ${p.isDark ? '#29293e' : '#2b2b35'};
 
       ${Object.keys(p.theme.colors.prism)
         .map(key => {

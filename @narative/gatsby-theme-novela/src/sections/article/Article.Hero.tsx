@@ -2,9 +2,11 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useColorMode } from 'theme-ui';
 import Markdown from 'react-markdown';
+import { IoLogoGithub } from 'react-icons/io';
 
 import Headings from '@components/Headings';
 import Image, { ImagePlaceholder } from '@components/Image';
+import Anchor from '@components/Anchor';
 
 import mediaqueries from '@styles/media';
 import { IArticle, IAuthor } from '@types';
@@ -17,6 +19,9 @@ interface ArticleHeroProps {
   authors: IAuthor[];
 }
 
+const GITHUB_USERNAME = 'AhmedAbdulrahman';
+const GITHUB_REPO_NAME = 'ahmedabdulrahman.com';
+
 const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
   const [colorMode] = useColorMode();
   const isDark = colorMode === 'dark';
@@ -25,6 +30,11 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
     article.hero &&
     Object.keys(article.hero.full).length !== 0 &&
     article.hero.full.constructor === Object;
+
+  const editURL = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO_NAME}/edit/master/www/content/posts/${article.slug.replace(
+    '/writing/',
+    '',
+  )}/index.mdx`;
 
   return (
     <Hero>
@@ -35,7 +45,15 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
           <ArticleAuthors authors={authors} />
           <ArticleMeta hasCoAUthors={hasCoAUthors}>
             {article.date}
-            {`, ${formatReadingTime(article.timeToRead)}`}
+            {` • ${formatReadingTime(article.timeToRead)} • `}
+            <Anchor
+              href={editURL}
+              target="_blank"
+              rel="noopener noreferrer"
+              isDark={isDark}
+            >
+              Edit Post <IoLogoGithub />
+            </Anchor>
           </ArticleMeta>
         </HeroSubtitle>
         <TagsWrapper>
@@ -179,7 +197,7 @@ const HeroHeading = styled(Headings.h1)`
 const Excerpt = styled(Headings.h3)`
   font-size: 28px;
   font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.secondary};
+  color: ${p => p.theme.colors.articleText};
   margin-bottom: 24px;
   margin-top: 24px;
   font-weight: normal;
@@ -194,8 +212,9 @@ const Excerpt = styled(Headings.h3)`
 const HeroSubtitle = styled.div<{ hasCoAUthors: boolean }>`
   position: relative;
   display: flex;
-  font-size: 15px;
-  color: ${p => p.theme.colors.secondary};
+  font-size: 17px;
+  font-family: ${p => p.theme.fonts.body};
+  color: ${p => p.theme.colors.textOffset};
   align-items: center;
 
   ${p => mediaqueries.phablet`

@@ -46,10 +46,7 @@ const Uses: React.FC<PageProps> = ({ location }) => {
         <Lists.ul fullWidth>
           <li>
             <ListItem>
-              <Strong>
-                Retina 5K 27-Inch iMac, 3.5ghz Core i5, 8 GB 2400 MHz DDR4 of
-                RAM AMD Radeon Pro 575 4096 MB
-              </Strong>
+              <Strong>Retina 5K 27-Inch iMac</Strong>
             </ListItem>
             <Text>
               I use this as my main machine and a 2018 13 MacBook Pro for work.
@@ -57,7 +54,7 @@ const Uses: React.FC<PageProps> = ({ location }) => {
           </li>
           <li>
             <ListItem>
-              <Strong>Corsair K68 RGB Mechanical Gaming Keyboard</Strong>
+              <Strong>Corsair K68 RGB</Strong>
             </ListItem>
             <Text>
               It uses Cherry MX Red keyswitches with 100% anti-ghosting and full
@@ -401,16 +398,13 @@ const Uses: React.FC<PageProps> = ({ location }) => {
 
           <li>
             <ListItem>
-              <Strong>
-                Audio Hijack Pro
-                {` & `}
-                Loopback
-              </Strong>
+              <Strong>Rogue Amoeba</Strong>
             </ListItem>
             <Text>
-              I use these to combine audio from multiple sources into one
-              virtual device when I am streaming, and recording screencasts.
-              They are both fantastic softwares, highly recommended.
+              I use Audio Hijack &amp; Loopback from Rogue Amoeba, to combine
+              audio from multiple sources into one virtual device when I am
+              streaming, and recording screencasts. They are both fantastic
+              softwares, highly recommended.
             </Text>
           </li>
           <li>
@@ -463,7 +457,6 @@ const HeroTextContainer = styled.div`
 
 const HeroImage = styled.div`
   position: relative;
-  align-self: end;
 
   ${mediaqueries.tablet`
     margin-left: 32px;
@@ -475,7 +468,7 @@ const InfoText = styled.p`
   font-size: 2.8rem;
   line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.secondary};
+  color: ${p => p.theme.colors.articleText};
   margin-bottom: 64px;
 
   span {
@@ -484,7 +477,6 @@ const InfoText = styled.p`
   }
 
   ${mediaqueries.phablet`
-  font-size: 1.8rem;
   line-height: 1.6;
 `}
 `;
@@ -528,12 +520,37 @@ const Blockquote = styled.blockquote`
 `;
 
 const ListItem = styled.span`
-  color: ${p => p.theme.colors.primary};
-  text-decoration: underline solid ${p => p.theme.colors.accent};
-  text-underline-position: under;
-
+  position: relative;
+  display: inline-block;
   font-size: 2.2rem;
+  color: ${p => p.theme.colors.primary};
   line-height: 1.45;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    height: 0.5em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.2em;
+    z-index: -1;
+    background-color: ${p => p.theme.colors.border};
+  }
+
+  &:after {
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+
+  &:hover {
+    &:after {
+      transform: scaleX(1);
+      background-color: ${p => p.theme.colors.accent};
+    }
+  }
 
   ${mediaqueries.tablet`
     font-size:  2.2rem;
@@ -545,26 +562,36 @@ const Strong = styled.strong`
 `;
 
 const AnchorLink = styled.a`
-  border-bottom: 3px solid ${p => p.theme.colors.accent};
-  transition: border-bottom 0.35s ease, ${p => p.theme.colorModeTransition};
-  color: ${p => p.theme.colors.primary};
-  background-image: none;
+  position: relative;
+  display: inline-block;
+  color: ${p => p.theme.colors.articleText};
 
-  &:hover,
-  &:focus {
-    color: ${p => p.theme.colors.accent};
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      height: 0.5em;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background-color: ${p => p.theme.colors.border};
+    }
+
+    &:after {
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+
+    &:hover {
+      &:after {
+        transform: scaleX(1);
+        background-color: ${p => p.theme.colors.accent};
+      }
+    }
   }
-
-  font-size: 2.2rem;
-  line-height: 1.45;
-
-  ${mediaqueries.tablet`
-    font-size:  2.2rem;
-  `};
-
-  ${mediaqueries.phablet`
-    font-size:  2rem;
-  `};
 `;
 
 const Title = styled.h3`
@@ -580,7 +607,7 @@ const Text = styled.p`
   font-size: 2.2rem;
   line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.secondary};
+  color: ${p => p.theme.colors.articleText};
   margin-bottom: 24px;
 
   span {

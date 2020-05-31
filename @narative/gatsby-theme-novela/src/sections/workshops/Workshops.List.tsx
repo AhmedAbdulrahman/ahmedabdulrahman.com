@@ -421,7 +421,7 @@ const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
   font-family: ${p => p.theme.fonts.body};
   padding: 8px 15px 8px 12px;
   color: ${p => p.theme.colors.primary};
-  background: ${p => (p.isDark ? p.theme.colors.card : '#eae6e3')};
+  background: ${p => p.theme.colors.card};
   transition: background 0.1s ease-in-out, color 0.1s var(--ease-in-out-quad);
 
   ${mediaqueries.phablet`

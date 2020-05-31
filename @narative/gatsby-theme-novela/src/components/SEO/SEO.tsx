@@ -87,7 +87,7 @@ const SEO: React.FC<HelmetProps> = ({
 
   // If no image is provided lets looks for a default static image
   image = image ? image : '/preview.jpg';
-  console.log('url || site.siteUrl', url || site.description);
+
   const metaTags = [
     { charset: 'utf-8' },
     {

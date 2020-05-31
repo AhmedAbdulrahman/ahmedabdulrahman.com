@@ -4,6 +4,7 @@ const siteMetadata = {
   title: `Ahmed Abdulrahman's Desk`,
   name: `Ahmed Abdulrahman`,
   siteUrl: `https://aadev.me`,
+  email: `hello@aadev.me`,
   description: `Developer who's learning to write and express thoughts`,
   hero: {
     heading: `You'll cover all the techniques to create performant, composable, reusable UI components to level-up your skills as a developer.`,

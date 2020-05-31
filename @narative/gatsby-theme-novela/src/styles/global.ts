@@ -1,7 +1,6 @@
 import { css } from '@emotion/core';
 
 export const globalStyles = p =>
-  console.log('p', p) ||
   css`
     /**
    * Thanks to Benjamin De Cock
@@ -55,20 +54,9 @@ export const globalStyles = p =>
 
     button,
     a {
-      text-decoration: none;
+      position: relative;
       cursor: pointer;
-      color: ${p.colors.primary};
-      background-image: ${p.colors.anchorGradient};
-      background-size: 100% 200%;
-      word-break: break-word;
-      padding: 2px 0px 1px;
-      transition: background-position 120ms ease-in-out 0s,
-        padding 120ms ease-in-out 0s;
-      background-position: 0px 0px;
-    }
-
-    a:focus {
-      outline: none;
+      text-decoration: none;
     }
 
     audio,
@@ -78,6 +66,14 @@ export const globalStyles = p =>
     svg,
     video {
       vertical-align: middle;
+    }
+
+    dl,
+    ol,
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
     }
 
     input,

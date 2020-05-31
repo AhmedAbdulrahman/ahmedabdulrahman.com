@@ -74,7 +74,7 @@ const InfoText = styled.p`
   font-size: 2.8rem;
   line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.secondary};
+  color: ${p => p.theme.colors.articleText};
   margin-bottom: 100px;
 
   span {
@@ -87,7 +87,6 @@ const InfoText = styled.p`
   `}
 
   ${mediaqueries.phablet`
-    font-size: 1.8rem;
     line-height: 1.6;
   `}
 `;
@@ -129,7 +128,6 @@ const Title = styled.h3`
   color: ${p => p.theme.colors.accent};
 
   ${mediaqueries.phablet`
-  font-size: 2.6rem;
   line-height: 1.6;
 `}
 `;
@@ -142,7 +140,6 @@ const Paragraph = styled.p`
   color: ${p => p.theme.colors.articleText};
 
   ${mediaqueries.phablet`
-  font-size: 1.8rem;
   line-height: 1.6;
 `}
 `;

@@ -1,0 +1,33 @@
+---
+title: How to Start Vim temporarily without settings or plugins
+author: Ahmed Abdulrahman
+date: 2020-01-04
+hero: ./images/hero.jpeg
+bannerCredit:
+  'Photo by [Sharon McCutcheon](https://unsplash.com/photos/p203ekCK4Ac) on
+  [Unsplash](https://unsplash.com)'
+excerpt: Sometime you want temporarily to disable your vimrc without loading any of my plugins or settings. In this article, we will see how can we do that
+category: Tips
+tags: ['vim', 'nvim', 'shell']
+---
+
+When you run vim, your `.vimrc` file gets read and executed only once. If you want to nullify and temporarily to disable your `.vimrc` without
+loading any of my plugins or settings you need to, just use another environment by passing `-u` flag:
+
+```bash
+# starts VIM without initializing vimrc
+vim -u NONE
+```
+
+You can also start vim with alternative vimrc file
+```bash
+vim -u ~/.vimrcnew
+```
+
+or if you want to start VIM without any vimrc, but with plugins
+```bash
+vim -u NORC
+```
+
+
+This is really handy when you when to record screencast showing default view of vim without deleting your config file.

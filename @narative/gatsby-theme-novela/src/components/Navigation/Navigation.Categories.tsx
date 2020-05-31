@@ -83,10 +83,10 @@ const NavControls = styled.div`
 
 const NavLink = styled(Link)`
   font-weight: ${p => p.theme.fontsWeight.bold};
-  font-family: ${p => p.theme.fonts.title};
+  font-family: ${p => p.theme.fonts.body};
   font-size: 16px;
   background-image: none;
-  color: ${p => p.theme.colors.grey};
+  color: ${p => p.theme.colors.articleText};
   transition: color 0.25s var(--ease-in-out-quad);
   display: inline-block;
   position: relative;
@@ -100,7 +100,7 @@ const NavLink = styled(Link)`
     bottom: -8px;
     content: '';
     display: block;
-    height: 2px;
+    height: 3px;
     left: 50%;
     position: absolute;
     background: ${p => p.theme.colors.accent};
@@ -117,15 +117,7 @@ const NavLink = styled(Link)`
   &.active {
     color: ${p => p.theme.colors.primary};
     &::after {
-      background: none repeat scroll 0 0 transparent;
-      bottom: -8px;
-      content: '';
-      display: block;
-      height: 2px;
       left: calc(50% - 8px);
-      position: absolute;
-      background: ${p => p.theme.colors.accent};
-      transition: width 0.25s ease 0s, left 0.25s ease 0s;
       width: 16px;
     }
   }

@@ -197,10 +197,10 @@ const NavigationHeader: React.FC<{}> = () => {
                   </NavLink>
                   <NavLink
                     to={`/about`}
-                    title={`About Me`}
+                    title={`About`}
                     activeClassName="active"
                   >
-                    Me
+                    About
                   </NavLink>
                   <SharePageButton />
                   <DarkModeToggle />
@@ -251,7 +251,7 @@ const NavContainer = styled.div`
 
 const NavLink = styled(Link)`
   font-weight: ${p => p.theme.fontsWeight.bold};
-  font-family: ${p => p.theme.fonts.title};
+  font-family: ${p => p.theme.fonts.body};
   font-size: 15px;
   color: ${p => p.theme.colors.primary};
   transition: color 0.25s var(--ease-in-out-quad);
@@ -270,7 +270,7 @@ const NavLink = styled(Link)`
     bottom: -8px;
     content: '';
     display: block;
-    height: 2px;
+    height: 3px;
     left: 50%;
     position: absolute;
     background: ${p => p.theme.colors.accent};
@@ -278,23 +278,15 @@ const NavLink = styled(Link)`
     width: 0;
   }
   &:hover {
-    color: ${p => p.theme.colors.secondary};
     &::after {
       width: 100%;
       left: 0;
     }
   }
+
   &.active {
     &::after {
-      background: none repeat scroll 0 0 transparent;
-      bottom: -8px;
-      content: '';
-      display: block;
-      height: 2px;
       left: calc(50% - 10px);
-      position: absolute;
-      background: ${p => p.theme.colors.accent};
-      transition: width 0.25s ease 0s, left 0.25s ease 0s;
       width: 20px;
     }
   }

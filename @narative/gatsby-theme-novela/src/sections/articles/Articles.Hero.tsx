@@ -46,28 +46,39 @@ const HeadingContainer = styled.div`
 
 const InfoText = styled.p`
   font-size: 2.8rem;
-  line-height: 1.5;
+  line-height: 1.8;
   font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.secondary};
+  color: ${p => p.theme.colors.articleText};
   margin-bottom: 64px;
-
-  span {
-    color: ${p => p.theme.colors.accent};
-  }
-
-  ${mediaqueries.phablet`
-  font-size: 1.8rem;
-  line-height: 1.6;
-`}
 `;
 
 const Anchor = styled(Link)`
-  color: ${p => p.theme.colors.secondary};
-  margin-left: 6px;
+  display: inline-block;
+  position: relative;
+  color: ${p => p.theme.colors.articleText};
 
-  &:hover,
-  &:focus {
-    color: ${p => p.theme.colors.accent};
-    border-bottom-color: ${p => p.theme.colors.accent};
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    height: 0.5em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.2em;
+    z-index: -1;
+    background-color: ${p => p.theme.colors.border};
+  }
+  &:after {
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+
+  &:hover {
+    &:after {
+      transform: scaleX(1);
+      background-color: ${p => p.theme.colors.accent};
+    }
   }
 `;
