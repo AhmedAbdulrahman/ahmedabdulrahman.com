@@ -136,7 +136,7 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
       thumbnail: node.frontmatter.thumbnail,
       secret: node.frontmatter.secret || false,
       slug: generateSlug(
-        basePath,
+        '/workshops',
         generateArticlePermalink(
           slugify(node.frontmatter.slug || node.frontmatter.title),
           node.frontmatter.date,
