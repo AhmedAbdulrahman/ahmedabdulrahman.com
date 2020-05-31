@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import Section from '@components/Section';
@@ -14,6 +15,8 @@ const siteQuery = graphql`
         node {
           siteMetadata {
             name
+            siteUrl
+            email
             social {
               url
               # name
@@ -36,7 +39,12 @@ const siteQuery = graphql`
 
 const Footer: React.FC<{}> = () => {
   const results = useStaticQuery(siteQuery);
-  const { name, social } = results.allSite.edges[0].node.siteMetadata;
+  const {
+    name,
+    social,
+    siteUrl,
+    email,
+  } = results.allSite.edges[0].node.siteMetadata;
 
   const copyrightDate = (() => {
     const { edges } = results.allMdx;
@@ -47,41 +55,44 @@ const Footer: React.FC<{}> = () => {
   })();
 
   return (
-    <>
-      <FooterGradient />
-      <Section narrow>
-        <HoritzontalRule />
-        <FooterContainer>
-          <FooterText>
-            © {copyrightDate} {name}
-          </FooterText>
-          <div>
-            <SocialLinks links={social} />
-          </div>
-        </FooterContainer>
-      </Section>
-    </>
+    <Section
+      component="footer"
+      narrow
+      css={css`
+        padding: 2rem 0;
+      `}
+    >
+      <HoritzontalRule />
+      <FooterContainer>
+        <FooterItem>
+          <strong>© {copyrightDate}</strong>
+          <br />
+          <a className="p-name u-url" rel="me" href={siteUrl}>
+            {name}
+          </a>
+        </FooterItem>
+        <FooterItem>
+          <strong>Contact</strong>
+          <br />
+          <a href={`mailto:${email}`} rel="me" className="u-email">
+            {email}
+          </a>
+        </FooterItem>
+        <FooterItem right>
+          <SocialLinks links={social} />
+        </FooterItem>
+      </FooterContainer>
+    </Section>
   );
 };
 
 export default Footer;
 
 const FooterContainer = styled.div`
-  position: relative;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  padding-bottom: 40px;
   color: ${p => p.theme.colors.secondary};
-
-  ${mediaqueries.tablet`
-    flex-direction: column;
-    padding-bottom: 100px;
-  `}
-
-  ${mediaqueries.phablet`
-    padding-bottom: 50px;
-  `}
 `;
 
 const HoritzontalRule = styled.div`
@@ -98,14 +109,37 @@ const HoritzontalRule = styled.div`
   `}
 `;
 
-const FooterText = styled.div`
-  ${mediaqueries.tablet`
-    margin-bottom: 80px;
+const FooterItem = styled.p<{ right: boolean }>`
+  flex-basis: 50%;
+  margin-bottom: 0.5rem;
+  z-index: 1;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  ${p =>
+    p.right &&
+    `
+  flex-basis: 100%;
+  margin-bottom: 0;
+
+    @media (min-width: 670px){
+      margin-left: auto !important;
+      padding-right: 0 !important;
+    }
   `}
 
-  ${mediaqueries.phablet`
-    margin: 64px auto 24px;
-  `}
+  @media (min-width: 670px) {
+    flex: 0 0 auto;
+    padding-right: 2.5rem;
+    margin: 0;
+  }
+
+  @media (min-width: 940px) {
+    padding-right: 6rem;
+  }
 `;
 
 const FooterGradient = styled.div`
