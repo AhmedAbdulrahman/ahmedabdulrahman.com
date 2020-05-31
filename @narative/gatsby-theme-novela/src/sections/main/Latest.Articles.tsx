@@ -42,16 +42,14 @@ const LatestArticles: React.FC<{}> = () => {
           inking.
         </Headings.SectionHeading>
         <Text>
-          Because without words, apps would be an unusable jumble of shapes and
-          icons. And more importantly, I write to get ideas, to inspire myself
-          and to learn something new.
+          I write to get ideas, to inspire myself and to learn something new.
         </Text>
         <LatestArticle to={result.slug} title={result.title}>
           <ArticleDate>Latest article - {result.date}</ArticleDate>
           <ArticleTitle>{result.title}</ArticleTitle>
         </LatestArticle>
         <ViewLink to={`/writing`} title={`See all articles`}>
-          View all articles →
+          View all articles
         </ViewLink>
       </WriteContainer>
     </GridContainer>
@@ -81,7 +79,7 @@ const Text = styled.p`
   font-size: 2.8rem;
   line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.secondary};
+  color: ${p => p.theme.colors.articleText};
   margin-bottom: 64px;
 
   span {
@@ -90,7 +88,6 @@ const Text = styled.p`
   }
 
   ${mediaqueries.phablet`
-  font-size: 1.8rem;
   line-height: 1.6;
 `}
 `;
@@ -113,10 +110,16 @@ const LatestArticle = styled(Link)`
   margin-top: 40px;
   display: block;
   background-image: none;
+  text-decoration: none;
 
   &:hover h3,
   &:focus h3 {
     color: ${p => p.theme.colors.accent};
+    transform: translateX(10px);
+  }
+
+  &:before {
+    background-image: none;
   }
 `;
 
@@ -128,43 +131,41 @@ const ArticleDate = styled.div`
   color: ${p => p.theme.colors.accent};
 
   ${mediaqueries.phablet`
-  font-size: 12px;
+  font-size: 1.5rem
   `}
 `;
 
 const ArticleTitle = styled(Headings.h3)`
+  font-size: 2.2rem;
   margin-bottom: 16px;
   text-decoration: underline;
-  transition: color 0.2s var(--ease-in-out-quad);
+  transform: translateX(0);
+  transition: all 0.25s ease;
 `;
 
 const ViewLink = styled(Link)`
   font-weight: ${p => p.theme.fontsWeight.bold};
   font-family: ${p => p.theme.fonts.title};
-  font-size: 14px;
-  color: ${p => p.theme.colors.secondary};
-  background-image: none;
+  font-size: 1.5rem;
+  color: ${p => p.theme.colors.articleText};
   transition: color 0.25s var(--ease-in-out-quad);
   display: inline-block;
   position: relative;
   margin-top: 24px;
+  text-transform: uppercase;
+  transition: color 0.25s ease 0s;
+
   &::after {
-    background: none repeat scroll 0 0 transparent;
-    bottom: -8px;
-    content: '';
-    display: block;
-    height: 2px;
-    left: 0;
+    content: '→';
+    right: -20px;
     position: absolute;
-    background: ${p => p.theme.colors.accent};
-    transition: width 0.25s ease 0s, left 0.25s ease 0s;
-    width: 0;
+    transition: right 0.25s ease 0s;
   }
   &:hover {
     color: ${p => p.theme.colors.accent};
     &::after {
-      width: 100%;
-      left: 0;
+      color: ${p => p.theme.colors.accent};
+      right: -30px;
     }
   }
 `;

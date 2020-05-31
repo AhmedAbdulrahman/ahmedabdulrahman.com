@@ -475,7 +475,7 @@ const InfoText = styled.p`
   font-size: 2.8rem;
   line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.secondary};
+  color: ${p => p.theme.colors.articleText};
   margin-bottom: 64px;
 
   span {
@@ -528,12 +528,37 @@ const Blockquote = styled.blockquote`
 `;
 
 const ListItem = styled.span`
-  color: ${p => p.theme.colors.primary};
-  text-decoration: underline solid ${p => p.theme.colors.accent};
-  text-underline-position: under;
-
+  position: relative;
+  display: inline-block;
   font-size: 2.2rem;
+  color: ${p => p.theme.colors.primary};
   line-height: 1.45;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    height: 0.5em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.2em;
+    z-index: -1;
+    background-color: ${p => p.theme.colors.border};
+  }
+
+  &:after {
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+
+  &:hover {
+    &:after {
+      transform: scaleX(1);
+      background-color: ${p => p.theme.colors.accent};
+    }
+  }
 
   ${mediaqueries.tablet`
     font-size:  2.2rem;
@@ -545,26 +570,36 @@ const Strong = styled.strong`
 `;
 
 const AnchorLink = styled.a`
-  border-bottom: 3px solid ${p => p.theme.colors.accent};
-  transition: border-bottom 0.35s ease, ${p => p.theme.colorModeTransition};
-  color: ${p => p.theme.colors.primary};
-  background-image: none;
+  position: relative;
+  display: inline-block;
+  color: ${p => p.theme.colors.articleText};
 
-  &:hover,
-  &:focus {
-    color: ${p => p.theme.colors.accent};
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      height: 0.5em;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background-color: ${p => p.theme.colors.border};
+    }
+
+    &:after {
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+
+    &:hover {
+      &:after {
+        transform: scaleX(1);
+        background-color: ${p => p.theme.colors.accent};
+      }
+    }
   }
-
-  font-size: 2.2rem;
-  line-height: 1.45;
-
-  ${mediaqueries.tablet`
-    font-size:  2.2rem;
-  `};
-
-  ${mediaqueries.phablet`
-    font-size:  2rem;
-  `};
 `;
 
 const Title = styled.h3`
@@ -580,7 +615,7 @@ const Text = styled.p`
   font-size: 2.2rem;
   line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.secondary};
+  color: ${p => p.theme.colors.articleText};
   margin-bottom: 24px;
 
   span {

@@ -128,6 +128,7 @@ const AuthorLink = styled.div`
   align-items: center;
   color: inherit;
   background-image: none;
+  text-decoration: none;
 
   strong {
     transition: ${p => p.theme.colorModeTransition};
@@ -135,6 +136,10 @@ const AuthorLink = styled.div`
 
   &:hover strong {
     color: ${p => p.theme.colors.primary};
+  }
+
+  &:before {
+    background-image: none;
   }
 `;
 

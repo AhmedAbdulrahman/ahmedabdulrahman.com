@@ -172,10 +172,10 @@ const Excerpt = styled.p<{
   gridLayout: string;
 }>`
   ${limitToTwoLines};
-  font-size: 18px;
+  font-size: 2rem;
   margin-bottom: 10px;
   color: ${p => p.theme.colors.secondary};
-  font-family: ${p => p.theme.fonts.body};
+  font-family: ${p => p.theme.fonts.articleText};
   display: ${p => (p.hasOverflow && p.gridLayout === 'tiles' ? 'box' : 'box')};
   max-width: ${p => (p.narrow ? '515px' : '515px')};
 
@@ -188,6 +188,7 @@ const Excerpt = styled.p<{
   `}
 
   ${mediaqueries.phablet`
+  font-size: 1.275rem;
     max-width: 100%;
     padding:  0 20px;
     margin-bottom: 20px;
@@ -196,17 +197,15 @@ const Excerpt = styled.p<{
 `;
 
 const MetaData = styled.div`
-  font-family: ${p => p.theme.fonts.body};
-  font-weight: ${p => p.theme.fontsWeight.regular};
-  font-size: 15px;
-  color: ${p => p.theme.colors.secondary};
-  opacity: 0.6;
+  font-weight: 400;
+  font-size: 1.625rem;
+  color: ${p => p.theme.colors.textOffset};
   background-image: none;
 
   ${mediaqueries.phablet`
-    max-width: 100%;
-    padding:  0 20px 30px;
-  `}
+  max-width: 100%;
+  padding:  0 20px 30px;
+`}
 `;
 
 const ArticleLink = styled(Link)<{ narrow: string }>`
@@ -217,14 +216,14 @@ const ArticleLink = styled(Link)<{ narrow: string }>`
   top: 0;
   left: 0;
   z-index: 1;
+  text-decoration: none;
   background-image: none;
   transition: transform 0.33s var(--ease-out-quart);
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 
   &:hover ${ImageContainer}, &:focus ${ImageContainer} {
     transform: translateY(-1px);
-    box-shadow: 0 30px 40px -20px rgba(0, 0, 0, 0.27),
-      0 30px 30px -30px rgba(0, 0, 0, 0.3);
+    box-shadow: 14px 14px 60px -10px rgba(0, 0, 0, 0.3);
   }
 
   &:hover h2,

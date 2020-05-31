@@ -54,8 +54,12 @@ const AboutPage = ({ location }) => {
         <ContentContainer>
           <MyText>
             <InfoText>
-              Stockholm based Creative Front-end <span>Crispiness Creator</span>{' '}
-              &amp; <span>Designer</span>
+              Stockholm based Creative Front-end Crispiness Creator &amp;
+              Designer
+            </InfoText>
+            <InfoText>
+              My focus is on creating engaging, accessible &amp; performant
+              interfaces for humans.
             </InfoText>
             <InfoText>
               Although my skillset is diverse with full of passion for all
@@ -91,39 +95,36 @@ const AboutPage = ({ location }) => {
               </NavLink>{' '}
               page, to list all my upcoming Online Workshops, but it’s taking a
               while. For those interested in{' '}
-              <NavLink to={`/`} title={`Uses`}>
+              <NavLink to={`/`} title={`Home`}>
                 how I buit this site
               </NavLink>
               , I’ve tried my best to list all the tools and techniques I used.
             </InfoText>
             <InfoText>
               Find me on{' '}
-              <AnchorLink
+              <a
                 href="https://github.com/AhmedAbdulrahman"
                 target="_blank"
                 rel="noopener noreferrer"
-                isDark={isDark}
               >
                 Github
-              </AnchorLink>
+              </a>
               , and{' '}
-              <AnchorLink
+              <a
                 href="https://twitter.com/_ahmed_ab"
                 target="_blank"
                 rel="noopener noreferrer"
-                isDark={isDark}
               >
                 Twitter
-              </AnchorLink>{' '}
+              </a>{' '}
               if you have questions. Very occassionally I check my{' '}
-              <AnchorLink
+              <a
                 href="https://www.linkedin.com/in/ahmed-abd/"
                 target="_blank"
                 rel="noopener noreferrer"
-                isDark={isDark}
               >
                 LinkedIn
-              </AnchorLink>
+              </a>
               .
             </InfoText>
 
@@ -189,11 +190,40 @@ const InfoText = styled.p`
   font-size: 2.8rem;
   line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.secondary};
+  color: ${p => p.theme.colors.articleText};
   margin-bottom: 24px;
 
-  span {
-    color: ${p => p.theme.colors.primary};
+  span,
+  a {
+    position: relative;
+    display: inline-block;
+    color: ${p => p.theme.colors.articleText};
+
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      height: 0.5em;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background-color: ${p => p.theme.colors.border};
+    }
+
+    &:after {
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+
+    &:hover {
+      &:after {
+        transform: scaleX(1);
+        background-color: ${p => p.theme.colors.accent};
+      }
+    }
   }
 
   ${mediaqueries.phablet`
