@@ -1,14 +1,22 @@
 import styled from '@emotion/styled';
 
 const Anchor = styled.a`
-  color: ${p => p.theme.colors.primary};
-  background-image: ${p => p.theme.colors.anchorGradient};
-  background-size: 100% 200%;
-  word-break: break-word;
-  padding: 2px 0px 1px;
-  transition: background-position 120ms ease-in-out 0s,
-    padding 120ms ease-in-out 0s;
-  background-position: 0px 0px;
+  display: inline-block;
+  position: relative;
+  color: ${p => p.theme.colors.articleText};
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    height: 0.5em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.2em;
+    z-index: -1;
+    background-color: ${p => p.theme.colors.border};
+  }
 `;
 
 export default Anchor;
