@@ -1,0 +1,26 @@
+---
+title: 🔥Git Tips & Tricks 🔥
+author: Ahmed Abdulrahman
+date: 2020-01-08
+hero: ./images/hero.jpeg
+bannerCredit:
+  'Photo by [David Klein](https://unsplash.com/photos/-94oJK3PDQw) on
+  [Unsplash](https://unsplash.com)'
+excerpt: >-
+  Today I will be showing you some helpful aliases and commands you might not know about that can save your time and improve your workflow.
+category: Tips
+tags: ['git', 'tips']
+secret: true
+---
+
+This a collection of git hot tips & tricks that you may know a few of them but I am sure there are a some of them that will help you improve your workflow.
+
+### git reset HEAD~
+Whether you are working on a personal or team project, it is quite common to create `branches`, `add` files and `stage` them. However, in some cases,
+you might realize the changes you made were not what you wanted but you want to revert the changes back. Here `git reset HEAD` come into play, its a powerful technique
+every developer need to know ⚡️
+
+
+alias undo='git reset HEAD~'			# Undo commit and unstage all files
+alias undosoft='git reset --soft HEAD~'	# Undo commit and keep all files staged
+alias undohard='git reset --hard HEAD~'	# Undo the commit and completely remove all changes

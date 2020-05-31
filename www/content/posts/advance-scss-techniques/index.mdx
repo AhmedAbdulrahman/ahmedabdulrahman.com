@@ -1,0 +1,103 @@
+---
+title: Advanced SCSS Tricks and Techniques
+author: Ahmed Abdulrahman
+date: 2020-04-05
+hero: ./images/hero.jpeg
+excerpt: In this article, I'll share a series of hints and tips that will help you build scalable and DRY CSS, with just a couple of lines of code.
+category: CSS
+tags: ['css', 'scss']
+secret: true
+---
+
+### 1. Prefixing parent selector based on context
+You might be familiar with using `&` in the beginning of your nested selectors.
+```css
+  a {
+      &:hover {
+          color: purple;
+      }
+  }
+```
+
+Sometimes you want to change to the styling of an element based on a selector match much closer to the DOM root. To achieve it, you can `qualify` a selector by prefixing `&`:
+
+```css
+p {
+    body.no-touch & {
+        /* hide the message if not on a touch device */
+        display: none;
+    }
+}
+```
+
+It will be compiled to:
+```css
+body.no-touch p {
+  display: none;
+}
+```
+
+### 2. Variable expansion (Interpolation) in Selectors
+Variable expansion (Interpolation) is particularly useful for injecting values into strings dynamically generating names
+
+```css
+$successClass: "error";
+
+span.message-#{$successClass} {
+    color: green;
+}
+```
+even with `media queries` or `CSS comments`:
+```css
+$breakpoint: 1440px;
+@media (max-width: #{$breakpoint}) {
+    /* Media only applies to the viewports <= #{$breakpoint} wide... */
+}
+```
+which then complie into this:
+```css
+/* compiled CSS */
+@media (max-width: 1440px) {
+  /* This block only applies to viewports <= 768px wide... */
+}
+```
+
+### 3. Variable Defaults Values
+
+This is what it looks like:
+
+```css
+  $example: 'value' !default;
+```
+So using Sass !default is like adding an “unless this is already assigned” qualifier to your variable assignments. But what’s the use case for this?
+
+Example: custom styles for a white label app
+Recently, a client asked us to create a white label app:
+they wanted their customers to be able to customize things like colors, logo, background, etc.,
+but to have fallbacks for customers who wouldn’t use custom branding. How do you handle this with Sass? Let’s step through it.
+
+First, all of these customizable parts are defined in variables.
+
+If your SCSS module can be configured using globals (which tends to be the SCSS way), you can declare them with a default value:
+
+// _my-module.scss:
+$message-color: blue !default;
+
+p.message {
+    color: $message-color;
+}
+/* compiled CSS */
+p.message {
+  color: blue;
+}
+But you can then optionally override the module defaults before its inclusion:
+
+$message-color: black;
+@import 'my-module';
+/* compiled CSS */
+p.message {
+  color: black;
+}
+That is, an assignment with a !default will only take effect if such a variable didn't have a value before (in contrast to the standard assignment, which will always overwrite a possible previous value).
+
+This is how many SCSS modules (including most that ship with Compass) are configured.
