@@ -82,8 +82,7 @@ const NavControls = styled.div`
 `;
 
 const NavLink = styled(Link)`
-  font-weight: ${p => p.theme.fontsWeight.bold};
-  font-family: ${p => p.theme.fonts.body};
+  font-family: ${p => p.theme.fonts.monospace};
   font-size: 16px;
   background-image: none;
   color: ${p => p.theme.colors.articleText};
@@ -115,6 +114,7 @@ const NavLink = styled(Link)`
     }
   }
   &.active {
+    font-weight: ${p => p.theme.fontsWeight.bold};
     color: ${p => p.theme.colors.primary};
     &::after {
       left: calc(50% - 8px);
