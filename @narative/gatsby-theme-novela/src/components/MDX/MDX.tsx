@@ -90,56 +90,38 @@ const ARTICLE_WIDTH = css`
 
 const HeadingsCSS = css`
   h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 0 auto;
-  }
-
-  h1,
   h1 *,
   h2,
   h2 * {
-    margin: 25px auto 18px;
+    margin: 25px 0 18px;
 
     ${mediaqueries.tablet`
-      margin: 30px auto 18px;
+      margin: 30px 0 18px;
     `};
   }
 
   h3,
   h3 * {
-    margin: 20px auto 10px;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    ${ARTICLE_WIDTH};
+    margin: 20px 0 10px;
   }
 `;
 
 const PrismCSS = p => css`
   code[class*='css-'] {
+    margin: 0 2px;
+    padding: 2px 4px;
+    font-family: ${p.theme.fonts.monospace};
+    line-height: 1.5;
     background-color: ${p.isDark ? '#29293e' : '#f3e1d8'};
     border: 1px solid ${p.isDark ? '#383a61' : '#f3d2c1'};
     border-radius: 0.25rem;
-    padding: 2px 4px;
     white-space: normal;
-    line-height: 1.5;
-    margin: 0 2px;
-    font-size: 2.3rem;
   }
 
   .prism-code {
     overflow: auto;
     width: 100%;
-    max-width: 744px;
+    max-width: 864px;
     margin: 0 auto;
     padding: 32px;
     font-size: 15px;
@@ -252,14 +234,9 @@ const PrismCSS = p => css`
     //   color: #ffa7c4;
     // }
 
-    ${mediaqueries.desktop`
-      left: -26px;
-    `};
-
     ${mediaqueries.tablet`
       max-width: 526px;
       padding: 20px 20px;
-      left: 0;
     `};
 
     ${mediaqueries.phablet`

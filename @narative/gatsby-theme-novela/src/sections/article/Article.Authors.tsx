@@ -141,6 +141,13 @@ const AuthorLink = styled.div`
   &:before {
     background-image: none;
   }
+
+  ${mediaqueries.tablet`
+  display: none;
+`}
+  ${mediaqueries.phablet`
+  display: none;
+`}
 `;
 
 const CoAuthorsList = styled.div`

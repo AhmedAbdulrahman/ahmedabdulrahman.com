@@ -21,7 +21,7 @@ const WorkshopHero: React.FC<WorkshopHeroProps> = ({ workshop }) => {
     workshop.hero.full.constructor === Object;
 
   return (
-    <Section narrow>
+    <Section>
       <HeroContainer>
         <HeroImage id="WorkshopImage__Hero">
           {hasHeroImage ? (
@@ -32,7 +32,7 @@ const WorkshopHero: React.FC<WorkshopHeroProps> = ({ workshop }) => {
         </HeroImage>
         <HeroTextContainer>
           <Author>{workshop.instructor}</Author>
-          <HeroHeading>{workshop.title}</HeroHeading>
+          <Headings.HeroHeading>{workshop.title}</Headings.HeroHeading>
           {/* <Excerpt>{workshop.excerpt}</Excerpt> */}
           <InfoContainer>
             <Date>
@@ -89,23 +89,6 @@ const HeroTextContainer = styled.header`
 const Author = styled(Headings.h4)`
   margin-bottom: 8px;
   color: ${p => p.theme.colors.secondary};
-`;
-
-const HeroHeading = styled(Headings.h1)`
-  font-size: 56px;
-  font-family: ${p => p.theme.fonts.title};
-  margin-bottom: 24px;
-  font-weight: ${p => p.theme.fontsWeight.bold};
-  line-height: 1.2;
-
-  ${mediaqueries.tablet`
-    margin-bottom: 20px;
-    font-size: 48px;
-  `}
-
-  ${mediaqueries.phablet`
-    font-size: 32px;
-  `}
 `;
 
 const Excerpt = styled(Headings.h3)`

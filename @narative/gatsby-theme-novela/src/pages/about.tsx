@@ -10,7 +10,7 @@ import Section from '@components/Section';
 import SEO from '@components/SEO';
 
 import Layout from '@components/Layout';
-import AnchorLink from '@components/Anchor';
+import Anchor from '@components/Anchor';
 import Headings from '@components/Headings';
 
 import { Template } from '@types';
@@ -39,7 +39,7 @@ const AboutPage = ({ location }) => {
   return (
     <Layout>
       <SEO pathname={location.href} title={`About me - ${title}`} />
-      <Section relative>
+      <Section component="main">
         <HeadingContainer>
           <Headings.HeroHeading
             css={css`
@@ -49,23 +49,18 @@ const AboutPage = ({ location }) => {
             Hey, I'm Ahmed 👋
           </Headings.HeroHeading>
         </HeadingContainer>
-      </Section>
-      <Section>
         <ContentContainer>
           <MyText>
             <InfoText>
               Stockholm based Creative Front-end Crispiness Creator &amp;
-              Designer
-            </InfoText>
-            <InfoText>
-              My focus is on creating engaging, accessible &amp; performant
-              interfaces for humans.
+              Designer.
             </InfoText>
             <InfoText>
               Although my skillset is diverse with full of passion for all
               aspects of building great software, I specialise in Front-end
-              development. I've worked on projects of various scales, both solo
-              and as part of a team.
+              development. My focus is on creating engaging, accessible &amp;
+              performant interfaces for humans. I've worked on projects of
+              various scales, both solo and as part of a team.
             </InfoText>
             <InfoText>
               Currently, I live Stockholm, where I work at Oakwood building
@@ -82,49 +77,53 @@ const AboutPage = ({ location }) => {
             <InfoText>
               You can find out
               {` `}
-              <NavLink to={`/uses`} title={`Uses`}>
+              <Anchor component={Link} to={`/uses`} title={`Uses`}>
                 what tools, software, gadgets, and services
-              </NavLink>
+              </Anchor>
               {` `}I use or read about some of the ways you can{` `}
-              <NavLink to={`/work-with-me`} title={`Work with me`}>
+              <Anchor
+                component={Link}
+                to={`/work-with-me`}
+                title={`Work with me`}
+              >
                 work with me
-              </NavLink>
+              </Anchor>
               . I’m currently working on a{' '}
-              <NavLink to={`/workshops`} title={`Uses`}>
+              <Anchor component={Link} to={`/workshops`} title={`Uses`}>
                 workshops
-              </NavLink>{' '}
+              </Anchor>{' '}
               page, to list all my upcoming Online Workshops, but it’s taking a
               while. For those interested in{' '}
-              <NavLink to={`/`} title={`Home`}>
+              <Anchor component={Link} to={`/`} title={`Home`}>
                 how I buit this site
-              </NavLink>
+              </Anchor>
               , I’ve tried my best to list all the tools and techniques I used.
             </InfoText>
             <InfoText>
               Find me on{' '}
-              <a
+              <Anchor
                 href="https://github.com/AhmedAbdulrahman"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Github
-              </a>
+              </Anchor>
               , and{' '}
-              <a
+              <Anchor
                 href="https://twitter.com/_ahmed_ab"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 Twitter
-              </a>{' '}
+              </Anchor>{' '}
               if you have questions. Very occassionally I check my{' '}
-              <a
+              <Anchor
                 href="https://www.linkedin.com/in/ahmed-abd/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 LinkedIn
-              </a>
+              </Anchor>
               .
             </InfoText>
 
@@ -187,55 +186,17 @@ const ContentContainer = styled.div`
 `;
 
 const InfoText = styled.p`
-  font-size: 2.8rem;
-  line-height: 1.5;
-  font-family: ${p => p.theme.fonts.body};
+  font-family: ${p => p.theme.fonts.monospace};
+  font-size: 2.2rem;
+  line-height: 1.67;
   color: ${p => p.theme.colors.articleText};
   margin-bottom: 24px;
 
-  span,
-  a {
-    position: relative;
-    display: inline-block;
-    color: ${p => p.theme.colors.articleText};
-
-    &:before,
-    &:after {
-      content: '';
-      display: block;
-      height: 0.5em;
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: -1;
-      background-color: ${p => p.theme.colors.border};
-    }
-
-    &:after {
-      transform: scaleX(0);
-      transform-origin: 0 50%;
-      transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
-    }
-
-    &:hover {
-      &:after {
-        transform: scaleX(1);
-        background-color: ${p => p.theme.colors.accent};
-      }
-    }
-  }
-
   ${mediaqueries.phablet`
-  font-size: 2.5rem;
   line-height: 1.6;
 `}
 `;
 
 const MyText = styled.div`
   position: relative;
-`;
-
-const NavLink = styled(Link)`
-  color: ${p => p.theme.colors.primary};
 `;

@@ -35,16 +35,16 @@ function CategoryPage({ location, pageContext }) {
 
   return (
     <Layout>
-      <SEO pathname={location.pathname} title={category + ' | ' + title} />
-      <ArticlesHero authors={authors} />
-      <Section narrow>
+      <Section>
+        <SEO pathname={location.pathname} title={category + ' | ' + title} />
+        <ArticlesHero authors={authors} />
         <NavCategory categories={categories} />
         <ArticlesList articles={articles} />
         <ArticlesPaginator show={pageContext.pageCount > 1}>
           <Paginator {...pageContext} />
         </ArticlesPaginator>
+        <ArticlesGradient />
       </Section>
-      <ArticlesGradient />
     </Layout>
   );
 }

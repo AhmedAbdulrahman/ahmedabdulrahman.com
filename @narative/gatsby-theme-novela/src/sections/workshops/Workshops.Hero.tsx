@@ -4,20 +4,16 @@ import styled from '@emotion/styled';
 import Section from '@components/Section';
 import mediaqueries from '@styles/media';
 import Headings from '@components/Headings';
+import Paragraph from '@components/Paragraph';
 
-const WorkshopsHero: React.FC = () => {
+const WorkshopsHero: React.FC = ({ heading, subtitle }) => {
   return (
-    <Section narrow>
-      <HeadingContainer style={{ maxWidth: `850px` }}>
-        <Headings.HeroHeading>
-          Remote <span>Workshops</span>.
-        </Headings.HeroHeading>
-        <InfoText>
-          We prodvide you with a valuable and effective workshops to Level-up
-          your skills as a developer.
-        </InfoText>
-      </HeadingContainer>
-    </Section>
+    <HeadingContainer style={{ maxWidth: `850px` }}>
+      <Headings.HeroHeading>
+        Remote <span>Workshops</span>.
+      </Headings.HeroHeading>
+      <Subtitle>{subtitle}</Subtitle>
+    </HeadingContainer>
   );
 };
 
@@ -59,19 +55,7 @@ const HeroHeading = styled.h1`
   `}
 `;
 
-const InfoText = styled.p`
-  font-size: 2.8rem;
-  line-height: 1.5;
+const Subtitle = styled(Paragraph)`
   font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.secondary};
-  margin-bottom: 64px;
-
-  span {
-    color: ${p => p.theme.colors.accent};
-  }
-
-  ${mediaqueries.phablet`
-    font-size: 1.8rem;
-    line-height: 1.6;
-  `}
+  font-size: 2.8rem;
 `;

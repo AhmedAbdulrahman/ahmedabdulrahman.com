@@ -5,68 +5,84 @@ import Section from '@components/Section';
 import Headings from '@components/Headings';
 
 import mediaqueries from '@styles/media';
+import Icons from '@icons';
 
 const MainHero: React.FC = () => {
   return (
     <>
-      <Section narrow>
-        <HeadingContainer style={{ maxWidth: `850px` }}>
+      <Container>
+        <HeadingContainer>
           <Headings.HeroHeading>
             Creative Front-end developer with <span>designer's eye</span>.
           </Headings.HeroHeading>
         </HeadingContainer>
-        <Description>
-          <InfoText>
-            Focusing on creating neat Design Systems, Animations and
-            Interactions. Working together with team members to get all the
-            design processes in place.
-          </InfoText>
-        </Description>
-      </Section>
-      <Section narrow>
-        <Headings.SectionHeading>
-          princ—
-          <br />
-          iples {`&`} values
-        </Headings.SectionHeading>
-        <Grid>
-          <div>
-            <Title>Integrity.</Title>
-            <Paragraph>
-              Always working with accuracy and transparency.
-            </Paragraph>
-          </div>
-          <div>
-            <Title>Understanding.</Title>
-            <Paragraph fullWidth>
-              Well-made website require effort and comprehension.
-            </Paragraph>
-          </div>
-          <div>
-            <Title>Performance.</Title>
-            <Paragraph>Focus is the key, every minute is important.</Paragraph>
-          </div>
-          <div>
-            <Title>focused outcome</Title>
-            <Paragraph>
-              Identify and tackle problems to maximize the effectiveness of the
-              outcome.
-            </Paragraph>
-          </div>
-        </Grid>
-      </Section>
+        <HeroImage>
+          <Icons.Creative />
+        </HeroImage>
+      </Container>
+      <Description>
+        <InfoText>
+          Focusing on creating neat Design Systems, Animations and Interactions.
+          Working together with team members to get all the design processes in
+          place.
+        </InfoText>
+      </Description>
+      <Headings.SectionHeading>
+        princ—
+        <br />
+        iples {`&`} values
+      </Headings.SectionHeading>
+      <Grid>
+        <div>
+          <Title>Integrity.</Title>
+          <Paragraph>Always working with accuracy and transparency.</Paragraph>
+        </div>
+        <div>
+          <Title>Understanding.</Title>
+          <Paragraph fullWidth>
+            Well-made website require effort and comprehension.
+          </Paragraph>
+        </div>
+        <div>
+          <Title>Performance.</Title>
+          <Paragraph>Focus is the key, every minute is important.</Paragraph>
+        </div>
+        <div>
+          <Title>focused outcome</Title>
+          <Paragraph>
+            Identify and tackle problems to maximize the effectiveness of the
+            outcome.
+          </Paragraph>
+        </div>
+      </Grid>
     </>
   );
 };
 
 export default MainHero;
 
+const Container = styled.div`
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 450px;
+  column-gap: 5em;
+  overflow: hidden;
+  margin: 104px 0;
+
+  ${mediaqueries.desktop_up`
+    grid-template-columns: 1fr 550px;
+  `}
+  ${mediaqueries.tablet`
+    grid-template-columns: 1fr;
+  `}
+`;
+
 const HeadingContainer = styled.div`
-  margin: 100px 0 76px;
+  // margin: 100px 0 76px;
   width: 100%;
 
   ${mediaqueries.phablet`
-  margin: 60px 0 36px;
+  // margin: 60px 0 36px;
 `}
 `;
 
@@ -149,5 +165,14 @@ const Description = styled.div`
 
   ${mediaqueries.desktop`
     margin-bottom: 64px;
+  `}
+`;
+
+const HeroImage = styled.div`
+  position: relative;
+
+  ${mediaqueries.tablet`
+    margin-left: 32px;
+    margin-right: 32px;
   `}
 `;

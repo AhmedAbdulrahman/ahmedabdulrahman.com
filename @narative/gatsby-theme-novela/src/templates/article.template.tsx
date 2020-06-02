@@ -5,12 +5,14 @@ import { css } from '@emotion/core';
 import throttle from 'lodash/throttle';
 import { useColorMode } from 'theme-ui';
 // import { graphql, useStaticQuery } from 'gatsby';
+import { IoLogoTwitter } from 'react-icons/io';
 
 import Layout from '@components/Layout';
 import MDXRenderer from '@components/MDX';
 import Progress from '@components/Progress';
 import Section from '@components/Section';
-// import Subscription from '@components/Subscription';
+import ArticleBody from '@components/Article';
+import Subscription from '@components/Subscription';
 import Anchor from '@components/Anchor';
 import Paragraph from '@components/Paragraph';
 
@@ -98,46 +100,52 @@ const Article: Template = ({ pageContext, location }) => {
 
   return (
     <Layout>
-      <ArticleSEO article={article} authors={authors} location={location} />
-      <ArticleHero article={article} authors={authors} />
-      <ArticleAside contentHeight={contentHeight}>
-        <Progress contentHeight={contentHeight} />
-      </ArticleAside>
-      <MobileControls>
-        <ArticleControls />
-      </MobileControls>
-      <ArticleBody ref={contentSectionRef}>
-        <MDXRenderer content={article.body}>
-          <ArticleShare />
-        </MDXRenderer>
-        <Paragraph
-          css={css`
-            margin-top: 50px !important;
-            margin-bottom: 50px !important;
-          `}
-        >
-          <Anchor
-            isDark={isDark}
-            href={discussUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Discuss on Twitter
-          </Anchor>
-          {/* {` • `}
+      <Section component="main">
+        <ArticleSEO article={article} authors={authors} location={location} />
+        <ArticleHero article={article} authors={authors} />
+        <ArticleAside contentHeight={contentHeight}>
+          <Progress contentHeight={contentHeight} />
+        </ArticleAside>
+        <MobileControls>
+          <ArticleControls />
+        </MobileControls>
+        <ArticleBody ref={contentSectionRef}>
+          <MDXRenderer content={article.body}>
+            <ArticleShare />
+          </MDXRenderer>
+          <BodyFooter>
+            <Anchor
+              isDark={isDark}
+              href={discussUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Discuss on Twitter
+            </Anchor>
+            <TwitterLink
+              href="https://twitter.com/intent/follow?screen_name=_ahmed_ab"
+              target="_blank"
+              rel="noopener noreferrer"
+              title={`Follow @_ahmed_ab on Twitter`}
+            >
+              <IoLogoTwitter />
+              Follow @_ahmed_ab
+            </TwitterLink>
+            {/* {` • `}
           <Anchor href={editUrl} target="_blank" rel="noopener noreferrer">
             Edit on GitHub
           </Anchor> */}
-        </Paragraph>
-      </ArticleBody>
-      {/* {mailchimp && article.subscription && <Subscription />} */}
-      {next.length > 0 && (
-        <NextArticle narrow>
-          <FooterNext>More from {name}</FooterNext>
-          <ArticlesNext articles={next} />
-          <FooterSpacer />
-        </NextArticle>
-      )}
+          </BodyFooter>
+        </ArticleBody>
+        {mailchimp && article.subscription && <Subscription />}
+        {next.length > 0 && (
+          <>
+            <FooterNext>Other things I've written</FooterNext>
+            <ArticlesNext articles={next} />
+            <FooterSpacer />
+          </>
+        )}
+      </Section>
     </Layout>
   );
 };
@@ -146,7 +154,7 @@ export default Article;
 
 const MobileControls = styled.div`
   position: relative;
-  padding-top: 60px;
+  padding: 30px 0;
   transition: background 0.2s linear;
   text-align: center;
 
@@ -155,33 +163,58 @@ const MobileControls = styled.div`
   `}
 `;
 
-const ArticleBody = styled.article`
-  position: relative;
-  padding: 100px 0 35px;
-  transition: background 0.2s linear;
-
-  ${mediaqueries.desktop`
-    padding-left: 53px;
-  `}
-
-  ${mediaqueries.tablet`
-    padding: 70px 0 80px;
-  `}
+const BodyFooter = styled(Paragraph)`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   ${mediaqueries.phablet`
-    padding: 60px 0;
+    flex-direction: column;
+    align-items: flex-start;
+
+    a:first-of-type {
+      margin-bottom: 2rem;
+    }
   `}
 `;
 
-const NextArticle = styled(Section)`
-  display: block;
+const TwitterLink = styled.a`
+  font-size: 16px;
+  font-weight: 600;
+  font-family: ${p => p.theme.fonts.monospace};
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+  padding: 12px 16px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background-color: #1da1f2;
+  border-color: #1da1f2;
+  color: #fff;
+
+  svg {
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  &:hover {
+    color: #1da1f2;
+    background-color: transparent;
+    border-color: #1da1f2;
+  }
 `;
 
 const FooterNext = styled.h3`
   position: relative;
-  opacity: 0.25;
-  margin-bottom: 100px;
+  font-family: ${p => p.theme.fonts.body};
   font-weight: 400;
+  font-size: 1.6rem;
+  opacity: 0.25;
+  margin-bottom: 56px;
   color: ${p => p.theme.colors.primary};
 
   ${mediaqueries.tablet`
@@ -195,14 +228,14 @@ const FooterNext = styled.h3`
     width: ${(870 / 1140) * 100}%;
     height: 1px;
     right: 0;
-    top: 11px;
+    top: 13px;
 
     ${mediaqueries.tablet`
       width: ${(600 / 1140) * 100}%;
     `}
 
     ${mediaqueries.phablet`
-      width: ${(400 / 1140) * 100}%;
+      width: ${(450 / 1140) * 100}%;
     `}
 
     ${mediaqueries.phone`

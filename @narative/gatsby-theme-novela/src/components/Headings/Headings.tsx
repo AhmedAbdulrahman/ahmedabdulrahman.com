@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 
+import Paragraph from '@components/Paragraph';
 import mediaqueries from '@styles/media';
 
 /**
@@ -64,13 +65,10 @@ const h3 = styled.h3`
 `;
 
 const h4 = styled.h4`
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.45;
+  margin-bottom: 1rem;
   ${commonStyles};
-
-  ${mediaqueries.phablet`
-    font-size: 16px;
-  `};
 `;
 
 const h5 = styled.h5`
@@ -101,10 +99,6 @@ const HeroHeading = styled.h1`
   font-family: ${p => p.theme.fonts.title};
   color: ${p => p.theme.colors.primary};
   margin-bottom: 5rem;
-
-  a {
-    color: ${p => p.theme.colors.accent};
-  }
 
   span {
     color: ${p => p.theme.colors.accent};
@@ -139,6 +133,12 @@ const SectionHeading = styled.h2`
   `}
 `;
 
+const Subtitle = styled(Paragraph)`
+  font-size: 2.8rem;
+  line-height: 1.8;
+  font-family: ${p => p.theme.fonts.body};
+  margin-bottom: 64px;
+`;
 export default {
   h1,
   h2,
@@ -148,4 +148,5 @@ export default {
   h6,
   HeroHeading,
   SectionHeading,
+  Subtitle,
 };

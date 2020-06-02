@@ -416,17 +416,15 @@ const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
   align-items: center;
   justify-content: center;
   margin: 5px;
+  font-family: ${p => p.theme.fonts.monospace};
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: ${p => p.theme.colors.primary};
   border: none !important;
   border-radius: 4px;
-  font-family: ${p => p.theme.fonts.body};
-  padding: 8px 15px 8px 12px;
-  color: ${p => p.theme.colors.primary};
+  padding: 1.2rem 1.5rem;
   background: ${p => p.theme.colors.card};
-  transition: background 0.1s ease-in-out, color 0.1s var(--ease-in-out-quad);
-
-  ${mediaqueries.phablet`
-    width: 43%;
-  `}
+  transition: background 0.1s ease-in-out, color 0.1s ease-in-out;
 
   &:hover {
     color: ${p => p.theme.colors.background};

@@ -5,6 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import Layout from '@components/Layout';
 import MDXRenderer from '@components/MDX';
 import Section from '@components/Section';
+import Article from '@components/Article';
 
 import mediaqueries from '@styles/media';
 
@@ -39,27 +40,11 @@ const Workshop: Template = ({ pageContext, location }) => {
     <Layout>
       <ArticleSEO article={workshop} location={location} />
       <WorkshopHero workshop={workshop} />
-      <WorkshopBody ref={contentSectionRef}>
+      <Section ref={contentSectionRef}>
         <MDXRenderer content={workshop.body}></MDXRenderer>
-      </WorkshopBody>
+      </Section>
     </Layout>
   );
 };
 
 export default Workshop;
-
-const WorkshopBody = styled.article`
-  position: relative;
-  padding: 0 0 35px;
-  transition: background 0.2s linear;
-  ${mediaqueries.desktop`
-    padding-left: 53px;
-  `}
-
-  ${mediaqueries.tablet`
-    padding: 70px 0 80px;
-  `}
-  ${mediaqueries.phablet`
-    padding: 60px 0;
-  `}
-`;

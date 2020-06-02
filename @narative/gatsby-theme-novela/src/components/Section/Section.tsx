@@ -7,20 +7,23 @@ const SectionContainer = styled.div<{ narrow?: boolean }>`
   margin: 0 auto;
   padding: 0 3rem;
 
-  ${mediaqueries.desktop`
+  ${mediaqueries.tablet_up`
     max-width: 850px;
   `};
 
+  ${mediaqueries.desktop`
+    max-width: 1080px;
+  `};
+
+  ${mediaqueries.desktop_medium_up`
+    max-width: 1220px;
+  `};
+
   ${p =>
-    p.narrow
-      ? mediaqueries.tablet`
-          padding: 0 3rem;
-          max-width: 527px;
-        `
-      : mediaqueries.tablet`
-          padding: 0 3rem;
-          max-width: 567px;
-        `}
+    p.narrow &&
+    `
+    max-width: 68rem;
+    `}
 
   ${mediaqueries.phablet`
     max-width: 100%;

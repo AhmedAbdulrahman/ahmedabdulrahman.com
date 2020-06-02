@@ -21,22 +21,21 @@ const Uses: React.FC<PageProps> = ({ location }) => {
   return (
     <Layout>
       <SEO pathname={location.pathname} title={'Uses'} />
-      <Section narrow>
+      <Section component="main">
         <Container>
           <HeroTextContainer>
             <Headings.HeroHeading>Tools</Headings.HeroHeading>
-            <InfoText>
+            <Headings.Subtitle>
               I get a lot of questions about the tools I use for different parts
               of my work. I've put together this "uses" page that covers the
               tools 🔨 I use to make things.
-            </InfoText>
+            </Headings.Subtitle>
           </HeroTextContainer>
           <HeroImage>
-            <Icons.Tools />
+            <Icons.Computer />
           </HeroImage>
         </Container>
-      </Section>
-      <Section narrow>
+
         {/* <Blockquote>
           To become a master at any skill, it takes the total effort of your:
           heart, mind, and soul working together in tandem.
@@ -439,7 +438,7 @@ const Container = styled.div`
   grid-template-columns: 1fr 450px;
   column-gap: 5em;
   overflow: hidden;
-  margin: 100px 0 76px;
+  margin: 104px 0 40px;
 
   ${mediaqueries.desktop`
     grid-template-columns: 1fr 1fr;
@@ -452,7 +451,7 @@ const Container = styled.div`
 const HeroTextContainer = styled.div`
   position: relative;
   align-self: end;
-  align-self: center;
+  align-self: flex-start;
 `;
 
 const HeroImage = styled.div`

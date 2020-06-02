@@ -242,11 +242,11 @@ const ImageContainer = styled.div<{ narrow: boolean; gridLayout: string }>`
   ${mediaqueries.tablet`
     height: 200px;
     margin-bottom: 35px;
-    display: none;
-    visibility: hidden;
   `}
 
   ${mediaqueries.phablet`
+    display: none;
+    visibility: hidden;
     overflow: hidden;
     margin-bottom: 0;
     box-shadow: none;
@@ -283,12 +283,12 @@ const Excerpt = styled.p<{
   gridLayout: string;
 }>`
   ${limitToTwoLines};
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: ${p => p.theme.colors.articleText};
-  font-family: ${p => p.theme.fonts.body};
-  display: ${p => (p.hasOverflow && p.gridLayout === 'tiles' ? 'box' : 'box')};
   max-width: ${p => (p.narrow ? '515px' : '515px')};
+  margin-bottom: 1.2rem;
+  font-family: ${p => p.theme.fonts.monospace};
+  font-size: 1.875rem;
+  color: ${p => p.theme.colors.articleText};
+  display: ${p => (p.hasOverflow && p.gridLayout === 'tiles' ? 'box' : 'box')};
 
   ${mediaqueries.desktop`
     display: -webkit-box;
@@ -306,6 +306,7 @@ const Excerpt = styled.p<{
 `;
 
 const MetaData = styled.div`
+  font-family: ${p => p.theme.fonts.monospace};
   font-weight: 400;
   font-size: 1.625rem;
   color: ${p => p.theme.colors.textOffset};

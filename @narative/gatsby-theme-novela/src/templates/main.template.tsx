@@ -10,9 +10,9 @@ import LatestArticles from '../sections/main/Latest.Articles';
 const Main = ({ location }) => {
   return (
     <Layout>
-      <SEO pathname={location.pathname} />
-      <MainHero />
       <Section>
+        <SEO pathname={location.pathname} />
+        <MainHero />
         <LatestArticles />
       </Section>
     </Layout>
