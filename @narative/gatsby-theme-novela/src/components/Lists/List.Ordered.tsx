@@ -9,7 +9,7 @@ const OrderedList = styled.ol`
   padding: 15px 0 30px 30px;
   margin: 0 auto;
   transition: ${p => p.theme.colorModeTransition};
-  font-size: 18px;
+  font-family: ${p => p.theme.fonts.monospace};
   z-index: 1;
 
   width: 100%;
@@ -31,6 +31,7 @@ const OrderedList = styled.ol`
   li {
     position: relative;
     padding-bottom: 15px;
+    font-size: 1.875rem;
 
     ${mediaqueries.tablet`
       padding-left: 30px;
@@ -38,6 +39,7 @@ const OrderedList = styled.ol`
 
     ${mediaqueries.phablet`
       padding-left: 30px;
+      font-size: 1.575rem;
     `};
 
     p {

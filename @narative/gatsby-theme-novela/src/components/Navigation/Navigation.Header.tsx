@@ -119,7 +119,7 @@ const NavigationHeader: React.FC<{}> = () => {
   }, [previousPath]);
 
   return (
-    <Section>
+    <Section component="header">
       <NavContainer>
         <LogoLink
           to={rootPath || basePath}
@@ -153,31 +153,37 @@ const NavigationHeader: React.FC<{}> = () => {
                     burgerOpen={burgerOpen}
                     setBurgerOpen={setBurgerOpen}
                   />
-                  <MobileMenu burgerOpen={burgerOpen}>
-                    <NavLink
-                      to={`/writing`}
-                      title={`All Article`}
-                      activeClassName="active"
-                    >
-                      Write
-                    </NavLink>
-                    <NavLink
-                      to={`/workshops`}
-                      title={`All Workshops`}
-                      activeClassName="active"
-                    >
-                      Workshops
-                    </NavLink>
-                    <NavLink
-                      to={`/about`}
-                      title={`About Me`}
-                      activeClassName="active"
-                    >
-                      Me
-                    </NavLink>
-                    <SharePageButton />
-                    <DarkModeToggle />
-                  </MobileMenu>
+                  <NavContent burgerOpen={burgerOpen}>
+                    <MobileMenu burgerOpen={burgerOpen}>
+                      <NavItem>
+                        <NavLink
+                          to={`/writing`}
+                          title={`All Article`}
+                          activeClassName="active"
+                        >
+                          <NavNum>01</NavNum>Write
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink
+                          to={`/workshops`}
+                          title={`All Workshops`}
+                          activeClassName="active"
+                        >
+                          <NavNum>02</NavNum>Workshops
+                        </NavLink>
+                      </NavItem>
+                      <NavItem>
+                        <NavLink
+                          to={`/about`}
+                          title={`About Me`}
+                          activeClassName="active"
+                        >
+                          <NavNum>03</NavNum>Me
+                        </NavLink>
+                      </NavItem>
+                    </MobileMenu>
+                  </NavContent>
                 </>
               ) : (
                 <>
@@ -244,26 +250,20 @@ const NavContainer = styled.div`
     padding-top: 50px;
   `};
 
-  @media screen and (max-height: 800px) {
-    padding-top: 50px;
-  }
+  ${mediaqueries.phablet`
+  padding-top: 30px;
+`};
 `;
 
 const NavLink = styled(Link)`
-  font-weight: ${p => p.theme.fontsWeight.bold};
-  font-family: ${p => p.theme.fonts.body};
-  font-size: 15px;
+  font-family: ${p => p.theme.fonts.monospace};
+  font-size: 1.6rem;
   color: ${p => p.theme.colors.primary};
   transition: color 0.25s var(--ease-in-out-quad);
   display: inline-block;
   position: relative;
   margin-left: 40px;
   background-image: none;
-
-  ${mediaqueries.tablet`
-    margin-left: 0;
-    font-size: 24px;
-  `}
 
   &::after {
     background: none repeat scroll 0 0 transparent;
@@ -285,6 +285,7 @@ const NavLink = styled(Link)`
   }
 
   &.active {
+    font-weight: ${p => p.theme.fontsWeight.bold};
     &::after {
       left: calc(50% - 10px);
       width: 20px;
@@ -320,8 +321,7 @@ const LogoLink = styled(Link)<{ back: string }>`
   }
 `;
 
-const NavControls = styled.div`
-  // position: relative;
+const NavControls = styled.nav`
   display: flex;
   align-items: center;
 
@@ -330,27 +330,100 @@ const NavControls = styled.div`
   `}
 `;
 
-const MobileMenu = styled.nav<{ burgerOpen: boolean }>`
+const NavContent = styled.div<{ burgerOpen: boolean }>`
+  width: 100%;
+  height: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  display: none;
+  background: #171718;
+
+  ${p => mediaqueries.phablet`
+  ${p.burgerOpen &&
+    `
+    display: flex;
+  `}
+  `}
+`;
+
+const NavItem = styled.li`
+  position: relative;
+  padding: 0 15%;
+  width: 100%;
+
+  ${NavLink} {
+    position: initial !important;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    font-family: ${p => p.theme.fonts.title};
+    font-size: 3.5rem;
+    letter-spacing: 1px;
+    color: #fff;
+    padding: 1.5rem;
+    text-transform: none;
+    line-height: 1;
+    white-space: nowrap;
+    transition: color 0.2s linear;
+
+    &:after {
+      content: '';
+      display: block;
+      height: 5px;
+      width: 112.5px !important;
+      background-color: ${p => p.theme.colors.articleText};
+      position: absolute;
+      left: 1.25rem;
+      right: 1.25rem;
+      bottom: -5px;
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      transition: -webkit-transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+
+    &:hover {
+      &:after {
+        transform: scaleX(1);
+      }
+    }
+    &.active {
+      &:after {
+        left: 0;
+        right: 70%;
+        height: 10px;
+        bottom: 15%;
+        transform: none;
+        background-color: ${p => p.theme.colors.accent};
+      }
+    }
+  }
+`;
+
+const NavNum = styled.span`
+  margin-right: 1rem;
+  font-weight: 300;
+  font-size: 0.7em;
+  color: ${p => p.theme.colors.textOffset};
+`;
+
+const MobileMenu = styled.ul<{ burgerOpen: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
-  background: ${props => props.theme.colors.background};
+  align-items: flex-start;
+  background: #16161a;
   transform: ${props =>
     props.burgerOpen ? 'translateX(0)' : 'translateX(-150%)'};
-  height: 100vh;
-  width: 100%;
-  text-align: left;
-  padding: 20rem 2rem;
-  position: fixed;
-  top: 0;
-  left: 0;
-  transition: transform 0.3s ease-in-out;
-  a,
-  button {
-    font-size: ;
-  }
 `;
+
 const ToolTip = styled.div<{ isDark: boolean; hasCopied: boolean }>`
   position: absolute;
   padding: 4px 13px;

@@ -19,16 +19,16 @@ const ArticlesPage: Template = ({ location, pageContext }) => {
 
   return (
     <Layout>
-      <SEO pathname={location.pathname} />
-      <ArticlesHero authors={authors} />
-      <Section narrow>
+      <Section>
+        <SEO pathname={location.pathname} />
+        <ArticlesHero authors={authors} />
         <NavCategory categories={categories} />
         <ArticlesList articles={articles} />
         <ArticlesPaginator show={pageContext.pageCount > 1}>
           <Paginator {...pageContext} />
         </ArticlesPaginator>
+        <ArticlesGradient />
       </Section>
-      <ArticlesGradient />
     </Layout>
   );
 };

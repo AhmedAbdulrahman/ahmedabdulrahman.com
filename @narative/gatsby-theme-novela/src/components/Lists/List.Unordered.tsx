@@ -8,38 +8,18 @@ const UnorderedList = styled.ul<{ fullWidth?: boolean }>`
   position: relative;
   padding: 15px 0 30px 30px;
   transition: ${p => p.theme.colorModeTransition};
-  margin: 0 auto;
-  font-size: 18px;
+  font-family: ${p => p.theme.fonts.monospace};
   z-index: 1;
-
-  width: 100%;
-  max-width: 680px;
-
-  ${p =>
-    !p.fullWidth &&
-    mediaqueries.desktop`
-    max-width: 507px;
-  `}
-
-  ${mediaqueries.tablet`
-    max-width: 486px;
-    padding-left: 0px;
-  `};
 
   ${mediaqueries.phablet`
     padding-left: 20px;
   `};
 
-  ${p =>
-    p.fullWidth &&
-    `
-    max-width: 100%;
-  `}
-
   li {
     position: relative;
     padding-bottom: 15px;
-    line-height: 1.756;
+    font-size: 1.875rem;
+    line-height: 1.65;
 
     ${mediaqueries.tablet`
       padding-left: 30px;
@@ -48,6 +28,7 @@ const UnorderedList = styled.ul<{ fullWidth?: boolean }>`
     ${mediaqueries.phablet`
       padding-left: 20px;
       padding-right: 20px;
+      font-size: 1.575rem;
     `};
 
     p {

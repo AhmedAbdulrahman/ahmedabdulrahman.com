@@ -31,12 +31,14 @@ export default {
     '10px 10px 22px rgba(156, 171, 197, 0.28), -10px -10px 24px rgba(240, 243, 250, 0.65)',
   border: 'rgb(247, 222, 209)',
   outline: '#cad4e5',
+  selection: '#8bd3dd',
   modes: {
     dark: {
       grey: '#73737D',
       primary: '#fff',
       secondary: '#fff',
       accent: '#ffe8a3',
+      primaryOffset: '#ffdc71',
       background: '#16161a',
       backgroundModal: 'rgba(17, 18, 22, 0.95)',
       cleanBackground: '#16161a',
@@ -58,6 +60,7 @@ export default {
       neumorphismShadown: 'none',
       border: '#2d2d2d',
       outline: '#ffe7a2',
+      selection: '#43a9a3',
     },
   },
 };

@@ -1,6 +1,7 @@
+import React from 'react';
 import styled from '@emotion/styled';
 
-const Anchor = styled.a`
+const StyledAnchor = styled.span`
   display: inline-block;
   position: relative;
   color: ${p => p.theme.colors.articleText};
@@ -17,6 +18,29 @@ const Anchor = styled.a`
     z-index: -1;
     background-color: ${p => p.theme.colors.border};
   }
+
+  &:after {
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+  }
+
+  &:hover {
+    &:after {
+      transform: scaleX(1);
+      background-color: ${p => p.theme.colors.accent};
+    }
+  }
 `;
+
+const Anchor = props => {
+  const { children, component: Component = 'a', ...other } = props;
+
+  return (
+    <Component {...other}>
+      <StyledAnchor>{children}</StyledAnchor>
+    </Component>
+  );
+};
 
 export default Anchor;

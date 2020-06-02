@@ -181,6 +181,7 @@ const paginationItemMixin = p => css`
 `;
 
 const PageButton = styled(Link)`
+  font-family: ${p => p.theme.fonts.monospace};
   font-weight: ${p => p.theme.fontsWeight.bold};
   font-size: 18px;
   text-decoration: none;
@@ -196,6 +197,7 @@ const PageButton = styled(Link)`
 `;
 
 const PageNumberBUtton = styled(Link)`
+  font-family: ${p => p.theme.fonts.monospace};
   font-weight: 400;
   font-size: 18px;
   text-decoration: none;

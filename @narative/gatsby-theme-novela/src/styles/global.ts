@@ -27,6 +27,11 @@ export const globalStyles = p =>
       font-size: inherit;
     }
 
+    ::selection {
+      background: ${p.colors.selection};
+      color: #fff;
+    }
+
     :root {
       -ms-overflow-style: -ms-autohiding-scrollbar;
       box-sizing: border-box;
@@ -38,13 +43,20 @@ export const globalStyles = p =>
       line-height: 1.4;
     }
 
+    html {
+      font-family: sans-serif; // 1
+      -ms-text-size-adjust: 100%; // 2
+      -webkit-text-size-adjust: 100%; // 2
+    }
+
     body {
-      font-family: 'Text', Serif;
-      font-size: 1.6rem;
-      margin: 0;
-      font-weight: 400;
-      height: 100%;
-      cursor: auto;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+        Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+      font-size: 1rem;
+      line-height: 1.625;
+      overflow-x: hidden;
+      transition: color 0.15s, background-color 0.15s;
     }
 
     p {

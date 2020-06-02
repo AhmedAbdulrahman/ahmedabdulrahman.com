@@ -30,7 +30,7 @@ const StyledBurger = styled.button<{ isDark: boolean; open: boolean }>`
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 10;
+  z-index: 120;
 
   &:focus {
     outline: none;
@@ -39,7 +39,7 @@ const StyledBurger = styled.button<{ isDark: boolean; open: boolean }>`
   div {
     width: 2.6rem;
     height: 0.4rem;
-    background: ${props => (props.isDark ? '#fff' : '#002a5a')};
+    background-color: ${p => (p.open ? '#fff' : p.theme.colors.articleText)};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;

@@ -44,19 +44,22 @@ const WorkshopsPage = ({ location, pageContext }) => {
 
   return (
     <LayoutBase>
-      <SEO
-        pathname={location.pathname}
-        title={site.hero.workshop.heading + ' | ' + site.title}
-        // image={seoImage}
-      />
-      <WorkshopsHero />
-      <Section narrow>
+      <Section component="main">
+        <SEO
+          pathname={location.pathname}
+          title={site.hero.workshop.heading + ' | ' + site.title}
+          // image={seoImage}
+        />
+        <WorkshopsHero
+          heading={site.hero.workshop.heading}
+          subtitle={site.hero.workshop.subHeading}
+        />
         <WorkshopsList workshops={workshop} />
         <ArticlesPaginator show={pageContext.pageCount > 1}>
           <Paginator {...pageContext} />
         </ArticlesPaginator>
+        <WorkshopsGradient />
       </Section>
-      <WorkshopsGradient />
     </LayoutBase>
   );
 };

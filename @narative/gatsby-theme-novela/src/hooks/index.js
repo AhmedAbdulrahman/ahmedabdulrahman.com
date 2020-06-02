@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 export const getMobileDetect = userAgent => {
   const isAndroid = () => Boolean(userAgent.match(/Android/i));
   const isIos = () => Boolean(userAgent.match(/iPhone|iPod/i));
+  const isTablet = () => Boolean(userAgent.match(/Tablet|iPad/i));
   const isOpera = () => Boolean(userAgent.match(/Opera Mini/i));
   const isWindows = () => Boolean(userAgent.match(/IEMobile/i));
   const isSSR = () => Boolean(userAgent.match(/SSR/i));
@@ -16,6 +17,7 @@ export const getMobileDetect = userAgent => {
     isDesktop,
     isAndroid,
     isIos,
+    isTablet,
     isSSR,
   };
 };

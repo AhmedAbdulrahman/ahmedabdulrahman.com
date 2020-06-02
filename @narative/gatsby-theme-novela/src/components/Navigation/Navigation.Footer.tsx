@@ -57,12 +57,11 @@ const Footer: React.FC<{}> = () => {
   return (
     <Section
       component="footer"
-      narrow
       css={css`
         padding: 2rem 0;
       `}
     >
-      <HoritzontalRule />
+      <HorizontalRule />
       <FooterContainer>
         <FooterItem>
           <strong>© {copyrightDate}</strong>
@@ -98,23 +97,20 @@ const FooterContainer = styled.div`
   }
 `;
 
-const HoritzontalRule = styled.div`
+const HorizontalRule = styled.div`
   position: relative;
   margin: 80px auto 32px;
   border-bottom: 1px solid ${p => p.theme.colors.horizontalRule};
 
   ${mediaqueries.tablet`
-    margin: 60px auto;
-  `}
-
-  ${mediaqueries.phablet`
-    display: none;
+    margin: 30px auto;
   `}
 `;
 
 const FooterItem = styled.p<{ right: boolean }>`
   flex-basis: 50%;
   margin-bottom: 0.5rem;
+  font-size: 1.4rem;
   z-index: 1;
 
   a {

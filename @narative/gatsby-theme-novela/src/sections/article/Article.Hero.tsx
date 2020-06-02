@@ -45,26 +45,19 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
           <ArticleAuthors authors={authors} />
           <ArticleMeta hasCoAUthors={hasCoAUthors}>
             {article.date}
-            {` • ${formatReadingTime(article.timeToRead)} • `}
-            <Anchor
-              href={editURL}
-              target="_blank"
-              rel="noopener noreferrer"
-              isDark={isDark}
-            >
-              Edit Post <IoLogoGithub />
-            </Anchor>
+            {` • ${formatReadingTime(article.timeToRead)}`}
+            {/* <a href={editURL} target="_blank" rel="noopener noreferrer">
+              <IoLogoGithub />
+            </a> */}
           </ArticleMeta>
         </HeroSubtitle>
-        <TagsWrapper>
-          <Tags>
-            {article.tags.map((tag, index) => (
-              <ArticleTag key={index} isDark={isDark}>
-                {tag}
-              </ArticleTag>
-            ))}
-          </Tags>
-        </TagsWrapper>
+        <Tags>
+          {article.tags.map((tag, index) => (
+            <ArticleTag key={index} isDark={isDark}>
+              {tag}
+            </ArticleTag>
+          ))}
+        </Tags>
       </Header>
       <HeroImage id="ArticleImage__Hero">
         {hasHeroImage ? (
@@ -73,7 +66,7 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
           <ImagePlaceholder />
         )}
         {article.bannerCredit ? (
-          <Markdown>{article.bannerCredit}</Markdown>
+          <StyledMarkdown>{article.bannerCredit}</StyledMarkdown>
         ) : null}
       </HeroImage>
     </Hero>
@@ -110,42 +103,40 @@ const Hero = styled.div`
 `;
 
 const ArticleMeta = styled.div<{ hasCoAUthors: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-left: ${p => (p.hasCoAUthors ? '10px' : '0')};
+  a {
+    font-size: 22px;
+    display: inline-flex;
+    color: ${p => p.theme.colors.articleText};
+    margin-left: 10px;
+  }
   ${mediaqueries.phablet`
     margin-left: 0;
   `}
 `;
 
-const TagsWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: ${p => p.theme.colors.grey};
-  margin-top: 15px;
-
-  ${mediaqueries.desktop_up`
-    margin-left: 33px;
-  `}
-
-  ${mediaqueries.tablet`
-    // justify-content: center;
-`}
-`;
-
 const Tags = styled.div`
   display: flex;
+  flex-flow: row wrap;
+  margin-top: 1rem;
+
+  ${mediaqueries.desktop_up`
+    margin-left: 3rem;
+  `}
 `;
 
 const ArticleTag = styled.span<{ isDark: boolean }>`
-  padding: 0.3rem 0.8rem 0.7rem;
-  margin-right: 5px;
-  color: ${p => (p.isDark ? '#b3b9c5' : p.theme.colors.secondary)};
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 5px 5px 0;
+  padding: 0.3rem 0.8rem;
+  color: ${p => p.theme.colors.card};
   background: ${p =>
-    p.isDark ? 'rgba(46, 45, 61, 0.74)' : 'rgba(33, 37, 41, 0.08)'};
+    p.isDark ? p.theme.colors.accent : p.theme.colors.textOffset};
   border-radius: 5px;
-  font-size: 15px;
-  font-weight: ${p => p.theme.fontsWeight.regular};
-  font-family: ${p => p.theme.fonts.body};
 
   ${mediaqueries.desktop_up`
     &:first-of-type {
@@ -154,28 +145,21 @@ const ArticleTag = styled.span<{ isDark: boolean }>`
   `}
 `;
 
-const Header = styled.header`
+const Header = styled.div`
   position: relative;
+  max-width: 75rem;
+  width: 100%;
+  margin: 100px auto 56px;
   z-index: 10;
-  margin:100px auto 56px;
-  padding-left: 68px;
-  max-width: 749px;
 
   ${mediaqueries.desktop`
-    padding-left: 53px;
-    max-width: calc(507px + 53px);
+    // max-width: calc(550px + 53px);
     margin: 100px auto 70px;
   `}
 
   ${mediaqueries.tablet`
-    padding-left: 0;
     margin: 100px auto 70px;
     max-width: 480px;
-  `}
-
-  ${mediaqueries.phablet`
-    margin: 64px auto 64px;
-    padding: 0 40px;
   `}
 
   @media screen and (max-height: 700px) {
@@ -195,33 +179,30 @@ const HeroHeading = styled(Headings.h1)`
 `;
 
 const Excerpt = styled(Headings.h3)`
-  font-size: 28px;
-  font-family: ${p => p.theme.fonts.body};
+  font-family: ${p => p.theme.fonts.monospace};
+  font-size: 2.2rem;
+  font-weight: 300;
+  line-height: 1.6;
   color: ${p => p.theme.colors.articleText};
-  margin-bottom: 24px;
   margin-top: 24px;
-  font-weight: normal;
-  line-height: 1.5;
-  ${mediaqueries.tablet`
-  `}
-  ${mediaqueries.phablet`
-    font-size: 22px;
-  `}
+  margin-bottom: 40px;
 `;
 
 const HeroSubtitle = styled.div<{ hasCoAUthors: boolean }>`
   position: relative;
   display: flex;
-  font-size: 17px;
-  font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.textOffset};
   align-items: center;
+  font-family: ${p => p.theme.fonts.monospace};
+  font-size: 18px;
+  color: ${p => p.theme.colors.articleText};
 
-  ${p => mediaqueries.phablet`
+  ${mediaqueries.phablet`
     flex-direction: column;
     align-items: left;
     align-items: flex-start;
-    ${p.hasCoAUthors &&
+
+    ${p =>
+      p.hasCoAUthors &&
       `
         &::before {
           content: '';
@@ -241,6 +222,14 @@ const HeroSubtitle = styled.div<{ hasCoAUthors: boolean }>`
       margin-bottom: 5px;
     }
   `}
+
+  ${mediaqueries.tablet`
+    font-size: 18px;
+  `};
+
+  ${mediaqueries.phablet`
+    font-size: 14px;
+  `};
 `;
 
 const HeroImage = styled.div`
@@ -251,6 +240,38 @@ const HeroImage = styled.div`
   overflow: hidden;
   margin: 0 auto;
   text-align: center;
+
+  a {
+    display: inline-block;
+    position: relative;
+
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      height: 0.5em;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0em;
+      z-index: -1;
+      background-color: ${p => p.theme.colors.border};
+    }
+
+    &:after {
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+    }
+
+    &:hover {
+      &:after {
+        transform: scaleX(1);
+        background-color: ${p => p.theme.colors.accent};
+      }
+    }
+  }
+
   ${mediaqueries.tablet`
     max-width: 100%;
   `}
@@ -262,4 +283,13 @@ const HeroImage = styled.div`
       height: 220px;
     }
 `}
+`;
+
+const StyledMarkdown = styled(Markdown)`
+  font-family: ${p => p.theme.fonts.monospace};
+  font-size: 1.6rem;
+
+  a {
+    color: ${p => p.theme.colors.articleText};
+  }
 `;

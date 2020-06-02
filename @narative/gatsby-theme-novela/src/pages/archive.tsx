@@ -78,6 +78,7 @@ const Archive: React.FC<PageProps> = ({ location }) => {
 export default Archive;
 
 const ArticlesItem = styled(Link)`
+  font-family: ${p => p.theme.fonts.body};
   z-index: 1;
   position: relative;
   display: grid;
