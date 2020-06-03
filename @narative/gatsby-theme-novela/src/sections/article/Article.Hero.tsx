@@ -6,7 +6,6 @@ import { IoLogoGithub } from 'react-icons/io';
 
 import Headings from '@components/Headings';
 import Image, { ImagePlaceholder } from '@components/Image';
-import Anchor from '@components/Anchor';
 
 import mediaqueries from '@styles/media';
 import { IArticle, IAuthor } from '@types';
@@ -180,9 +179,9 @@ const HeroHeading = styled(Headings.h1)`
 
 const Excerpt = styled(Headings.h3)`
   font-family: ${p => p.theme.fonts.monospace};
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   font-weight: 300;
-  line-height: 1.6;
+  line-height: 1.8;
   color: ${p => p.theme.colors.articleText};
   margin-top: 24px;
   margin-bottom: 40px;
@@ -193,7 +192,7 @@ const HeroSubtitle = styled.div<{ hasCoAUthors: boolean }>`
   display: flex;
   align-items: center;
   font-family: ${p => p.theme.fonts.monospace};
-  font-size: 18px;
+  font-size: 1.675rem;
   color: ${p => p.theme.colors.articleText};
 
   ${mediaqueries.phablet`
@@ -253,7 +252,7 @@ const HeroImage = styled.div`
       position: absolute;
       left: 0;
       right: 0;
-      bottom: 0em;
+      bottom: 0.2em;
       z-index: -1;
       background-color: ${p => p.theme.colors.border};
     }
@@ -288,6 +287,7 @@ const HeroImage = styled.div`
 const StyledMarkdown = styled(Markdown)`
   font-family: ${p => p.theme.fonts.monospace};
   font-size: 1.6rem;
+  font-style: italic;
 
   a {
     color: ${p => p.theme.colors.articleText};

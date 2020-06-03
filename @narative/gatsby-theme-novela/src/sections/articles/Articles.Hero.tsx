@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 
 import Anchor from '@components/Anchor';
@@ -8,19 +8,37 @@ import Headings from '@components/Headings';
 
 import mediaqueries from '@styles/media';
 
+const siteQuery = graphql`
+  {
+    allSite {
+      edges {
+        node {
+          siteMetadata {
+            hero {
+              maxWidth
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 const ArticlesHero: React.FC = () => {
+  const results = useStaticQuery(siteQuery);
+  const site = results.allSite.edges[0].node.siteMetadata;
   return (
-    <HeadingContainer style={{ maxWidth: `850px` }}>
+    <HeadingContainer style={{ maxWidth: site.hero.maxWidth }}>
       <Headings.HeroHeading>
         Writing is <span>thinking</span>.
       </Headings.HeroHeading>
-      <InfoText>
+      <Headings.Subtitle>
         I write about solving problems with code, designing things people use,
         teaching, and learning.{' '}
         <Anchor component={Link} to="/archive">
           Archive
         </Anchor>
-      </InfoText>
+      </Headings.Subtitle>
     </HeadingContainer>
   );
 };
@@ -37,10 +55,6 @@ const HeadingContainer = styled.div`
   ${mediaqueries.tablet`
   width: 100%;
   `}
-
-  ${mediaqueries.phablet`
-  margin: 60px 0 36px;
-`}
 `;
 
 const InfoText = styled.p`
@@ -48,5 +62,13 @@ const InfoText = styled.p`
   line-height: 1.8;
   font-family: ${p => p.theme.fonts.body};
   color: ${p => p.theme.colors.articleText};
-  margin-bottom: 64px;
+
+  ${mediaqueries.desktop_up`
+    margin-bottom: 64px;
+  `}
+
+  ${mediaqueries.tablet`
+    font-size: 2.2rem;
+    line-height: 1.5;
+  `}
 `;

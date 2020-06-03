@@ -67,11 +67,12 @@ const Container = styled.div`
   grid-template-columns: 1fr 450px;
   column-gap: 5em;
   overflow: hidden;
-  margin: 104px 0;
+  margin: 104px 0 72px;
 
   ${mediaqueries.desktop_up`
-    grid-template-columns: 1fr 550px;
+    grid-template-columns: 1fr 500px;
   `}
+
   ${mediaqueries.tablet`
     grid-template-columns: 1fr;
   `}
@@ -103,6 +104,7 @@ const InfoText = styled.p`
   `}
 
   ${mediaqueries.phablet`
+    font-size: 2.2rem;
     line-height: 1.6;
   `}
 `;
@@ -116,11 +118,13 @@ const Grid = styled.div`
 
   div {
     text-align: center;
+    font-family: ${p => p.theme.fonts.body};
 
     ${mediaqueries.desktop`
       max-width: 400px;
       margin-right: auto;
       margin-left: auto;
+      margin-bottom: 2.6rem;
       `}
   }
 
@@ -140,10 +144,10 @@ const Title = styled.h3`
   font-family: ${p => p.theme.fonts.title};
   font-size: 3rem;
   line-height: 1.1;
-  margin-bottom: 24px;
   color: ${p => p.theme.colors.accent};
 
   ${mediaqueries.phablet`
+  font-size: 2.4rem;
   line-height: 1.6;
 `}
 `;
@@ -156,6 +160,7 @@ const Paragraph = styled.p`
   color: ${p => p.theme.colors.articleText};
 
   ${mediaqueries.phablet`
+  font-size: 2rem;
   line-height: 1.6;
 `}
 `;

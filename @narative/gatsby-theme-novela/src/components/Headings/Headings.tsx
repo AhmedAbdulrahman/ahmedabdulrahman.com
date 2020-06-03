@@ -98,15 +98,22 @@ const HeroHeading = styled.h1`
   line-height: 1.1;
   font-family: ${p => p.theme.fonts.title};
   color: ${p => p.theme.colors.primary};
-  margin-bottom: 5rem;
 
   span {
     color: ${p => p.theme.colors.accent};
   }
 
   ${mediaqueries.desktop_up`
-    font-size: 9rem;
+    font-size: 8.6rem;
   `}
+
+  ${mediaqueries.desktop_up`
+    margin-bottom: 5rem;
+  `}
+
+  ${mediaqueries.tablet`
+  font-size: 6.8rem;
+`}
 
   ${mediaqueries.phablet`
     font-size: 5.6rem;
@@ -127,17 +134,25 @@ const SectionHeading = styled.h2`
 `}
 
   ${mediaqueries.phablet`
-    font-size: 4rem;
+    font-size: 3.2rem;
     line-height: 1.45;
     margin-bottom: 16px;
   `}
 `;
 
-const Subtitle = styled(Paragraph)`
+const Subtitle = styled.p`
   font-size: 2.8rem;
   line-height: 1.8;
   font-family: ${p => p.theme.fonts.body};
-  margin-bottom: 64px;
+  margin: 0;
+
+  ${mediaqueries.phablet`
+    font-size: 2.2rem;
+  `}
+
+  ${mediaqueries.desktop_up`
+    margin-bottom: 64px;
+  `}
 `;
 export default {
   h1,

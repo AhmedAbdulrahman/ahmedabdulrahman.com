@@ -38,10 +38,6 @@ const UnorderedList = styled.ul<{ fullWidth?: boolean }>`
     }
   }
 
-  li > :not(ol, ul) {
-    display: inline;
-  }
-
   li::before {
     width: 3rem;
     display: inline-block;

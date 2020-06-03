@@ -49,10 +49,6 @@ const OrderedList = styled.ol`
     }
   }
 
-  li > :not(ol, ul) {
-    display: inline;
-  }
-
   li::before {
     width: 3rem;
     display: inline-block;
