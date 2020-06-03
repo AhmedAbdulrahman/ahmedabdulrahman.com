@@ -56,13 +56,11 @@ const Uses: React.FC<PageProps> = ({ location }) => {
               <Strong>Corsair K68 RGB</Strong>
             </ListItem>
             <Text>
-              It uses Cherry MX Red keyswitches with 100% anti-ghosting and full
-              key rollover to make sure each simultaneous keystroke is
-              registered accurately. It is dust and spill resistant with an IP32
-              rating and has practically unlimited backlight color combinations.
-              This Corsair keyboard has dedicated volume and multimedia controls
-              that offer on-the-fly adjustments. Well yeah it’s fully
-              programmable with Corsair Utility Engine or CUE.
+              An anti-ghosting with full key rollover keyboard. It's a dust and
+              spill resistant with an IP32 rating and has practically unlimited
+              backlight color combinations. It also has dedicated volume and
+              multimedia controls that offer on-the-fly adjustments. Well yeah
+              it’s fully programmable with Corsair Utility Engine or CUE.
             </Text>
           </li>
           <li>
@@ -122,7 +120,6 @@ const Uses: React.FC<PageProps> = ({ location }) => {
                 href="https://gist.github.com/AhmedAbdulrahman/211ac9f31d46cf7d8cebe762dd3ee4dc"
                 target="_blank"
                 rel="noopener noreferrer"
-                isDark={isDark}
               >
                 here.
               </AnchorLink>
@@ -141,7 +138,6 @@ const Uses: React.FC<PageProps> = ({ location }) => {
                 href="https://marketplace.visualstudio.com/items?itemName=AhmedAbdulrahman.aylin"
                 target="_blank"
                 rel="noopener noreferrer"
-                isDark={isDark}
               >
                 VSCode Marketplace.
               </AnchorLink>
@@ -194,7 +190,6 @@ const Uses: React.FC<PageProps> = ({ location }) => {
                 href="https://github.com/AhmedAbdulrahman/dotfiles"
                 target="_blank"
                 rel="noopener noreferrer"
-                isDark={isDark}
               >
                 dotfiles
               </AnchorLink>
@@ -461,6 +456,11 @@ const HeroImage = styled.div`
     margin-left: 32px;
     margin-right: 32px;
   `}
+
+  ${mediaqueries.phablet`
+    margin-top: 52px;
+    margin-bottom: 52px;
+  `}
 `;
 
 const InfoText = styled.p`
@@ -518,7 +518,7 @@ const Blockquote = styled.blockquote`
   }
 `;
 
-const ListItem = styled.span`
+const ListItem = styled.a`
   position: relative;
   display: inline-block;
   font-size: 2.2rem;
@@ -607,6 +607,7 @@ const Text = styled.p`
   line-height: 1.5;
   font-family: ${p => p.theme.fonts.body};
   color: ${p => p.theme.colors.articleText};
+  margin: 0;
   margin-bottom: 24px;
 
   span {
