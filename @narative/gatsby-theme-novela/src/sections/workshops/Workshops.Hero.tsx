@@ -12,7 +12,7 @@ const WorkshopsHero: React.FC = ({ heading, subtitle }) => {
       <Headings.HeroHeading>
         Remote <span>Workshops</span>.
       </Headings.HeroHeading>
-      <Subtitle>{subtitle}</Subtitle>
+      <Headings.Subtitle>{subtitle}</Headings.Subtitle>
     </HeadingContainer>
   );
 };
@@ -29,10 +29,6 @@ const HeadingContainer = styled.div`
   ${mediaqueries.tablet`
   width: 100%;
   `}
-
-  ${mediaqueries.phablet`
-  margin: 60px 0 36px;
-`}
 `;
 
 const HeroHeading = styled.h1`

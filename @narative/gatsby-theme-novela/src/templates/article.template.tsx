@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
 import throttle from 'lodash/throttle';
 import { useColorMode } from 'theme-ui';
 // import { graphql, useStaticQuery } from 'gatsby';
@@ -114,12 +113,7 @@ const Article: Template = ({ pageContext, location }) => {
             <ArticleShare />
           </MDXRenderer>
           <BodyFooter>
-            <Anchor
-              isDark={isDark}
-              href={discussUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Anchor href={discussUrl} target="_blank" rel="noopener noreferrer">
               Discuss on Twitter
             </Anchor>
             <TwitterLink

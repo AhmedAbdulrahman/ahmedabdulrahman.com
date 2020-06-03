@@ -88,6 +88,7 @@ const Text = styled.p`
   }
 
   ${mediaqueries.phablet`
+  font-size: 2rem;
   line-height: 1.6;
 `}
 `;

@@ -108,10 +108,7 @@ const NavigationHeader: React.FC<{}> = () => {
       (prev === writingPath && location.pathname.includes('writing')) ||
       (prev && prev.includes('/page/'));
     const isNotPaginated = !location.pathname.includes('/page/');
-    console.log(
-      'previousPathWasHomepage && isNotPaginated && width <= phablet,',
-      previousPathWasHomepage && isNotPaginated && width <= phablet,
-    );
+
     setShowBackArrow(
       previousPathWasHomepage && isNotPaginated && width <= phablet,
     );
@@ -149,6 +146,7 @@ const NavigationHeader: React.FC<{}> = () => {
             <>
               {detectMobile.isMobile() ? (
                 <>
+                  <DarkModeToggle />
                   <Burger
                     burgerOpen={burgerOpen}
                     setBurgerOpen={setBurgerOpen}
@@ -251,7 +249,7 @@ const NavContainer = styled.div`
   `};
 
   ${mediaqueries.phablet`
-  padding-top: 30px;
+  padding-top: 50px;
 `};
 `;
 
@@ -373,6 +371,7 @@ const NavItem = styled.li`
     line-height: 1;
     white-space: nowrap;
     transition: color 0.2s linear;
+    margin: 0;
 
     &:after {
       content: '';
@@ -452,7 +451,6 @@ const ToolTip = styled.div<{ isDark: boolean; hasCopied: boolean }>`
 `;
 
 const IconWrapper = styled.button<{ isDark: boolean }>`
-  // opacity: 0.5;
   position: relative;
   border-radius: 5px;
   width: 40px;
@@ -462,10 +460,6 @@ const IconWrapper = styled.button<{ isDark: boolean }>`
   justify-content: center;
   transition: opacity 0.3s ease;
   margin-left: 30px;
-
-  &:hover {
-    opacity: 1;
-  }
 
   &[data-a11y='true']:focus::after {
     content: '';
@@ -481,13 +475,8 @@ const IconWrapper = styled.button<{ isDark: boolean }>`
 
   ${mediaqueries.tablet`
     display: inline-flex;
-    transform: scale(0.708);
+    transform: scale(0.908);
     margin-left: 10px;
-
-
-    &:hover {
-      opacity: 0.5;
-    }
   `}
 `;
 

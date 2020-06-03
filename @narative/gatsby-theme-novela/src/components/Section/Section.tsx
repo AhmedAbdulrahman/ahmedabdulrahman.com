@@ -7,12 +7,16 @@ const SectionContainer = styled.div<{ narrow?: boolean }>`
   margin: 0 auto;
   padding: 0 3rem;
 
+  ${mediaqueries.phablet`
+    max-width: 100%;
+  `};
+
   ${mediaqueries.tablet_up`
     max-width: 850px;
   `};
 
   ${mediaqueries.desktop`
-    max-width: 1080px;
+    max-width: 970px;
   `};
 
   ${mediaqueries.desktop_medium_up`
@@ -24,10 +28,6 @@ const SectionContainer = styled.div<{ narrow?: boolean }>`
     `
     max-width: 68rem;
     `}
-
-  ${mediaqueries.phablet`
-    max-width: 100%;
-  `};
 `;
 
 const Section = props => {

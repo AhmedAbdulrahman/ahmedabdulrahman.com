@@ -18,7 +18,7 @@ const siteMetadata = {
         heading: `Remote Workshops`,
         subHeading: `We prodvide you with a valuable and effective workshops to Level-up your skills as a developer.`
     },
-    maxWidth: 700,
+    maxWidth: 776,
   },
   social: [
     {

@@ -114,8 +114,12 @@ const FooterItem = styled.p<{ right: boolean }>`
   z-index: 1;
 
   a {
+    font-size: 1.5rem;
     color: inherit;
     text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   ${p =>
