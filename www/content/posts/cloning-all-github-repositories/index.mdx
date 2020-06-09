@@ -1,0 +1,93 @@
+---
+title: Clone any Private or Public repo from Organization
+author: Ahmed Abdulrahman
+date: 2020-02-03
+hero: ./images/hero.jpeg
+bannerCredit:
+  'Photo by [Markus Winkler](https://unsplash.com/photos/cV9-hOgoaok) on
+  [Unsplash](https://unsplash.com)'
+excerpt: Have you ever wanted to clone all repos under your account or specific organization or even from the company where you work?
+category: Tips
+tags: ['bash', 'shell', 'git', 'jq']
+---
+
+Say you want to clone or backup of all github repositories under your account or specific organization or you want to contribute to an open source project. You successfully do that copy & paste repo URL and then clone them manually 😫.
+But there might be plenty of repos and you dont want to repeat yourself. what do you do if there plenty of repos? you will need to repeat yourself again and again 😣. <br/><br/>
+To automate this process, you can use github `API` together with `jq` processor to clone all repos with one-liner `shell` script.
+
+## Prerequisites
+- Basic knowledge of `SHELL` scripting and [CURL](https://curl.haxx.se/).
+- Familiar with [JQ](https://stedolan.github.io/jq/manual/).
+
+
+GitHub `API` returns really nicely formatted `JSON` but there is a pretty fair amount of JSON in the response!. We’re primarily only interested to get the `ssh_url`, and not all the other output.
+
+Simply we can use `jq` to "reformat" the JSON output from API response and include only that information. That’s done with this snippet:
+
+```bash
+curl -s "https://api.github.com/orgs/twitter/repos?per_page=10" \
+    | jq '.[].ssh_url'
+```
+
+This will provide output that will look something like this:
+```bash
+"git@github.com:twitter/hadoop-lzo.git"
+"git@github.com:twitter/thrift_client.git"
+"git@github.com:twitter/twurl.git"
+"git@github.com:twitter/elephant-bird.git"
+"git@github.com:twitter/ostrich.git"
+"git@github.com:twitter/scala_school.git"
+"git@github.com:twitter/finagle.git"
+"git@github.com:twitter/joauth.git"
+"git@github.com:twitter/twitter.github.io.git"
+"git@github.com:twitter/util.git"
+```
+
+This makes it really easy to parse out the specific information you need. Now that you’re armed with `ssh_url`, we need to convert the output to raw strings, not JSON texts by passing `-r` flag to `jq` then
+we can loop over the list and clone all repos:
+
+```bash
+curl -s "https://api.github.com/orgs/twitter/repos?per_page=10" \
+    | jq '.[].ssh_url' -r \ # output raw strings, not JSON texts
+    | while read url; do git clone "$url"; done
+```
+
+Boom! You got all repos now 🔥! if you needed to clone `private` repos, then you will need to:
+- Add `&type=private` on the URL.
+- Create a personal access token as described [here](https://github.com/settings/tokens/new)
+
+snippet will look like this:
+```bash
+curl -H "Authorization: token YOUR_ACCESS_TOKEN" -s \
+    "https://api.github.com/orgs/twitter/repos?per_page=10" \
+    | jq '.[].ssh_url' -r \ # output raw strings, not JSON texts
+    | while read url; do git clone "$url"; done
+```
+
+### Bonus
+You create a `shell` function inside your `.bashrc` or `.zshrc` file:
+```bash
+function cloner {
+  # you can store your access token as env variable inside `.bashrc` or `.zshrc`
+  # ex: export GITHUB_TOKEN= , and replace $1 with $GITHUB_TOKEN and $2 with $1
+  curl -H "Authorization: token $1" -s \
+    "https://api.github.com/orgs/{$2}/repos?per_page=10" \
+    | jq '.[].ssh_url' -r \ # output raw strings, not JSON texts
+    | while read url; do git clone "$url"; done
+}
+```
+and use it like this:
+```bash
+# with ENV variable
+cloner your-organization
+
+# without ENV variable
+cloner <your-access-token> your-organization
+```
+
+Did you find this useful? *[Buy me a coffee](https://www.buymeacoffee.com/ahmedab)* to give my brain a hug☕️.
+
+Hope you liked this article. If you did, then share it. It means a lot.🙌
+Thanks for reading!
+
+- - - -
