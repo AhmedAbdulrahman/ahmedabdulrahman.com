@@ -1,7 +1,7 @@
 {
-  "name": "@narative/gatsby-theme-novela",
-  "author": "dennis@narative.co",
-  "repository": "https://github.com/narative/gatsby-theme-novela",
+  "name": "web-template",
+  "author": "Ahmed Abdulrahman",
+  "repository": "https://github.com/AhmedAbdulrahman/ahmedabdulrahman.com",
   "version": "0.11.2",
   "main": "index.js",
   "license": "MIT",
