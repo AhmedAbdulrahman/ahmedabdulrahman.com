@@ -111,6 +111,7 @@ const PrismCSS = p => css`
     margin: 0 2px;
     padding: 2px 4px;
     font-family: ${p.theme.fonts.monospace};
+    font-size: 1.575rem;
     line-height: 1.5;
     background-color: ${p.isDark ? '#29293e' : '#f3e1d8'};
     border: 1px solid ${p.isDark ? '#383a61' : '#f3d2c1'};
