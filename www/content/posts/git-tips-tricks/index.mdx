@@ -1,5 +1,5 @@
 ---
-title: 🔥Git Tips & Tricks 🔥
+title: Git Tips & Tricks 🔥
 author: Ahmed Abdulrahman
 date: 2020-01-08
 hero: ./images/hero.jpeg
@@ -7,22 +7,130 @@ bannerCredit:
   'Photo by [David Klein](https://unsplash.com/photos/-94oJK3PDQw) on
   [Unsplash](https://unsplash.com)'
 excerpt: >-
-  Today I will be showing you some helpful aliases and commands you might not know about that can save your time and improve your workflow.
+  Learn how to improve your Git-based workflow with cool tips & tricks that can save you some time. It's time to clean up your command line!
 category: Tips
 tags: ['git', 'tips']
-secret: true
 ---
 
-This a collection of git hot tips & tricks that you may know a few of them but I am sure there are a some of them that will help you improve your workflow.
+Here’s a series of cool tips & tricks like `stashing`, `loggin`, and write git `aliases` to save you some time while you are working.
 
-### git reset HEAD~
+### git reset
 Whether you are working on a personal or team project, it is quite common to create `branches`, `add` files and `stage` them. However, in some cases,
-you might realize the changes you made were not what you wanted but you want to revert the changes back. Here `git reset HEAD` come into play, its a powerful technique
-every developer need to know ⚡️
+you might realize the changes you made were not what you wanted but you want to revert the changes back. Here `git reset` come into play, its a powerful technique
+every developer need to know ⚡️. `git reset` comes with three `modes`:
+- `git reset --soft HEAD~2`: undo last two commits, but keep the changes contained in that commit are not lost , they are in our *Staging* Area and *Working* Directory.
+- `git reset --hard HEAD~2`: undo last two commits, bu the changes contained in that commit are now neither in our Working Directory or the Staging Area, so it completely removes all changes.
+- `git reset -- mixed HEAD~2`: undo last two commits, but the changes from that commit are (only) in our Working Directory.
+
+### git checkout -
+It allows you to switches back to the branch you were on previously.
+
+### git commit —amend
+It allows you to modify your last commit. Let’s say right after making staging your changes, you find out you forgot to stage a file for that commit and you need stage it but reword the commit message.
+To make the correction you run:
+```bash
+# Staged all files but forgot a file
+$ git commit -m 'First Commit'
+# Added it again
+$ git add last-file
+# stage it to the last commit with different commit message
+$ git commit --amend
+```
+It will open up your visual editor of choice with the last commit message allowing you to modify it, change the message, save it and exit. After saving it:
+- A new commit will be created.
+- Replace the commit with the previous message.
+
+But that’s not all it do, you can fix any typos in commit messages:
+```bash
+$ git commit --amend
+# or you can set the new commit message directly without opening editor:
+$ git commit --amend -m "New message"
+```
+
+### git stash
+It's called `panic button` 🚨 and let's you to store unstaged changes in the working directory away, focus on an emergency bugfix or similar, and later revisit your stashed code
+then apply those changes back on 🤙. Just run:
+```bash
+$ git stash
+```
+and your working directory reverts to what it's last commit but this won't store files not yet tracked by git. To solve this we can pass `-u` flag (include untracked) to the `stash` command:
+```bash
+$ git stash -u
+```
+Want your changes back?
+```bash
+# keeps your changes in the stash array
+$ git stash apply
+# OR
+# removes your changes in the stash array
+$ git stash pop
+```
+Want to view all stored stashes you made?
+
+```bash
+$ git stash list
+```
+
+### git add --patch or `-p`
+It allwos you to select subset of a file’s changes instead of immediately adding all the changes in the file, and then you can commit only the part you want. So, if you pass `p` to `git add` it will look like this
+
+```bash
+$ git add --patch
+
+@@ -1,5 +1,5 @@
+ ---
+-title: 🔥Git Tips & Tricks 🔥
++title: Git Tips & Tricks 🔥
+ author: Ahmed Abdulrahman
+ date: 2020-01-08
+ hero: ./images/hero.jpeg
+(1/2) Stage this hunk [y,n,q,a,d,j,J,g,/,e,?]?
+```
+below you have all available options. Pressing `?` gives you explanation of each option:
+- `y` Yes - stage this hunk
+- `n` No - do not stage this hunk
+- `q` quit; do not stage this hunk or any of the remaining ones
+- `a` stage this hunk and all later hunks in the file
+- `d` No - do not stage this hunk or any of the later hunks
+- `g` select a hunk to go to
+- `/` search for a hunk matching the given regex
+- `K` leave this hunk undecided, see previous hunk
+- `j` leave this hunk undecided, see next undecided hunk
+- `J` leave this hunk undecided, see next hunk
+- `e` manually edit the current hunk
+- `s` split the current hunk into smaller hunks (this only works if there’s unchanged lines between the changes in the displayed hunk)
+- `?` print help
+
+This is really handy it lets you write as much code as you want to without having to remember to commit each change separately beforehand or if you have made several different changes to the same file
+and want to commit them separately.
 
 
-alias undo='git reset HEAD~'			# Undo commit and unstage all files
-alias undosoft='git reset --soft HEAD~'	# Undo commit and keep all files staged
-alias undohard='git reset --hard HEAD~'	# Undo the commit and completely remove all changes
+### git shortlog -sn
+It lets you list all contributors and see how many commits each person has made on the repo.
+```bash
+$ git shortlog -sn
+252  Ahmed Abdulrahman
+```
+
+### git log --after &  --before
+Let's you trace back all commits to find specific commit between a given date range.  I use it mostfy for time reporting, just run:
+```bash
+$ git log --no-merges \
+  --after="2020-01-01" --before="2020-02-29" --pretty=format:%B
+
+# --no-merges ─ Show the whole commit history, but skip any merges
+# --after ─ Show commits more recent than a specific date.
+# --before ─ Show commits older than a specific date.
+# --pretty ─ Pretty-print the contents of the commit logs in a given format
+```
+
+### git remote update --prune
+Both `git remote update remote` is same as `git fetch remote`, they fetch updates for remotes or remote groups in the repository as defined by remotes group.
+With `--prune`, it process simply removes local branches that have been deleted from your remote (like GitHub).
+
+Did you find this useful? *[Buy me a coffee](https://www.buymeacoffee.com/ahmedab)* to give my brain a hug☕️.
+
+Hope you liked this article. If you did, then share it. It means a lot.🙌
+Thanks for reading!
 
 - - - -

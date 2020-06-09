@@ -59,6 +59,14 @@ export const globalStyles = p =>
       transition: color 0.15s, background-color 0.15s;
     }
 
+    body::-webkit-scrollbar {
+      width: 8px;
+    }
+    body::-webkit-scrollbar-thumb {
+      background-color: ${p.colors.accent};
+      border-radius: 6px;
+    }
+
     p {
       color: ${p.colors.primary};
       margin: 10px 0;

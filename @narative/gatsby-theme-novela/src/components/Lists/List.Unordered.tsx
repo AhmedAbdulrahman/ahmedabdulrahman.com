@@ -49,7 +49,7 @@ const UnorderedList = styled.ul<{ fullWidth?: boolean }>`
     content: '';
     position: absolute;
     left: -30px;
-    top: 14px;
+    top: 8px;
     height: 8px;
     width: 8px;
     background: ${p => p.theme.colors.primary};

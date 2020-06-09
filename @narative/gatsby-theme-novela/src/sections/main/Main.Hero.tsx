@@ -177,7 +177,7 @@ const HeroImage = styled.div`
   position: relative;
 
   ${mediaqueries.tablet`
-    margin-left: 32px;
-    margin-right: 32px;
+    display: none;
+    visibility: hidden;
   `}
 `;

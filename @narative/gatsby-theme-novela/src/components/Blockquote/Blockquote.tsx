@@ -6,7 +6,6 @@ const Blockquote = styled.blockquote`
   margin: 15px auto 50px;
   color: ${p => p.theme.colors.articleText};
   font-family: ${p => p.theme.fonts.title};
-  font-style: italic;
 
   ${mediaqueries.tablet`
     margin: 10px auto 35px;
@@ -25,12 +24,28 @@ const Blockquote = styled.blockquote`
 
     ${mediaqueries.tablet`
       font-size: 26px;
-      padding: 0 180px;
+      padding: 0 100px;
     `};
 
     ${mediaqueries.phablet`
       font-size: 36px;
-      padding: 0 20px 0 40px;
+      padding-right: 0;
+      padding-left: 30px;
+    `};
+  }
+
+  cite {
+    display: block;
+    font-size: 20px;
+    margin-top: 8px;
+
+    ${mediaqueries.tablet`
+      padding-left: 180px;
+      font-size: 16px;
+    `};
+
+    ${mediaqueries.phablet`
+      padding-left: 40px;
     `};
   }
 `;
