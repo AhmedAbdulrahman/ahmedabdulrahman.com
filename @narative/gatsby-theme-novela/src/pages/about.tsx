@@ -4,13 +4,13 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { useColorMode } from 'theme-ui';
 import mediaqueries from '@styles/media';
-import { Link } from 'gatsby';
 
 import Section from '@components/Section';
 import SEO from '@components/SEO';
 
 import Layout from '@components/Layout';
 import Anchor from '@components/Anchor';
+import Link from '@components/Link';
 import Headings from '@components/Headings';
 
 import { Template } from '@types';
@@ -77,26 +77,22 @@ const AboutPage = ({ location }) => {
             <InfoText>
               You can find out
               {` `}
-              <Anchor component={Link} to={`/uses`} title={`Uses`}>
+              <Link to={`/uses`} title={`Uses`}>
                 what tools, software, gadgets, and services
-              </Anchor>
+              </Link>
               {` `}I use or read about some of the ways you can{` `}
-              <Anchor
-                component={Link}
-                to={`/work-with-me`}
-                title={`Work with me`}
-              >
+              <Link to={`/work-with-me`} title={`Work with me`}>
                 work with me
-              </Anchor>
+              </Link>
               . I’m currently working on a{' '}
-              <Anchor component={Link} to={`/workshops`} title={`Uses`}>
+              <Link to={`/workshops`} title={`Uses`}>
                 workshops
-              </Anchor>{' '}
+              </Link>{' '}
               page, to list all my upcoming Online Workshops, but it’s taking a
               while. For those interested in{' '}
-              <Anchor component={Link} to={`/`} title={`Home`}>
+              <Link to={`/`} title={`Home`}>
                 how I buit this site
-              </Anchor>
+              </Link>
               , I’ve tried my best to list all the tools and techniques I used.
             </InfoText>
             <InfoText>
@@ -186,7 +182,7 @@ const ContentContainer = styled.div`
 `;
 
 const InfoText = styled.p`
-  font-family: ${p => p.theme.fonts.monospace};
+  font-family: ${p => p.theme.fonts.body};
   font-size: 2.2rem;
   line-height: 1.67;
   color: ${p => p.theme.colors.articleText};
