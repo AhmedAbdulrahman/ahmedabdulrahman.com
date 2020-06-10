@@ -453,13 +453,8 @@ const HeroImage = styled.div`
   position: relative;
 
   ${mediaqueries.tablet`
-    margin-left: 32px;
-    margin-right: 32px;
-  `}
-
-  ${mediaqueries.phablet`
-    margin-top: 52px;
-    margin-bottom: 52px;
+    display: none;
+    visibility: hidden;
   `}
 `;
 

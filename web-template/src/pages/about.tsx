@@ -12,6 +12,7 @@ import Layout from '@components/Layout';
 import Anchor from '@components/Anchor';
 import Link from '@components/Link';
 import Headings from '@components/Headings';
+import Icons from '@icons';
 
 import { Template } from '@types';
 
@@ -40,21 +41,23 @@ const AboutPage = ({ location }) => {
     <Layout>
       <SEO pathname={location.href} title={`About me - ${title}`} />
       <Section component="main">
-        <HeadingContainer>
+      <Container>
+          <HeroTextContainer>
           <Headings.HeroHeading
-            css={css`
-              max-width: 620px;
-            `}
           >
-            Hey, I'm Ahmed 👋
+            Hey, <span>I'm Ahmed</span>
           </Headings.HeroHeading>
-        </HeadingContainer>
+          <Headings.Subtitle>
+          Stockholm based Creative Front-end Crispiness Creator &amp;
+              Designer.
+            </Headings.Subtitle>
+        </HeroTextContainer>
+        <HeroImage>
+            <Icons.About />
+          </HeroImage>
+        </Container>
         <ContentContainer>
           <MyText>
-            <InfoText>
-              Stockholm based Creative Front-end Crispiness Creator &amp;
-              Designer.
-            </InfoText>
             <InfoText>
               Although my skillset is diverse with full of passion for all
               aspects of building great software, I specialise in Front-end
@@ -157,20 +160,35 @@ const ArticlesGradient = styled.div`
   transition: ${p => p.theme.colorModeTransition};
 `;
 
-const HeadingContainer = styled.div`
-  margin: 100px 0 76px;
-  font-family: ${p => p.theme.fonts.title};
+const Container = styled.div`
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 450px;
+  column-gap: 5em;
+  overflow: hidden;
+  margin: 104px 0 40px;
+
   ${mediaqueries.desktop`
-    width: 80%;
+    grid-template-columns: 1fr 1fr;
   `}
+  ${mediaqueries.tablet`
+    grid-template-columns: 1fr;
+  `}
+`;
+
+const HeroTextContainer = styled.div`
+  position: relative;
+  align-self: end;
+  align-self: flex-start;
+`;
+
+const HeroImage = styled.div`
+  position: relative;
 
   ${mediaqueries.tablet`
-    width: 100%;
+    display: none;
+    visibility: hidden;
   `}
-
-  ${mediaqueries.phablet`
-  margin: 60px 0 36px;
-`}
 `;
 
 const ContentContainer = styled.div`
@@ -182,15 +200,16 @@ const ContentContainer = styled.div`
 `;
 
 const InfoText = styled.p`
+  font-size: 2.6rem;
+  line-height: 1.8;
   font-family: ${p => p.theme.fonts.body};
-  font-size: 2.2rem;
-  line-height: 1.67;
   color: ${p => p.theme.colors.articleText};
   margin-bottom: 24px;
 
   ${mediaqueries.phablet`
-  line-height: 1.6;
-`}
+    font-size: 2.2rem;
+    line-height: 1.6;
+  `}
 `;
 
 const MyText = styled.div`

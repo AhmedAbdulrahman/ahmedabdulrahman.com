@@ -6,28 +6,54 @@ import mediaqueries from '@styles/media';
 import Headings from '@components/Headings';
 import Paragraph from '@components/Paragraph';
 
+import Icons from '@icons';
+
 const WorkshopsHero: React.FC = ({ heading, subtitle }) => {
   return (
-    <HeadingContainer style={{ maxWidth: `850px` }}>
+    <Container>
+      <HeroTextContainer>
       <Headings.HeroHeading>
         Remote <span>Workshops</span>.
       </Headings.HeroHeading>
       <Headings.Subtitle>{subtitle}</Headings.Subtitle>
-    </HeadingContainer>
+    </HeroTextContainer>
+    <HeroImage>
+    <Icons.Workshop />
+  </HeroImage>
+    </Container>
   );
 };
 
 export default WorkshopsHero;
 
-const HeadingContainer = styled.div`
+const Container = styled.div`
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 450px;
+  column-gap: 5em;
+  overflow: hidden;
   margin: 104px 0 40px;
 
   ${mediaqueries.desktop`
-  width: 80%;
+    grid-template-columns: 1fr 1fr;
   `}
+  ${mediaqueries.tablet`
+    grid-template-columns: 1fr;
+  `}
+`;
+
+const HeroTextContainer = styled.div`
+  position: relative;
+  align-self: end;
+  align-self: flex-start;
+`;
+
+const HeroImage = styled.div`
+  position: relative;
 
   ${mediaqueries.tablet`
-  width: 100%;
+    display: none;
+    visibility: hidden;
   `}
 `;
 
