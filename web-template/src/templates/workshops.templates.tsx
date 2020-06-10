@@ -11,10 +11,6 @@ import Paginator from '@components/Navigation/Navigation.Paginator';
 
 import WorkshopsList from '../sections/workshops/Workshops.List';
 
-import { Template } from '@types';
-
-// const seoImage = '/seo-readings.jpg';
-
 const siteQuery = graphql`
   {
     allSite {
@@ -47,8 +43,8 @@ const WorkshopsPage = ({ location, pageContext }) => {
       <Section component="main">
         <SEO
           pathname={location.pathname}
-          title={site.hero.workshop.heading + ' | ' + site.title}
-          // image={seoImage}
+          title={`Workshops - ${site.title}`}
+          image="/workshops.png"
         />
         <WorkshopsHero
           heading={site.hero.workshop.heading}

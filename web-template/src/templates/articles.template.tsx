@@ -1,4 +1,5 @@
 import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 
 import Section from '@components/Section';
@@ -12,15 +13,42 @@ import ArticlesList from '../sections/articles/Articles.List';
 
 import { Template } from '@types';
 
+const siteQuery = graphql`
+  {
+    allSite {
+      edges {
+        node {
+          siteMetadata {
+            hero {
+              maxWidth
+              workshop {
+                heading
+                subHeading
+              }
+            }
+            title
+          }
+        }
+      }
+    }
+  }
+`;
+
 const ArticlesPage: Template = ({ location, pageContext }) => {
   // const articles = pageContext.group;
   const { group: articles, categories } = pageContext;
   const authors = pageContext.additionalContext.authors;
+  const results = useStaticQuery(siteQuery);
+  const site = results.allSite.edges[0].node.siteMetadata;
 
   return (
     <Layout>
       <Section>
-        <SEO pathname={location.pathname} />
+        <SEO
+          image="/writing.png"
+          pathname={location.pathname}
+          title={`Writing - ${site.title}`}
+        />
         <ArticlesHero authors={authors} />
         <NavCategory categories={categories} />
         <ArticlesList articles={articles} />

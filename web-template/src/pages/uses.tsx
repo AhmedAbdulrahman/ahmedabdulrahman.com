@@ -20,7 +20,7 @@ const Uses: React.FC<PageProps> = ({ location }) => {
   const isDark = colorMode === `dark`;
   return (
     <Layout>
-      <SEO pathname={location.pathname} title={'Uses'} />
+      <SEO pathname={location.pathname} title={'Uses'} image="/uses.png"/>
       <Section component="main">
         <Container>
           <HeroTextContainer>

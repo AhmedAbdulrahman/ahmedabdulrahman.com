@@ -106,10 +106,6 @@ const SEO: React.FC<HelmetProps> = ({
       name: 'apple-mobile-web-app-status-bar-style',
       content: 'black-translucent',
     },
-    {
-      rel: 'canonical',
-      href: fullURL(pathname),
-    },
     { itemprop: 'name', content: title || site.title },
     { itemprop: 'description', content: description || site.description },
     { itemprop: 'image', content: fullURL(image) },

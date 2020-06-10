@@ -14,8 +14,6 @@ import Link from '@components/Link';
 import Headings from '@components/Headings';
 import Icons from '@icons';
 
-import { Template } from '@types';
-
 const siteQuery = graphql`
   {
     allSite {
@@ -39,7 +37,7 @@ const AboutPage = ({ location }) => {
   const isDark = colorMode === `dark`;
   return (
     <Layout>
-      <SEO pathname={location.href} title={`About me - ${title}`} />
+      <SEO pathname={location.href} title={`About me - ${title}`} image="/about.png" />
       <Section component="main">
       <Container>
           <HeroTextContainer>
