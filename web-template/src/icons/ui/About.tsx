@@ -3,7 +3,7 @@ import { useThemeUI } from 'theme-ui';
 
 import { Icon } from '@types';
 
-const Workshop: Icon = () => {
+const About: Icon = () => {
   const { theme } = useThemeUI();
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 768">
@@ -22,4 +22,4 @@ const Workshop: Icon = () => {
   );
 };
 
-export default Workshop;
+export default About;
