@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import { useColorMode } from 'theme-ui';
 import mediaqueries from '@styles/media';
 
 import Section from '@components/Section';
@@ -33,21 +32,19 @@ const siteQuery = graphql`
 const AboutPage = ({ location }) => {
   const results = useStaticQuery(siteQuery);
   const title = results.allSite.edges[0].node.siteMetadata.title;
-  const [colorMode] = useColorMode();
-  const isDark = colorMode === `dark`;
+
   return (
     <Layout>
       <SEO pathname={location.href} title={`About me - ${title}`} image="/about.png" />
       <Section component="main">
       <Container>
           <HeroTextContainer>
-          <Headings.HeroHeading
-          >
-            Hey, <span>I'm Ahmed</span>
-          </Headings.HeroHeading>
-          <Headings.Subtitle>
-          Stockholm based Creative Front-end Crispiness Creator &amp;
-              Designer.
+            <Headings.HeroHeading>
+              Hey, <span>I'm Ahmed</span>
+            </Headings.HeroHeading>
+            <Headings.Subtitle>
+            Stockholm based Creative Front-end Crispiness Creator &amp;
+                Designer.
             </Headings.Subtitle>
         </HeroTextContainer>
         <HeroImage>

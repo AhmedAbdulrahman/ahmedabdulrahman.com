@@ -2,17 +2,14 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-// import { useColorMode } from 'theme-ui';
-import mediaqueries from '@styles/media';
-import { Link } from 'gatsby';
 
 import Section from '@components/Section';
 import SEO from '@components/SEO';
-// import Image from '@components/Image';
 import Layout from '@components/Layout';
-// import AnchorLink from '@components/Anchor';
+import Anchor from '@components/Anchor';
 import Headings from '@components/Headings';
 
+import mediaqueries from '@styles/media';
 import { Template } from '@types';
 
 const siteQuery = graphql`
@@ -24,6 +21,7 @@ const siteQuery = graphql`
             name
             siteUrl
             title
+            email
           }
         }
       }
@@ -33,31 +31,23 @@ const siteQuery = graphql`
 
 const WorkWithMe: Template = ({ location }) => {
   const results = useStaticQuery(siteQuery);
-  const title = results.allSite.edges[0].node.siteMetadata.title;
-  // const [colorMode] = useColorMode();
-  // const isDark = colorMode === `dark`;
+  const {title, email} = results.allSite.edges[0].node.siteMetadata;
 
   return (
     <Layout>
       <SEO pathname={location.href} title={`Work with me - ${title}`} />
-      <Section relative>
-        <HeadingContainer>
+      <Section component="main">
+        <Container>
           <HeroTextContainer>
-            <Headings.HeroHeading
-              css={css`
-                max-width: 420px;
-              `}
-            >
-              Work With Me
+            <Headings.HeroHeading>
+              Work <span>With Me</span>
             </Headings.HeroHeading>
-            <InfoText>
+            <Headings.Subtitle>
               Here you will get a clear idea of ways we can work together and if
               I’m the right fit for your next project.
-            </InfoText>
+              </Headings.Subtitle>
           </HeroTextContainer>
-        </HeadingContainer>
-      </Section>
-      <Section>
+        </Container>
         <ContentContainer>
           <MyText>
             <Headings.SectionHeading
@@ -150,9 +140,9 @@ const WorkWithMe: Template = ({ location }) => {
             <InfoText>
               If you have a project in mind, and you think I might be a good
               fit, then{' '}
-              <NavLink to={`/contact`} title={`Contact`}>
-                let’s talk about it
-              </NavLink>{' '}
+              <Anchor href={`mailto:${email}`} rel="me">
+              let’s talk about it
+              </Anchor>
               and we can take it from there.
             </InfoText>
           </MyText>
@@ -177,51 +167,26 @@ const ArticlesGradient = styled.div`
   transition: ${p => p.theme.colorModeTransition};
 `;
 
-const HeadingContainer = styled.div`
+const Container = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: 1fr 450px;
-  column-gap: 64px;
-  margin: 100px 0 76px;
-  font-family: ${p => p.theme.fonts.title};
+  column-gap: 5em;
+  overflow: hidden;
+  margin: 104px 0 40px;
 
   ${mediaqueries.desktop`
-    width: 80%;
+    grid-template-columns: 1fr 1fr;
   `}
-
   ${mediaqueries.tablet`
-    width: 100%;
+    grid-template-columns: 1fr;
   `}
-
-  ${mediaqueries.phablet`
-  margin: 60px 0 36px;
-`}
 `;
 
 const HeroTextContainer = styled.div`
   position: relative;
   align-self: end;
   align-self: center;
-`;
-
-const HeroHeading = styled.h2`
-  font-size: 85px;
-  line-height: 98%;
-  letter-spacing: -1px;
-  font-family: ${p => p.theme.fonts.title};
-  font-weight: ${p => p.theme.fontsWeight.bold};
-  color: ${p => p.theme.colors.primary};
-
-  ${mediaqueries.desktop`
-    font-size: 56px
-  `}
-  ${mediaqueries.tablet`
-    font-size: 48px;
-  `}
-  ${mediaqueries.phablet`
-    font-size: 56px;
-    line-height: 1.15;
-  `}
 `;
 
 const ContentContainer = styled.div`
@@ -232,86 +197,19 @@ const ContentContainer = styled.div`
   z-index: 1;
 `;
 
-const InfoHeading = styled.h1`
-  font-weight: ${p => p.theme.fontsWeight.bold};
-  font-family: ${p => p.theme.fonts.title};
-  font-size: 32px;
-  line-height: 1.35;
-  max-width: 100%;
-  margin-bottom: 32px;
-  color: ${p => p.theme.colors.primary};
-
-  ${mediaqueries.phablet`
-    font-size: 32px;
-  `}
-`;
-
-const InfoSubHeading = styled.p`
-  font-size: 22px;
-  font-family: ${p => p.theme.fonts.body};
-  margin-top: 24px;
-  margin-bottom: 32px;
-  color: ${p => p.theme.colors.primary};
-
-  ${mediaqueries.phablet`
-    font-size: 18px;
-  `}
-`;
-
 const InfoText = styled.p`
-  font-size: 2.8rem;
-  line-height: 1.5;
+  font-size: 2.6rem;
+  line-height: 1.8;
   font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.secondary};
-  margin-bottom: 64px;
-
-  span {
-    color: ${p => p.theme.colors.accent};
-    font-style: italic;
-  }
+  color: ${p => p.theme.colors.articleText};
+  margin-bottom: 24px;
 
   ${mediaqueries.phablet`
-  font-size: 1.8rem;
-  line-height: 1.6;
-`}
+    font-size: 2.2rem;
+    line-height: 1.6;
+  `}
 `;
 
 const MyText = styled.div`
   position: relative;
-`;
-
-const MyImage = styled.div`
-  position: relative;
-  display: block;
-  width: 100%;
-
-  margin-bottom: 56px;
-
-  .gatsby-image-wrapper {
-    box-shadow: 0 22px 44px 0 rgba(0, 0, 0, 0.22);
-  }
-
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center;
-  }
-`;
-
-const NavLink = styled(Link)`
-  transition: ${p => p.theme.colorModeTransition};
-  color: ${p => p.theme.colors.primary};
-  border-bottom: 1px solid ${p => p.theme.colors.primary};
-
-  &:visited {
-    color: ${p => p.theme.colors.primary};
-    opacity: 0.85;
-  }
-
-  &:hover,
-  &:focus {
-    color: ${p => p.theme.colors.accent};
-    border-bottom-color: ${p => p.theme.colors.accent};
-  }
 `;
