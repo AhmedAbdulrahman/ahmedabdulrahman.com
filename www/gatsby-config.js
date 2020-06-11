@@ -79,6 +79,16 @@ const plugins = [
       ],
     },
   },
+  `gatsby-plugin-offline`,
+  {
+    resolve: `gatsby-plugin-robots-txt`,
+    options: {
+      host: `https://aadev.me/`,
+      sitemap: `https://aadev.me/sitemap.xml`,
+      policy: [{ userAgent: '*' }]
+    }
+  },
+  `gatsby-plugin-sitemap`,
   {
     resolve: `gatsby-plugin-google-analytics`,
     options: {
