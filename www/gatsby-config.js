@@ -4,6 +4,7 @@ const siteMetadata = {
   title: `Ahmed Abdulrahman's Desk`,
   name: `Ahmed Abdulrahman`,
   siteUrl: `https://aadev.me`,
+  lang: 'en', // Language Tag on <html> element
   email: `hello@aadev.me`,
   description: `Developer who's learning to write and express thoughts`,
   hero: {
@@ -60,10 +61,22 @@ const plugins = [
       name: `Ahmed Abdulrahman's Desk`,
       short_name: `ahmedabdulrahman`,
       start_url: `/`,
-      background_color: `#fff`,
-      theme_color: `#fff`,
+      lang: 'en',
+      background_color: '#fcf5ea',
+      theme_color: '#000',
       display: `standalone`,
-      icon: `src/assets/favicon.png`,
+      icons: [
+        {
+          src: '/favicons/android-chrome-192x192.png',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+        {
+          src: '/favicons/android-chrome-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+      ],
     },
   },
   {
