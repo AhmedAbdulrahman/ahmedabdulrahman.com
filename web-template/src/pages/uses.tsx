@@ -1,4 +1,5 @@
 import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 import { useColorMode } from 'theme-ui';
 
@@ -15,12 +16,35 @@ interface PageProps {
   location: Location;
 }
 
+const siteQuery = graphql`
+  {
+    allSite {
+      edges {
+        node {
+          siteMetadata {
+            title
+            siteUrl
+          }
+        }
+      }
+    }
+  }
+`;
+
 const Uses: React.FC<PageProps> = ({ location }) => {
   const [colorMode] = useColorMode();
   const isDark = colorMode === `dark`;
+
+  const results = useStaticQuery(siteQuery);
+  const site = results.allSite.edges[0].node.siteMetadata;
+
   return (
     <Layout>
-      <SEO pathname={location.pathname} title={'Uses'} image="/uses.png"/>
+      <SEO
+        image={`${site.siteUrl}/uses.png`}
+        pathname={location.pathname}
+        title={`Uses - ${site.title}`}
+      />
       <Section component="main">
         <Container>
           <HeroTextContainer>

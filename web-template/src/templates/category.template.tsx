@@ -19,6 +19,7 @@ const siteQuery = graphql`
         node {
           siteMetadata {
             title
+            siteUrl
           }
         }
       }
@@ -31,12 +32,16 @@ function CategoryPage({ location, pageContext }) {
   const authors = pageContext.additionalContext.authors;
 
   const results = useStaticQuery(siteQuery);
-  const title = results.allSite.edges[0].node.siteMetadata.title;
+  const site = results.allSite.edges[0].node.siteMetadata;
 
   return (
     <Layout>
       <Section>
-        <SEO pathname={location.pathname} title={category + ' | ' + title} />
+        <SEO
+          image={`${site.siteUrl}/writing.png`}
+          pathname={location.pathname}
+          title={`${category} - ${site.title}`}
+        />
         <ArticlesHero authors={authors} />
         <NavCategory categories={categories} />
         <ArticlesList articles={articles} />

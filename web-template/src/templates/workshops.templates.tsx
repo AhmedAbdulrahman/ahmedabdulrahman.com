@@ -5,7 +5,6 @@ import { graphql, useStaticQuery } from 'gatsby';
 import WorkshopsHero from '../sections/workshops/Workshops.Hero';
 import Section from '@components/Section';
 import SEO from '@components/SEO';
-// import Layout from "@components/Layout";
 import { LayoutBase } from '@components/Layout';
 import Paginator from '@components/Navigation/Navigation.Paginator';
 
@@ -25,6 +24,7 @@ const siteQuery = graphql`
               }
             }
             title
+            siteUrl
           }
         }
       }
@@ -42,12 +42,11 @@ const WorkshopsPage = ({ location, pageContext }) => {
     <LayoutBase>
       <Section component="main">
         <SEO
+          image={`${site.siteUrl}/workshops.png`}
           pathname={location.pathname}
           title={`Workshops - ${site.title}`}
-          image="/workshops.png"
         />
         <WorkshopsHero
-          heading={site.hero.workshop.heading}
           subtitle={site.hero.workshop.subHeading}
         />
         <WorkshopsList workshops={workshop} />

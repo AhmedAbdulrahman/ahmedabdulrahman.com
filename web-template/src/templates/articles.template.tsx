@@ -27,6 +27,7 @@ const siteQuery = graphql`
               }
             }
             title
+            siteUrl
           }
         }
       }
@@ -45,7 +46,7 @@ const ArticlesPage: Template = ({ location, pageContext }) => {
     <Layout>
       <Section>
         <SEO
-          image="/writing.png"
+          image={`${site.siteUrl}/writing.png`}
           pathname={location.pathname}
           title={`Writing - ${site.title}`}
         />

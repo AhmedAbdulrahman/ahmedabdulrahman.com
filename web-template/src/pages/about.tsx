@@ -31,11 +31,15 @@ const siteQuery = graphql`
 
 const AboutPage = ({ location }) => {
   const results = useStaticQuery(siteQuery);
-  const title = results.allSite.edges[0].node.siteMetadata.title;
+  const site = results.allSite.edges[0].node.siteMetadata;
 
   return (
     <Layout>
-      <SEO pathname={location.href} title={`About me - ${title}`} image="/about.png" />
+      <SEO
+        image={`${site.siteUrl}/about.png`}
+        pathname={location.pathname}
+        title={`About me - ${site.title}`}
+      />
       <Section component="main">
       <Container>
           <HeroTextContainer>
@@ -89,7 +93,7 @@ const AboutPage = ({ location }) => {
               page, to list all my upcoming Online Workshops, but it’s taking a
               while. For those interested in{' '}
               <Link to={`/`} title={`Home`}>
-                how I buit this site
+                how I built this site
               </Link>
               , I’ve tried my best to list all the tools and techniques I used.
             </InfoText>
