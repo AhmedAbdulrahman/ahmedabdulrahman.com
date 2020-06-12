@@ -53,6 +53,21 @@ export interface IArticle {
   date: string;
 }
 
+export interface IWorkshop {
+  slug: string;
+  instructors: IAuthor[];
+  excerpt: string;
+  body: string;
+  id: string;
+  hero: {
+    full: IGatsbyImageFluid;
+    preview: IGatsbyImageFluid;
+    regular: IGatsbyImageFluid;
+    seo: string;
+  };
+  date: string;
+}
+
 interface IArticleQuery {
   edges: {
     node: IArticle;
