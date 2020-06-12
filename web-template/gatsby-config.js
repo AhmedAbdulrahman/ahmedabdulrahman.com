@@ -228,5 +228,12 @@ module.exports = ({
         displayName: process.env.NODE_ENV === `development`,
       },
     },
+    {
+      resolve: `gatsby-plugin-webpack-bundle-analyzer`,
+      options: {
+        analyzerPort: 3000,
+        production: true,
+      },
+    },
   ],
 });
