@@ -50,7 +50,7 @@ export default {
       textOffset: '#818a91',
       track: 'rgba(255, 255, 255, 0.3)',
       progress: '#fff',
-      card: '#1D2128',
+      card: '#20202a',
       error: '#EE565B',
       success: '#46B17B',
       errorBackground: 'rgba(238, 86, 91, 0.1)',
