@@ -105,6 +105,7 @@ module.exports = ({ node, actions, getNode, createNodeId }, themeOptions) => {
       subscription: node.frontmatter.subscription !== false,
       category: node.frontmatter.category || '',
       tags: node.frontmatter.tags || [],
+      canonical_url: node.frontmatter.canonical_url,
     };
 
     createNode({

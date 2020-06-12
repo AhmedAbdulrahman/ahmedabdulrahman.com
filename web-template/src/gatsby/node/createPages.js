@@ -65,6 +65,16 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
     mailchimp = '',
   } = themeOptions;
 
+  const { data } = await graphql(`
+    query siteQuery {
+      site {
+        siteMetadata {
+          siteUrl
+        }
+      }
+    }
+  `)
+
   // Defaulting to look at the local MDX files as sources.
   const { local = true, contentful = false } = sources;
 
@@ -265,9 +275,11 @@ module.exports = async ({ actions: { createPage }, graphql }, themeOptions) => {
         authors: authorsThatWroteTheArticle,
         category: `${writingPath}/${article.category}`,
         writingPath,
+        permalink: `${data.site.siteMetadata.siteUrl}${article.slug}/`,
         slug: article.slug,
         id: article.id,
         title: article.title,
+        canonicalUrl: article.canonical_url,
         mailchimp,
         next,
       },
