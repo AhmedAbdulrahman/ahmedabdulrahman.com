@@ -5,7 +5,7 @@ import MDXRenderer from '@components/MDX';
 import Section from '@components/Section';
 
 import WorkshopHero from '../sections/workshop/Workshop.Hero';
-import WorkshopSEO from '../sections/Workshop/Workshop.SEO';
+import WorkshopSEO from '../sections/workshop/Workshop.SEO';
 
 import { Template } from '@types';
 
