@@ -6,7 +6,7 @@ import { Link } from 'gatsby';
 
 import Section from '@components/Section';
 import SEO from '@components/SEO';
-import Layout from '@components/Layout';
+import { LayoutBase } from '@components/Layout';
 import ArticlesGradient from '@components/ArticlesGradient';
 
 import PageHero from '../sections/others';
@@ -34,11 +34,8 @@ const siteQuery = graphql`
       edges {
         node {
           siteMetadata {
-            description
             title
-            hero {
-              maxWidth
-            }
+            siteUrl
           }
         }
       }
@@ -48,30 +45,28 @@ const siteQuery = graphql`
 
 const Archive: React.FC<PageProps> = ({ location }) => {
   const result = useStaticQuery(siteQuery);
-  const siteSEO = result.allSite.edges[0].node.siteMetadata;
+  const site = result.allSite.edges[0].node.siteMetadata;
 
   return (
-    <Layout>
+    <LayoutBase>
+    <Section component="main">
       <SEO
+        image={`${site.siteUrl}/archive.png`}
         pathname={location.pathname}
-        title={'Archive - ' + siteSEO.title}
-        description={siteSEO.description}
+        title={`Archive - ${site.title}`}
       />
-      <PageHero heading="Archive" maxWidth={800}>
-        {result.allArticle.totalCount + ' articles.'}
-      </PageHero>
-      <Section narrow>
-        <Wrapper>
-          {result.allArticle.edges.map((item, index) => (
-            <ArticlesItem to={item.node.slug} data-a11y="false" key={index}>
-              <Date>{item.node.date}</Date>
-              <Title>{item.node.title}</Title>
-            </ArticlesItem>
-          ))}
-        </Wrapper>
-      </Section>
+      <PageHero heading="Archive" subtitle={result.allArticle.totalCount + ' articles.'}/>
+      <Wrapper>
+        {result.allArticle.edges.map((item, index) => (
+          <ArticlesItem to={item.node.slug} data-a11y="false" key={index}>
+            <Date>{item.node.date}</Date>
+            <Title>{item.node.title}</Title>
+          </ArticlesItem>
+        ))}
+      </Wrapper>
       <ArticlesGradient />
-    </Layout>
+    </Section>
+    </LayoutBase>
   );
 };
 
