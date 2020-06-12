@@ -1,73 +1,75 @@
 // Social
 import Behance from './social/Behance.Icon';
+import DigitalOcean from './social/DigitalOcean.Icon';
 import Dribbble from './social/Dribbble.Icon';
 import Facebook from './social/Facebook.Icon';
+import Github from './social/Github.Icon';
 import Instagram from './social/Instagram.Icon';
-import Twitter from './social/Twitter.Icon';
 import LinkedIn from './social/LinkedIn.Icon';
 import Medium from './social/Medium.Icon';
-import Github from './social/Github.Icon';
-import Stackoverflow from './social/Stackoverflow.Icon';
-import Unsplash from './social/Unsplash.Icon';
-import YouTube from './social/YouTube.Icon';
 import Patreon from './social/Patreon.Icon';
 import Paypal from './social/Paypal.Icon';
-import DigitalOcean from './social/DigitalOcean.Icon';
+import Stackoverflow from './social/Stackoverflow.Icon';
+import Twitter from './social/Twitter.Icon';
+import Unsplash from './social/Unsplash.Icon';
+import YouTube from './social/YouTube.Icon';
 
 // UI
+import About from './ui/AboutNew';
+import Archive from './ui/Archive';
+import Calendar from './ui/Calendar';
 import ChevronLeft from './ui/ChevronLeft.Icon';
+import Computer from './ui/Computer';
 import Copied from './ui/Copied.Icon';
 import Copy from './ui/Copy.Icon';
+import Creative from './ui/Creative';
 import Ex from './ui/Ex.Icon';
 import Link from './ui/Link.Icon';
-import ToggleOpen from './ui/ToggleOpen.Icon';
-import ToggleClose from './ui/ToggleClose.Icon';
+import Location from './ui/Location';
+import NotFound from './ui/NotFound';
 import Rows from './ui/Rows.Icon';
 import Tiles from './ui/Tiles.Icon';
-import NotFound from './ui/NotFound';
+import Time from './ui/Time';
+import ToggleClose from './ui/ToggleClose.Icon';
+import ToggleOpen from './ui/ToggleOpen.Icon';
+import Tools from './ui/Tools';
 import Workshop from './ui/WorkshopNew';
 import Writing from './ui/WritingNew';
-import About from './ui/AboutNew';
-import Time from './ui/Time';
-import Location from './ui/Location';
-import Calendar from './ui/Calendar';
-import Tools from './ui/Tools';
-import Computer from './ui/Computer';
-import Creative from './ui/Creative';
 
 export default {
   Behance,
+  DigitalOcean,
   Dribbble,
   Facebook,
+  Github,
   Instagram,
-  Twitter,
   LinkedIn,
   Medium,
-  Github,
-  Stackoverflow,
-  Unsplash,
-  YouTube,
   Patreon,
   Paypal,
-  DigitalOcean,
+  Stackoverflow,
+  Twitter,
+  Unsplash,
+  YouTube,
 
+  About,
+  Archive,
+  Calendar,
   ChevronLeft,
+  Computer,
   Copied,
   Copy,
+  Creative,
   Ex,
   Link,
-  ToggleClose,
-  ToggleOpen,
+  Location,
+  NotFound,
   Rows,
   Tiles,
-  NotFound,
+  Time,
+  ToggleClose,
+  ToggleOpen,
+  Tools,
   Workshop,
   Writing,
-  About,
-  Time,
-  Location,
-  Calendar,
-  Tools,
-  Computer,
-  Creative,
 };
