@@ -1,8 +1,6 @@
-# Ahmed Abdulrahman Personal Homepage
+# Ahmed Abdulrahman's Desk
 
-This is the source code of my personal homepage, made with with Gatsby & awesome Novela Theme by Narative. It consists of a blog, software and photography portfolios.
-
-# Getting Started
+## Getting Started
 
 ### Step 1: Installation
 
