@@ -23,15 +23,15 @@ const WorkshopHero: React.FC<WorkshopHeroProps> = ({ workshop }) => {
   return (
     <Section>
       <HeroContainer>
-        <HeroImage id="WorkshopImage__Hero">
+        {/* <HeroImage id="Image__Hero">
           {hasHeroImage ? (
             <Image src={workshop.hero.full} />
           ) : (
             <ImagePlaceholder />
           )}
-        </HeroImage>
+        </HeroImage> */}
         <HeroTextContainer>
-          <Author>{workshop.instructor}</Author>
+          {/* <Author>{workshop.instructor}</Author> */}
           <Headings.HeroHeading>{workshop.title}</Headings.HeroHeading>
           {/* <Excerpt>{workshop.excerpt}</Excerpt> */}
           <InfoContainer>
@@ -58,23 +58,8 @@ const WorkshopHero: React.FC<WorkshopHeroProps> = ({ workshop }) => {
 export default WorkshopHero;
 
 const HeroContainer = styled.div`
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 64px;
-  z-index: 1;
-  margin-top: 96px;
-  margin-bottom: 80px;
-
-  ${mediaqueries.desktop`
-    grid-template-columns: 1.25fr 2fr;
-    column-gap: 0;
-  `};
-
-  ${mediaqueries.phablet`
-    grid-template-columns: 1fr;
-    margin-top: 48px;
-  `};
+  margin: 96px auto 80px;
+  max-width: 700px;
 `;
 
 const HeroTextContainer = styled.header`

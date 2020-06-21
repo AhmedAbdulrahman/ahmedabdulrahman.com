@@ -130,8 +130,8 @@ const Article: Template = ({ pageContext, location }) => {
             Edit on GitHub
           </Anchor> */}
           </BodyFooter>
+           {mailchimp && article.subscription && <Subscription />}
         </ArticleBody>
-        {mailchimp && article.subscription && <Subscription />}
         {next.length > 0 && (
           <>
             <FooterNext>Other things I've written</FooterNext>
@@ -173,32 +173,41 @@ const BodyFooter = styled(Paragraph)`
 `;
 
 const TwitterLink = styled.a`
-  font-size: 16px;
-  font-weight: 600;
+  align-items:center;
+  background-color: rgb(29, 161, 242);
+  border-radius:4px;
+  box-shadow: rgba(6, 146, 218, 0.5) 0px 10px 30px -8px;
+  box-sizing:border-box;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  color:rgb(255, 255, 255);
+  cursor:pointer;
+  display:flex;
+  filter:contrast(1.25);
+  font-size:16px;
+  font-weight:600;
   font-family: ${p => p.theme.fonts.monospace};
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  user-select: none;
-  transition: all 0.2s ease-in-out;
-  padding: 12px 16px;
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  background-color: #1da1f2;
-  border-color: #1da1f2;
-  color: #fff;
+  height:64px;
+  line-height:18.4px;
+  text-align:center;
+  text-decoration-color:rgb(255, 255, 255);
+  text-decoration-line:none;
+  text-decoration-style:solid;
+  text-size-adjust:100%;
+  text-transform:uppercase;
+  transition-delay:0s;
+  transition-duration:0.2s;
+  transition-property:all;
+  transition-timing-function:cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-font-smoothing:antialiased;
 
   svg {
     margin-right: 10px;
     font-size: 18px;
   }
   &:hover {
-    color: #1da1f2;
-    background-color: transparent;
-    border-color: #1da1f2;
+    filter: hue-rotate(-2deg);
+    transition: all 200ms cubic-bezier(0.23,1,0.32,1);
   }
 `;
 

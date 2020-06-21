@@ -97,11 +97,11 @@ const ArticleShare: React.FC<{}> = () => {
          */
         const offset: { x: number; y: number } = {
           x: height > 29 ? paragraphOffset + paddingOffset : x,
-          y: y - articleBox.y - 160,
+          y: y - articleBox.y - 60,
         };
 
         setPosition({
-          x: offset.x + width / 2 - MENU_WIDTH / 2 - paddingOffset,
+          x: ((offset.x + width) / 2 ) - MENU_WIDTH / 2 - 15,
           y: offset.y - MENU_HEIGHT - 5,
           show: width > 1,
         });

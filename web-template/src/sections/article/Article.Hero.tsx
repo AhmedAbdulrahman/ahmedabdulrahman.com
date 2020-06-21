@@ -58,7 +58,7 @@ const ArticleHero: React.FC<ArticleHeroProps> = ({ article, authors }) => {
           ))}
         </Tags>
       </Header>
-      <HeroImage id="ArticleImage__Hero">
+      <HeroImage id="Image__Hero">
         {hasHeroImage ? (
           <Image src={article.hero.full} />
         ) : (

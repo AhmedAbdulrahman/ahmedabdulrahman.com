@@ -1,9 +1,6 @@
 import addToMailchimp from 'gatsby-plugin-mailchimp';
 import React, { useState } from 'react';
 
-import Section from '@components/Section';
-import Headings from '@components/Headings';
-
 import styled from '@emotion/styled';
 import mediaqueries from '@styles/media';
 
@@ -39,7 +36,6 @@ const Subscription: React.FC<{}> = () => {
   }
 
   return (
-    <Section narrow>
       <SubscriptionContainer>
         <Content>
           <Heading>Sign up to my email list for updates</Heading>
@@ -68,7 +64,6 @@ const Subscription: React.FC<{}> = () => {
           </Form>
         </Content>
       </SubscriptionContainer>
-    </Section>
   );
 };
 
@@ -79,14 +74,15 @@ const SubscriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 64px 0 55px;
-  margin: 10px auto 100px;
+  margin: 100px 0;
   background: ${p => p.theme.colors.card};
   box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.05);
   z-index: 1;
+  border-radius: 4px;
 
   ${mediaqueries.tablet`
     padding: 50px 0 0;
-    text-align: center;
+    // text-align: center;
   `}
 
   ${mediaqueries.phablet`
@@ -98,7 +94,7 @@ const Content = styled.div`
   margin: 0 auto;
   width: 100%;
   max-width: 510px;
-  text-align: center;
+  // text-align: center;
 
   ${mediaqueries.tablet`
     h3 {
@@ -122,7 +118,8 @@ const Heading = styled(Headings.h3)`
 `;
 
 const Text = styled.p`
-  margin: 0 auto 30px;
+  font-size: 1.6rem;
+  margin: 0px auto 24px;
   color: ${p => p.theme.colors.grey};
   line-height: 1.75;
 
@@ -134,32 +131,22 @@ const Text = styled.p`
 
 const Form = styled.form<{ hasError: string }>`
   position: relative;
-
-  &::after {
-    content: '>';
-    position: absolute;
-    left: 35px;
-    top: 10px;
-    color: ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.accent)};
-
-    ${mediaqueries.tablet`
-    left: 34px;
-    top: 11px;
-  `}
-  }
 `;
 
 const Input = styled.input<{ hasError: string }>`
   position: relative;
+  font-family: ${p => p.theme.fonts.title};
   background: ${p =>
     p.hasError
       ? p.theme.colors.errorBackground
       : p.theme.colors.inputBackground};
-  border-radius: 35px;
   border: none;
-  padding: 13px 21px 13px 35px;
+  padding: 12px 20px 12px 20px;
   width: 471px;
+  height: 50px;
+  font-size: 1.4rem;
   color: ${p => p.theme.colors.primary};
+  border-radius: 4px;
 
   ::placeholder {
     color: ${p => p.theme.colors.track};
@@ -183,20 +170,22 @@ const Input = styled.input<{ hasError: string }>`
 `;
 
 const Button = styled.button<{ hasError: string; subscribed: boolean }>`
+  font-family: ${p => p.theme.fonts.title};
   position: absolute;
-  right: 24px;
-  top: 4px;
+  right: 44px;
+  top: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 161px;
-  height: 38px;
+  height: 45px;
+  border-radius: 4px;
   border: 1px solid
     ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.accent)};
   color: ${p => (p.hasError ? p.theme.colors.error : p.theme.colors.accent)};
   background: ${p => (p.subscribed ? p.theme.colors.accent : 'transparent')};
   font-weight: ${p => p.theme.fontsWeight.bold};
-  border-radius: 35px;
+  font-size: 1.6rem;
   letter-spacing: 0.42px;
   transition: border-color 0.2s var(--ease-in-out-quad),
     background 0.2s var(--ease-in-out-quad), color 0.2s var(--ease-in-out-quad);
@@ -233,9 +222,6 @@ const Button = styled.button<{ hasError: string; subscribed: boolean }>`
 `;
 
 const Error = styled.div`
-  position: absolute;
-  left: 35px;
-  bottom: -20px;
   color: ${p => p.theme.colors.error};
   font-size: 12px;
 
@@ -244,10 +230,6 @@ const Error = styled.div`
     text-decoration: underline;
   }
 
-  ${mediaqueries.tablet`
-    left: 50px;
-    top: 50px;
-  `}
 `;
 
 const CheckMarkIcon = () => (

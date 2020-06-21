@@ -30,6 +30,17 @@ interface WorkshopsListItemProps {
   isDark?: boolean;
 }
 
+const techImage = tech => {
+  return (
+    (tech === 'react' && `${reactIcon}`) ||
+    (tech === 'javascript' && `${jsIcon}`) ||
+    (tech === 'testing' && `${testingIcon}`) ||
+    (tech === 'graphql' && `${graphqlIcon}`) ||
+    (tech === 'python' && `${pythonIcon}`) ||
+    (tech === 'node' && `${nodeIcon}`)
+  );
+};
+
 const WorkshopsList: React.FC<WorkshopsListProps> = ({
   workshops,
   alwaysShowAllDetails,
@@ -45,17 +56,6 @@ const WorkshopsList: React.FC<WorkshopsListProps> = ({
 
   const techToggleIsActive = (getDisplayedTech, tech) => {
     return includes(getDisplayedTech, tech) && getDisplayedTech.length === 1;
-  };
-
-  const techImage = tech => {
-    return (
-      (tech === 'react' && `${reactIcon}`) ||
-      (tech === 'javascript' && `${jsIcon}`) ||
-      (tech === 'testing' && `${testingIcon}`) ||
-      (tech === 'graphql' && `${graphqlIcon}`) ||
-      (tech === 'python' && `${pythonIcon}`) ||
-      (tech === 'node' && `${nodeIcon}`)
-    );
   };
 
   const workshopPairsFiltered = workshops.filter(workshop => {
@@ -135,15 +135,10 @@ const ListItem: React.FC<WorkshopsListItemProps> = ({ workshop, isDark }) => {
   return (
     <ArticleLink to={workshop.slug} data-a11y="false">
       <Item>
-        <ImageContainer>
-          {hasHeroImage ? <Image src={imageSource} /> : <ImagePlaceholder />}
-        </ImageContainer>
-        <TextContainer>
-          <Author>{workshop.instructor}</Author>
+          {/* <Author>{workshop.instructor}</Author> */}
           <Title>{workshop.title}</Title>
-          {/* <Excerpt>{workshop.excerpt}</Excerpt> */}
-        </TextContainer>
-        <ContentContainer></ContentContainer>
+          <Excerpt>{workshop.excerpt}</Excerpt>
+          <img src={techImage(workshop.tech)} alt={workshop.tech} />
       </Item>
     </ArticleLink>
   );
@@ -182,7 +177,26 @@ const showDetails = css`
 
 const WorkshopsListContainer = styled.div<{ alwaysShowAllDetails?: boolean }>`
   transition: opacity 0.25s;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  ${mediaqueries.tablet_up`
+  padding: 4rem 0;
+  max-width: 55rem;
+  `}
+
+  ${mediaqueries.desktop_up`
+  padding: 4rem 0;
+  max-width: 100rem;
+  `}
   ${p => p.alwaysShowAllDetails && showDetails}
+
+  img {
+    margin: 0;
+    margin-right: 10px;
+    width: 20px;
+  }
 `;
 
 const listTile = p => css`
@@ -222,17 +236,23 @@ const List = styled.div<{
 `;
 
 const Item = styled.div<{ gridLayout: string }>`
-  height: 624px;
-  ${listItemTile}
-  ${mediaqueries.desktop`
-    height: 536px;
-  `}
-  ${mediaqueries.tablet`
-    height: 600px;
-  `}
-  ${mediaqueries.phone`
-    height: 536px;
-  `}
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 5px 30px -15px rgba(0,0,0,.2);
+
+    img {
+      width: 30px;
+      align-self: flex-end;
+    }
+
+    ${mediaqueries.desktop`
+      padding-left: 24px;
+      padding-right: 24px;
+    `}
 `;
 
 const ImageContainer = styled.div`
@@ -288,28 +308,14 @@ const ImageContainer = styled.div`
   `}
 `;
 
-const TextContainer = styled.div`
-  position: relative;
-  padding-left: 40px;
-  padding-right: 40px;
-  text-align: center;
-  ${mediaqueries.desktop`
-    padding-left: 24px;
-    padding-right: 24px;
-  `}
-`;
-
-const ContentContainer = styled.div`
-  position: relative;
-`;
 
 const Title = styled(Headings.h2)`
   font-size: 24px;
   font-family: ${p => p.theme.fonts.title};
   color: ${p => p.theme.colors.primary};
-  margin-bottom: 8px;
+  margin: 8px 0;
   transition: color 0.3s ease-in-out;
-  ${limitToOneLines};
+  // ${limitToOneLines};
 
   ${mediaqueries.desktop`
     font-size: 22px;
@@ -326,8 +332,8 @@ const Title = styled(Headings.h2)`
 
 const Excerpt = styled.p`
   ${limitToTwoLines};
-  font-size: 16px;
-  margin-bottom: 8px;
+  font-size: 1.8rem;
+  margin-bottom: 28px;
   color: ${p => p.theme.colors.secondary};
   font-family: ${p => p.theme.fonts.body};
   display: ${p => (p.hasOverflow && p.gridLayout === 'tiles' ? 'none' : 'box')};
@@ -363,7 +369,6 @@ const ArticleLink = styled(Link)`
   z-index: 1;
   transition: transform 0.33s var(--ease-out-quart);
   background: ${p => p.theme.colors.card};
-  background-image: none;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   &[data-a11y='true']:focus::after {
     content: '';
@@ -425,6 +430,7 @@ const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
   padding: 1.2rem 1.5rem;
   background: ${p => p.theme.colors.card};
   transition: background 0.1s ease-in-out, color 0.1s ease-in-out;
+  box-shadow: 0 5px 30px -15px rgba(0,0,0,.2);
 
   &:hover {
     color: ${p => p.theme.colors.background};
@@ -437,10 +443,4 @@ const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
     color: ${p.theme.colors.background};
     background: ${p.theme.colors.primary};
   `}
-
-  img {
-    margin: 0;
-    margin-right: 10px;
-    width: 20px;
-  }
 `;
