@@ -5,6 +5,7 @@ import throttle from 'lodash/throttle';
 import { useColorMode } from 'theme-ui';
 // import { graphql, useStaticQuery } from 'gatsby';
 import { IoLogoTwitter } from 'react-icons/io';
+import { DiscussionEmbed } from 'disqus-react'
 
 import Layout from '@components/Layout';
 import MDXRenderer from '@components/MDX';
@@ -56,12 +57,20 @@ const Article: Template = ({ pageContext, location }) => {
   const results = useStaticQuery(siteQuery);
   const name = results.allSite.edges[0].node.siteMetadata.name;
 
-  const { article, authors, mailchimp, next } = pageContext;
+  const { article, authors, mailchimp, next, slug, title } = pageContext;
+  const { href } = location;
 
   const editUrl = `https://github.com/${GITHUB_USERNAME}/${GITHUB_REPO_NAME}/edit/master/www/content/posts${article.slug}/index.mdx`;
   const discussUrl = `https://mobile.twitter.com/search?q=${encodeURIComponent(
     `https://${GITHUB_REPO_NAME}${article.slug}`,
   )}`;
+
+  const disqusConfig = React.useMemo(() => {
+    return {
+      shortname: process.env.GATSBY_DISQUS_NAME,
+      config: { url: href, identifier: slug, title }
+    };
+  }, [slug, title, href]);
 
   useEffect(() => {
     const calculateBodySize = throttle(() => {
@@ -139,6 +148,7 @@ const Article: Template = ({ pageContext, location }) => {
             <FooterSpacer />
           </>
         )}
+        <DiscussionEmbed {...disqusConfig} />
       </Section>
     </Layout>
   );
