@@ -95,3 +95,11 @@ export type Template = React.FC<{
   };
   location: Location;
 }>
+
+export type WorkshopTemplate = React.FC<{
+  pageContext: {
+    workshop: IWorkshop;
+    mailchimp: boolean;
+  };
+  location: Location;
+}>
