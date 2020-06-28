@@ -1,7 +1,7 @@
 import React from "react";
 
 export default props => (
-  <html {...props.htmlAttributes}>
+  <html lang="en" {...props.htmlAttributes}>
     <head>
 
       <meta charSet="utf-8" />
@@ -17,6 +17,7 @@ export default props => (
     </head>
     <body {...props.bodyAttributes}>
       {props.preBodyComponents}
+      <noscript>This site runs best with JavaScript enabled.</noscript>
       <div
         key="body"
         id="___gatsby"
