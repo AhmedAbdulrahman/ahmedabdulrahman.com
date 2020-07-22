@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import { OutboundLink } from "gatsby-plugin-google-analytics";
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import mediaqueries from '@styles/media';
@@ -103,6 +104,7 @@ const AboutPage = ({ location }) => {
                 href="https://github.com/AhmedAbdulrahman"
                 target="_blank"
                 rel="noopener noreferrer"
+                as={OutboundLink}
               >
                 Github
               </Anchor>
@@ -111,6 +113,7 @@ const AboutPage = ({ location }) => {
                 href="https://twitter.com/_ahmed_ab"
                 target="_blank"
                 rel="noopener noreferrer"
+                as={OutboundLink}
               >
                 Twitter
               </Anchor>{' '}
@@ -119,6 +122,7 @@ const AboutPage = ({ location }) => {
                 href="https://www.linkedin.com/in/ahmed-abd/"
                 target="_blank"
                 rel="noopener noreferrer"
+                as={OutboundLink}
               >
                 LinkedIn
               </Anchor>

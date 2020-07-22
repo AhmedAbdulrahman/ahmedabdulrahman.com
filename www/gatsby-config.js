@@ -92,7 +92,7 @@ const plugins = [
   {
     resolve: `gatsby-plugin-google-analytics`,
     options: {
-      trackingId: "",
+      trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
     },
   },
   // {

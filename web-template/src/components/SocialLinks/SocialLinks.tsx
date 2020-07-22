@@ -1,4 +1,5 @@
 import React from 'react';
+import { OutboundLink } from "gatsby-plugin-google-analytics";
 import styled from '@emotion/styled';
 import { useThemeUI } from 'theme-ui';
 
@@ -59,6 +60,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({
             data-a11y="false"
             aria-label={`Link to ${option.url}`}
             href={option.url}
+            as={OutboundLink}
           >
             <Icon fill={theme.colors.primary} />
             <Hidden>Link to ${option.url}</Hidden>
