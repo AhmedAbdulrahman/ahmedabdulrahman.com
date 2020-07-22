@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import { OutboundLink } from "gatsby-plugin-google-analytics";
 import styled from '@emotion/styled';
 import throttle from 'lodash/throttle';
 import { useColorMode } from 'theme-ui';
@@ -122,10 +123,17 @@ const Article: Template = ({ pageContext, location }) => {
             <ArticleShare />
           </MDXRenderer>
           <BodyFooter>
-            <Anchor href={discussUrl} target="_blank" rel="noopener noreferrer">
+            <Anchor
+              as={OutboundLink}
+              href={discussUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Discuss on Twitter
             </Anchor>
+
             <TwitterLink
+              as={OutboundLink}
               href="https://twitter.com/intent/follow?screen_name=_ahmed_ab"
               target="_blank"
               rel="noopener noreferrer"

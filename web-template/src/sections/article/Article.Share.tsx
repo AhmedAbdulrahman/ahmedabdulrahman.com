@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { OutboundLink } from "gatsby-plugin-google-analytics";
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/core';
 import { useColorMode } from 'theme-ui';
@@ -205,6 +206,7 @@ function ReferralLink({ disabled, share, children }) {
       href={disabled ? '' : share}
       onClick={handleClick}
       disabled={disabled}
+      as={OutboundLink}
     >
       <Hidden>Share the selected text</Hidden>
       {children}
