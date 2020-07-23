@@ -1,0 +1,69 @@
+---
+title: How to install Docker on macOS
+author: Ahmed Abdulrahman
+date: 2020-02-10
+hero: ./images/hero.jpeg
+bannerCredit:
+  'Photo by [Lucas van Oort](https://unsplash.com/photos/bv6svakgbGM) on
+  [Unsplash](https://unsplash.com)'
+excerpt: Beginner’s guide to install and run Docker on macOS
+category: Tools
+tags: ['macos', 'tools', 'tools']
+---
+
+## Prerequisites
+- Basic command line and bash scripting knowledge
+
+### What is Docker?
+It is a tool that allows you to easily share, deploy, and run applications consistently in many environments through containers. It's available Mac, Linus, and Windows. Since, I am Mac user I am going to show you how to install it on **macOS**.
+For other platforms see:
+- [Linux](https://docs.docker.com/engine/install/)
+- [Windows](https://docs.docker.com/docker-for-windows/install/)
+
+### Installation
+First, you need to download Docker Desktop Mac, you can download it from docker hub **[here](https://hub.docker.com/editions/community/docker-ce-desktop-mac/)**.
+
+If you wonder that is Docker Hub, it's an online repository similar to **[GitHub](https://github.com/)** & **[NPM](https://www.npmjs.com/)**
+but Docker images and the login that Docker Desktop will connect to.
+
+Once download is completed, **double-click** the DMG file, and **drag-and-drop** Docker into macOS **Applications** folder:
+
+<div class="Image__Small">
+  <img src="./images/docker-installation.png" alt="Docker installation" />
+  <figcaption>Docker installation</figcaption>
+</div>
+
+This installs the following:
+
+- Docker Engine
+- Docker CLI Client
+- Docker Compose
+- Docker Machine
+
+Double-click **Docker.app** which you can find inside **Applications** folder to start Docker.
+
+<div class="Image__Small">
+  <img src="./images/docker-app.png" alt="Docker installation" />
+  <figcaption>Docker App</figcaption>
+</div>
+
+You can see the **whale** in your status bar which indicates Docker is running and accessible:
+
+<div class="Image__Small">
+  <img src="./images/whale.png" alt="Docker Whale icon in status bar" />
+  <figcaption>Status Bar</figcaption>
+</div>
+
+Once all this is completed, you can ensure **Docker CLI** is set up and working by checking the version.
+
+```bash
+$ docker -v
+```
+
+That’s it!
+
+In order to use Docker, you must understand the concept of images and containers which we will see in next article.
+
+Did you find this useful? If you did, then share it and [Buy me a coffee](https://www.buymeacoffee.com/ahmedab)* to give my brain a hug ☕️.
+Thanks for reading!
+- - - -
