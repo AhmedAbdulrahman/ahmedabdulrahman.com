@@ -138,7 +138,7 @@ const PrismCSS = p => css`
     word-break: normal;
     word-wrap: normal;
     line-height: 1.5;
-
+    ${!p.isDark && 'box-shadow: 0 8px 16px rgb(43 43 53 / 0.5);'}
     .token-line {
       border-left: 3px solid transparent;
       background-color: ${p.isDark ? '#29293e' : '#2b2b35'};
