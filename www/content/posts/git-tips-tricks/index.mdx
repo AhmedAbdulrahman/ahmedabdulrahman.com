@@ -104,6 +104,44 @@ below you have all available options. Pressing `?` gives you explanation of each
 This is really handy it lets you write as much code as you want to without having to remember to commit each change separately beforehand or if you have made several different changes to the same file
 and want to commit them separately.
 
+### git checkout --patch or `-p`
+This is like `git add --patch` command, but it puts you on an intractive workflow where you can decide how to handle each chunk of your changes. I
+personally find it a great way to go through before trying to commit your changes.
+
+### git diff --diff-filter
+Diff command is used when we want to track difference between any changes made on a file. It gets a big task when working with file cleanup, removing
+and modifing lots of files.
+
+To filter all noises and filter by type of file change *A*dded, *M*odified, or *U*pdated, we can pass `--diff-filter` flag together with
+any of the following *characters* to `git diff`:
+
+- `A`: Added
+- `C`: Copied
+- `D`: Deleted
+- `M`: Modified
+- `R`: Renamed
+- `T`: Have their type changed
+- `U`: Unmerged
+- `X`: Unknown
+- `B`: Have their pairing broken
+- `*`: All or none
+
+To `Include` use *Upper-case*
+```bash
+# Show only modified files
+$ git diff --diff-filter=M
+# Show only Modified files over the previous
+# five commits and output changes to file.
+$ git diff --diff-filter=M HEAD~5 > changes.txt:
+```
+
+To `Exclude` use *Upper-case*
+```bash
+# Show all but not modified files.
+$ git diff --diff-filter=m
+```
+
+Any combination of characters can be used 🔥
 
 ### git shortlog -sn
 It lets you list all contributors and see how many commits each person has made on the repo.
