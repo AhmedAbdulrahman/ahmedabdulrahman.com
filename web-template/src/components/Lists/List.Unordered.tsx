@@ -48,8 +48,8 @@ const UnorderedList = styled.ul<{ fullWidth?: boolean }>`
   li::before {
     content: '';
     position: absolute;
-    left: -30px;
-    top: 8px;
+    left: -18px;
+    top: 12px;
     height: 8px;
     width: 8px;
     background: ${p => p.theme.colors.primary};
