@@ -1,0 +1,83 @@
+---
+title: Understand the concept of Images and Containers
+author: Ahmed Abdulrahman
+date: 2020-02-13
+hero: ./images/hero.jpeg
+bannerCredit:
+  'Photo by [Frank Mckenna](https://unsplash.com/photos/tjX_sniNzgQ) on
+  [Unsplash](https://unsplash.com)'
+excerpt: A step by step guide to understanding the concept of Images and Containers in Docker
+category: Tools
+tags: ['macos', 'tools', 'tools']
+---
+
+## Prerequisites
+- Basic command line and bash scripting knowledge
+
+
+In docker, all images are defined within special text files called **Dockerfile**, and you need to define all the steps explicitly inside that file. Let’s look at the below example:
+
+```shell
+# Pull from a base image
+FROM node:12-alpine
+
+# Copy the files from the current directory to app/
+COPY . app/
+
+# Use app/ as the working directory
+WORKDIR app/
+
+# Install dependencies (npm ci is similar to npm i, but for automated builds),
+# then build production client side React application
+RUN npm ci --only-production &&\
+    npm run build
+
+# Listen to the port
+EXPOSE 5000
+
+# Set Node server
+ENTRYPOINT npm run start
+```
+
+Let’s split this file into lines:
+
+- `FROM` - is the first command in the Dockerfile. Without this, we can’t build an image. It pulls the base image with the tag `12-alpine`, which is a specific version of **Node** along with specific version of Alpine.
+- `COPY` - is used to copy files or directories from source host filesystem to a destination in the container file system.
+- `WORKDIR` - sets the working directory for subsequent commands. We can have multiple `WORKDIR` commands and will be appended with a relative path.
+- `RUN` - executes commands in a new layer on top of the existing image. Consider our example, it install npm dependencies, and build client side app with one `RUN` to avoid any additional layers.
+- `EXPOSE` - is a communication between the person who builds the image and the person who runs the container so basically just sets a port.
+- `ENTRYPOINT` - is used as an executable for the container. Consider our example, we are using `ENTRYPOINT` to execute `npm run start` command.
+
+
+Once we have this file and named it as **Dockerfile**, we can just run this command to build our image:
+```bash
+docker build . -t our-image-name:our-tag
+```
+
+this will build our image and once the build is done, we can run our image with one simple command:
+
+```bash
+docker run -it our-image-name:our-tag --name webapp sh
+```
+
+This command will give us a shell **session** inside the **container**, which we can use to do whatever we want. To understand the concept a little bit better, just open another terminal **session** while
+keeping the one in the container running, and run `docker ps`:
+```bash
+CONTAINER ID        IMAGE                           COMMAND             CREATED             STATUS              PORTS               NAMES
+4a81c6a020c8        our-image-name:container-tag   "/bin/sh"            44 seconds ago      Up 44 seconds                           webapp
+```
+
+The one listed there is our currently running container, which we can see with the **IMAGE** column set to our new image. However, there is a small detail, if you exit the shell **session** inside the **container** by running exit or `CTRL+D`, our container will die and `docker ps` will give you an empty output. There is a simple explanation behind this behavior; when you have executed the runner
+command above as:
+```bash
+docker run -it our-image-name:our-tag --name webapp /bin/sh
+```
+we have basically told **Docker** to start this container with the `/bin/sh` process as the main process inside the container, which means once your process is dead that's what happens when you exit the shell **session**,
+our container will die simple as that.
+
+We built a smiple project step by step with `Dockerfile` and looked at most of the instructions. Please look at the **Docker** docs if you need more info.
+
+If you have enjoyed this article? drop a coffee ☕️ tip [here](https://www.buymeacoffee.com/ahmedab) or [support](https://www.patreon.com/ahmedabdulrahman) me for less than the cost of a coffee
+
+Thanks for reading!
+- - - -
