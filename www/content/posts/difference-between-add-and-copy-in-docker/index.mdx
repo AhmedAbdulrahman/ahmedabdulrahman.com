@@ -1,0 +1,58 @@
+---
+title: ADD vs COPY in Docker
+author: Ahmed Abdulrahman
+date: 2020-03-17
+hero: ./images/hero.jpeg
+bannerCredit:
+  'Photo by [Frank Mckenna](https://unsplash.com/photos/tjX_sniNzgQ) on
+  [Unsplash](https://unsplash.com)'
+excerpt: In this post, we'll learn what are ADD and COPY commands in docker, How they differ, and why COPY is more secure than ADD.
+category: Tools
+tags: ['macos', 'tools']
+---
+
+`ADD` and `COPY` both docker commands that serve similar purposes. Although there are slight differences in their functionality, but they essentially perform the same task that lets you
+copy files from a specific location into a Docker image.
+
+## How they differ
+
+### ADD Command
+It copies new **files** or **directories** from `<src>` and adds them to the filesystem of the container at the path `<dest>`.
+
+The syntax look for this command:
+```bash
+ADD <src> … <dest>
+```
+
+It also have two more features:
+- Copy and automatically auto-extract **local-only** compressed files into given destination
+
+```bash
+ADD file.tar.xz /destination/path
+```
+
+- Download and copy files from remote URL to the given destination:
+
+```bash
+ADD http://www.your-source.file/url  /destination/path
+```
+
+### COPY Command
+Unlike `ADD`, `COPY`command aims to meet the majority of the copy files into container use cases without any surprises:
+- It doesn't support URLs as a `<src>` argument so you can't use it to download files from remote locations.
+- It doesn't give any special treatment to archives. So, if you want to `COPY` an archive file it will land in the container exactly as it appears in the build context without extracting it.
+
+## Why COPY is more secure
+- Remote **URLs** should be declared over a secure **TLS** connection and their origins need to be validated as well to prevent **man-in-the-middle** attacks.
+- `COPY` allows separating the addition of an archive from remote locations and unpacking it as different layers, which optimizes the image cache. If remote files are needed, combining all of them into one RUN command that downloads, extracts, and cleans-up afterwards optimizes a single layer operation over several layers that would be required if `ADD` were used.
+- `ADD` automatically extracts local archives to the destination directory. While this may be acceptable, it adds the risk of **Zip Bombs** and **Zip Slip** vulnerabilities that could then be triggered automatically.
+
+## Which to Use?
+Well, according to [docker's official documentation](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#add-or-copy), `COPY` should always be the your go-to command as it is more transparent than `ADD`.
+
+That's it!
+
+If you have find this useful, drop a [coffee ☕️](https://www.buymeacoffee.com/ahmedab) tip or [support](https://www.patreon.com/ahmedabdulrahman) me for less than the cost of a coffee
+
+Thanks for reading!
+- - - -
