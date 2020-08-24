@@ -91,8 +91,8 @@ const CodePrism: React.FC<CodePrismProps> = ({
         {({ className, tokens, getLineProps, getTokenProps }) => {
           return (
             <PreContainer>
-              <pre className={className} style={{ position: 'relative' }}>
                 <Copy toCopy={codeString} />
+              <pre className={className}>
                 {tokens.map((line, index) => {
                   const { className } = getLineProps({
                     line,
@@ -133,8 +133,10 @@ export default CodePrism;
 
 const CopyButton = styled.button`
   position: absolute;
-  right: 22px;
-  top: 24px;
+  top: 40px;
+  right: 142px;
+  font-family: ${p => p.theme.fonts.monospace};
+  font-size: 15px;
   padding: 8px 12px 7px;
   border-radius: 5px;
   color: #6f7177;
@@ -205,6 +207,7 @@ const Container = styled.div`
 `;
 
 const PreContainer = styled.div`
+  position: relative;
   overflow: auto;
 
   ${mediaqueries.tablet_up`
