@@ -11,9 +11,6 @@ category: Tools
 tags: ['macos', 'tools', 'tools']
 ---
 
-## Prerequisites
-- Basic command line and bash scripting knowledge
-
 ### What is Docker?
 It is a tool that allows you to easily share, deploy, and run applications consistently in many environments through containers. It's available Mac, Linus, and Windows. Since, I am Mac user I am going to show you how to install it on **macOS**.
 For other platforms see:
@@ -54,16 +51,25 @@ You can see the **whale** in your status bar which indicates Docker is running a
   <figcaption>Status Bar</figcaption>
 </div>
 
-Once all this is completed, you can ensure **Docker CLI** is set up and working by checking the version.
+Once all this is completed, you can ensure **Docker CLI** is set up and working by checking the versions of **Docker Engine**, **Compose**, and **Machine**
 
 ```bash
-$ docker -v
+$ docker --version
+$ docker-compose --version
+$ docker-machine --version
+```
+
+To make sure everything is working as expected, you can run a simple dockerized web server:
+
+```bash
+$ docker run -d -p 80:80 --name webserver nginx
 ```
 
 That’s it!
 
-In order to use Docker, you must understand the concept of images and containers which we will see in next article.
+You’ve got Docker running! Let’s talk about the concept of images and containers in the following [blog]((/writing/understand-the-concept-of-images-and-containers)).
 
-Did you find this useful? If you did, then share it and [Buy me a coffee](https://www.buymeacoffee.com/ahmedab) to give my brain a hug ☕️.
+If you have enjoyed this article? drop a coffee ☕️ tip [here](https://www.buymeacoffee.com/ahmedab) or [support](https://www.patreon.com/ahmedabdulrahman) me for less than the cost of a coffee.
+
 Thanks for reading!
 - - - -
