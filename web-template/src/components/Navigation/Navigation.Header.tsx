@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { Link, navigate, graphql, useStaticQuery } from 'gatsby';
 import { useColorMode } from 'theme-ui';
+import useSound from 'use-sound';
 
 import Section from '@components/Section';
 import Logo from '@components/Logo';
@@ -17,8 +18,18 @@ import {
   getBreakpointFromTheme,
 } from '@utils';
 
+
 const siteQuery = graphql`
   {
+    allSite {
+      edges {
+        node {
+          siteMetadata {
+            siteUrl
+          }
+        }
+      }
+    }
     sitePlugin(name: { eq: "web-template" }) {
       pluginOptions {
         rootPath
@@ -29,8 +40,15 @@ const siteQuery = graphql`
   }
 `;
 
-const DarkModeToggle: React.FC<{}> = () => {
+const DarkModeToggle: React.FC<{siteUrl: string}> = ({ siteUrl }) => {
   const [colorMode, setColorMode] = useColorMode();
+
+  const popUpOn = `${siteUrl}/sounds/switch-on.mp3`
+  const popUpOff = `${siteUrl}/sounds/switch-off.mp3`
+
+  const [playOn] = useSound(popUpOn, { volume: 0.25 });
+  const [playOff] = useSound(popUpOff, { volume: 0.25 });
+
   const isDark = colorMode === `dark`;
 
   function toggleColorMode(event) {
@@ -41,7 +59,15 @@ const DarkModeToggle: React.FC<{}> = () => {
   return (
     <IconWrapper
       isDark={isDark}
-      onClick={toggleColorMode}
+      onClick={(e) => {
+        toggleColorMode(e)
+        if (isDark) {
+          playOff()
+        } else {
+          playOn()
+
+        }
+      }}
       data-a11y="false"
       aria-label={isDark ? 'Activate light mode' : 'Activate dark mode'}
       title={isDark ? 'Activate light mode' : 'Activate dark mode'}
@@ -90,7 +116,7 @@ const NavigationHeader: React.FC<{}> = () => {
   const [previousPath, setPreviousPath] = useState<string>('/writing');
   const [burgerOpen, setBurgerOpen] = React.useState(false);
 
-  const { sitePlugin } = useStaticQuery(siteQuery);
+  const { sitePlugin, allSite } = useStaticQuery(siteQuery);
   const detectMobile = useMobileDetect();
 
   const [colorMode] = useColorMode();
@@ -146,7 +172,7 @@ const NavigationHeader: React.FC<{}> = () => {
             <>
               {detectMobile.isMobile() ? (
                 <>
-                  <DarkModeToggle />
+                  <DarkModeToggle siteUrl={allSite.edges[0].node.siteMetadata.siteUrl} />
                   <Burger
                     burgerOpen={burgerOpen}
                     setBurgerOpen={setBurgerOpen}
@@ -207,7 +233,7 @@ const NavigationHeader: React.FC<{}> = () => {
                     About
                   </NavLink>
                   <SharePageButton />
-                  <DarkModeToggle />
+                  <DarkModeToggle siteUrl={allSite.edges[0].node.siteMetadata.siteUrl} />
                 </>
               )}
             </>
