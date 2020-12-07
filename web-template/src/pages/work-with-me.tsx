@@ -36,10 +36,10 @@ const WorkWithMe: Template = ({ location }) => {
   return (
     <Layout>
       <SEO pathname={location.href} title={`Work with me - ${title}`} />
-      <Section component="main">
+      <Section>
         <Container>
           <HeroTextContainer>
-            <Headings.HeroHeading>
+            <Headings.HeroHeading disableGutters>
               Work <span>With Me</span>
             </Headings.HeroHeading>
             <Headings.Subtitle>
@@ -173,11 +173,13 @@ const Container = styled.div`
   grid-template-columns: 1fr 450px;
   column-gap: 5em;
   overflow: hidden;
-  margin: 104px 0 40px;
+  margin: 200px 0 40px;
 
   ${mediaqueries.desktop`
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    margin: 120px 0 40px;
   `}
+
   ${mediaqueries.tablet`
     grid-template-columns: 1fr;
   `}
@@ -185,8 +187,20 @@ const Container = styled.div`
 
 const HeroTextContainer = styled.div`
   position: relative;
-  align-self: end;
   align-self: center;
+
+  ${mediaqueries.tablet`
+    padding-top: 2rem;
+  `}
+
+  ${mediaqueries.desktop_up`
+    padding-top: 8rem;
+  `}
+
+  ${mediaqueries.desktop_medium_up`
+    padding-top: 15rem;
+  `}
+
 `;
 
 const ContentContainer = styled.div`

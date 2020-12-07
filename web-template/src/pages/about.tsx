@@ -35,22 +35,42 @@ const AboutPage = ({ location }) => {
   const site = results.allSite.edges[0].node.siteMetadata;
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO
         image={`${site.siteUrl}/about.png`}
         pathname={location.pathname}
         title={`About me - ${site.title}`}
       />
-      <Section component="main">
+      <Section>
       <Container>
-          <HeroTextContainer>
-            <Headings.HeroHeading>
-              Hey, <span>I'm Ahmed</span>
+          <HeroTextContainer data-scroll data-scroll-speed="3">
+            <Headings.HeroHeading
+              disableGutters
+              data-scroll
+              data-scroll-direction="horizontal"
+              data-scroll-speed="2"
+              align="right"
+             >
+              Stockholm based
             </Headings.HeroHeading>
-            <Headings.Subtitle>
-            Stockholm based Creative Front-end Crispiness Creator &amp;
-                Designer.
-            </Headings.Subtitle>
+            <Headings.HeroHeading
+              disableGutters
+              data-scroll
+              data-scroll-direction="horizontal"
+              data-scroll-speed="-2"
+             >
+              <span>Creative Developer</span>
+            </Headings.HeroHeading>
+            <Headings.HeroHeading
+              disableGutters
+              data-scroll
+              data-scroll-direction="horizontal"
+              data-scroll-speed="2"
+              align="right"
+             >
+              &amp; <span>Designer</span>.
+            </Headings.HeroHeading>
+
         </HeroTextContainer>
         <HeroImage>
             <Icons.About />
@@ -172,23 +192,52 @@ const Container = styled.div`
   margin: 104px 0 40px;
 
   ${mediaqueries.desktop`
+    grid-template-columns: 1fr;
+  `}
+
+  ${mediaqueries.desktop_up`
     grid-template-columns: 1fr 1fr;
   `}
+
+
   ${mediaqueries.tablet`
     grid-template-columns: 1fr;
+    margin: 150px 0 40px;
   `}
 `;
 
 const HeroTextContainer = styled.div`
   position: relative;
-  align-self: end;
-  align-self: flex-start;
+  align-self: center;
+
+  h1 {
+    ${mediaqueries.desktop_medium_up`
+      font-size:  3.28vw;
+    `}
+  }
+
+  ${mediaqueries.tablet`
+    padding-top: 2rem;
+  `}
+
+  ${mediaqueries.desktop_up`
+    padding-top: 8rem;
+  `}
+
+  ${mediaqueries.desktop_medium_up`
+    padding-top: 15rem;
+  `}
 `;
 
 const HeroImage = styled.div`
   position: relative;
 
   ${mediaqueries.tablet`
+    display: none;
+    visibility: hidden;
+  `}
+
+  ${mediaqueries.desktop`
     display: none;
     visibility: hidden;
   `}

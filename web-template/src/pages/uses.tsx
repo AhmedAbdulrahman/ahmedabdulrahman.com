@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import { useColorMode } from 'theme-ui';
 
 import SEO from '@components/SEO';
@@ -39,16 +40,16 @@ const Uses: React.FC<PageProps> = ({ location }) => {
   const site = results.allSite.edges[0].node.siteMetadata;
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO
         image={`${site.siteUrl}/uses.png`}
         pathname={location.pathname}
         title={`Uses - ${site.title}`}
       />
-      <Section component="main">
+      <Section>
         <Container>
           <HeroTextContainer>
-            <Headings.HeroHeading>Tools</Headings.HeroHeading>
+            <Headings.HeroHeading disableGutters>Tools</Headings.HeroHeading>
             <Headings.Subtitle>
               I get a lot of questions about the tools I use for different parts
               of my work. I've put together this "uses" page that covers the
@@ -461,16 +462,22 @@ const Container = styled.div`
 
   ${mediaqueries.desktop`
     grid-template-columns: 1fr 1fr;
+    margin: 150px 0 40px;
   `}
+
   ${mediaqueries.tablet`
     grid-template-columns: 1fr;
+    margin: 120px 0 40px;
   `}
 `;
 
 const HeroTextContainer = styled.div`
   position: relative;
-  align-self: end;
-  align-self: flex-start;
+  align-self: center;
+
+  ${mediaqueries.tablet`
+    padding-top: 2rem;
+  `}
 `;
 
 const HeroImage = styled.div`
