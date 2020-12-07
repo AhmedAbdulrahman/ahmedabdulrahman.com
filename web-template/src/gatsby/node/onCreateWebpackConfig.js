@@ -1,7 +1,21 @@
 const path = require('path');
 
-module.exports = ({ actions }) => {
+module.exports = ({ actions, loaders, stage }) => {
+  let exclude = null
+  if (stage === "build-html") {
+    exclude = {
+      module: {
+        rules: [
+          {
+            test: /locomotive-scroll/,
+            use: loaders.null(),
+          },
+        ],
+      }
+    }
+  }
   actions.setWebpackConfig({
+    ...exclude,
     resolve: {
       alias: {
         '@components': path.resolve(__dirname, '../../components/'),
