@@ -16,6 +16,7 @@ const breakpoints = [
 const fonts = {
   title: "'Title', Georgia, Serif",
   body: "'Text','Libre Baskerville', Georgia, Serif",
+  suisseintl: "SuisseIntl",
   monospace: `"Operator Mono", Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace`,
 };
 
