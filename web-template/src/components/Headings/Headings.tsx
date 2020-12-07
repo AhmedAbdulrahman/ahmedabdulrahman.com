@@ -92,32 +92,47 @@ const h6 = styled.h6`
 `;
 
 const HeroHeading = styled.h1`
+  font-stretch: normal;
   font-style: normal;
-  font-weight: ${p => p.theme.fontsWeight.bold};
-  font-size: 8.5rem;
-  line-height: 1.1;
+  line-height: .78;
+  letter-spacing: -0.03vw;
   font-family: ${p => p.theme.fonts.title};
   color: ${p => p.theme.colors.primary};
+  text-transform: uppercase;
+  font-size: 11.88vw;
+  text-align: ${({align = 'left'}) => align};
+
+  ${p => p.compact &&
+    `
+    line-height: .58;
+  `}
+
+  ${p => p.disableGutters ?
+    mediaqueries.desktop_up`
+      margin-left: 0;
+      margin-right: 0;
+    ` :
+    mediaqueries.desktop_up`
+      margin-left: 7rem;
+      margin-right: 7rem;
+    `
+  }
+}
 
   span {
     color: ${p => p.theme.colors.accent};
   }
 
   ${mediaqueries.desktop_up`
-    font-size: 8.6rem;
+    font-size: 8.88vw;
   `}
 
-  ${mediaqueries.desktop_up`
-    margin-bottom: 5rem;
+  ${mediaqueries.desktop_medium_up`
+    font-size: 6.88vw;
   `}
-
-  ${mediaqueries.tablet`
-  font-size: 6.8rem;
-`}
 
   ${mediaqueries.phablet`
-    font-size: 5.6rem;
-    line-height: 1.1;
+    font-size: 4.5rem;
 `}
 `;
 
@@ -128,6 +143,10 @@ const SectionHeading = styled.h2`
   color: ${p => p.theme.colors.accent};
   margin-bottom: 150px;
   text-align: center;
+
+  span {
+    display: inline-block;
+  }
 
   ${mediaqueries.desktop`
     font-size: 6rem;
@@ -148,6 +167,7 @@ const Subtitle = styled.p`
 
   ${mediaqueries.phablet`
     font-size: 2.2rem;
+    margin-top: 2rem;
   `}
 
   ${mediaqueries.desktop_up`
