@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import { Link, navigate, graphql, useStaticQuery } from 'gatsby';
 import { useColorMode } from 'theme-ui';
 import useSound from 'use-sound';
@@ -142,7 +143,19 @@ const NavigationHeader: React.FC<{}> = () => {
   }, [previousPath]);
 
   return (
-    <Section component="header">
+    <Section
+      component="header"
+      data-scroll
+      data-scroll-sticky
+      data-scroll-target="#container"
+      css={css `
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+      `}
+      >
       <NavContainer>
         <LogoLink
           to={rootPath || basePath}
@@ -266,17 +279,16 @@ const BackArrowIconContainer = styled.div`
 const NavContainer = styled.div`
   position: relative;
   z-index: 100;
-  padding-top: 64px;
+  /* padding-top: 64px; */
   display: flex;
   justify-content: space-between;
+  height: 9rem;
 
-  ${mediaqueries.desktop_medium`
-    padding-top: 50px;
-  `};
+  transition: transform 0.35s ease;
 
-  ${mediaqueries.phablet`
-  padding-top: 50px;
-`};
+  html[data-direction="down"] & {
+    transform: translateY(-100%);
+  }
 `;
 
 const NavLink = styled(Link)`
