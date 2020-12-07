@@ -47,22 +47,24 @@ const Aside: React.FC<AsideProps> = ({ contentHeight, children }) => {
     setImageOffset(imageOffsetFromTopOfWindow);
 
     const handleScroll = throttle(() => {
-      const el = progressRef.current;
-      const top = el.getBoundingClientRect().top;
-      const height = el.offsetHeight;
-      const windowHeight =
-        window.innerHeight || document.documentElement.clientHeight;
+      if (progressRef?.current) {
+        const el = progressRef.current;
+        const top = el.getBoundingClientRect().top;
+        const height = el.offsetHeight;
+        const windowHeight =
+          window.innerHeight || document.documentElement.clientHeight;
 
-      const percentComplete = (window.scrollY / contentHeight) * 100;
+        const percentComplete = (window.scrollY / contentHeight) * 100;
 
-      setProgress(clamp(+percentComplete.toFixed(2), 0, 105));
+        setProgress(clamp(+percentComplete.toFixed(2), 0, 105));
 
-      if (top + window.scrollY < imageOffsetFromTopOfWindow) {
-        return setShouldFixAside(false);
-      }
+        if (top + window.scrollY < imageOffsetFromTopOfWindow) {
+          return setShouldFixAside(false);
+        }
 
-      if (top + height / 2 <= windowHeight / 2) {
-        return setShouldFixAside(true);
+        if (top + height / 2 <= windowHeight / 2) {
+          return setShouldFixAside(true);
+        }
       }
     }, 20);
 
@@ -96,7 +98,6 @@ const AsideContainer = styled.aside`
   display: flex;
   margin: 0 auto;
   max-width: 1140px;
-
   ${mediaqueries.desktop_medium`
     display: none;
   `}
@@ -114,7 +115,6 @@ const Align = React.memo(styled.div<{
   align-items: ${p => (p.shouldFixAside ? "center" : "flex-start")};
   height: 100vh;
   z-index: 3;
-
   opacity: ${p => (p.show ? 1 : 0)};
   visibility: ${p => (p.show ? "visible" : "hidden")};
   transition: ${p =>

@@ -3,11 +3,9 @@ import { graphql, Link, useStaticQuery } from 'gatsby';
 import styled from '@emotion/styled';
 
 import Anchor from '@components/Anchor';
-import Section from '@components/Section';
 import Headings from '@components/Headings';
 
 import mediaqueries from '@styles/media';
-import Icons from '@icons';
 
 const siteQuery = graphql`
   {
@@ -30,9 +28,22 @@ const ArticlesHero: React.FC = () => {
   const site = results.allSite.edges[0].node.siteMetadata;
   return (
     <Container>
-      <HeroTextContainer style={{ maxWidth: site.hero.maxWidth }}>
-        <Headings.HeroHeading>
-          Writing is <span>thinking</span>.
+      <HeroTextContainer>
+        <Headings.HeroHeading
+          data-scroll
+          data-scroll-direction="horizontal"
+          data-scroll-speed="-2"
+          align="right"
+          compact
+        >
+          Writing is
+        </Headings.HeroHeading>
+        <Headings.HeroHeading
+          data-scroll
+          data-scroll-direction="horizontal"
+          data-scroll-speed="2"
+        >
+          <span>thinking</span>.
         </Headings.HeroHeading>
         <Headings.Subtitle>
           I write about solving problems with code, designing things people use,
@@ -42,9 +53,6 @@ const ArticlesHero: React.FC = () => {
           </Anchor>
         </Headings.Subtitle>
       </HeroTextContainer>
-      <HeroImage>
-        <Icons.Writing />
-      </HeroImage>
     </Container>
   );
 };
@@ -53,18 +61,16 @@ export default ArticlesHero;
 
 const Container = styled.div`
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr 450px;
-  column-gap: 5em;
-  overflow: hidden;
-  margin: 104px 0 40px;
+  margin: 200px 0 40px;
 
-  ${mediaqueries.desktop`
-    grid-template-columns: 1fr 1fr;
-  `}
   ${mediaqueries.tablet`
-    grid-template-columns: 1fr;
+    margin: 180px 0 40px;
   `}
+
+  ${mediaqueries.phablet`
+    margin: 125px 0 40px;
+  `}
+
 `;
 
 const HeroTextContainer = styled.div`

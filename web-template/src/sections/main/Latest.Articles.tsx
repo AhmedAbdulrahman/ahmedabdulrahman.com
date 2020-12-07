@@ -5,6 +5,7 @@ import { Link } from 'gatsby';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import Headings from '@components/Headings';
+import Section from '@components/Section';
 
 import mediaqueries from '@styles/media';
 
@@ -30,29 +31,42 @@ const LatestArticles: React.FC<{}> = () => {
   const result = useStaticQuery(siteQuery).allArticle.edges[0].node;
 
   return (
-    <GridContainer>
-      <WriteContainer>
-        <Headings.SectionHeading
-          css={css`
-            margin: 100px 0;
-          `}
-        >
-          Writing is th-
-          <br />
-          inking.
-        </Headings.SectionHeading>
-        <Text>
-          I write to get ideas, to inspire myself and to learn something new.
-        </Text>
-        <LatestArticle to={result.slug} title={result.title}>
-          <ArticleDate>Latest article - {result.date}</ArticleDate>
-          <ArticleTitle>{result.title}</ArticleTitle>
-        </LatestArticle>
-        <ViewLink to={`/writing`} title={`See all articles`}>
-          View all articles
-        </ViewLink>
-      </WriteContainer>
-    </GridContainer>
+    <Section>
+      <GridContainer>
+        <WriteContainer>
+          <Headings.SectionHeading data-scroll data-scroll-speed="2"
+            css={css`
+              margin: 100px 0;
+            `}
+          >
+            <span
+              data-scroll
+              data-scroll-direction="horizontal"
+              data-scroll-speed="-2"
+            >
+              Writing is th-
+            </span>
+            <br />
+            <span
+              data-scroll
+              data-scroll-direction="horizontal"
+              data-scroll-speed="2"
+            >
+              inking.</span>
+          </Headings.SectionHeading>
+          <Text>
+            I write to get ideas, to inspire myself and to learn something new.
+          </Text>
+          <LatestArticle to={result.slug} title={result.title}>
+            <ArticleDate>Latest article - {result.date}</ArticleDate>
+            <ArticleTitle>{result.title}</ArticleTitle>
+          </LatestArticle>
+          <ViewLink to={`/writing`} title={`See all articles`}>
+            View all articles
+          </ViewLink>
+        </WriteContainer>
+      </GridContainer>
+    </Section>
   );
 };
 

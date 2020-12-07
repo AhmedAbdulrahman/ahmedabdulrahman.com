@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
-
+import {css} from '@emotion/core'
 import Section from '@components/Section';
 import Headings from '@components/Headings';
 import HorizontalRule from '@components/HorizontalRule';
-import Image, { ImagePlaceholder } from '@components/Image';
 
 import mediaqueries from '@styles/media';
 import { IArticle } from '@types';
@@ -20,134 +19,79 @@ const WorkshopHero: React.FC<WorkshopHeroProps> = ({ workshop }) => {
     Object.keys(workshop.hero.full).length !== 0 &&
     workshop.hero.full.constructor === Object;
 
+    const splitTitle = workshop.title.split(' ')
   return (
-    <Section>
+    <>
       <HeroContainer>
-        {/* <HeroImage id="Image__Hero">
-          {hasHeroImage ? (
-            <Image src={workshop.hero.full} />
-          ) : (
-            <ImagePlaceholder />
-          )}
-        </HeroImage> */}
-        <HeroTextContainer>
-          {/* <Author>{workshop.instructor}</Author> */}
-          <Headings.HeroHeading>{workshop.title}</Headings.HeroHeading>
-          {/* <Excerpt>{workshop.excerpt}</Excerpt> */}
-          <InfoContainer>
-            <Date>
+        <HeroTextContainer
+          data-scroll data-scroll-speed="2"
+        >
+          {splitTitle.length >= 2 ? splitTitle.map((title, idx) => (
+            <Headings.HeroHeading
+              data-scroll
+              data-scroll-direction="horizontal"
+              data-scroll-speed={idx === 0 ? "-1" : "1"}
+              align={idx === 0 ? 'left': 'right'}
+              disableGutters
+              >
+              {title}
+            </Headings.HeroHeading>
+          )) :
+          <Headings.HeroHeading
+              data-scroll
+              data-scroll-direction="horizontal"
+              data-scroll-speed="-1"
+              disableGutters
+              >
+              {workshop.title}
+            </Headings.HeroHeading>
+        }
+        </HeroTextContainer>
+          <InfoContainer data-scroll data-scroll-speed="1">
+            <Date
+            >
               <Icons.Calendar />
               <span>TBA</span>
             </Date>
-            <Time>
+            <Time
+            >
               <Icons.Time />
               <span>TBA</span>
             </Time>
-            <Address>
+            <Address
+             >
               <Icons.Location />
               <span>Zoom</span>
             </Address>
           </InfoContainer>
-        </HeroTextContainer>
       </HeroContainer>
       <HorizontalRule />
-    </Section>
+    </>
   );
 };
 
 export default WorkshopHero;
 
 const HeroContainer = styled.div`
-  margin: 96px auto 80px;
-  max-width: 700px;
-`;
+  margin: 25rem 0 7rem;
 
-const HeroTextContainer = styled.header`
-  position: relative;
-  z-index: 10;
-  align-self: center;
-  ${mediaqueries.tablet`
-    margin-top: 40px;
+  ${mediaqueries.phablet`
+    margin: 150px 0 72px;
   `}
 `;
 
-const Author = styled(Headings.h4)`
-  margin-bottom: 8px;
-  color: ${p => p.theme.colors.secondary};
-`;
-
-const Excerpt = styled(Headings.h3)`
-  font-size: 20px;
-  font-family: ${p => p.theme.fonts.body};
-  color: ${p => p.theme.colors.secondary};
-  margin-bottom: 24px;
-  margin-top: 24px;
-  font-weight: normal;
-  line-height: 1.65;
-  ${mediaqueries.tablet`
-    font-size: 18px;
-  `}
-`;
-
-const HeroImage = styled.div`
-  position: relative;
-  height: auto;
-  align-self: start;
-  justify-self: center;
-  transition: transform 0.3s var(--ease-out-quad),
-    box-shadow 0.3s var(--ease-out-quad);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.07), 0px 2px 4px rgba(0, 0, 0, 0.07),
-    0px 4px 8px rgba(0, 0, 0, 0.07), 0px 8px 16px rgba(0, 0, 0, 0.07),
-    0px 16px 32px rgba(0, 0, 0, 0.07), 0px 32px 64px rgba(0, 0, 0, 0.07);
-  width: 80%;
-  background: ${p => p.theme.colors.secondary};
-  ${mediaqueries.phone`
-    width: 200px;
-    & > div {
-      ::before {
-          width: 5px !important;
-          box-shadow: 1px 0 rgba(0, 0, 0, 0.1), 2px 0 0px rgba(255, 255, 255, 0.1) !important;
-        }
-    }
-  `}
-  & > div {
-    height: 100%;
-    ::before {
-      background: linear-gradient(
-        to left,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.3) 90%
-      );
-      box-shadow: 1px 0 rgba(0, 0, 0, 0.1), 3px 0 0px rgba(255, 255, 255, 0.1);
-      content: '';
-      display: block;
-      height: 100%;
-      position: absolute;
-      width: 10px;
-      z-index: 2;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-      border-top-right-radius: 2px;
-      border-bottom-right-radius: 2px;
-    }
-  }
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center;
-  }
+const HeroTextContainer = styled.div`
+  width: 100%;
 `;
 
 const InfoContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
-  margin-top: 10px;
   font-family: ${p => p.theme.fonts.title};
 
   ${mediaqueries.tablet`
-  flex-direction: column;
-  align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   `};
 `;
 

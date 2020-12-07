@@ -61,20 +61,7 @@ const WorkshopsList: React.FC<WorkshopsListProps> = ({
   const workshopPairsFiltered = workshops.filter(workshop => {
     return includes(displayedTech, workshop.tech);
   });
-  /**
-   * We're taking the flat array of articles [{}, {}, {}...]
-   * and turning it into an array of pairs of articles [[{}, {}], [{}, {}], [{}, {}]...]
-   * This makes it simpler to create the grid we want
-   */
-  const workshopPairs = workshopPairsFiltered.reduce(
-    (result, value, index, array) => {
-      if (index % 2 === 0) {
-        result.push(array.slice(index, index + 2));
-      }
-      return result;
-    },
-    [],
-  );
+
 
   return (
     <WorkshopsListContainer
@@ -101,22 +88,11 @@ const WorkshopsList: React.FC<WorkshopsListProps> = ({
         ))}
       </TechToggleContainer>
 
-      {workshopPairs.map((ap, index) => {
-        const isEven = index % 2 !== 0;
-        const isOdd = index % 2 !== 1;
-
-        return (
-          <List
-            key={index}
-            gridLayout="tiles"
-            hasOnlyOneArticle={hasOnlyOneArticle}
-            reverse={isEven}
-          >
-            <ListItem workshop={ap[0]} narrow={isEven} isDark={isDark} />
-            <ListItem workshop={ap[1]} narrow={isOdd} isDark={isDark} />
-          </List>
-        );
-      })}
+      <List>
+        {workshopPairsFiltered.map((workshop, index) => (
+          <ListItem key={index} workshop={workshop} isDark={isDark} />
+        ))}
+      </List>
     </WorkshopsListContainer>
   );
 };
@@ -135,7 +111,7 @@ const ListItem: React.FC<WorkshopsListItemProps> = ({ workshop, isDark }) => {
   return (
     <ArticleLink to={workshop.slug} data-a11y="false">
       <Item>
-          {/* <Author>{workshop.instructor}</Author> */}
+          <Author>{workshop.instructor}</Author>
           <Title>{workshop.title}</Title>
           <Excerpt>{workshop.excerpt}</Excerpt>
           <img src={techImage(workshop.tech)} alt={workshop.tech} />
@@ -199,10 +175,10 @@ const WorkshopsListContainer = styled.div<{ alwaysShowAllDetails?: boolean }>`
   }
 `;
 
-const listTile = p => css`
+const List = styled.div`
   position: relative;
   display: grid;
-  grid-template-columns: ${p.reverse ? `${wide} ${wide}` : `${wide} ${wide}`};
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 2;
   column-gap: 30px;
   ${mediaqueries.desktop_medium`
@@ -217,25 +193,7 @@ const listTile = p => css`
   `}
 `;
 
-const listItemTile = p => css`
-  position: relative;
-`;
-
-// If only 1 article, dont create 2 rows.
-const listRow = p => css`
-  display: grid;
-  grid-template-rows: ${p.hasOnlyOneArticle ? '1fr' : '1fr 1fr'};
-`;
-
-const List = styled.div<{
-  reverse: boolean;
-  gridLayout: string;
-  hasOnlyOneArticle: boolean;
-}>`
-  ${p => (p.gridLayout === 'tiles' ? listTile : listRow)}
-`;
-
-const Item = styled.div<{ gridLayout: string }>`
+const Item = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -336,7 +294,7 @@ const Excerpt = styled.p`
   margin-bottom: 28px;
   color: ${p => p.theme.colors.secondary};
   font-family: ${p => p.theme.fonts.body};
-  display: ${p => (p.hasOverflow && p.gridLayout === 'tiles' ? 'none' : 'box')};
+  display: box;
   max-width: 515px;
   line-height: 1.6;
 
@@ -353,9 +311,11 @@ const Excerpt = styled.p`
 `;
 
 const Author = styled.div`
-  font-size: 14px;
-  color: ${p => p.theme.colors.primary};
-  font-family: ${p => p.theme.fonts.title};
+  font-size: 15px;
+  color: ${p => p.theme.colors.secondary};
+  font-family: ${p => p.theme.fonts.body};
+  font-weight: ${p => p.theme.fontsWeight.regular};
+  font-style: italic;
   margin-bottom: 8px;
 `;
 
@@ -442,5 +402,9 @@ const TechToggle = styled.button<{ isActive?: boolean; isDark?: boolean }>`
     `
     color: ${p.theme.colors.background};
     background: ${p.theme.colors.primary};
+  `}
+
+  ${mediaqueries.tablet`
+    padding: 1rem 0.9rem;
   `}
 `;

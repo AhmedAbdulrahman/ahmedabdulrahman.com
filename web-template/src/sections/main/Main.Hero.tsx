@@ -1,38 +1,78 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-import Section from '@components/Section';
 import Headings from '@components/Headings';
+import Section from '@components/Section';
 
 import mediaqueries from '@styles/media';
-import Icons from '@icons';
 
-const MainHero: React.FC = () => {
+const MainHero = () => {
   return (
-    <>
+    <Section>
       <Container>
-        <HeadingContainer>
-          <Headings.HeroHeading>
-            Creative Front-end developer with <span>designer's eye</span>.
+        <HeadingContainer data-scroll data-scroll-speed="3">
+          <Headings.HeroHeading
+            data-scroll
+            data-scroll-direction="horizontal"
+            data-scroll-speed="-2"
+            align="right"
+          >
+            crtv
+          </Headings.HeroHeading>
+          <Headings.HeroHeading
+          data-scroll
+          data-scroll-direction="horizontal"
+          data-scroll-speed="2"
+          >
+            developer
+          </Headings.HeroHeading>
+          <Headings.HeroHeading
+            data-scroll
+            data-scroll-direction="horizontal"
+            data-scroll-speed="-2"
+            align="center">
+              with
+          </Headings.HeroHeading>
+          <Headings.HeroHeading
+            data-scroll
+            data-scroll-direction="horizontal"
+            data-scroll-speed="2"
+           >
+            <span>designer's</span>
+          </Headings.HeroHeading>
+          <Headings.HeroHeading
+            data-scroll
+            data-scroll-direction="horizontal"
+            data-scroll-speed="-2"
+            align="right"
+           >
+            <span>eye</span>.
           </Headings.HeroHeading>
         </HeadingContainer>
-        <HeroImage>
-          <Icons.Creative />
-        </HeroImage>
       </Container>
-      <Description>
+      <Description data-scroll data-scroll-speed="2">
         <InfoText>
-          Focusing on creating neat Design Systems, Animations and Interactions.
+          Focusing on creating neat <span>Design Systems</span>, <span>Animations</span> and <span>Interactions</span>.
           Working together with team members to get all the design processes in
           place.
         </InfoText>
       </Description>
-      <Headings.SectionHeading>
-        princ—
+      <Headings.SectionHeading data-scroll data-scroll-speed="2">
+        <span
+          data-scroll
+          data-scroll-direction="horizontal"
+          data-scroll-speed="-2"
+         >
+           princ—</span>
         <br />
-        iples {`&`} values
+        <span
+          data-scroll
+          data-scroll-direction="horizontal"
+          data-scroll-speed="2"
+        >
+          iples {`&`} values</span>
       </Headings.SectionHeading>
-      <Grid>
+      <Grid data-scroll data-scroll-speed="2">
         <div>
           <Title>Integrity.</Title>
           <Paragraph>Always working with accuracy and transparency.</Paragraph>
@@ -55,7 +95,7 @@ const MainHero: React.FC = () => {
           </Paragraph>
         </div>
       </Grid>
-    </>
+      </Section>
   );
 };
 
@@ -63,36 +103,29 @@ export default MainHero;
 
 const Container = styled.div`
   position: relative;
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr 450px;
-  column-gap: 5em;
-  overflow: hidden;
-  margin: 104px 0 72px;
+  column-gap: 5em; */
+  /* overflow: hidden; */
+  margin: 200px 0 72px;
 
-  ${mediaqueries.desktop_up`
-    grid-template-columns: 1fr 500px;
-  `}
-
-  ${mediaqueries.tablet`
-    grid-template-columns: 1fr;
+  ${mediaqueries.phablet`
+    margin: 150px 0 72px;
   `}
 `;
 
 const HeadingContainer = styled.div`
-  // margin: 100px 0 76px;
   width: 100%;
-
-  ${mediaqueries.phablet`
-  // margin: 60px 0 36px;
-`}
 `;
 
 const InfoText = styled.p`
-  font-size: 2.8rem;
-  line-height: 1.5;
+  font-size: 6rem;
+  line-height: 1.08333em;
+  letter-spacing: -.04em;
   font-family: ${p => p.theme.fonts.body};
   color: ${p => p.theme.colors.articleText};
   margin-bottom: 100px;
+  text-align: center;
 
   span {
     color: ${p => p.theme.colors.accent};
@@ -103,8 +136,12 @@ const InfoText = styled.p`
     margin-bottom: 200px;
   `}
 
+  ${mediaqueries.tablet`
+    font-size: 3.5rem;
+  `}
+
   ${mediaqueries.phablet`
-    font-size: 2.2rem;
+    font-size: 2.7rem;
     line-height: 1.6;
   `}
 `;
@@ -166,6 +203,7 @@ const Paragraph = styled.p`
 `;
 
 const Description = styled.div`
+  /* margin-top: 180px; */
   margin-bottom: 180px;
 
   ${mediaqueries.desktop`
