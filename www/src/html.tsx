@@ -18,7 +18,7 @@ export default props => (
     <body {...props.bodyAttributes}>
       {props.preBodyComponents}
       <noscript>This site runs best with JavaScript enabled.</noscript>
-      <div
+      <main
         key="body"
         id="___gatsby"
         dangerouslySetInnerHTML={{ __html: props.body }}
