@@ -54,7 +54,6 @@ const AboutPage = ({ location }) => {
               Stockholm based
             </Headings.HeroHeading>
             <Headings.HeroHeading
-              disableGutters
               data-scroll
               data-scroll-direction="horizontal"
               data-scroll-speed="-2"
@@ -62,7 +61,6 @@ const AboutPage = ({ location }) => {
               <span>Creative Developer</span>
             </Headings.HeroHeading>
             <Headings.HeroHeading
-              disableGutters
               data-scroll
               data-scroll-direction="horizontal"
               data-scroll-speed="2"
