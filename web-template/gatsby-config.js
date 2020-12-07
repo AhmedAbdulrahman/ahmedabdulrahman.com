@@ -11,6 +11,10 @@ module.exports = ({
   mapping: {
     'Mdx.frontmatter.author': `AuthorsYaml`,
   },
+  flags: {
+    FAST_REFRESH: true,
+    FAST_DEV: true
+  },
   plugins: [
     `gatsby-plugin-typescript`,
     `gatsby-image`,
