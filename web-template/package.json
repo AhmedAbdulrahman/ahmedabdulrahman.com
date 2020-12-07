@@ -36,12 +36,11 @@
     "react-dom": "^17.0.1"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.27",
-    "@emotion/styled": "^10.0.27",
-    "@mdx-js/mdx": "^1.5.3",
-    "@mdx-js/react": "^1.5.3",
+    "@emotion/react": "^11.1.2",
+    "@emotion/styled": "^11.0.0",
+    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
     "adm-zip": "^0.4.13",
-    "babel-plugin-emotion": "^10.0.27",
     "contentful-cli": "^0.36.0",
     "disqus-react": "^1.0.9",
     "gatsby-image": "^2.2.37",
@@ -49,10 +48,10 @@
     "gatsby-plugin-emotion": "^4.1.18",
     "gatsby-plugin-feed": "2.3.25",
     "gatsby-plugin-mailchimp": "^5.1.2",
-    "gatsby-plugin-mdx": "^1.0.64",
+    "gatsby-plugin-mdx": "^1.6.0",
     "gatsby-plugin-react-helmet": "^3.1.18",
     "gatsby-plugin-sharp": "^2.10.0",
-    "gatsby-plugin-theme-ui": "^0.2.53",
+    "gatsby-plugin-theme-ui": "^0.3.4",
     "gatsby-plugin-typescript": "^2.4.6",
     "gatsby-plugin-webpack-bundle-analyzer": "^1.0.5",
     "gatsby-remark-autolink-headers": "^2.1.21",
@@ -79,7 +78,7 @@
     "react-outside-click-handler": "^1.3.0",
     "remark-slug": "^5.1.2",
     "request": "^2.88.0",
-    "theme-ui": "^0.2.52",
+    "theme-ui": "^0.3.4",
     "typeface-merriweather": "^0.0.72",
     "use-sound": "^1.0.2"
   }
