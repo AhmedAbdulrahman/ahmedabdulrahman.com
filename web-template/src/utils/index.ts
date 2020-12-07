@@ -355,3 +355,86 @@ export const capitalize = (string: string) => {
 
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
+
+interface MouseData {
+  x: number | null;
+  y: number | null;
+  screenX: number | null;
+  screenY: number | null;
+  pageX: number | null;
+  pageY: number | null;
+  clientX: number | null;
+  clientY: number | null;
+  movementX: number | null;
+  movementY: number | null;
+  offsetX: number | null;
+  offsetY: number | null;
+}
+
+export function getMousePositionFromEvent(e: MouseEvent): MouseData {
+  const {
+    screenX,
+    screenY,
+    movementX,
+    movementY,
+    pageX,
+    pageY,
+    clientX,
+    clientY,
+    offsetX,
+    offsetY
+  } = e;
+  return {
+    screenX,
+    screenY,
+    movementX,
+    movementY,
+    pageX,
+    pageY,
+    clientX,
+    clientY,
+    offsetX,
+    offsetY,
+    x: screenX,
+    y: screenY
+  };
+}
+
+export const IsDevice = (() => {
+  if (typeof navigator == 'undefined') return
+
+  let ua = navigator.userAgent
+
+  return {
+    info: ua,
+
+    Android() {
+      return ua.match(/Android/i)
+    },
+    BlackBerry() {
+      return ua.match(/BlackBerry/i)
+    },
+    IEMobile() {
+      return ua.match(/IEMobile/i)
+    },
+    iOS() {
+      return ua.match(/iPhone|iPad|iPod/i)
+    },
+    OperaMini() {
+      return ua.match(/Opera Mini/i)
+    },
+
+    /**
+     * Any Device
+     */
+    any() {
+      return (
+        IsDevice.Android() ||
+        IsDevice.BlackBerry() ||
+        IsDevice.iOS() ||
+        IsDevice.OperaMini() ||
+        IsDevice.IEMobile()
+      )
+    }
+  }
+})()
