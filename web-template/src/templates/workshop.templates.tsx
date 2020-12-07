@@ -21,7 +21,7 @@ const Workshop: Template = ({ pageContext, location }) => {
   const { workshop, mailchimp } = pageContext;
 
   return (
-    <Layout>
+    <Layout location={location}>
       <Section component="main">
       <WorkshopSEO workshop={workshop} location={location} />
       <WorkshopHero workshop={workshop} />

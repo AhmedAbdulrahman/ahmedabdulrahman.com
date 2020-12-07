@@ -6,7 +6,7 @@ import throttle from 'lodash/throttle';
 import { useColorMode } from 'theme-ui';
 // import { graphql, useStaticQuery } from 'gatsby';
 import { IoLogoTwitter } from 'react-icons/io';
-import { DiscussionEmbed } from 'disqus-react'
+import { DiscussionEmbed, CommentCount, CommentEmbed } from 'disqus-react';
 
 import Layout from '@components/Layout';
 import MDXRenderer from '@components/MDX';
@@ -108,7 +108,7 @@ const Article: Template = ({ pageContext, location }) => {
   }, []);
 
   return (
-    <Layout>
+    <Layout location={location}>
       <Section component="main">
         <ArticleSEO article={article} authors={authors} location={location} />
         <ArticleHero article={article} authors={authors} />
@@ -156,7 +156,7 @@ const Article: Template = ({ pageContext, location }) => {
             <FooterSpacer />
           </>
         )}
-        <DiscussionEmbed {...disqusConfig} />
+        <DiscussionEmbed {...disqusConfig} style={{minHeight: '500px'}}/>
       </Section>
     </Layout>
   );

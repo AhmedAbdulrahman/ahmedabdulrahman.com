@@ -43,7 +43,7 @@ const ArticlesPage: Template = ({ location, pageContext }) => {
   const site = results.allSite.edges[0].node.siteMetadata;
 
   return (
-    <Layout>
+    <Layout location={location}>
       <Section>
         <SEO
           image={`${site.siteUrl}/writing.png`}
@@ -56,7 +56,7 @@ const ArticlesPage: Template = ({ location, pageContext }) => {
         <ArticlesPaginator show={pageContext.pageCount > 1}>
           <Paginator {...pageContext} />
         </ArticlesPaginator>
-        <ArticlesGradient />
+        {/* <ArticlesGradient /> */}
       </Section>
     </Layout>
   );

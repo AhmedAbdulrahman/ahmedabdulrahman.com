@@ -12,11 +12,11 @@ import AuthorArticles from '../sections/author/Author.Articles';
 import { Template } from '@types';
 
 const Author: Template = ({ location, pageContext }) => {
-  const author = pageContext.additionalContext.author;
+  const { author } = pageContext.additionalContext;
   const articles = pageContext.group;
 
   return (
-    <Layout>
+    <Layout location={location}>
       <SEO
         pathname={location.pathname}
         title={author.name}

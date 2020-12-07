@@ -35,7 +35,7 @@ function CategoryPage({ location, pageContext }) {
   const site = results.allSite.edges[0].node.siteMetadata;
 
   return (
-    <Layout>
+    <Layout location={location}>
       <Section>
         <SEO
           image={`${site.siteUrl}/writing.png`}

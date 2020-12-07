@@ -39,8 +39,8 @@ const WorkshopsPage = ({ location, pageContext }) => {
   const site = results.allSite.edges[0].node.siteMetadata;
 
   return (
-    <LayoutBase>
-      <Section component="main">
+    <LayoutBase location={location}>
+      <Section>
         <SEO
           image={`${site.siteUrl}/workshops.png`}
           pathname={location.pathname}
