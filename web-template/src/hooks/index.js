@@ -33,7 +33,7 @@ export const useMobileDetect = () => {
 export const Scroll = (callbacks) => {
 	React.useEffect(() => {
       const locomotiveScroll = new LocomotiveScroll({
-        el: document.querySelector(scrollOptions.container),
+        el: window.document.querySelector(scrollOptions.container),
         ...scrollOptions.options,
       })
       locomotiveScroll.update()
@@ -91,7 +91,7 @@ export const useWindowSize = () => {
  * Hook for handling EventListeners
  * @return {object} width, height
  */
-export function useEventListener(eventName, handler, element = window) {
+export function useEventListener(eventName, handler) {
   // Create a ref that stores handler
   const savedHandler =  React.useRef()
 
@@ -103,18 +103,18 @@ export function useEventListener(eventName, handler, element = window) {
   React.useEffect(
     () => {
       // Make sure element supports addEventListener
-      const isSupported = element && element.addEventListener
+      const isSupported = typeof window !== 'undefined' && window.addEventListener
       if (!isSupported) return
 
       // Create event listener that calls handler function stored in ref
       const eventListener = (event) => savedHandler.current(event)
 
       // Add event listener
-      element.addEventListener(eventName, eventListener)
+      window.addEventListener(eventName, eventListener)
 
       // Remove event listener on cleanup
-      return () => element.removeEventListener(eventName, eventListener)
+      return () => window.removeEventListener(eventName, eventListener)
     },
-    [eventName, element] // Re-run if eventName or element changes
+    [eventName] // Re-run if eventName changes
   )
 }

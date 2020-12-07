@@ -20,7 +20,7 @@ interface LayoutProps {
   location: Location
 }
 
-const LayoutBase = ({ children } : LayoutProps) : JSX.Element => {
+const LayoutBase = ({ children, location } : LayoutProps) : JSX.Element => {
   const [colorMode] = useColorMode();
   const cursorColor = colorMode === 'dark' ? '255,255,255' : '254, 231, 162'
 

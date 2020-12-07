@@ -121,7 +121,7 @@ function CursorCore({
 
   // Target all possible clickables
   useEffect(() => {
-    const clickables = document.querySelectorAll(
+    const clickables = window.document.querySelectorAll(
       'a, input[type="submit"], input[type="image"], label[for], select, button, .link'
     )
     clickables.forEach((el) => {
@@ -202,7 +202,9 @@ function CursorCore({
   }
 
   // Hide / Show global cursor
-  document.body.style.cursor = 'none'
+  if (typeof window !== 'undefined') {
+    window.document.body.style.cursor = 'none'
+  }
 
   return (
     <React.Fragment>

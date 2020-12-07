@@ -31,7 +31,6 @@ const Layout = ({ children, location }: LayoutProps) : JSX.Element => {
 
   return (
     <ArticlesContextProvider>
-        {/* Here we pass the callbacks to the component. Anything that impacts the innerHeight, for example: Font Loaded */}
         <Scroll callbacks={location} />
         <Cursor
           innerSize={10}
