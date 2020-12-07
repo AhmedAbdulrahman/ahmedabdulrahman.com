@@ -56,7 +56,6 @@ const Footer: React.FC<{}> = () => {
 
   return (
     <Section
-      component="footer"
       css={css`
         padding: 2rem 0;
       `}
