@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { css } from '@emotion/core';
 
 export const globalStyles = p =>
@@ -28,8 +29,7 @@ export const globalStyles = p =>
     }
 
     ::selection {
-      background: ${p.colors.selection};
-      color: #fff;
+      background: transparent;
     }
 
     :root {
@@ -43,13 +43,20 @@ export const globalStyles = p =>
       line-height: 1.4;
     }
 
+    html *,
+    body * {
+      /* cursor: none; */
+    }
+
     html {
+      /* cursor: none; */
       font-family: sans-serif; // 1
       -ms-text-size-adjust: 100%; // 2
       -webkit-text-size-adjust: 100%; // 2
     }
 
     body {
+      /* cursor: none; */
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
         Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -57,6 +64,9 @@ export const globalStyles = p =>
       line-height: 1.625;
       overflow-x: hidden;
       transition: color 0.15s, background-color 0.15s;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior-y: none;
     }
 
     body::-webkit-scrollbar {
@@ -171,4 +181,78 @@ export const globalStyles = p =>
       text-transform: uppercase;
       color: #3a5c21;
     }
+
+    /*! locomotive-scroll v3.5.4 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+    html.has-scroll-smooth {
+      overflow: hidden;
+    }
+
+    html.has-scroll-dragging {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .has-scroll-smooth body {
+      overflow: hidden;
+    }
+
+    /* Specifying the scroll container manually */
+    .has-scroll-smooth #___gatsby,
+    .has-scroll-smooth [data-scroll-container] {
+      min-height: 100vh;
+    }
+
+    .c-scrollbar {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 11px;
+      height: 100vh;
+      transform-origin: center right;
+      transition: transform 0.3s, opacity 0.3s;
+      opacity: 0;
+    }
+    .c-scrollbar:hover {
+      transform: scaleX(1.45);
+    }
+    .c-scrollbar:hover,
+    .has-scroll-scrolling .c-scrollbar,
+    .has-scroll-dragging .c-scrollbar {
+      opacity: 1;
+    }
+
+    .c-scrollbar_thumb {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: ${p.colors.accent};
+      width: 7px;
+      border-radius: 10px;
+      margin: 2px;
+      cursor: -webkit-grab;
+      cursor: grab;
+      z-index: 2;
+    }
+    .has-scroll-dragging .c-scrollbar_thumb {
+      cursor: -webkit-grabbing;
+      cursor: grabbing;
+    }
+
+    html[data-direction="up"] header {
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-bottom: .1rem solid rgba(0,0,0,.1);
+        transition: backdrop-filter .6s,opacity .4s;
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        z-index: 100;
+      }
+  }
   `;
