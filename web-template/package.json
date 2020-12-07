@@ -68,6 +68,7 @@
     "gatsby-transformer-remark": "^2.6.45",
     "gatsby-transformer-sharp": "^2.3.9",
     "gatsby-transformer-yaml": "^2.2.20",
+    "locomotive-scroll": "^4.0.4",
     "lodash": "^4.17.15",
     "prism-react-renderer": "^1.0.2",
     "react-helmet": "^5.2.1",
