@@ -1,0 +1,62 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es5", "es6", "dom"
+    ],
+    "downlevelIteration": true,
+    "jsx": "react",
+    "isolatedModules": true,
+
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+     /* Module Resolution Options */
+     "moduleResolution": "node",
+     "esModuleInterop": true,
+
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+
+    "types": ["@emotion/react/types/css-prop"],
+
+    "baseUrl": "web-template",
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@icons": ["./src/icons"],
+      "@types": ["./src/types"],
+      "@styles/*": ["./src/styles/*"],
+      "@hooks": ["./src/hooks"],
+      "@utils": ["./src/utils"],
+      "@templates/*": ["./src/templates/*"],
+      "@sections/*": ["./src/sections/*"],
+      "@theme/*": ["./src/gatsby-plugin-theme-ui/*"],
+    }
+  },
+  "include": [
+    "./web-template/src/**/*"
+    // "web-template/src/**/*.ts",
+    // "web-template/src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules", "public", ".cache"
+  ]
+}
