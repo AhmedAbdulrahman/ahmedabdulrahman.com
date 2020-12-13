@@ -10,10 +10,10 @@ const GatsbyFluid_withWebp = `
   srcWebp
   srcSetWebp
   sizes
-`;
+`
 
 module.exports.local = {
-  articles: `{
+	articles: `{
     articles: allArticle(
       sort: { fields: [date, title], order: DESC }
       limit: 1000
@@ -61,7 +61,7 @@ module.exports.local = {
       }
     }
   }`,
-  workshops: `{
+	workshops: `{
     workshops: allWorkshop(
       sort: { fields: [date, title], order: DESC }
       limit: 1000
@@ -124,7 +124,7 @@ module.exports.local = {
       }
     }
   }`,
-  authors: `{
+	authors: `{
     authors: allAuthor {
       edges {
         node {
@@ -158,10 +158,10 @@ module.exports.local = {
       }
     }
   }`,
-};
+}
 
 module.exports.contentful = {
-  articles: `{
+	articles: `{
     articles: allContentfulPost(sort: {fields: [date, title], order: DESC}, limit: 1000) {
       edges {
         node {
@@ -200,7 +200,7 @@ module.exports.contentful = {
     }
   }
   `,
-  authors: `{
+	authors: `{
     authors: allContentfulAuthor {
       edges {
         node {
@@ -228,4 +228,4 @@ module.exports.contentful = {
       }
     }
   }`,
-};
+}

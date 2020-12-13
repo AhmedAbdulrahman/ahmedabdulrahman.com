@@ -1,40 +1,48 @@
-import React, { createContext, useState } from "react";
+/* eslint-disable @typescript-eslint/no-empty-function */
+import React, { createContext, useState, ReactNode } from 'react'
 
-export const GridLayoutContext = createContext({
-  gridLayout: "tiles",
-  hasSetGridLayout: false,
-  setGridLayout: (tile: string) => {},
-  getGridLayout: () => {},
-});
+type ContextProps = {
+	gridLayout: string
+	hasSetGridLayout: boolean
+	setGridLayout: (tile: string) => void
+	getGridLayout: () => void
+}
 
-const GridLayoutProvider: React.FC<{}> = ({ children }) => {
-  const initialLayout = "tiles";
+export const GridLayoutContext = createContext<ContextProps>({
+	gridLayout: 'tiles',
+	hasSetGridLayout: false,
+	setGridLayout: () => {},
+	getGridLayout: () => {},
+})
 
-  const [gridLayout, setGridLayout] = useState<string>(initialLayout);
-  const [hasSetGridLayout, setHasSetGridLayout] = useState<boolean>(false);
+const GridLayoutProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+	const initialLayout = 'tiles'
 
-  function setGridLayoutAndSave(tile: string) {
-    localStorage.setItem("gridLayout", tile || initialLayout);
-    setGridLayout(tile);
-  }
+	const [gridLayout, setGridLayout] = useState<string>(initialLayout)
+	const [hasSetGridLayout, setHasSetGridLayout] = useState<boolean>(false)
 
-  function getGridLayoutAndSave() {
-    setGridLayout(localStorage.getItem("gridLayout") || initialLayout);
-    setHasSetGridLayout(true);
-  }
+	const setGridLayoutAndSave = (tile: string): void => {
+		localStorage.setItem('gridLayout', tile || initialLayout)
+		setGridLayout(tile)
+	}
 
-  return (
-    <GridLayoutContext.Provider
-      value={{
-        gridLayout,
-        hasSetGridLayout,
-        setGridLayout: setGridLayoutAndSave,
-        getGridLayout: getGridLayoutAndSave,
-      }}
-    >
-      {children}
-    </GridLayoutContext.Provider>
-  );
-};
+	const getGridLayoutAndSave = (): void => {
+		setGridLayout(localStorage.getItem('gridLayout') || initialLayout)
+		setHasSetGridLayout(true)
+	}
 
-export default GridLayoutProvider;
+	return (
+		<GridLayoutContext.Provider
+			value={{
+				gridLayout,
+				hasSetGridLayout,
+				setGridLayout: setGridLayoutAndSave,
+				getGridLayout: getGridLayoutAndSave,
+			}}
+		>
+			{children}
+		</GridLayoutContext.Provider>
+	)
+}
+
+export default GridLayoutProvider

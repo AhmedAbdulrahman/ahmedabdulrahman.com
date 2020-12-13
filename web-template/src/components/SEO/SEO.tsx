@@ -17,51 +17,51 @@
  *
  */
 
-import React from 'react';
-import Helmet from 'react-helmet';
-import { graphql, useStaticQuery } from 'gatsby';
+import * as React from 'react'
+import Helmet from 'react-helmet'
+import { graphql, useStaticQuery } from 'gatsby'
 
 interface HelmetProps {
-  articlepathName?: string;
-  authorName?: string;
-  authorsBio?: string;
-  authorsSlug?: string;
-  canonicalUrl?: string;
-  dateforSEO?: string;
-  description?: string;
-  image?: string;
-  isBlogPost: false;
-  pathname: string;
-  published?: string;
-  timeToRead?: string;
-  title: string;
+	articlepathName?: string
+	authorName?: string
+	authorsBio?: string
+	authorsSlug?: string
+	canonicalUrl?: string
+	dateforSEO?: string
+	description?: string
+	image?: string
+	isBlogPost?: boolean
+	pathname?: string
+	published?: string
+	timeToRead?: number
+	title?: string
 }
 
 const seoQuery = graphql`
-  {
-    allSite {
-      edges {
-        node {
-          siteMetadata {
-            description
-            social {
-              url
-              name
-            }
-            siteUrl
-            title
-            name
-          }
-        }
-      }
-    }
-  }
-`;
+	{
+		allSite {
+			edges {
+				node {
+					siteMetadata {
+						description
+						social {
+							url
+							name
+						}
+						siteUrl
+						title
+						name
+					}
+				}
+			}
+		}
+	}
+`
 
 const themeUIDarkModeWorkaroundScript = [
-  {
-    type: 'text/javascript',
-    innerHTML: `
+	{
+		type: 'text/javascript',
+		innerHTML: `
     (function() {
       try {
         var mode = localStorage.getItem('theme-ui-color-mode');
@@ -71,47 +71,46 @@ const themeUIDarkModeWorkaroundScript = [
       } catch (e) {}
     })();
   `,
-  },
-];
+	},
+]
 
 const SEO: React.FC<HelmetProps> = ({
-  articlepathName,
-  authorName,
-  authorsBio,
-  authorsSlug,
-  canonicalUrl,
-  children,
-  dateforSEO,
-  description,
-  image,
-  isBlogPost,
-  pathname,
-  published,
-  timeToRead,
-  title,
+	articlepathName,
+	authorName,
+	authorsBio,
+	authorsSlug,
+	canonicalUrl,
+	children,
+	dateforSEO,
+	description,
+	image,
+	isBlogPost = false,
+	pathname,
+	published,
+	timeToRead,
+	title,
 }) => {
-  const results = useStaticQuery(seoQuery);
-  const site = results.allSite.edges[0].node.siteMetadata;
-  const twitter = site.social.find(option => option.name === 'twitter') || {};
-  const github = site.social.find(option => option.name === 'github') || {};
-  const behance = site.social.find(option => option.name === 'behance') || {};
+	const results = useStaticQuery(seoQuery)
+	const site = results.allSite.edges[0].node.siteMetadata
+	const twitter = site.social.find((option) => option.name === 'twitter') || {}
+	const github = site.social.find((option) => option.name === 'github') || {}
+	const behance = site.social.find((option) => option.name === 'behance') || {}
 
-  const pageUrl = site.siteUrl + pathname
+	const pageUrl = site.siteUrl + pathname
 
-  const fullURL = (path: string) =>
-    path ? `${path}` : site.siteUrl;
+	const fullURL = (path: string): string => (path ? `${path}` : site.siteUrl)
 
-  // If no image is provided lets looks for a default novela static image
-  image = image ? image : `${site.siteUrl}/preview.jpg`;
+	// If no image is provided lets looks for a default novela static image
+	image = image ? image : `${site.siteUrl}/preview.jpg`
 
-  // Checks if the source of the image is hosted on Contentful
-  if (`${image}`.includes('ctfassets')) {
-    image = `${image}`;
-  } else {
-    image = fullURL(image);
-  }
+	// Checks if the source of the image is hosted on Contentful
+	if (`${image}`.includes('ctfassets')) {
+		image = `${image}`
+	} else {
+		image = fullURL(image)
+	}
 
-  let siteSchema = `{
+	const siteSchema = `{
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -180,14 +179,14 @@ const SEO: React.FC<HelmetProps> = ({
     ]
   }
 `.replace(/"[^"]+"|(\s)/gm, function (matched, group1) {
-    if (!group1) {
-      return matched;
-    } else {
-      return '';
-    }
-  });
+		if (!group1) {
+			return matched
+		} else {
+			return ''
+		}
+	})
 
-  let blogSchema = `{
+	const blogSchema = `{
     "@context": "https://schema.org",
     "@graph": [
       {
@@ -324,73 +323,73 @@ const SEO: React.FC<HelmetProps> = ({
     ]
   }
 `.replace(/"[^"]+"|(\s)/gm, function (matched, group1) {
-    if (!group1) {
-      return matched;
-    } else {
-      return '';
-    }
-  });
+		if (!group1) {
+			return matched
+		} else {
+			return ''
+		}
+	})
 
-  const schema = isBlogPost ? blogSchema : siteSchema
+	const schema = isBlogPost ? blogSchema : siteSchema
 
-  const metaTags = [
-    { charset: 'utf-8' },
-    {
-      'http-equiv': 'X-UA-Compatible',
-      content: 'IE=edge',
-    },
-    {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1',
-    },
-    {
-      name: 'theme-color',
-      content: '#fff',
-    },
-    { itemprop: 'name', content: title || site.title },
-    { itemprop: 'description', content: description || site.description },
-    { itemprop: 'image', content: image },
-    { name: 'description', content: description || site.description },
+	const metaTags = [
+		{ charset: 'utf-8' },
+		{
+			'http-equiv': 'X-UA-Compatible',
+			content: 'IE=edge',
+		},
+		{
+			name: 'viewport',
+			content: 'width=device-width, initial-scale=1',
+		},
+		{
+			name: 'theme-color',
+			content: '#fff',
+		},
+		{ itemprop: 'name', content: title || site.title },
+		{ itemprop: 'description', content: description || site.description },
+		{ itemprop: 'image', content: image },
+		{ name: 'description', content: description || site.description },
 
-    { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:site', content: site.name },
-    { name: 'twitter:title', content: title || site.title },
-    { name: 'twitter:description', content: description || site.description },
-    { name: 'twitter:creator', content: twitter.url },
-    {
-      name: 'twitter:image',
-      content: image,
-    },
+		{ name: 'twitter:card', content: 'summary_large_image' },
+		{ name: 'twitter:site', content: site.name },
+		{ name: 'twitter:title', content: title || site.title },
+		{ name: 'twitter:description', content: description || site.description },
+		{ name: 'twitter:creator', content: twitter.url },
+		{
+			name: 'twitter:image',
+			content: image,
+		},
 
-    { property: 'og:type', content: 'website' },
-    { property: 'og:title', content: title || site.title },
-    { property: 'og:url', content: articlepathName || pageUrl },
-    { property: 'og:image', content: image },
-    { property: 'og:description', content: description || site.description },
-    { property: 'og:site_name', content: site.name },
-  ];
+		{ property: 'og:type', content: 'website' },
+		{ property: 'og:title', content: title || site.title },
+		{ property: 'og:url', content: articlepathName || pageUrl },
+		{ property: 'og:image', content: image },
+		{ property: 'og:description', content: description || site.description },
+		{ property: 'og:site_name', content: site.name },
+	]
 
-  if (published) {
-    metaTags.push({ name: 'article:published_time', content: published });
-  }
+	if (published) {
+		metaTags.push({ name: 'article:published_time', content: published })
+	}
 
-  if (timeToRead) {
-    metaTags.push({ name: 'twitter:label1', value: 'Reading time' });
-    metaTags.push({ name: 'twitter:data1', value: `${timeToRead} min read` });
-  }
+	if (timeToRead) {
+		metaTags.push({ name: 'twitter:label1', value: 'Reading time' })
+		metaTags.push({ name: 'twitter:data1', value: `${timeToRead} min read` })
+	}
 
-  return (
-    <Helmet
-      title={title || site.title}
-      htmlAttributes={{ lang: 'en' }}
-      script={themeUIDarkModeWorkaroundScript}
-      meta={metaTags}
-    >
-      <script type="application/ld+json">{schema}</script>
-      {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-      {children}
-    </Helmet>
-  );
-};
+	return (
+		<Helmet
+			title={title || site.title}
+			htmlAttributes={{ lang: 'en' }}
+			script={themeUIDarkModeWorkaroundScript}
+			meta={metaTags}
+		>
+			<script type="application/ld+json">{schema}</script>
+			{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+			{children}
+		</Helmet>
+	)
+}
 
-export default SEO;
+export default SEO

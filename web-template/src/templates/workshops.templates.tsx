@@ -1,78 +1,74 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { graphql, useStaticQuery } from 'gatsby';
-
-import WorkshopsHero from '../sections/workshops/Workshops.Hero';
-import Section from '@components/Section';
-import SEO from '@components/SEO';
-import { LayoutBase } from '@components/Layout';
-import Paginator from '@components/Navigation/Navigation.Paginator';
-
-import WorkshopsList from '../sections/workshops/Workshops.List';
+import * as React from 'react'
+import styled from '@emotion/styled'
+import { graphql, useStaticQuery } from 'gatsby'
+import WorkshopsHero from '@sections/workshops/Workshops.Hero'
+import Section from '@components/Section'
+import SEO from '@components/SEO'
+import { LayoutBase } from '@components/Layout'
+import Paginator from '@components/Navigation/Navigation.Paginator'
+import WorkshopsList from '@sections/workshops/Workshops.List'
+import { WorkshopsTemplate } from '@types'
 
 const siteQuery = graphql`
-  {
-    allSite {
-      edges {
-        node {
-          siteMetadata {
-            hero {
-              maxWidth
-              workshop {
-                heading
-                subHeading
-              }
-            }
-            title
-            siteUrl
-          }
-        }
-      }
-    }
-  }
-`;
+	{
+		allSite {
+			edges {
+				node {
+					siteMetadata {
+						hero {
+							maxWidth
+							workshop {
+								heading
+								subHeading
+							}
+						}
+						title
+						siteUrl
+					}
+				}
+			}
+		}
+	}
+`
 
-const WorkshopsPage = ({ location, pageContext }) => {
-  const workshop = pageContext.group;
+const WorkshopsPage: WorkshopsTemplate = ({ location, pageContext }) => {
+	const { group: workshops } = pageContext
+	const results = useStaticQuery(siteQuery)
+	const site = results.allSite.edges[0].node.siteMetadata
 
-  const results = useStaticQuery(siteQuery);
-  const site = results.allSite.edges[0].node.siteMetadata;
+	return (
+		<LayoutBase location={location}>
+			<Section>
+				<SEO
+					image={`${site.siteUrl}/workshops.png`}
+					pathname={location.pathname}
+					title={`Workshops - ${site.title}`}
+				/>
+				<WorkshopsHero subtitle={site.hero.workshop.subHeading} />
+				<WorkshopsList workshops={workshops} />
+				<ArticlesPaginator show={pageContext.pageCount > 1}>
+					<Paginator {...pageContext} />
+				</ArticlesPaginator>
+				<WorkshopsGradient />
+			</Section>
+		</LayoutBase>
+	)
+}
 
-  return (
-    <LayoutBase location={location}>
-      <Section>
-        <SEO
-          image={`${site.siteUrl}/workshops.png`}
-          pathname={location.pathname}
-          title={`Workshops - ${site.title}`}
-        />
-        <WorkshopsHero
-          subtitle={site.hero.workshop.subHeading}
-        />
-        <WorkshopsList workshops={workshop} />
-        <ArticlesPaginator show={pageContext.pageCount > 1}>
-          <Paginator {...pageContext} />
-        </ArticlesPaginator>
-        <WorkshopsGradient />
-      </Section>
-    </LayoutBase>
-  );
-};
-
-export default WorkshopsPage;
+export default WorkshopsPage
 
 const WorkshopsGradient = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 590px;
-  z-index: 0;
-  pointer-events: none;
-  background: ${p => p.theme.colors.gradient};
-  transition: ${p => p.theme.colorModeTransition};
-`;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 590px;
+	z-index: 0;
+	pointer-events: none;
+	background: ${(p) => p.theme.colors.gradient};
+	transition: ${(p) => p.theme.colorModeTransition};
+`
 
 const ArticlesPaginator = styled.div<{ show: boolean }>`
-  ${p => p.show && `margin-top: 64px;`}
-`;
+	${(p) => p.show && `margin-top: 64px;`}
+`

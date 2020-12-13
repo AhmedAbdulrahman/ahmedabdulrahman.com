@@ -1,1 +1,1 @@
-export { default } from './Articles.Gradient';
+export { default } from './Articles.Gradient'

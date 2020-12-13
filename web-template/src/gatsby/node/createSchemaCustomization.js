@@ -1,7 +1,7 @@
 module.exports = ({ actions }) => {
-  const { createTypes } = actions;
+	const { createTypes } = actions
 
-  const typeDefs = `
+	const typeDefs = `
     type PluginOptions {
       basePath: String
       rootPath: String
@@ -9,7 +9,7 @@ module.exports = ({ actions }) => {
     type SitePlugin implements Node {
       pluginOptions: PluginOptions
     }
-  `;
+  `
 
-  createTypes(typeDefs);
-};
+	createTypes(typeDefs)
+}

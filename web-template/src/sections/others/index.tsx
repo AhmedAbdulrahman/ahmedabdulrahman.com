@@ -1,1 +1,1 @@
-export { default } from './Page.Hero';
+export { default } from './Page.Hero'

@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
-import React from 'react'
+import * as React from 'react'
 // We are excluding this from loading at build time in gatsby-node.js
-import LocomotiveScroll from "locomotive-scroll"
-import { scrollOptions } from "../theme"
+import LocomotiveScroll from 'locomotive-scroll'
+import { scrollOptions } from '../theme'
 
 export const getMobileDetect = (userAgent) => {
 	const isAndroid = () => Boolean(userAgent.match(/Android/i))
@@ -32,58 +32,58 @@ export const useMobileDetect = () => {
 
 export const Scroll = (callbacks) => {
 	React.useEffect(() => {
-      const locomotiveScroll = new LocomotiveScroll({
-        el: window.document.querySelector(scrollOptions.container),
-        ...scrollOptions.options,
-      })
-      locomotiveScroll.update()
+		const locomotiveScroll = new LocomotiveScroll({
+			el: window.document.querySelector(scrollOptions.container),
+			...scrollOptions.options,
+		})
+		locomotiveScroll.update()
 
-      // Exposing to the global scope for ease of use.
-      window.scroll = locomotiveScroll
+		// Exposing to the global scope for ease of use.
+		window.scroll = locomotiveScroll
 
-      locomotiveScroll.on(`scroll`, (func) => {
-        // Update `data-direction` with scroll direction.
-        document.documentElement.setAttribute(`data-direction`, func.direction)
-      })
+		locomotiveScroll.on(`scroll`, (func) => {
+			// Update `data-direction` with scroll direction.
+			document.documentElement.setAttribute(`data-direction`, func.direction)
+		})
 
-      return () => {
-        if (locomotiveScroll) locomotiveScroll.destroy()
-      }
+		return () => {
+			if (locomotiveScroll) locomotiveScroll.destroy()
+		}
 	}, [callbacks])
 
 	return null
 }
 
 export const useMousePosition = () => {
-  const [mousePosition, setMousePosition] = React.useState({ x: null, y: null });
-  function handleMouseMove(e) {
-    setMousePosition({ x: e.pageX, y: e.pageY });
-  }
-  React.useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-  return mousePosition;
-};
+	const [mousePosition, setMousePosition] = React.useState({ x: null, y: null })
+	function handleMouseMove(e) {
+		setMousePosition({ x: e.pageX, y: e.pageY })
+	}
+	React.useEffect(() => {
+		window.addEventListener('mousemove', handleMouseMove)
+		return () => window.removeEventListener('mousemove', handleMouseMove)
+	}, [])
+	return mousePosition
+}
 
 export const useWindowSize = () => {
-  const getSize = () => ({
-    width: window.innerWidth,
-    height: window.innerHeight
-  })
+	const getSize = () => ({
+		width: window.innerWidth,
+		height: window.innerHeight,
+	})
 
-  const [windowSize, setWindowSize] = React.useState(getSize)
+	const [windowSize, setWindowSize] = React.useState(getSize)
 
-  React.useEffect(() => {
-    const handleResize = () => {
-      setWindowSize(getSize())
-    }
+	React.useEffect(() => {
+		const handleResize = () => {
+			setWindowSize(getSize())
+		}
 
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize',handleResize)
-  }, [])
+		window.addEventListener('resize', handleResize)
+		return () => window.removeEventListener('resize', handleResize)
+	}, [])
 
-  return windowSize
+	return windowSize
 }
 
 /**
@@ -92,29 +92,29 @@ export const useWindowSize = () => {
  * @return {object} width, height
  */
 export function useEventListener(eventName, handler) {
-  // Create a ref that stores handler
-  const savedHandler =  React.useRef()
+	// Create a ref that stores handler
+	const savedHandler = React.useRef()
 
-  // Update ref.current value if handler changes.
-  React.useEffect(() => {
-    savedHandler.current = handler
-  }, [handler])
+	// Update ref.current value if handler changes.
+	React.useEffect(() => {
+		savedHandler.current = handler
+	}, [handler])
 
-  React.useEffect(
-    () => {
-      // Make sure element supports addEventListener
-      const isSupported = typeof window !== 'undefined' && window.addEventListener
-      if (!isSupported) return
+	React.useEffect(
+		() => {
+			// Make sure element supports addEventListener
+			const isSupported = typeof window !== 'undefined' && window.addEventListener
+			if (!isSupported) return
 
-      // Create event listener that calls handler function stored in ref
-      const eventListener = (event) => savedHandler.current(event)
+			// Create event listener that calls handler function stored in ref
+			const eventListener = (event) => savedHandler.current(event)
 
-      // Add event listener
-      window.addEventListener(eventName, eventListener)
+			// Add event listener
+			window.addEventListener(eventName, eventListener)
 
-      // Remove event listener on cleanup
-      return () => window.removeEventListener(eventName, eventListener)
-    },
-    [eventName] // Re-run if eventName changes
-  )
+			// Remove event listener on cleanup
+			return () => window.removeEventListener(eventName, eventListener)
+		},
+		[eventName] // Re-run if eventName changes
+	)
 }

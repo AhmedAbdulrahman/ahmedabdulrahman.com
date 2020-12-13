@@ -1,74 +1,74 @@
-import styled from '@emotion/styled';
-import mediaqueries from '@styles/media';
+import styled from '@emotion/styled'
+import mediaqueries from '@styles/media'
 
 const OrderedList = styled.ol`
-  list-style: none;
-  counter-reset: list;
-  color: ${p => p.theme.colors.articleText};
-  position: relative;
-  padding: 15px 0 30px 30px;
-  margin: 0 auto;
-  transition: ${p => p.theme.colorModeTransition};
-  font-family: ${p => p.theme.fonts.monospace};
-  z-index: 1;
+	list-style: none;
+	counter-reset: list;
+	color: ${(p) => p.theme.colors.articleText};
+	position: relative;
+	padding: 15px 0 30px 30px;
+	margin: 0 auto;
+	transition: ${(p) => p.theme.colorModeTransition};
+	font-family: ${(p) => p.theme.fonts.monospace};
+	z-index: 1;
 
-  width: 100%;
-  max-width: 680px;
+	width: 100%;
+	max-width: 680px;
 
-  ${mediaqueries.desktop`
+	${mediaqueries.desktop`
     max-width: 507px;
   `}
 
-  ${mediaqueries.tablet`
+	${mediaqueries.tablet`
     max-width: 486px;
     padding-left: 0px;
   `};
 
-  ${mediaqueries.phablet`
+	${mediaqueries.phablet`
     padding-left: 20px;
   `};
 
-  li {
-    position: relative;
-    padding-bottom: 15px;
-    font-size: 1.875rem;
+	li {
+		position: relative;
+		padding-bottom: 15px;
+		font-size: 1.875rem;
 
-    ${mediaqueries.tablet`
+		${mediaqueries.tablet`
       padding-left: 30px;
     `};
 
-    ${mediaqueries.phablet`
+		${mediaqueries.phablet`
       padding-left: 30px;
       font-size: 1.575rem;
     `};
 
-    p {
-      ${mediaqueries.tablet`
+		p {
+			${mediaqueries.tablet`
         padding: 0;
       `};
-    }
-  }
+		}
+	}
 
-  li::before {
-    width: 3rem;
-    display: inline-block;
-    position: absolute;
-    color: ${p => p.theme.colors.articleText};
-  }
+	li::before {
+		width: 3rem;
+		display: inline-block;
+		position: absolute;
+		color: ${(p) => p.theme.colors.articleText};
+	}
 
-  li::before {
-    counter-increment: list;
-    content: counter(list) '.';
-    font-weight: 600;
-    position: absolute;
-    left: -3rem;
-    top: -0.3rem;
-    font-size: 2rem;
+	li::before {
+		counter-increment: list;
+		content: counter(list) '.';
+		font-weight: 600;
+		position: absolute;
+		left: -3rem;
+		top: -0.3rem;
+		font-size: 2rem;
 
-    ${mediaqueries.tablet`
+		${mediaqueries.tablet`
       left: 0;
     `};
-  }
-`;
+	}
+`
 
-export default OrderedList;
+export default OrderedList
